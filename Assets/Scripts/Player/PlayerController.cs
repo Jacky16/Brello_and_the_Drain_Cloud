@@ -17,9 +17,11 @@ public class PlayerController : MonoBehaviour
     private int isJumpingHash;
     private int attackHash;
 
-    private Vector2 currentMovementInput;
+    private Vector2 axis;
     private Vector3 currentMovement;
     private Vector3 currentRunMovement;
+    private Vector3 camForward;
+    private Vector3 camRight;
 
     private bool isMovementPressed;
     private bool isRunPressed;
@@ -27,27 +29,24 @@ public class PlayerController : MonoBehaviour
     private bool isGladePressed;
 
     [Header("Movement Settings")]
-
     [SerializeField] private float runSpeed = 3;
+
     [SerializeField] private float walkSpeed = 1;
     [SerializeField] private float rotationSpeed = 15f;
 
-
     [Header("Gravity Settings")]
-
     [SerializeField] private float groundGravity = .05f;
+
     private float gravity = -9.8f;
 
-
     [Header("Glade Settings")]
-    [SerializeField] float gladeForce = 4;
-    [SerializeField] float velocityToGlade = 0;
+    [SerializeField] private float gladeForce = 4;
 
-
+    [SerializeField] private float velocityToGlade = 0;
 
     [Header("Jump Settings")]
-
     [SerializeField] private float maxJumpHeight = 1.0f;
+
     [SerializeField] private float maxJumpTime = 0.5f;
     private float initialJumpVelocity;
     private bool isJumping;
@@ -63,7 +62,6 @@ public class PlayerController : MonoBehaviour
         isRunningHash = Animator.StringToHash("isRunning");
         isJumpingHash = Animator.StringToHash("isJumping");
         attackHash = Animator.StringToHash("attack");
-        
 
         //Player inputs callbacks
 
@@ -89,8 +87,6 @@ public class PlayerController : MonoBehaviour
         SetUpJumpvariables();
     }
 
-    
-
     private void OnGlade(InputAction.CallbackContext ctx)
     {
         isGladePressed = ctx.ReadValueAsButton();
@@ -103,14 +99,14 @@ public class PlayerController : MonoBehaviour
 
     private void OnMovementInput(InputAction.CallbackContext ctx)
     {
-        currentMovementInput = ctx.ReadValue<Vector2>();
+        axis = ctx.ReadValue<Vector2>();
 
-        //Walk
-        currentMovement.x = currentMovementInput.x * walkSpeed;
-        currentMovement.z = currentMovementInput.y * walkSpeed;
-        //Run
-        currentRunMovement.x = currentMovementInput.x * runSpeed;
-        currentRunMovement.z = currentMovementInput.y * runSpeed;
+        ////Walk
+        //currentMovement.x = axis.x * walkSpeed;
+        //currentMovement.z = axis.y * walkSpeed;
+        ////Run
+        //currentRunMovement.x = axis.x * runSpeed;
+        //currentRunMovement.z = axis.y * runSpeed;
 
         isMovementPressed = currentMovement.x != 0 || currentMovement.z != 0;
     }
@@ -119,23 +115,33 @@ public class PlayerController : MonoBehaviour
     {
         isRunPressed = ctx.ReadValueAsButton();
     }
+
     private void OnAttack(InputAction.CallbackContext ctx)
     {
         HandleAttack();
     }
 
-
     private void Update()
     {
+        //Calcular la direccion de la camara
+        CamDirection();
         HandleRotation();
         HandleAnimation();
         if (isRunPressed)
         {
-            characterController.Move(currentRunMovement * Time.deltaTime);
+            Vector3 dir = (axis.x * camRight + axis.y * camForward) * runSpeed;
+            dir.y = currentRunMovement.y;
+            isMovementPressed = dir.x != 0 || dir.z != 0;
+
+            characterController.Move(dir * Time.deltaTime);
         }
         else
         {
-            characterController.Move(currentMovement * Time.deltaTime);
+            Vector3 dir = (axis.x * camRight + axis.y * camForward) * walkSpeed;
+            dir.y = currentRunMovement.y;
+            isMovementPressed = dir.x != 0 || dir.z != 0;
+
+            characterController.Move(dir * Time.deltaTime);
         }
 
         HandleGravity();
@@ -160,19 +166,18 @@ public class PlayerController : MonoBehaviour
 
     private void HandleRotation()
     {
-        Vector3 positionToLookAt;
+        Vector3 positionToLookAt = (axis.x * camRight + axis.y * camForward);
 
         //Setear la rotacion en la cual va a girar
-        positionToLookAt.x = currentMovement.x;
+
         positionToLookAt.y = 0.0f;
-        positionToLookAt.z = currentMovement.z;
 
         //Obtenemos la rotacion actual del Player
         Quaternion currentRotation = transform.rotation;
 
         if (isMovementPressed)
         {
-            //Hacemos una interpolación en la rotacion que va a girar cuando el player se mueve
+            //Hacemos una interpolaciï¿½n en la rotacion que va a girar cuando el player se mueve
             Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
             transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
@@ -198,7 +203,6 @@ public class PlayerController : MonoBehaviour
         //Glade
         else if (canGlade && isGladePressed && !characterController.isGrounded)
         {
-
             float previousYVelocity = currentMovement.y;
             float newYVelocity = currentMovement.y + ((gravity / gladeForce) * Time.deltaTime);
             float nextYVelocity = (previousYVelocity + newYVelocity) * .5f;
@@ -244,10 +248,17 @@ public class PlayerController : MonoBehaviour
             animator.SetBool(isRunningHash, false);
     }
 
-    void HandleAttack()
+    private void CamDirection()
+    {
+        camForward = Camera.main.transform.forward.normalized;
+        camRight = Camera.main.transform.right.normalized;
+    }
+
+    private void HandleAttack()
     {
         animator.SetTrigger(attackHash);
     }
+
     private void SetUpJumpvariables()
     {
         float timeToApex = maxJumpTime / 2;
