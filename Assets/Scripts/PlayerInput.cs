@@ -62,6 +62,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""2d536e2b-1dec-4edd-9906-41ccaf7c013e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -196,6 +205,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Glade"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8e27bc9b-a02b-44e5-8121-c1d0151d238b"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -208,6 +228,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_CharacterControls_Run = m_CharacterControls.FindAction("Run", throwIfNotFound: true);
         m_CharacterControls_Jump = m_CharacterControls.FindAction("Jump", throwIfNotFound: true);
         m_CharacterControls_Glade = m_CharacterControls.FindAction("Glade", throwIfNotFound: true);
+        m_CharacterControls_Attack = m_CharacterControls.FindAction("Attack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -271,6 +292,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_CharacterControls_Run;
     private readonly InputAction m_CharacterControls_Jump;
     private readonly InputAction m_CharacterControls_Glade;
+    private readonly InputAction m_CharacterControls_Attack;
     public struct CharacterControlsActions
     {
         private @PlayerInput m_Wrapper;
@@ -279,6 +301,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Run => m_Wrapper.m_CharacterControls_Run;
         public InputAction @Jump => m_Wrapper.m_CharacterControls_Jump;
         public InputAction @Glade => m_Wrapper.m_CharacterControls_Glade;
+        public InputAction @Attack => m_Wrapper.m_CharacterControls_Attack;
         public InputActionMap Get() { return m_Wrapper.m_CharacterControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -300,6 +323,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Glade.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnGlade;
                 @Glade.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnGlade;
                 @Glade.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnGlade;
+                @Attack.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnAttack;
+                @Attack.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnAttack;
+                @Attack.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnAttack;
             }
             m_Wrapper.m_CharacterControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -316,6 +342,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Glade.started += instance.OnGlade;
                 @Glade.performed += instance.OnGlade;
                 @Glade.canceled += instance.OnGlade;
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
             }
         }
     }
@@ -326,5 +355,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnRun(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnGlade(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
     }
 }

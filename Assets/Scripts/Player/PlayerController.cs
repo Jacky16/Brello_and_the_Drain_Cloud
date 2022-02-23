@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private int isWalkingHash;
     private int isRunningHash;
     private int isJumpingHash;
+    private int attackHash;
 
     private Vector2 currentMovementInput;
     private Vector3 currentMovement;
@@ -61,6 +62,8 @@ public class PlayerController : MonoBehaviour
         isWalkingHash = Animator.StringToHash("isWalking");
         isRunningHash = Animator.StringToHash("isRunning");
         isJumpingHash = Animator.StringToHash("isJumping");
+        attackHash = Animator.StringToHash("attack");
+        
 
         //Player inputs callbacks
 
@@ -80,8 +83,13 @@ public class PlayerController : MonoBehaviour
         //Glade
         playerInput.CharacterControls.Glade.started += OnGlade;
         playerInput.CharacterControls.Glade.canceled += OnGlade;
+
+        //Attack
+        playerInput.CharacterControls.Attack.started += OnAttack;
         SetUpJumpvariables();
     }
+
+    
 
     private void OnGlade(InputAction.CallbackContext ctx)
     {
@@ -111,6 +119,11 @@ public class PlayerController : MonoBehaviour
     {
         isRunPressed = ctx.ReadValueAsButton();
     }
+    private void OnAttack(InputAction.CallbackContext ctx)
+    {
+        HandleAttack();
+    }
+
 
     private void Update()
     {
@@ -231,6 +244,10 @@ public class PlayerController : MonoBehaviour
             animator.SetBool(isRunningHash, false);
     }
 
+    void HandleAttack()
+    {
+        animator.SetTrigger(attackHash);
+    }
     private void SetUpJumpvariables()
     {
         float timeToApex = maxJumpTime / 2;

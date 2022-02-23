@@ -135,8 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966fd06936aa2b8419c65b3b72963c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 5
-  walkSpeed: 3
+  runSpeed: 6
+  walkSpeed: 4
   rotationSpeed: 15
   groundGravity: 0.05
   gladeForce: 8
@@ -154,7 +154,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1.5
+  m_Height: 1.44
   m_Radius: 0.4
   m_SlopeLimit: 45
   m_StepOffset: 0.3
