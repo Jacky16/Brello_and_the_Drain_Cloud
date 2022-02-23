@@ -22,26 +22,33 @@ public class PlayerController : MonoBehaviour
 
     private bool isMovementPressed;
     private bool isRunPressed;
+    private bool isJumPressed;
+    private bool isGladePressed;
 
     [Header("Movement Settings")]
-    [SerializeField] private float runSpeed = 3;
 
+    [SerializeField] private float runSpeed = 3;
     [SerializeField] private float walkSpeed = 1;
     [SerializeField] private float rotationSpeed = 15f;
 
+
     [Header("Gravity Settings")]
-    private float gravity = -9.8f;
 
     [SerializeField] private float groundGravity = .05f;
+    private float gravity = -9.8f;
 
-    //Jumping Variables
+
+    [Header("Glade Settings")]
+    [SerializeField] float gladeForce = 4;
+    [SerializeField] float velocityToGlade = 0;
+
+
+
     [Header("Jump Settings")]
+
     [SerializeField] private float maxJumpHeight = 1.0f;
-
     [SerializeField] private float maxJumpTime = 0.5f;
-
     private float initialJumpVelocity;
-    private bool isJumPressed;
     private bool isJumping;
     private bool isJumpAnimating;
 
@@ -70,15 +77,15 @@ public class PlayerController : MonoBehaviour
         playerInput.CharacterControls.Jump.started += OnJump;
         playerInput.CharacterControls.Jump.canceled += OnJump;
 
+        //Glade
+        playerInput.CharacterControls.Glade.started += OnGlade;
+        playerInput.CharacterControls.Glade.canceled += OnGlade;
         SetUpJumpvariables();
     }
 
-    private void SetUpJumpvariables()
+    private void OnGlade(InputAction.CallbackContext ctx)
     {
-        float timeToApex = maxJumpTime / 2;
-        gravity = (-2 * maxJumpHeight) / Mathf.Pow(timeToApex, 2);
-
-        initialJumpVelocity = (2 * maxJumpHeight) / timeToApex;
+        isGladePressed = ctx.ReadValueAsButton();
     }
 
     private void OnJump(InputAction.CallbackContext ctx)
@@ -117,6 +124,7 @@ public class PlayerController : MonoBehaviour
         {
             characterController.Move(currentMovement * Time.deltaTime);
         }
+
         HandleGravity();
         HandleJump();
     }
@@ -159,7 +167,9 @@ public class PlayerController : MonoBehaviour
 
     private void HandleGravity()
     {
+        bool canGlade = currentMovement.y < velocityToGlade;
         bool isFalling = currentMovement.y <= 0 || !isJumPressed;
+
         float fallMultiplier = 2;
         if (characterController.isGrounded)
         {
@@ -172,6 +182,18 @@ public class PlayerController : MonoBehaviour
             currentMovement.y = groundGravity;
             currentRunMovement.y = groundGravity;
         }
+        //Glade
+        else if (canGlade && isGladePressed && !characterController.isGrounded)
+        {
+
+            float previousYVelocity = currentMovement.y;
+            float newYVelocity = currentMovement.y + ((gravity / gladeForce) * Time.deltaTime);
+            float nextYVelocity = (previousYVelocity + newYVelocity) * .5f;
+
+            currentMovement.y = nextYVelocity;
+            currentRunMovement.y = nextYVelocity;
+        }
+        //Falling
         else if (isFalling)
         {
             float previousYVelocity = currentMovement.y;
@@ -180,6 +202,7 @@ public class PlayerController : MonoBehaviour
             currentMovement.y = nextYVelocity;
             currentRunMovement.y = nextYVelocity;
         }
+        //Normal Gravity
         else
         {
             float previousYVelocity = currentMovement.y;
@@ -206,6 +229,14 @@ public class PlayerController : MonoBehaviour
             animator.SetBool(isRunningHash, true);
         else if ((!isRunPressed || !isRunning) && isRunning)
             animator.SetBool(isRunningHash, false);
+    }
+
+    private void SetUpJumpvariables()
+    {
+        float timeToApex = maxJumpTime / 2;
+        gravity = (-2 * maxJumpHeight) / Mathf.Pow(timeToApex, 2);
+
+        initialJumpVelocity = (2 * maxJumpHeight) / timeToApex;
     }
 
     private void OnEnable()
