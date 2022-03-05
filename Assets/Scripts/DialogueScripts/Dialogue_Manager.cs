@@ -18,7 +18,7 @@ public class Dialogue_Manager : MonoBehaviour
     public Image nameBubble;
     public TextMeshProUGUI nameTMP;
 
-    [HideInInspector]
+    //[HideInInspector]
     public Dialogue_NPC currentVillager;
 
     private int dialogueIndex;
@@ -52,7 +52,7 @@ public class Dialogue_Manager : MonoBehaviour
         {
             if (canExit)
             {
-                CameraChange(false);
+                //CameraChange(false);
                 FadeUI(false, .2f, 0);
                 Sequence s = DOTween.Sequence();
                 s.AppendInterval(.8f);
@@ -84,7 +84,6 @@ public class Dialogue_Manager : MonoBehaviour
         nameTMP.text = currentVillager.data.NPCName;
         nameTMP.color = currentVillager.data.NPCNameColor;
         nameBubble.color = currentVillager.data.NPCColor;
-
     }
 
     public void CameraChange(bool dialogue)
