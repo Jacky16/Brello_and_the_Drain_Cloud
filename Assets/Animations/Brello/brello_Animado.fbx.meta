@@ -62,7 +62,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -493,7 +493,87 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton: []
+    skeleton:
+    - name: brello_Animado(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: brello
+      parentName: brello_Animado(Clone)
+      position: {x: -0, y: -1.2303652, z: -0.19224429}
+      rotation: {x: -0.7071069, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
+    - name: Armature
+      parentName: brello_Animado(Clone)
+      position: {x: 0, y: 0.84308106, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
+    - name: body_low
+      parentName: Armature
+      position: {x: -0, y: -1.451054e-19, z: -0.000077244564}
+      rotation: {x: 0.7071068, y: -0.0000000842937, z: -0.0000000842937, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: body_hig
+      parentName: body_low
+      position: {x: -1.3877787e-18, y: 0.0074811587, z: -5.8207657e-12}
+      rotation: {x: -0, y: 3.5527137e-14, z: -3.5527137e-15, w: 1}
+      scale: {x: 1, y: 0.9999999, z: 1}
+    - name: body_hig_end
+      parentName: body_hig
+      position: {x: -0, y: 0.008203157, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hip_R
+      parentName: Armature
+      position: {x: -1.16415315e-11, y: 0, z: -0.000077244564}
+      rotation: {x: 0.16791597, y: -0.16791612, z: 0.68688, w: -0.6868801}
+      scale: {x: 1, y: 1.0000001, z: 1}
+    - name: Leg_R
+      parentName: Hip_R
+      position: {x: -7.602399e-12, y: 0.001805689, z: -4.6566128e-12}
+      rotation: {x: -0.3876696, y: -0.000000111758716, z: 0.00000007450581, w: 0.9217984}
+      scale: {x: 0.9999998, y: 0.9999999, z: 1}
+    - name: Leg_low_R
+      parentName: Leg_R
+      position: {x: -6.598832e-11, y: 0.0029967802, z: -1.816079e-10}
+      rotation: {x: -0.13042669, y: -0.000000025027953, z: 0.000000026611163, w: 0.991458}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: Foot_R
+      parentName: Leg_low_R
+      position: {x: -6.4530936e-10, y: 0.0037901776, z: -2.4214386e-10}
+      rotation: {x: -0.05167139, y: -0.62562555, z: -0.020547997, w: 0.77813923}
+      scale: {x: 1.0000001, y: 1.0000002, z: 0.9999999}
+    - name: Foot_R_end
+      parentName: Foot_R
+      position: {x: -0, y: 0.0041214544, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hip_L
+      parentName: Armature
+      position: {x: 1.16415315e-11, y: 0, z: -0.000077244564}
+      rotation: {x: 0.16791597, y: 0.16791612, z: -0.68688, w: -0.6868801}
+      scale: {x: 1, y: 1.0000001, z: 1}
+    - name: Leg_L
+      parentName: Hip_L
+      position: {x: 7.602399e-12, y: 0.001805689, z: -4.6566128e-12}
+      rotation: {x: -0.38766962, y: 0.00000021606684, z: -0.000000037252903, w: 0.9217984}
+      scale: {x: 1.0000002, y: 0.9999999, z: 1.0000002}
+    - name: Leg_low_L
+      parentName: Leg_L
+      position: {x: 1.0977963e-10, y: 0.0029967802, z: 2.2351741e-10}
+      rotation: {x: -0.1304267, y: 0.000000047702315, z: -0.00000008641446, w: 0.991458}
+      scale: {x: 1.0000002, y: 1.0000006, z: 1.0000005}
+    - name: Foot_L
+      parentName: Leg_low_L
+      position: {x: 4.9051907e-10, y: 0.0037901776, z: -1.5832484e-10}
+      rotation: {x: -0.05167132, y: 0.62562495, z: 0.02054801, w: 0.7781397}
+      scale: {x: 1.0000002, y: 1, z: 0.99999976}
+    - name: Foot_L_end
+      parentName: Foot_L
+      position: {x: -0, y: 0.0041214544, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -504,7 +584,7 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1

@@ -1,12 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    private PlayerInput playerInput;
     private CharacterController characterController;
     private Animator animator;
 
@@ -16,6 +11,8 @@ public class PlayerController : MonoBehaviour
     private int isRunningHash;
     private int isJumpingHash;
     private int attackHash;
+    private int isGlidingHash;
+    private int isGroundedHash;
 
     private Vector2 axis;
     private Vector3 currentMovement;
@@ -56,71 +53,18 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        playerInput = new PlayerInput();
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
 
         isWalkingHash = Animator.StringToHash("isWalking");
         isRunningHash = Animator.StringToHash("isRunning");
         isJumpingHash = Animator.StringToHash("isJumping");
+        isGlidingHash = Animator.StringToHash("isGliding");
+        isGroundedHash = Animator.StringToHash("isGrounded");
+
         attackHash = Animator.StringToHash("attack");
 
-        //Player inputs callbacks
-
-        //Movement
-        playerInput.CharacterControls.Move.started += OnMovementInput;
-        playerInput.CharacterControls.Move.performed += OnMovementInput;
-        playerInput.CharacterControls.Move.canceled += OnMovementInput;
-
-        //Run
-        playerInput.CharacterControls.Run.started += OnRun;
-        playerInput.CharacterControls.Run.canceled += OnRun;
-
-        //Jump
-        playerInput.CharacterControls.Jump.started += OnJump;
-        playerInput.CharacterControls.Jump.canceled += OnJump;
-
-        //Glade
-        playerInput.CharacterControls.Glade.started += OnGlade;
-        playerInput.CharacterControls.Glade.canceled += OnGlade;
-
-        //Attack
-        playerInput.CharacterControls.Attack.started += OnAttack;
         SetUpJumpvariables();
-    }
-
-    private void OnGlade(InputAction.CallbackContext ctx)
-    {
-        isGladePressed = ctx.ReadValueAsButton();
-    }
-
-    private void OnJump(InputAction.CallbackContext ctx)
-    {
-        isJumPressed = ctx.ReadValueAsButton();
-    }
-
-    private void OnMovementInput(InputAction.CallbackContext ctx)
-    {
-        axis = ctx.ReadValue<Vector2>();
-
-        ////Walk
-        //currentMovement.x = axis.x * walkSpeed;
-        //currentMovement.z = axis.y * walkSpeed;
-        ////Run
-        //currentRunMovement.x = axis.x * runSpeed;
-        //currentRunMovement.z = axis.y * runSpeed;
-
-        isMovementPressed = currentMovement.x != 0 || currentMovement.z != 0;
-    }
-
-    private void OnRun(InputAction.CallbackContext ctx)
-    {
-        isRunPressed = ctx.ReadValueAsButton();
-    }
-
-    private void OnAttack(InputAction.CallbackContext ctx)
-    {
-        HandleAttack();
     }
 
     private void Update()
@@ -129,6 +73,7 @@ public class PlayerController : MonoBehaviour
         CamDirection();
         HandleRotation();
         HandleAnimation();
+
         if (isRunPressed)
         {
             Vector3 dir = (axis.x * camRight + axis.y * camForward) * runSpeed;
@@ -189,7 +134,14 @@ public class PlayerController : MonoBehaviour
     {
         bool canGlade = currentMovement.y < velocityToGlade;
         bool isFalling = currentMovement.y <= 0 || !isJumPressed;
-        animator.SetBool("isGrounded", characterController.isGrounded);
+
+        //Grounded animator
+        animator.SetBool(isGroundedHash, characterController.isGrounded);
+
+        //Glading animator
+        animator.SetBool(isGlidingHash, canGlade && isGladePressed && !characterController.isGrounded);
+
+        //Grounded
         if (characterController.isGrounded)
         {
             if (isJumpAnimating)
@@ -201,14 +153,12 @@ public class PlayerController : MonoBehaviour
             currentMovement.y = groundGravity;
             currentRunMovement.y = groundGravity;
         }
-        //Glade
+        //Glading
         else if (canGlade && isGladePressed && !characterController.isGrounded)
         {
-            Debug.Log("Glanding");
             float previousYVelocity = currentMovement.y;
             float newYVelocity = currentMovement.y + (gravity / gladeForce * Time.deltaTime);
             float nextYVelocity = (previousYVelocity + newYVelocity) * .5f;
-            animator.SetBool("isGliding", true);
 
             currentMovement.y = nextYVelocity;
             currentRunMovement.y = nextYVelocity;
@@ -219,9 +169,9 @@ public class PlayerController : MonoBehaviour
             float previousYVelocity = currentMovement.y;
             float newYVelocity = currentMovement.y + (gravity * fallMultiplier * Time.deltaTime);
             float nextYVelocity = (previousYVelocity + newYVelocity) * .5f;
+
             currentMovement.y = nextYVelocity;
             currentRunMovement.y = nextYVelocity;
-            animator.SetBool("isGliding", false);
         }
         //Normal Gravity
         else
@@ -229,9 +179,9 @@ public class PlayerController : MonoBehaviour
             float previousYVelocity = currentMovement.y;
             float newYVelocity = currentMovement.y + (gravity * Time.deltaTime);
             float nextYVelocity = (previousYVelocity + newYVelocity) * .5f;
+
             currentMovement.y = nextYVelocity;
             currentRunMovement.y = nextYVelocity;
-            animator.SetBool("isGliding", false);
         }
     }
 
@@ -259,7 +209,7 @@ public class PlayerController : MonoBehaviour
         camRight = Camera.main.transform.right.normalized;
     }
 
-    private void HandleAttack()
+    public void HandleAttack()
     {
         animator.SetTrigger(attackHash);
     }
@@ -267,18 +217,37 @@ public class PlayerController : MonoBehaviour
     private void SetUpJumpvariables()
     {
         float timeToApex = maxJumpTime / 2;
-        gravity = (-2 * maxJumpHeight) / Mathf.Pow(timeToApex, 2);
 
+        gravity = (-2 * maxJumpHeight) / Mathf.Pow(timeToApex, 2);
         initialJumpVelocity = (2 * maxJumpHeight) / timeToApex;
     }
 
-    private void OnEnable()
+    #region Inputs setters
+
+    public void SetGladePressed(bool _value)
     {
-        playerInput.Enable();
+        isGladePressed = _value;
     }
 
-    private void OnDisable()
+    public void SetJumPressed(bool _value)
     {
-        playerInput.Disable();
+        isJumPressed = _value;
     }
+
+    public void SetAxis(Vector2 _value)
+    {
+        axis = _value;
+    }
+
+    public void SetMovementPressed(bool _value)
+    {
+        isMovementPressed = _value;
+    }
+
+    public void SetRunPressed(bool _value)
+    {
+        isRunPressed = _value;
+    }
+
+    #endregion Inputs setters
 }
