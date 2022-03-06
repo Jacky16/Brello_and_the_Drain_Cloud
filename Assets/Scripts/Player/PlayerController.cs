@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
     [Header("Gravity Settings")]
     [SerializeField] private float groundGravity = .05f;
 
+    [SerializeField] private float fallMultiplier = 2;
+
     private float gravity = -9.8f;
 
     [Header("Glade Settings")]
@@ -187,8 +189,7 @@ public class PlayerController : MonoBehaviour
     {
         bool canGlade = currentMovement.y < velocityToGlade;
         bool isFalling = currentMovement.y <= 0 || !isJumPressed;
-
-        float fallMultiplier = 2;
+        animator.SetBool("isGrounded", characterController.isGrounded);
         if (characterController.isGrounded)
         {
             if (isJumpAnimating)
@@ -203,9 +204,11 @@ public class PlayerController : MonoBehaviour
         //Glade
         else if (canGlade && isGladePressed && !characterController.isGrounded)
         {
+            Debug.Log("Glanding");
             float previousYVelocity = currentMovement.y;
-            float newYVelocity = currentMovement.y + ((gravity / gladeForce) * Time.deltaTime);
+            float newYVelocity = currentMovement.y + (gravity / gladeForce * Time.deltaTime);
             float nextYVelocity = (previousYVelocity + newYVelocity) * .5f;
+            animator.SetBool("isGliding", true);
 
             currentMovement.y = nextYVelocity;
             currentRunMovement.y = nextYVelocity;
@@ -218,6 +221,7 @@ public class PlayerController : MonoBehaviour
             float nextYVelocity = (previousYVelocity + newYVelocity) * .5f;
             currentMovement.y = nextYVelocity;
             currentRunMovement.y = nextYVelocity;
+            animator.SetBool("isGliding", false);
         }
         //Normal Gravity
         else
@@ -227,6 +231,7 @@ public class PlayerController : MonoBehaviour
             float nextYVelocity = (previousYVelocity + newYVelocity) * .5f;
             currentMovement.y = nextYVelocity;
             currentRunMovement.y = nextYVelocity;
+            animator.SetBool("isGliding", false);
         }
     }
 
