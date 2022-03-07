@@ -21,18 +21,33 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Brello_Botas-Abierto-material
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: d41d52f095190274f91012c3101bbdf3, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
-  stringTagMap:
-    RenderType: Opaque
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_300EB541:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_a74349c334854fbeaa5f8fdf47f811a0:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_ce6a94d5e2594949b6fbae48d137f1b7:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_e2b359ecd7404ce8b2ac4f3fa20c5caf:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: 618df469188b3bf46bf0565b4fe09da4, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -61,6 +76,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 618df469188b3bf46bf0565b4fe09da4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MainTexture:
+        m_Texture: {fileID: 2800000, guid: 618df469188b3bf46bf0565b4fe09da4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -77,6 +96,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SpecularMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -90,6 +113,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_11f3210ab00446c9bb52b61912f7cf71: 0
+    - Vector1_25b08926ec7d46218e08d2805f0b3c72: 0
+    - Vector1_45d6187cec8e412daa060551f906ee06: 0
+    - Vector1_8606F96E: 0
+    - Vector1_fc9692ddb4a34955b17f996a093a5585: 0
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -106,6 +134,9 @@ Material:
     - _GlossyReflections: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
+    - _OutlineDepthSensitivity: 0.25
+    - _OutlineNormalsSensitivity: 1
+    - _OutlineThickness: 8
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
@@ -117,8 +148,16 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_76a7ad1fe26048628592eea4d7535ab0: {r: 0, g: 0, b: 0, a: 0}
+    - Color_9395f7e82b774baeaadcdddb3b592e0d: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_7cec8e26e81847918d6b4e7c60beedd1: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_c47e171058ec44c6894de8750cf098ba: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _MainColor: {r: 1, g: 1, b: 1, a: 0}
+    - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _SpecularColor: {r: 0, g: 0, b: 0, a: 0}
+    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
