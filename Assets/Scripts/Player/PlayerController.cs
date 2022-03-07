@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private int isGlidingHash;
     private int isGroundedHash;
     private int speedHash;
+    private int numAttackHash;
 
     private Vector2 axis;
     private Vector3 currentMovement;
@@ -49,6 +50,12 @@ public class PlayerController : MonoBehaviour
     private float initialJumpVelocity;
     private bool isJumping;
     private bool isJumpAnimating;
+
+    //Attack
+    private int currentAttack = 0;
+
+    private int numAttacks = 3;
+    private float timeBtwAttacks = 0.25f;
 
     private void Awake()
     {
@@ -189,6 +196,17 @@ public class PlayerController : MonoBehaviour
     public void HandleAttack()
     {
         animator.SetTrigger(attackHash);
+
+        DoAttack();
+    }
+
+    private void DoAttack()
+    {
+        if (currentAttack == numAttacks)
+            currentAttack = 0;
+
+        animator.SetInteger(numAttackHash, currentAttack);
+        currentAttack++;
     }
 
     private void SetUpJumpvariables()
@@ -206,6 +224,7 @@ public class PlayerController : MonoBehaviour
         isGroundedHash = Animator.StringToHash("isGrounded");
         speedHash = Animator.StringToHash("speed");
         attackHash = Animator.StringToHash("attack");
+        numAttackHash = Animator.StringToHash("numAttack");
     }
 
     #region Inputs setters
@@ -228,11 +247,6 @@ public class PlayerController : MonoBehaviour
     public void SetMovementPressed(bool _value)
     {
         isMovementPressed = _value;
-    }
-
-    public void SetRunPressed(bool _value)
-    {
-        isRunPressed = _value;
     }
 
     #endregion Inputs setters

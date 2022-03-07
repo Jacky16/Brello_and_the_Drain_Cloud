@@ -16,10 +16,6 @@ public class InputManager : MonoBehaviour
         playerInput.CharacterControls.Move.performed += OnMovementInput;
         playerInput.CharacterControls.Move.canceled += OnMovementInput;
 
-        //Run
-        playerInput.CharacterControls.Run.started += OnRun;
-        playerInput.CharacterControls.Run.canceled += OnRun;
-
         //Jump
         playerInput.CharacterControls.Jump.started += OnJump;
         playerInput.CharacterControls.Jump.canceled += OnJump;
@@ -48,11 +44,6 @@ public class InputManager : MonoBehaviour
 
         playerController.SetAxis(axis);
         playerController.SetMovementPressed(axis.x != 0 || axis.y != 0);
-    }
-
-    private void OnRun(InputAction.CallbackContext ctx)
-    {
-        playerController.SetRunPressed(ctx.ReadValueAsButton());
     }
 
     private void OnAttack(InputAction.CallbackContext ctx)
