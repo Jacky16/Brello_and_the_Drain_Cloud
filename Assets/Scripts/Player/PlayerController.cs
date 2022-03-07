@@ -7,12 +7,11 @@ public class PlayerController : MonoBehaviour
 
     //Variables para almacenar los ID's de las animaciones
 
-    private int isWalkingHash;
-    private int isRunningHash;
     private int isJumpingHash;
     private int attackHash;
     private int isGlidingHash;
     private int isGroundedHash;
+    private int speedHash;
 
     private Vector2 axis;
     private Vector3 currentMovement;
@@ -21,15 +20,15 @@ public class PlayerController : MonoBehaviour
     private Vector3 camRight;
 
     private bool isMovementPressed;
-    private bool isRunPressed;
     private bool isJumPressed;
     private bool isGladePressed;
 
     [Header("Movement Settings")]
-    [SerializeField] private float runSpeed = 3;
+    [SerializeField] private float speed = 3;
 
-    [SerializeField] private float walkSpeed = 1;
+    [SerializeField] private float acceleration = 1;
     [SerializeField] private float rotationSpeed = 15f;
+    private float currentSpeed = 0;
 
     [Header("Gravity Settings")]
     [SerializeField] private float groundGravity = .05f;
@@ -56,43 +55,34 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
 
-        isWalkingHash = Animator.StringToHash("isWalking");
-        isRunningHash = Animator.StringToHash("isRunning");
-        isJumpingHash = Animator.StringToHash("isJumping");
-        isGlidingHash = Animator.StringToHash("isGliding");
-        isGroundedHash = Animator.StringToHash("isGrounded");
-
-        attackHash = Animator.StringToHash("attack");
-
+        SetAnimatorsHashes();
         SetUpJumpvariables();
     }
 
     private void Update()
     {
-        //Calcular la direccion de la camara
         CamDirection();
         HandleRotation();
         HandleAnimation();
 
-        if (isRunPressed)
-        {
-            Vector3 dir = (axis.x * camRight + axis.y * camForward) * runSpeed;
-            dir.y = currentRunMovement.y;
-            isMovementPressed = dir.x != 0 || dir.z != 0;
-
-            characterController.Move(dir * Time.deltaTime);
-        }
-        else
-        {
-            Vector3 dir = (axis.x * camRight + axis.y * camForward) * walkSpeed;
-            dir.y = currentRunMovement.y;
-            isMovementPressed = dir.x != 0 || dir.z != 0;
-
-            characterController.Move(dir * Time.deltaTime);
-        }
+        Movement();
 
         HandleGravity();
         HandleJump();
+    }
+
+    private void Movement()
+    {
+        //Acceleration
+        if (isMovementPressed)
+            currentSpeed = Mathf.Lerp(currentSpeed, speed, 10 * Time.deltaTime);
+        else
+            currentSpeed = Mathf.Lerp(currentSpeed, 0, 10 * Time.deltaTime);
+
+        Vector3 currDir = (axis.x * camRight + axis.y * camForward) * currentSpeed;
+        currDir.y = currentRunMovement.y;
+
+        characterController.Move(currDir * Time.deltaTime);
     }
 
     private void HandleJump()
@@ -187,20 +177,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleAnimation()
     {
-        bool isWalking = animator.GetBool(isWalkingHash);
-        bool isRunning = animator.GetBool(isRunningHash);
-
-        //Walk Check
-        if (isMovementPressed && !isWalking)
-            animator.SetBool("isWalking", true);
-        else if (!isMovementPressed && isWalking)
-            animator.SetBool("isWalking", false);
-
-        //Running Check
-        if ((isRunPressed && isRunPressed) && !isRunning)
-            animator.SetBool(isRunningHash, true);
-        else if ((!isRunPressed || !isRunning) && isRunning)
-            animator.SetBool(isRunningHash, false);
+        animator.SetFloat(speedHash, currentSpeed);
     }
 
     private void CamDirection()
@@ -220,6 +197,15 @@ public class PlayerController : MonoBehaviour
 
         gravity = (-2 * maxJumpHeight) / Mathf.Pow(timeToApex, 2);
         initialJumpVelocity = (2 * maxJumpHeight) / timeToApex;
+    }
+
+    private void SetAnimatorsHashes()
+    {
+        isJumpingHash = Animator.StringToHash("isJumping");
+        isGlidingHash = Animator.StringToHash("isGliding");
+        isGroundedHash = Animator.StringToHash("isGrounded");
+        speedHash = Animator.StringToHash("speed");
+        attackHash = Animator.StringToHash("attack");
     }
 
     #region Inputs setters
