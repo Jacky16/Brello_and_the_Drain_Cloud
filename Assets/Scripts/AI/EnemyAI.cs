@@ -6,12 +6,18 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyAI : MonoBehaviour
 {
+    [Header("NavMesh variables")]
+    [SerializeField] float acceleration;
+    [SerializeField] float deceleration;
     protected NavMeshAgent agent;
-    [SerializeField] protected LayerMask playerMask;
 
+    [Header("Player detection variables")]
+    [SerializeField] protected LayerMask playerMask;
     protected GameObject player;
 
-    [SerializeField] protected float detectionRadius, attackRadius;
+    [Header("AI Variables")]
+    [SerializeField] protected float attackRadius;
+    [SerializeField] protected float detectionRadius;
     [SerializeField] protected float timeBetweenAttacks;
     protected bool playerInSightRange, playerInAttackRange, canAttack;
     protected virtual void Start()
@@ -24,16 +30,19 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        Debug.Log(player);
         if (playerInSightRange && !playerInAttackRange)
         {
-            Debug.Log("Chase");
             ChasePlayer();
+        }
+
+        if (playerInSightRange)
+        {
+            transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
         }
 
         if (playerInAttackRange)
         {
-            Debug.Log("Attack");
+            
             AttackPlayer();
         }
     }
