@@ -10,6 +10,7 @@ public class Health : MonoBehaviour
     [SerializeField] protected float inmunityTime;
     protected bool isInmune;
     protected Animator animator;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -17,11 +18,11 @@ public class Health : MonoBehaviour
         animator = GetComponent<Animator>();
         isInmune = false;
     }
-
     public void DoDamage(int amount)
     {
         if (!isInmune)
         {
+            //Comprueba si hay menos de 0 de vida
             currLife = (currLife - amount) < 0 ? 0 : currLife - amount;
 
             onDamage();
@@ -62,13 +63,12 @@ public class Health : MonoBehaviour
     protected virtual void onDamage() { }
     protected virtual void onHeal() { } 
     protected virtual void onDeath() { }     
-
     protected virtual void ResetStats()
     {
         currLife = maxLife;
         isInmune = false;
     }
-    IEnumerator Inmunity()
+    private IEnumerator Inmunity()
     {
         isInmune = true;
         yield return new WaitForSeconds(inmunityTime);

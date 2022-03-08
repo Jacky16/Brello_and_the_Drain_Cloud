@@ -26,15 +26,18 @@ public class SteamlingAI : EnemyAI
     {
         base.Update();
     }
+
     protected override void AttackAction()
     {
         StartCoroutine(Assault());
     }
+
     protected override void ExtraFunctionality()
     {
         currentDamage = normalDamage;
         agent.speed = initSpeed;
     }
+
     private IEnumerator Assault()
     {
         agent.speed = 0;
@@ -63,4 +66,5 @@ public class SteamlingAI : EnemyAI
             playerHealth.DoDamage(currentDamage);
         }
     }
+
 }
