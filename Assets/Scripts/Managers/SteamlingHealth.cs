@@ -9,7 +9,7 @@ public class SteamlingHealth : Health
     protected override void Start()
     {
         base.Start();
-        cloudMask = transform.GetChild(0).gameObject;
+        //cloudMask = transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
