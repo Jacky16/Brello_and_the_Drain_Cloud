@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+
 [RequireComponent(typeof(SphereCollider))]
 public class SteamlingAI : EnemyAI
 {
@@ -14,6 +15,7 @@ public class SteamlingAI : EnemyAI
     private int currentDamage;
     [SerializeField] private int normalDamage;
     [SerializeField] private int dashDamage;
+    [SerializeField] private int impulseForce;
     private float initSpeed;
     float initYPos;
 
@@ -73,6 +75,8 @@ public class SteamlingAI : EnemyAI
     {
         if(collision.collider.gameObject.TryGetComponent(out BrelloHealth playerHealth))
         {
+            //playerHealth.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * impulseForce, ForceMode.Impulse);
+
             playerHealth.DoDamage(currentDamage);
         }
     }

@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Testing
   m_EditorClassIdentifier: 
   conversationBlock:
-  - "<speed=15><action=sparkle>\xA1Hola!<pause=0.1>\xA1Me llamo Pyra!"
+  - "<speed=15><action=sparkle><emotion=surprised>\xA1Hola!<pause=0.1>\xA1Me llamo
+    Pyra!"
   - "<action=think>Sabes que pasa<speed=5>... <pause=0.2><size=150%><speed=50><color=\"red\"><b>\xA1UN
     BURRO POR TU CASA!</b>"
   - '<speed=15><size=100%><color="black">No me mires asi<speed=5>...
 
-    <action=rain><size=50%><speed=15>Ahora
+    <action=rain><emotion=sad><size=50%><speed=15>Ahora
     me siento mal :('
+  - <speed=15><size=100%><color="black"><action=sparkle><emotion=angry>PERO TAMPOCO
+    HACE FALTA QUE ME GRITES!

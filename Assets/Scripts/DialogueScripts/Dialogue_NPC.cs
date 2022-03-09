@@ -35,14 +35,14 @@ public class Dialogue_NPC : MonoBehaviour
 
         //animator.SetTrigger(e.ToString());
 
-        if (e == Emotion.suprised) { }
-           // eyesRenderer.material.SetTextureOffset("_BaseMap", new Vector2(0.33f, 0));
+        if (e == Emotion.surprised) 
+           eyesRenderer.material.SetTextureOffset("_BaseMap", new Vector2(0.46f, -0.2f));
 
-        if (e == Emotion.angry) { }
-           // eyesRenderer.material.SetTextureOffset("_BaseMap", new Vector2(0.66f, 0));
+        if (e == Emotion.angry) 
+           eyesRenderer.material.SetTextureOffset("_BaseMap", new Vector2(0.46f, 0.2f));
 
-        if (e == Emotion.sad) { }
-           // eyesRenderer.material.SetTextureOffset("_BaseMap", new Vector2(0.33f, -0.33f));
+        if (e == Emotion.sad) 
+           eyesRenderer.material.SetTextureOffset("_BaseMap", new Vector2(0f, -0.2f));
     }
 
     public void SetAction(string action)
@@ -81,7 +81,7 @@ public class Dialogue_NPC : MonoBehaviour
     public void Reset()
     {
         //animator.SetTrigger("normal");
-        //eyesRenderer.material.SetTextureOffset("_BaseMap", Vector2.zero);
+        eyesRenderer.material.SetTextureOffset("_BaseMap", new Vector2(0f, 0.2f));
     }
 
     public void TurnToPlayer(Vector3 playerPos)
