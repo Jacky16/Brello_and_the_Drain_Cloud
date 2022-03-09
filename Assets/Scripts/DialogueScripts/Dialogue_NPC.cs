@@ -22,7 +22,7 @@ public class Dialogue_NPC : MonoBehaviour
     void Start()
     {
         dialogueAudio = GetComponent<Dialogue_AudioController>();
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
         animatedText = Dialogue_Manager.instance.animatedText;
         animatedText.onEmotionChange.AddListener((newEmotion) => EmotionChanger(newEmotion));
         animatedText.onAction.AddListener((action) => SetAction(action));
@@ -33,16 +33,16 @@ public class Dialogue_NPC : MonoBehaviour
         if (this != Dialogue_Manager.instance.currentVillager)
             return;
 
-        animator.SetTrigger(e.ToString());
+        //animator.SetTrigger(e.ToString());
 
-        if (e == Emotion.suprised)
-            eyesRenderer.material.SetTextureOffset("_BaseMap", new Vector2(0.33f, 0));
+        if (e == Emotion.suprised) { }
+           // eyesRenderer.material.SetTextureOffset("_BaseMap", new Vector2(0.33f, 0));
 
-        if (e == Emotion.angry)
-            eyesRenderer.material.SetTextureOffset("_BaseMap", new Vector2(0.66f, 0));
+        if (e == Emotion.angry) { }
+           // eyesRenderer.material.SetTextureOffset("_BaseMap", new Vector2(0.66f, 0));
 
-        if (e == Emotion.sad)
-            eyesRenderer.material.SetTextureOffset("_BaseMap", new Vector2(0.33f, -0.33f));
+        if (e == Emotion.sad) { }
+           // eyesRenderer.material.SetTextureOffset("_BaseMap", new Vector2(0.33f, -0.33f));
     }
 
     public void SetAction(string action)
@@ -80,15 +80,15 @@ public class Dialogue_NPC : MonoBehaviour
 
     public void Reset()
     {
-        animator.SetTrigger("normal");
-        eyesRenderer.material.SetTextureOffset("_BaseMap", Vector2.zero);
+        //animator.SetTrigger("normal");
+        //eyesRenderer.material.SetTextureOffset("_BaseMap", Vector2.zero);
     }
 
     public void TurnToPlayer(Vector3 playerPos)
     {
-        transform.DOLookAt(playerPos, Vector3.Distance(transform.position, playerPos) / 5);
-        string turnMotion = isRightSide(transform.forward, playerPos, Vector3.up) ? "rturn" : "lturn";
-        animator.SetTrigger(turnMotion);
+        transform.DOLookAt(new Vector3(playerPos.x, transform.position.y, playerPos.z), Vector3.Distance(transform.position, playerPos) / 5);
+        //string turnMotion = isRightSide(transform.forward, playerPos, Vector3.up) ? "rturn" : "lturn";
+        //animator.SetTrigger(turnMotion);
     }
 
     //https://forum.unity.com/threads/left-right-test-function.31420/
