@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  dashSpeed: 5
   acceleration: 1
   rotationSpeed: 15
   groundGravity: 0.05
@@ -620,7 +621,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 466178183}
-  m_LocalRotation: {x: 0.042863235, y: 0.9372629, z: -0.12444656, w: 0.32282218}
+  m_LocalRotation: {x: 0.04286323, y: 0.9372629, z: -0.124446556, w: 0.32282218}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1993,7 +1994,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1631741784}
-  m_LocalRotation: {x: 0.047289442, y: 0.93546677, z: -0.13729739, w: 0.32220355}
+  m_LocalRotation: {x: 0.047289446, y: 0.93546677, z: -0.13729736, w: 0.32220358}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -7697,6 +7698,10 @@ PrefabInstance:
     - target: {fileID: 125317967448489336, guid: eb5cfc309adb93d44a30ea2ca01743d1, type: 3}
       propertyPath: speed
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 125317967448489336, guid: eb5cfc309adb93d44a30ea2ca01743d1, type: 3}
+      propertyPath: dashSpeed
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 125317967448489336, guid: eb5cfc309adb93d44a30ea2ca01743d1, type: 3}
       propertyPath: acceleration

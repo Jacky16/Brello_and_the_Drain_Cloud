@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 currentRunMovement;
     private Vector3 camForward;
     private Vector3 camRight;
+    private Vector3 camDir;
 
     private bool isMovementPressed;
     private bool isJumPressed;
@@ -27,9 +29,11 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float speed = 3;
 
+    [SerializeField] private float dashSpeed = 5;
     [SerializeField] private float acceleration = 1;
     [SerializeField] private float rotationSpeed = 15f;
     private float currentSpeed = 0;
+    private float dashTime = 0.25f;
 
     [Header("Gravity Settings")]
     [SerializeField] private float groundGravity = .05f;
@@ -82,11 +86,11 @@ public class PlayerController : MonoBehaviour
     {
         //Acceleration
         if (isMovementPressed)
-            currentSpeed = Mathf.Lerp(currentSpeed, speed, 10 * Time.deltaTime);
+            currentSpeed = Mathf.Lerp(currentSpeed, speed, acceleration * Time.deltaTime);
         else
-            currentSpeed = Mathf.Lerp(currentSpeed, 0, 10 * Time.deltaTime);
+            currentSpeed = Mathf.Lerp(currentSpeed, 0, acceleration * Time.deltaTime);
 
-        Vector3 currDir = (axis.x * camRight + axis.y * camForward) * currentSpeed;
+        Vector3 currDir = camDir * currentSpeed;
         currDir.y = currentRunMovement.y;
 
         characterController.Move(currDir * Time.deltaTime);
@@ -191,6 +195,7 @@ public class PlayerController : MonoBehaviour
     {
         camForward = Camera.main.transform.forward.normalized;
         camRight = Camera.main.transform.right.normalized;
+        camDir = (axis.x * camRight + axis.y * camForward);
     }
 
     public void HandleAttack()
@@ -198,6 +203,22 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger(attackHash);
 
         DoAttack();
+    }
+
+    public void HandleDash()
+    {
+        StartCoroutine(Dash());
+    }
+
+    private IEnumerator Dash()
+    {
+        float startTime = Time.time;
+        while (Time.time < startTime + dashTime)
+        {
+            characterController.Move(camDir * dashSpeed * Time.deltaTime);
+
+            yield return null;
+        }
     }
 
     private void DoAttack()

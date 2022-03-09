@@ -37,7 +37,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Run"",
+                    ""name"": ""Dash"",
                     ""type"": ""Button"",
                     ""id"": ""d1dbec5c-0e0e-466e-9084-20fa7e0de6f6"",
                     ""expectedControlType"": ""Button"",
@@ -156,7 +156,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Run"",
+                    ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -167,7 +167,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Run"",
+                    ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -245,7 +245,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         // CharacterControls
         m_CharacterControls = asset.FindActionMap("CharacterControls", throwIfNotFound: true);
         m_CharacterControls_Move = m_CharacterControls.FindAction("Move", throwIfNotFound: true);
-        m_CharacterControls_Run = m_CharacterControls.FindAction("Run", throwIfNotFound: true);
+        m_CharacterControls_Dash = m_CharacterControls.FindAction("Dash", throwIfNotFound: true);
         m_CharacterControls_Jump = m_CharacterControls.FindAction("Jump", throwIfNotFound: true);
         m_CharacterControls_Glade = m_CharacterControls.FindAction("Glade", throwIfNotFound: true);
         m_CharacterControls_Attack = m_CharacterControls.FindAction("Attack", throwIfNotFound: true);
@@ -310,7 +310,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_CharacterControls;
     private ICharacterControlsActions m_CharacterControlsActionsCallbackInterface;
     private readonly InputAction m_CharacterControls_Move;
-    private readonly InputAction m_CharacterControls_Run;
+    private readonly InputAction m_CharacterControls_Dash;
     private readonly InputAction m_CharacterControls_Jump;
     private readonly InputAction m_CharacterControls_Glade;
     private readonly InputAction m_CharacterControls_Attack;
@@ -320,7 +320,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         private @PlayerInput m_Wrapper;
         public CharacterControlsActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_CharacterControls_Move;
-        public InputAction @Run => m_Wrapper.m_CharacterControls_Run;
+        public InputAction @Dash => m_Wrapper.m_CharacterControls_Dash;
         public InputAction @Jump => m_Wrapper.m_CharacterControls_Jump;
         public InputAction @Glade => m_Wrapper.m_CharacterControls_Glade;
         public InputAction @Attack => m_Wrapper.m_CharacterControls_Attack;
@@ -337,9 +337,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Move.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnMove;
-                @Run.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnRun;
-                @Run.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnRun;
-                @Run.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnRun;
+                @Dash.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnDash;
                 @Jump.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnJump;
@@ -359,9 +359,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @Run.started += instance.OnRun;
-                @Run.performed += instance.OnRun;
-                @Run.canceled += instance.OnRun;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
@@ -381,7 +381,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     public interface ICharacterControlsActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnRun(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnGlade(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);

@@ -20,6 +20,9 @@ public class InputManager : MonoBehaviour
         playerInput.CharacterControls.Jump.started += OnJump;
         playerInput.CharacterControls.Jump.canceled += OnJump;
 
+        //Dash
+        playerInput.CharacterControls.Dash.started += OnDash;
+
         //Glade
         playerInput.CharacterControls.Glade.started += OnGlade;
         playerInput.CharacterControls.Glade.canceled += OnGlade;
@@ -44,6 +47,11 @@ public class InputManager : MonoBehaviour
 
         playerController.SetAxis(axis);
         playerController.SetMovementPressed(axis.x != 0 || axis.y != 0);
+    }
+
+    private void OnDash(InputAction.CallbackContext ctx)
+    {
+        playerController.HandleDash();
     }
 
     private void OnAttack(InputAction.CallbackContext ctx)
