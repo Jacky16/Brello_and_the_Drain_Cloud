@@ -23,13 +23,15 @@ public class BrelloHealth : Health
 
     private void Update()
     {
+        Debug.Log(currLife);
         if (lifeChanged)
         {
             lastLifeChange += Time.deltaTime;
             if(lastLifeChange >= timeInHUD)
             {
                 if (currLife > 2)
-                {
+                {   
+                    
                     lastLifeChange = 0f;
                     lifeChanged = false;
                     imageAnimator.SetTrigger("Disappear");

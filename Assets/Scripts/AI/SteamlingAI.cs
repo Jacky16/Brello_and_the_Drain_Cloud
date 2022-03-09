@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(SphereCollider))]
 public class SteamlingAI : EnemyAI
@@ -16,18 +17,27 @@ public class SteamlingAI : EnemyAI
     private float initSpeed;
     float initYPos;
 
+    Vector3 attackPos;
     protected override void Start()
     {
         base.Start();
         initSpeed = agent.speed;
         currentDamage = normalDamage;
         initYPos = transform.position.y;
+        attackPos = new Vector3(0, 0, 0);
     }
 
     protected override void Update()
     {
         base.Update();
         transform.position = new Vector3(transform.position.x, initYPos + 0.125f * Mathf.Sin(Time.time * 3) + 0.125f,transform.position.z);
+
+        if(Vector3.Distance(transform.position, attackPos) <= agent.stoppingDistance)
+        {
+            isAttacking = false;
+            currentDamage = normalDamage;
+            agent.speed = initSpeed;
+        }
     }
 
     protected override void AttackAction()
@@ -35,25 +45,22 @@ public class SteamlingAI : EnemyAI
         StartCoroutine(Assault());
     }
 
-    protected override void ExtraFunctionality()
-    {
-        currentDamage = normalDamage;
-        agent.speed = initSpeed;
-    }
-
     private IEnumerator Assault()
     {
-        agent.speed = 0;
-        agent.destination = transform.position;
+        isAttacking = true;
+
+        agent.speed = 0f;
+        agent.destination = transform.position;  
 
         yield return new WaitForSeconds(timeBeforeAttacking);
 
         currentDamage = dashDamage;
 
         dashDistance = Vector3.Distance(transform.position, player.transform.position);
-        agent.speed = dashDistance / dashTime;
 
-        agent.destination = player.transform.position;          
+        agent.speed = dashDistance / dashTime;
+        agent.destination = attackPos = player.transform.position;
+        
     }
 
     private void OnDrawGizmos()
@@ -64,7 +71,7 @@ public class SteamlingAI : EnemyAI
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.TryGetComponent(out BrelloHealth playerHealth))
+        if(collision.collider.gameObject.TryGetComponent(out BrelloHealth playerHealth))
         {
             playerHealth.DoDamage(currentDamage);
         }

@@ -22,6 +22,8 @@ public class TMP_Dialogue : TextMeshProUGUI
     public ActionEvent onAction;
     public TextRevealEvent onTextReveal;
     public DialogueEvent onDialogueFinish;
+    public Coroutine currentRoutine;
+    string displayText;
 
     public void ReadText(string newText)
     {
@@ -32,7 +34,7 @@ public class TMP_Dialogue : TextMeshProUGUI
 
         // textmeshpro still needs to parse its built-in tags, so we only include noncustom tags
 
-        string displayText = "";
+        displayText = "";
         for (int i = 0; i < subTexts.Length; i++)
         {
             if (i % 2 == 0)
@@ -49,7 +51,8 @@ public class TMP_Dialogue : TextMeshProUGUI
         // send that string to textmeshpro and hide all of it, then start reading
         text = displayText;
         maxVisibleCharacters = 0;
-        StartCoroutine(Read());
+
+        currentRoutine = StartCoroutine(Read());
 
         IEnumerator Read()
         {
@@ -101,5 +104,11 @@ public class TMP_Dialogue : TextMeshProUGUI
             }
             onDialogueFinish.Invoke();
         }
+    }
+
+    public void DisplayCurrentDialogue()
+    {
+        maxVisibleCharacters = displayText.Length;
+        StopAllCoroutines();
     }
 }

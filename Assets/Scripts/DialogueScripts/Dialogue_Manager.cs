@@ -50,6 +50,11 @@ public class Dialogue_Manager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && inDialogue)
         {
+            if (nextDialogue)
+            {
+                animatedText.ReadText(currentVillager.dialogue.conversationBlock[dialogueIndex]);
+            }
+
             if (canExit)
             {
                 CameraChange(false);
@@ -58,11 +63,11 @@ public class Dialogue_Manager : MonoBehaviour
                 s.AppendInterval(.8f);
                 s.AppendCallback(() => ResetState());
             }
-
-            if (nextDialogue)
+            else
             {
-                animatedText.ReadText(currentVillager.dialogue.conversationBlock[dialogueIndex]);
-            }
+                animatedText.DisplayCurrentDialogue();
+                FinishDialogue();
+            }         
         }
     }
 
