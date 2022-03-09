@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "CameraMovement",
+                    "type": "Value",
+                    "id": "1b80e2cc-29a9-47b3-9d87-511f1a1992a4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -120,17 +129,6 @@
                 },
                 {
                     "name": "",
-                    "id": "9f74f81d-b7e1-49a7-badb-49083b62fb74",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "49e57bf5-c7dc-4ceb-b185-3cca9b7c5882",
                     "path": "<Keyboard>/shift",
                     "interactions": "",
@@ -192,6 +190,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0a3176ec-fe5b-4332-8e2c-fbc67b31b6fb",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "193a07cf-611d-49a7-9ea7-d6f970e44df2",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraMovement",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
