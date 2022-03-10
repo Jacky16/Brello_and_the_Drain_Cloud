@@ -48,21 +48,30 @@ public class Dialogue_Manager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && inDialogue)
+        if (Input.GetKeyDown(KeyCode.E) && inDialogue)
         {
             if (canExit)
             {
-                //CameraChange(false);
+                CameraChange(false);
                 FadeUI(false, .2f, 0);
                 Sequence s = DOTween.Sequence();
                 s.AppendInterval(.8f);
                 s.AppendCallback(() => ResetState());
             }
-
-            if (nextDialogue)
+            else
             {
-                animatedText.ReadText(currentVillager.dialogue.conversationBlock[dialogueIndex]);
+                if (!nextDialogue)
+                {
+                    animatedText.DisplayCurrentDialogue();
+                    FinishDialogue();
+                }
+                else
+                {
+                    animatedText.ReadText(currentVillager.dialogue.conversationBlock[dialogueIndex]);
+                    nextDialogue = false;
+                }
             }
+            
         }
     }
 

@@ -24,7 +24,7 @@ public class Dialogue_Trigger : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !ui.inDialogue && currentVillager != null)
+        if (Input.GetKeyDown(KeyCode.E) && !ui.inDialogue && currentVillager != null)
         {
             targetGroup.m_Targets[1].target = currentVillager.transform;
             //movement.active = false;
@@ -39,7 +39,7 @@ public class Dialogue_Trigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Villager"))
+        if (other.CompareTag("NPC"))
         {
             currentVillager = other.GetComponent<Dialogue_NPC>();
             ui.currentVillager = currentVillager;
@@ -48,7 +48,7 @@ public class Dialogue_Trigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Villager"))
+        if (other.CompareTag("NPC"))
         {
             currentVillager = null;
             ui.currentVillager = currentVillager;
