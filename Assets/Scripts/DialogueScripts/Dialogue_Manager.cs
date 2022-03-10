@@ -58,15 +58,20 @@ public class Dialogue_Manager : MonoBehaviour
                 s.AppendInterval(.8f);
                 s.AppendCallback(() => ResetState());
             }
-            //else
-            //{
-            //    animatedText.DisplayCurrentDialogue();
-            //    FinishDialogue();
-            //}
-            if (nextDialogue)
+            else
             {
-                animatedText.ReadText(currentVillager.dialogue.conversationBlock[dialogueIndex]);
+                if (!nextDialogue)
+                {
+                    animatedText.DisplayCurrentDialogue();
+                    FinishDialogue();
+                }
+                else
+                {
+                    animatedText.ReadText(currentVillager.dialogue.conversationBlock[dialogueIndex]);
+                    nextDialogue = false;
+                }
             }
+            
         }
     }
 
