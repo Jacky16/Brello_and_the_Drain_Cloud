@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
@@ -7,29 +9,33 @@ public class PlayerController : MonoBehaviour
 
     //Variables para almacenar los ID's de las animaciones
 
-    private int isWalkingHash;
-    private int isRunningHash;
     private int isJumpingHash;
     private int attackHash;
     private int isGlidingHash;
     private int isGroundedHash;
+    private int speedHash;
+    private int numAttackHash;
 
     private Vector2 axis;
-    private Vector3 currentMovement;
+    private Vector3 currentGravity;
     private Vector3 currentRunMovement;
     private Vector3 camForward;
     private Vector3 camRight;
+    private Vector3 camDir;
 
     private bool isMovementPressed;
-    private bool isRunPressed;
     private bool isJumPressed;
     private bool isGladePressed;
+    private bool isSwimming;
 
     [Header("Movement Settings")]
-    [SerializeField] private float runSpeed = 3;
+    [SerializeField] private float speed = 3;
 
-    [SerializeField] private float walkSpeed = 1;
+    [SerializeField] private float dashSpeed = 5;
+    [SerializeField] private float acceleration = 1;
     [SerializeField] private float rotationSpeed = 15f;
+    private float currentSpeed = 0;
+    private float dashTime = 0.25f;
 
     [Header("Gravity Settings")]
     [SerializeField] private float groundGravity = .05f;
@@ -51,48 +57,48 @@ public class PlayerController : MonoBehaviour
     private bool isJumping;
     private bool isJumpAnimating;
 
+    //Attack
+    private float timeBtwAttacks = 0.25f;
+
+    private int currentAttack = 0;
+    private int numAttacks = 3;
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
 
-        isWalkingHash = Animator.StringToHash("isWalking");
-        isRunningHash = Animator.StringToHash("isRunning");
-        isJumpingHash = Animator.StringToHash("isJumping");
-        isGlidingHash = Animator.StringToHash("isGliding");
-        isGroundedHash = Animator.StringToHash("isGrounded");
-
-        attackHash = Animator.StringToHash("attack");
-
+        SetAnimatorsHashes();
         SetUpJumpvariables();
     }
 
     private void Update()
     {
-        //Calcular la direccion de la camara
         CamDirection();
         HandleRotation();
         HandleAnimation();
 
-        if (isRunPressed)
-        {
-            Vector3 dir = (axis.x * camRight + axis.y * camForward) * runSpeed;
-            dir.y = currentRunMovement.y;
-            isMovementPressed = dir.x != 0 || dir.z != 0;
-
-            characterController.Move(dir * Time.deltaTime);
-        }
-        else
-        {
-            Vector3 dir = (axis.x * camRight + axis.y * camForward) * walkSpeed;
-            dir.y = currentRunMovement.y;
-            isMovementPressed = dir.x != 0 || dir.z != 0;
-
-            characterController.Move(dir * Time.deltaTime);
-        }
-
+        Movement();
         HandleGravity();
         HandleJump();
+        SwimingManager();
+    }
+
+
+    #region Main movement functions
+    private void Movement()
+    {
+        //Acceleration
+        if (isMovementPressed)
+            currentSpeed = Mathf.Lerp(currentSpeed, speed, acceleration * Time.deltaTime);
+        else
+            currentSpeed = Mathf.Lerp(currentSpeed, 0, acceleration * Time.deltaTime);
+
+        Vector3 currDir = camDir * currentSpeed;
+
+        currDir.y = currentGravity.y;
+
+        characterController.Move(currDir * Time.deltaTime);
     }
 
     private void HandleJump()
@@ -102,7 +108,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool(isJumpingHash, true);
             isJumping = true;
             isJumpAnimating = true;
-            currentMovement.y = initialJumpVelocity;
+            currentGravity.y = initialJumpVelocity;
             currentRunMovement.y = initialJumpVelocity;
         }
         else if (characterController.isGrounded && isJumping && !isJumPressed)
@@ -132,8 +138,8 @@ public class PlayerController : MonoBehaviour
 
     private void HandleGravity()
     {
-        bool canGlade = currentMovement.y < velocityToGlade;
-        bool isFalling = currentMovement.y <= 0 || !isJumPressed;
+        bool canGlade = currentGravity.y < velocityToGlade;
+        bool isFalling = currentGravity.y < 0 || !isJumPressed && !characterController.isGrounded;
 
         //Grounded animator
         animator.SetBool(isGroundedHash, characterController.isGrounded);
@@ -150,77 +156,125 @@ public class PlayerController : MonoBehaviour
                 isJumpAnimating = false;
             }
 
-            currentMovement.y = groundGravity;
-            currentRunMovement.y = groundGravity;
+            currentGravity.y = groundGravity;
         }
         //Glading
         else if (canGlade && isGladePressed && !characterController.isGrounded)
         {
-            float previousYVelocity = currentMovement.y;
-            float newYVelocity = currentMovement.y + (gravity / gladeForce * Time.deltaTime);
+            float previousYVelocity = currentGravity.y;
+            float newYVelocity = currentGravity.y + (gravity / gladeForce * Time.deltaTime);
             float nextYVelocity = (previousYVelocity + newYVelocity) * .5f;
 
-            currentMovement.y = nextYVelocity;
-            currentRunMovement.y = nextYVelocity;
+            currentGravity.y = nextYVelocity;
         }
         //Falling
         else if (isFalling)
         {
-            float previousYVelocity = currentMovement.y;
-            float newYVelocity = currentMovement.y + (gravity * fallMultiplier * Time.deltaTime);
+            float previousYVelocity = currentGravity.y;
+            float newYVelocity = currentGravity.y + (gravity * fallMultiplier * Time.deltaTime);
             float nextYVelocity = (previousYVelocity + newYVelocity) * .5f;
 
-            currentMovement.y = nextYVelocity;
-            currentRunMovement.y = nextYVelocity;
+            currentGravity.y = nextYVelocity;
         }
         //Normal Gravity
         else
         {
-            float previousYVelocity = currentMovement.y;
-            float newYVelocity = currentMovement.y + (gravity * Time.deltaTime);
+            float previousYVelocity = currentGravity.y;
+            float newYVelocity = currentGravity.y + (gravity * Time.deltaTime);
             float nextYVelocity = (previousYVelocity + newYVelocity) * .5f;
 
-            currentMovement.y = nextYVelocity;
-            currentRunMovement.y = nextYVelocity;
+            currentGravity.y = nextYVelocity;
         }
     }
 
     private void HandleAnimation()
     {
-        bool isWalking = animator.GetBool(isWalkingHash);
-        bool isRunning = animator.GetBool(isRunningHash);
-
-        //Walk Check
-        if (isMovementPressed && !isWalking)
-            animator.SetBool("isWalking", true);
-        else if (!isMovementPressed && isWalking)
-            animator.SetBool("isWalking", false);
-
-        //Running Check
-        if ((isRunPressed && isRunPressed) && !isRunning)
-            animator.SetBool(isRunningHash, true);
-        else if ((!isRunPressed || !isRunning) && isRunning)
-            animator.SetBool(isRunningHash, false);
+        animator.SetFloat(speedHash, currentSpeed);
     }
 
     private void CamDirection()
     {
         camForward = Camera.main.transform.forward.normalized;
         camRight = Camera.main.transform.right.normalized;
+        camDir = (axis.x * camRight + axis.y * camForward);
     }
 
+    #endregion
+
+
+    #region Dash functions
+    public void HandleDash()
+    {
+        StartCoroutine(Dash());
+    }
+
+    private IEnumerator Dash()
+    {
+        float startTime = Time.time;
+        while (Time.time < startTime + dashTime)
+        {
+            characterController.Move(camDir * dashSpeed * Time.deltaTime);
+
+            yield return null;
+        }
+    }
+
+    #endregion
+
+    #region Attack functions
     public void HandleAttack()
     {
         animator.SetTrigger(attackHash);
-    }
 
-    private void SetUpJumpvariables()
+        DoAttack();
+    }
+    private void DoAttack()
     {
-        float timeToApex = maxJumpTime / 2;
+        if (currentAttack == numAttacks)
+            currentAttack = 0;
 
-        gravity = (-2 * maxJumpHeight) / Mathf.Pow(timeToApex, 2);
-        initialJumpVelocity = (2 * maxJumpHeight) / timeToApex;
+        animator.SetInteger(numAttackHash, currentAttack);
+        currentAttack++;
     }
+    #endregion
+
+    #region Swiming functions
+    private void OnSwiming(Collider other)
+    {
+        if (other.CompareTag("Water") && !isSwimming)
+        {
+            isSwimming = true;
+            animator.SetBool("isSwiming", true);
+            Transform pivotWater = other.transform.GetChild(0).transform;
+            transform.DOMoveY(pivotWater.position.y, 2).SetEase(Ease.OutElastic);
+        }
+    }
+    private void OutSwiming(Collider other)
+    {
+        if (other.CompareTag("Water"))
+        {
+            Debug.Log("Fuera del agua");
+            animator.SetBool("isSwiming", false);
+            isSwimming = false;
+        }
+    }
+    private void SwimingManager()
+    {
+        if (isSwimming)
+            currentGravity.y = 0;
+    }
+    #endregion
+
+    private void OnTriggerEnter(Collider other)
+    {
+        OnSwiming(other);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        OutSwiming(other);
+    }
+
 
     #region Inputs setters
 
@@ -244,10 +298,25 @@ public class PlayerController : MonoBehaviour
         isMovementPressed = _value;
     }
 
-    public void SetRunPressed(bool _value)
+    #endregion Inputs setters
+
+    #region Init functions
+    private void SetUpJumpvariables()
     {
-        isRunPressed = _value;
+        float timeToApex = maxJumpTime / 2;
+
+        gravity = (-2 * maxJumpHeight) / Mathf.Pow(timeToApex, 2);
+        initialJumpVelocity = (2 * maxJumpHeight) / timeToApex;
     }
 
-    #endregion Inputs setters
+    private void SetAnimatorsHashes()
+    {
+        isJumpingHash = Animator.StringToHash("isJumping");
+        isGlidingHash = Animator.StringToHash("isGliding");
+        isGroundedHash = Animator.StringToHash("isGrounded");
+        speedHash = Animator.StringToHash("speed");
+        attackHash = Animator.StringToHash("attack");
+        numAttackHash = Animator.StringToHash("numAttack");
+    }
+    #endregion
 }
