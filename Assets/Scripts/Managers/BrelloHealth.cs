@@ -44,7 +44,6 @@ public class BrelloHealth : Health
     protected override void onDamage()
     {
         Camera.main.GetComponent<CinemachineImpulseSource>().GenerateImpulse();
-        //GetComponent<Rigidbody>().AddForce(-transform.forward * 800, ForceMode.Impulse);
         lifeChanged = true;
         imageAnimator.SetTrigger("Appear");
         lastLifeChange = 0f;
