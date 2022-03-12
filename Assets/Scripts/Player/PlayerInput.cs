@@ -37,7 +37,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Run"",
+                    ""name"": ""Dash"",
                     ""type"": ""Button"",
                     ""id"": ""d1dbec5c-0e0e-466e-9084-20fa7e0de6f6"",
                     ""expectedControlType"": ""Button"",
@@ -71,6 +71,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CameraMovement"",
+                    ""type"": ""Value"",
+                    ""id"": ""1b80e2cc-29a9-47b3-9d87-511f1a1992a4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -142,23 +151,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9f74f81d-b7e1-49a7-badb-49083b62fb74"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""49e57bf5-c7dc-4ceb-b185-3cca9b7c5882"",
                     ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Run"",
+                    ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -169,7 +167,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Run"",
+                    ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -216,6 +214,28 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0a3176ec-fe5b-4332-8e2c-fbc67b31b6fb"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""193a07cf-611d-49a7-9ea7-d6f970e44df2"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -225,10 +245,11 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         // CharacterControls
         m_CharacterControls = asset.FindActionMap("CharacterControls", throwIfNotFound: true);
         m_CharacterControls_Move = m_CharacterControls.FindAction("Move", throwIfNotFound: true);
-        m_CharacterControls_Run = m_CharacterControls.FindAction("Run", throwIfNotFound: true);
+        m_CharacterControls_Dash = m_CharacterControls.FindAction("Dash", throwIfNotFound: true);
         m_CharacterControls_Jump = m_CharacterControls.FindAction("Jump", throwIfNotFound: true);
         m_CharacterControls_Glade = m_CharacterControls.FindAction("Glade", throwIfNotFound: true);
         m_CharacterControls_Attack = m_CharacterControls.FindAction("Attack", throwIfNotFound: true);
+        m_CharacterControls_CameraMovement = m_CharacterControls.FindAction("CameraMovement", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -289,19 +310,21 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_CharacterControls;
     private ICharacterControlsActions m_CharacterControlsActionsCallbackInterface;
     private readonly InputAction m_CharacterControls_Move;
-    private readonly InputAction m_CharacterControls_Run;
+    private readonly InputAction m_CharacterControls_Dash;
     private readonly InputAction m_CharacterControls_Jump;
     private readonly InputAction m_CharacterControls_Glade;
     private readonly InputAction m_CharacterControls_Attack;
+    private readonly InputAction m_CharacterControls_CameraMovement;
     public struct CharacterControlsActions
     {
         private @PlayerInput m_Wrapper;
         public CharacterControlsActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_CharacterControls_Move;
-        public InputAction @Run => m_Wrapper.m_CharacterControls_Run;
+        public InputAction @Dash => m_Wrapper.m_CharacterControls_Dash;
         public InputAction @Jump => m_Wrapper.m_CharacterControls_Jump;
         public InputAction @Glade => m_Wrapper.m_CharacterControls_Glade;
         public InputAction @Attack => m_Wrapper.m_CharacterControls_Attack;
+        public InputAction @CameraMovement => m_Wrapper.m_CharacterControls_CameraMovement;
         public InputActionMap Get() { return m_Wrapper.m_CharacterControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -314,9 +337,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Move.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnMove;
-                @Run.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnRun;
-                @Run.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnRun;
-                @Run.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnRun;
+                @Dash.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnDash;
                 @Jump.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnJump;
@@ -326,6 +349,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Attack.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnAttack;
                 @Attack.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnAttack;
                 @Attack.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnAttack;
+                @CameraMovement.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnCameraMovement;
+                @CameraMovement.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnCameraMovement;
+                @CameraMovement.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnCameraMovement;
             }
             m_Wrapper.m_CharacterControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -333,9 +359,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @Run.started += instance.OnRun;
-                @Run.performed += instance.OnRun;
-                @Run.canceled += instance.OnRun;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
@@ -345,6 +371,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
+                @CameraMovement.started += instance.OnCameraMovement;
+                @CameraMovement.performed += instance.OnCameraMovement;
+                @CameraMovement.canceled += instance.OnCameraMovement;
             }
         }
     }
@@ -352,9 +381,10 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     public interface ICharacterControlsActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnRun(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnGlade(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnCameraMovement(InputAction.CallbackContext context);
     }
 }
