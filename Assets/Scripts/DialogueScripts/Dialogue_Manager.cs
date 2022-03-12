@@ -6,6 +6,7 @@ using TMPro;
 using DG.Tweening;
 using UnityEngine.Rendering;
 using Cinemachine;
+using UnityEngine.InputSystem;
 
 public class Dialogue_Manager : MonoBehaviour
 {
@@ -26,42 +27,59 @@ public class Dialogue_Manager : MonoBehaviour
     public bool nextDialogue;
 
     [Space]
-
     [Header("Cameras")]
     public GameObject gameCam;
+
     public GameObject dialogueCam;
 
     [Space]
-
     public Volume dialogueDof;
 
+    //Input Player
+    private PlayerInput playerInput;
 
     private void Awake()
     {
         instance = this;
+        playerInput = new PlayerInput();
     }
 
     private void Start()
     {
         animatedText.onDialogueFinish.AddListener(() => FinishDialogue());
+
+        playerInput.CharacterControls.Interactuable.started += OnInteractuable;
     }
 
-    private void Update()
+    private void OnInteractuable(InputAction.CallbackContext ctx)
     {
-        if (Input.GetKeyDown(KeyCode.Space) && inDialogue)
+        DialogueManager();
+    }
+
+    private void DialogueManager()
+    {
+        if (inDialogue)
         {
             if (canExit)
             {
-                //CameraChange(false);
+                CameraChange(false);
                 FadeUI(false, .2f, 0);
                 Sequence s = DOTween.Sequence();
                 s.AppendInterval(.8f);
                 s.AppendCallback(() => ResetState());
             }
-
-            if (nextDialogue)
+            else
             {
-                animatedText.ReadText(currentVillager.dialogue.conversationBlock[dialogueIndex]);
+                if (!nextDialogue)
+                {
+                    animatedText.DisplayCurrentDialogue();
+                    FinishDialogue();
+                }
+                else
+                {
+                    animatedText.ReadText(currentVillager.dialogue.conversationBlock[dialogueIndex]);
+                    nextDialogue = false;
+                }
             }
         }
     }
@@ -126,5 +144,15 @@ public class Dialogue_Manager : MonoBehaviour
             nextDialogue = false;
             canExit = true;
         }
+    }
+
+    private void OnEnable()
+    {
+        playerInput.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerInput.Disable();
     }
 }
