@@ -8,7 +8,7 @@ public class PyraAI : MonoBehaviour
     //Variables de Pyra.
     private NavMeshAgent agent;
 
-    [SerializeField] private Transform player;
+    private Transform player;
 
     //Variables de detección de objetos interactuables.
     private bool canChasePlayer = true, isMovingToInteractuable;
@@ -29,6 +29,7 @@ public class PyraAI : MonoBehaviour
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void Update()

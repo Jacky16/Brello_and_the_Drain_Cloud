@@ -326,6 +326,12 @@ public class PlayerController : MonoBehaviour
 
     #endregion Inputs setters
 
+    #region Getters
+    public bool IsSwimmSing()
+    {
+        return isSwimming;
+    }
+    #endregion
     #region Init functions
 
     private void SetUpJumpvariables()

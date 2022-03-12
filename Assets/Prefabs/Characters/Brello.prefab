@@ -509,6 +509,7 @@ GameObject:
   - component: {fileID: 4280561533786438420}
   - component: {fileID: 125317967448489336}
   - component: {fileID: 1087665865967696765}
+  - component: {fileID: 1087665865967696766}
   m_Layer: 0
   m_Name: Brello
   m_TagString: Player
@@ -591,6 +592,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1087665865967696766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8690689069252993275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0b52a6751f196441a0a23c2ce22ea73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openBrelloPrefab: {fileID: 8881877123663705248}
+  closedBrelloPrefab: {fileID: 8881877125532866309}
 --- !u!1 &9086860011059749845
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,6 +711,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c09c5992e9a38d14cb8d55bab70a3804, type: 3}
   m_PrefabInstance: {fileID: 8611918219332086356}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8881877125532866309 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c09c5992e9a38d14cb8d55bab70a3804, type: 3}
+  m_PrefabInstance: {fileID: 8611918219332086356}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8611918220685314545
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -721,15 +741,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 266c744885723e34299b3fe52509ce57, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 266c744885723e34299b3fe52509ce57, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00897
+      value: 0.00027
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 266c744885723e34299b3fe52509ce57, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.00199
+      value: 0.00025
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 266c744885723e34299b3fe52509ce57, type: 3}
       propertyPath: m_LocalRotation.w
@@ -773,6 +793,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 266c744885723e34299b3fe52509ce57, type: 3}
+--- !u!1 &8881877123663705248 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 266c744885723e34299b3fe52509ce57, type: 3}
+  m_PrefabInstance: {fileID: 8611918220685314545}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8073006360248512026 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 266c744885723e34299b3fe52509ce57, type: 3}
