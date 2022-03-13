@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float rotationSpeed = 15f;
     private float currentSpeed = 0;
     private float dashTime = 0.25f;
+    private bool canMove = true;
 
     [Header("Gravity Settings")]
     [SerializeField] private float groundGravity = .05f;
@@ -103,8 +104,8 @@ public class PlayerController : MonoBehaviour
         Vector3 currDir = camDir * currentSpeed;
 
         currDir.y = currentGravity.y;
-
-        characterController.Move(currDir * Time.deltaTime);
+        if (canMove)
+            characterController.Move(currDir * Time.deltaTime);
     }
 
     private void HandleJump()
@@ -163,7 +164,6 @@ public class PlayerController : MonoBehaviour
                 brelloOpenManager.CloseBrello();
             }
             currentGravity.y = groundGravity;
-            print("Grounded");
         }
         //Glading
         else if (canGlade && isGladePressed && !characterController.isGrounded)
@@ -181,7 +181,6 @@ public class PlayerController : MonoBehaviour
             float previousYVelocity = currentGravity.y;
             float newYVelocity = currentGravity.y + (gravity * fallMultiplier * Time.deltaTime);
             float nextYVelocity = (previousYVelocity + newYVelocity) * .5f;
-            print("Falling");
             currentGravity.y = nextYVelocity;
         }
         //Normal Gravity
@@ -191,10 +190,8 @@ public class PlayerController : MonoBehaviour
             float previousYVelocity = currentGravity.y;
             float newYVelocity = currentGravity.y + (gravity * Time.deltaTime);
             float nextYVelocity = (previousYVelocity + newYVelocity) * .5f;
-            print("Normal Gravity");
             currentGravity.y = nextYVelocity;
         }
-        Debug.ClearDeveloperConsole();
     }
 
     private void HandleAnimation()
@@ -207,6 +204,16 @@ public class PlayerController : MonoBehaviour
         camForward = Camera.main.transform.forward.normalized;
         camRight = Camera.main.transform.right.normalized;
         camDir = (axis.x * camRight + axis.y * camForward);
+    }
+
+    public void BlockMovement()
+    {
+        canMove = false;
+    }
+
+    public void EnableMovement()
+    {
+        canMove = true;
     }
 
     #endregion Main movement functions
@@ -327,11 +334,14 @@ public class PlayerController : MonoBehaviour
     #endregion Inputs setters
 
     #region Getters
+
     public bool IsSwimming()
     {
         return isSwimming;
     }
-    #endregion
+
+    #endregion Getters
+
     #region Init functions
 
     private void SetUpJumpvariables()

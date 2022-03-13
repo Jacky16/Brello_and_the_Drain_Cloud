@@ -6,13 +6,15 @@ using UnityEngine.UI;
 
 public class WaterPlatformManager : MonoBehaviour
 {
-    enum Platform_Sprite { ALL_ABOARD, STAY_HERE, NONE};
+    private enum Platform_Sprite
+    { ALL_ABOARD, STAY_HERE, NONE };
+
     private PlayerInput playerInput;
     private PlayerController player;
     private PyraAI pyra;
 
-    [SerializeField] Image platformMessage;
-    [SerializeField] Sprite[] platformImages;
+    [SerializeField] private Image platformMessage;
+    [SerializeField] private Sprite[] platformImages;
 
     private CoastPoints currentCoast;
     private Vector3 closestGroundPoint;
@@ -24,18 +26,19 @@ public class WaterPlatformManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         pyra = GameObject.FindGameObjectWithTag("Pyra").GetComponent<PyraAI>();
     }
-    void Start()
+
+    private void Start()
     {
         playerInput.CharacterControls.Interactuable.started += OnInteractuable;
     }
 
     private void Update()
     {
-        if(player.IsSwimming() && !pyra.isInPlatform && currentCoast)
+        if (player.IsSwimming() && !pyra.isInPlatform && currentCoast)
         {
             //platformMessage.sprite = platformImages[(int)Platform_Sprite.ALL_ABOARD];
         }
-        else if(player.IsSwimming() && pyra.isInPlatform && currentCoast)
+        else if (player.IsSwimming() && pyra.isInPlatform && currentCoast)
         {
             //platformMessage.sprite = platformImages[(int)Platform_Sprite.STAY_HERE];
         }
@@ -44,11 +47,13 @@ public class WaterPlatformManager : MonoBehaviour
             //platformMessage.sprite = null;
         }
     }
+
     private void OnInteractuable(InputAction.CallbackContext ctx)
     {
         PlatformManager();
     }
 
+    //Subirse y bajarse de la plataforma
     private void PlatformManager()
     {
         if (player.IsSwimming() && !pyra.isInPlatform && !pyra.isJumping && currentCoast)
@@ -57,12 +62,13 @@ public class WaterPlatformManager : MonoBehaviour
             pyra.isMovingToInteractuable = false;
             pyra.canChasePlayer = false;
         }
-        else if(player.IsSwimming() && pyra.isInPlatform && !pyra.isJumping && currentCoast)
+        else if (player.IsSwimming() && pyra.isInPlatform && !pyra.isJumping && currentCoast)
         {
             CheckForClosestPoint();
             pyra.JumpToGround(closestGroundPoint);
         }
     }
+
     private void CheckForClosestPoint()
     {
         float closestPoint = Mathf.Infinity;
@@ -74,19 +80,10 @@ public class WaterPlatformManager : MonoBehaviour
             }
         }
     }
-    private void OnEnable()
-    {
-        playerInput.Enable();
-    }
-
-    private void OnDisable()
-    {
-        playerInput.Disable();
-    }
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.TryGetComponent(out CoastPoints closestCoast))
+        if (other.TryGetComponent(out CoastPoints closestCoast))
         {
             currentCoast = closestCoast;
         }
@@ -96,5 +93,15 @@ public class WaterPlatformManager : MonoBehaviour
     {
         currentCoast = null;
         closestGroundPoint = Vector3.zero;
+    }
+
+    private void OnEnable()
+    {
+        playerInput.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerInput.Disable();
     }
 }

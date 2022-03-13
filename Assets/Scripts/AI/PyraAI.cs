@@ -10,11 +10,15 @@ public class PyraAI : MonoBehaviour
 {
     //Variables de Pyra.
     private NavMeshAgent agent;
-    private Transform player;
+
+    private PlayerController player;
     private Rigidbody rb;
 
     //Variables de detección de objetos interactuables.
-    public bool canChasePlayer = true, isMovingToInteractuable;
+    public bool canChasePlayer = true;
+
+    public bool isMovingToInteractuable;
+
     private float distanceOffset = 0.5f;
 
     [Header("Radio en el que detectará objetos interactuables.")]
@@ -25,22 +29,26 @@ public class PyraAI : MonoBehaviour
 
     //Variables de objetos detectados.
     [SerializeField] private List<Interactable> detectedObjects;
+
     private Interactable currentInteractuable;
 
     //Variables de movimiento.
     public bool moveToPlatform = false, isInPlatform = false, isJumping = false;
-    private Vector3 platformPos;
-    [SerializeField] float jumpPower;
-    [SerializeField] float jumpDuration;
-    [SerializeField] float distanceToJump;
-    [SerializeField] Transform platform;
+
+    [Header("Jump settings")]
+    [SerializeField] private float jumpPower;
+
+    [SerializeField] private float jumpDuration;
+    [SerializeField] private float distanceToJump;
+    [SerializeField] private Transform platform;
+    [SerializeField] private Transform platformParent;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         rb = GetComponent<Rigidbody>();
-        platformPos = player.GetChild(0).position;
+        //platformParent = platform;
     }
 
     private void Update()
@@ -52,21 +60,32 @@ public class PyraAI : MonoBehaviour
     {
         if (canChasePlayer)
         {
-            agent.SetDestination(player.position);
+            agent.SetDestination(player.transform.position);
         }
         else if (moveToPlatform)
         {
-            if(Vector3.Distance(transform.position, player.position) <= distanceToJump)
+            if (!isJumping)
             {
-                isJumping = true;
-                agent.enabled = false;
-                rb.DOJump(platformPos, jumpPower, 1, jumpDuration).OnComplete(EnableAgentOnPlatform);
-            }
-            else
-            {
-                agent.SetDestination(player.position);
+                if (Vector3.Distance(transform.position, player.transform.position) <= distanceToJump)
+                {
+                    isJumping = true;
+                    agent.enabled = false;
+
+                    transform.DOJump(platform.position, jumpPower, 1, jumpDuration)
+                        .OnStart(() =>
+                        {
+                            platform.SetParent(null);
+                            player.BlockMovement();
+                        })
+                        .OnComplete(EnableAgentOnPlatform);
+                }
+                else
+                {
+                    agent.SetDestination(player.transform.position);
+                }
             }
         }
+
         //Se mueve a los interactuables si hay algo en la lista
         else if (isMovingToInteractuable)
         {
@@ -84,26 +103,36 @@ public class PyraAI : MonoBehaviour
     }
 
     #region MOVEMENT_FUNCTIONS
+
     private void EnableAgentOnPlatform()
     {
+        rb.isKinematic = true;
+        platform.SetParent(platformParent);
+        transform.SetParent(platform);
+        transform.localPosition = Vector3.zero;
+        player.EnableMovement();
+
         isJumping = false;
         isInPlatform = true;
         moveToPlatform = false;
-        transform.SetParent(platform);
     }
+
     private void EnableAgentOnGround()
     {
         isJumping = false;
         agent.enabled = true;
+        rb.isKinematic = false;
         canChasePlayer = true;
         isInPlatform = false;
     }
+
     public void JumpToGround(Vector3 posToJump)
     {
         isJumping = true;
         transform.SetParent(null);
         rb.DOJump(posToJump, jumpPower, 1, jumpDuration).OnComplete(EnableAgentOnGround);
     }
+
     private void RefreshDetectedObject()
     {
         //Elimina de la lista al que estaba siguiendo
