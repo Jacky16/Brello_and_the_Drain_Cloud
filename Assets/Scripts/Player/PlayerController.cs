@@ -327,7 +327,7 @@ public class PlayerController : MonoBehaviour
     #endregion Inputs setters
 
     #region Getters
-    public bool IsSwimmSing()
+    public bool IsSwimming()
     {
         return isSwimming;
     }

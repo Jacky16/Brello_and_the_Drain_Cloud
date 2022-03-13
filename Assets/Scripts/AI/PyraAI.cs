@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using DG.Tweening;
 
+[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(Rigidbody))]
 public class PyraAI : MonoBehaviour
 {
     //Variables de Pyra.
     private NavMeshAgent agent;
-
     private Transform player;
+    private Rigidbody rb;
 
     //Variables de detección de objetos interactuables.
-    private bool canChasePlayer = true, isMovingToInteractuable;
-
+    public bool canChasePlayer = true, isMovingToInteractuable;
     private float distanceOffset = 0.5f;
 
     [Header("Radio en el que detectará objetos interactuables.")]
@@ -23,13 +25,22 @@ public class PyraAI : MonoBehaviour
 
     //Variables de objetos detectados.
     [SerializeField] private List<Interactable> detectedObjects;
-
     private Interactable currentInteractuable;
+
+    //Variables de movimiento.
+    public bool moveToPlatform = false, isInPlatform = false, isJumping = false;
+    private Vector3 platformPos;
+    [SerializeField] float jumpPower;
+    [SerializeField] float jumpDuration;
+    [SerializeField] float distanceToJump;
+    [SerializeField] Transform platform;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        rb = GetComponent<Rigidbody>();
+        platformPos = player.GetChild(0).position;
     }
 
     private void Update()
@@ -43,7 +54,19 @@ public class PyraAI : MonoBehaviour
         {
             agent.SetDestination(player.position);
         }
-
+        else if (moveToPlatform)
+        {
+            if(Vector3.Distance(transform.position, player.position) <= distanceToJump)
+            {
+                isJumping = true;
+                agent.enabled = false;
+                rb.DOJump(platformPos, jumpPower, 1, jumpDuration).OnComplete(EnableAgentOnPlatform);
+            }
+            else
+            {
+                agent.SetDestination(player.position);
+            }
+        }
         //Se mueve a los interactuables si hay algo en la lista
         else if (isMovingToInteractuable)
         {
@@ -61,7 +84,26 @@ public class PyraAI : MonoBehaviour
     }
 
     #region MOVEMENT_FUNCTIONS
-
+    private void EnableAgentOnPlatform()
+    {
+        isJumping = false;
+        isInPlatform = true;
+        moveToPlatform = false;
+        transform.SetParent(platform);
+    }
+    private void EnableAgentOnGround()
+    {
+        isJumping = false;
+        agent.enabled = true;
+        canChasePlayer = true;
+        isInPlatform = false;
+    }
+    public void JumpToGround(Vector3 posToJump)
+    {
+        isJumping = true;
+        transform.SetParent(null);
+        rb.DOJump(posToJump, jumpPower, 1, jumpDuration).OnComplete(EnableAgentOnGround);
+    }
     private void RefreshDetectedObject()
     {
         //Elimina de la lista al que estaba siguiendo
@@ -100,14 +142,14 @@ public class PyraAI : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        OnInteractuableCollision(other);
-    }
-
     private int SortByPriority(Interactable p1, Interactable p2)
     {
         return p1.priority.CompareTo(p2.priority);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        OnInteractuableCollision(other);
     }
 
     private void OnDrawGizmosSelected()
