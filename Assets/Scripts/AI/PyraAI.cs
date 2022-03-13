@@ -121,15 +121,19 @@ public class PyraAI : MonoBehaviour
     {
         isJumping = false;
         agent.enabled = true;
-        rb.isKinematic = false;
         canChasePlayer = true;
         isInPlatform = false;
+        player.EnableMovement();
+        platform.SetParent(platformParent);
     }
 
     public void JumpToGround(Vector3 posToJump)
     {
         isJumping = true;
+        platform.SetParent(null);
         transform.SetParent(null);
+        rb.isKinematic = false;
+        player.BlockMovement();
         rb.DOJump(posToJump, jumpPower, 1, jumpDuration).OnComplete(EnableAgentOnGround);
     }
 

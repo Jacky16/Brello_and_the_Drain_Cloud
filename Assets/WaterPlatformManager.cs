@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class WaterPlatformManager : MonoBehaviour
 {
+    public static WaterPlatformManager singletone;
+
     private enum Platform_Sprite
     { ALL_ABOARD, STAY_HERE, NONE };
 
@@ -15,20 +17,29 @@ public class WaterPlatformManager : MonoBehaviour
 
     [SerializeField] private Image platformMessage;
     [SerializeField] private Sprite[] platformImages;
+    private List<Transform> positionsClose;
 
     private CoastPoints currentCoast;
     private Vector3 closestGroundPoint;
 
+    private struct CoastPoint
+    {
+        public Vector3 position;
+        public float distance;
+    }
+
+    private List<CoastPoint> sortedCoastPoints = new List<CoastPoint>();
+
     // Start is called before the first frame update
     private void Awake()
     {
+        if (singletone == null)
+        {
+            singletone = this;
+        }
         playerInput = new PlayerInput();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         pyra = GameObject.FindGameObjectWithTag("Pyra").GetComponent<PyraAI>();
-    }
-
-    private void Start()
-    {
         playerInput.CharacterControls.Interactuable.started += OnInteractuable;
     }
 
@@ -65,34 +76,42 @@ public class WaterPlatformManager : MonoBehaviour
         else if (player.IsSwimming() && pyra.isInPlatform && !pyra.isJumping && currentCoast)
         {
             CheckForClosestPoint();
+
             pyra.JumpToGround(closestGroundPoint);
         }
     }
 
     private void CheckForClosestPoint()
     {
-        float closestPoint = Mathf.Infinity;
+        sortedCoastPoints.Clear();
         foreach (Transform point in currentCoast.coastPoints)
         {
-            if (Vector3.Distance(point.position, player.transform.position) < closestPoint)
-            {
-                closestGroundPoint = point.position;
-            }
+            CoastPoint coastPoint;
+            coastPoint.position = point.position;
+            coastPoint.distance = Vector3.Distance(player.transform.position, point.position);
+            sortedCoastPoints.Add(coastPoint);
         }
+        sortedCoastPoints.Sort(SortbyDistance);
+        closestGroundPoint = sortedCoastPoints[0].position;
     }
 
-    private void OnTriggerStay(Collider other)
+    public void SetCurrentCoast(CoastPoints _coast)
     {
-        if (other.TryGetComponent(out CoastPoints closestCoast))
+        currentCoast = _coast;
+    }
+
+    private int SortbyDistance(CoastPoint p1, CoastPoint p2)
+    {
+        return p1.distance.CompareTo(p2.distance);
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (closestGroundPoint != Vector3.zero)
         {
-            currentCoast = closestCoast;
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(player.transform.position, closestGroundPoint);
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        currentCoast = null;
-        closestGroundPoint = Vector3.zero;
     }
 
     private void OnEnable()
