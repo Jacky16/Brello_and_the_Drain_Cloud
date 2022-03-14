@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SteamlingHealth : Health
+public sealed class SteamlingHealth : Health
 {
     private GameObject cloudMask;
     // Start is called before the first frame update

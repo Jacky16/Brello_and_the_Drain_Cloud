@@ -4,8 +4,26 @@ using UnityEngine;
 
 public class CoastPoints : MonoBehaviour
 {
-    public List<Transform> coastPoints;
+    private List<Transform> coastPoints;
 
+    private void Start()
+    {
+        GetAllPoints();
+    }
+
+    private void GetAllPoints()
+    {
+        coastPoints = new List<Transform>();
+        for(int i = 0; i < transform.childCount; i++)
+        {
+            coastPoints.Add(transform.GetChild(i));
+        }
+    }
+
+    public List<Transform> GetCoastPoints()
+    {
+        return coastPoints;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

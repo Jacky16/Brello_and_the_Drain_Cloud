@@ -17,7 +17,7 @@ public class WaterPlatformManager : MonoBehaviour
 
     [SerializeField] private Image platformMessage;
     [SerializeField] private Sprite[] platformImages;
-    private List<Transform> positionsClose;
+    //private List<Transform> positionsClose;
 
     private CoastPoints currentCoast;
     private Vector3 closestGroundPoint;
@@ -30,13 +30,17 @@ public class WaterPlatformManager : MonoBehaviour
 
     private List<CoastPoint> sortedCoastPoints = new List<CoastPoint>();
 
-    // Start is called before the first frame update
     private void Awake()
     {
         if (singletone == null)
         {
             singletone = this;
         }
+        Init();
+    }
+
+    private void Init()
+    {
         playerInput = new PlayerInput();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         pyra = GameObject.FindGameObjectWithTag("Pyra").GetComponent<PyraAI>();
@@ -45,17 +49,24 @@ public class WaterPlatformManager : MonoBehaviour
 
     private void Update()
     {
+        ImageSelector();
+    }
+
+    private void ImageSelector()
+    {
         if (player.IsSwimming() && !pyra.isInPlatform && currentCoast)
         {
-            //platformMessage.sprite = platformImages[(int)Platform_Sprite.ALL_ABOARD];
+            platformMessage.color = new Color(255, 255, 255, 1);
+            platformMessage.sprite = platformImages[(int)Platform_Sprite.ALL_ABOARD];
         }
         else if (player.IsSwimming() && pyra.isInPlatform && currentCoast)
         {
-            //platformMessage.sprite = platformImages[(int)Platform_Sprite.STAY_HERE];
+            platformMessage.color = new Color(255, 255, 255, 1);
+            platformMessage.sprite = platformImages[(int)Platform_Sprite.STAY_HERE];
         }
         else
         {
-            //platformMessage.sprite = null;
+            platformMessage.color = new Color(0, 0, 0, 0);
         }
     }
 
@@ -69,14 +80,16 @@ public class WaterPlatformManager : MonoBehaviour
     {
         if (player.IsSwimming() && !pyra.isInPlatform && !pyra.isJumping && currentCoast)
         {
-            pyra.moveToPlatform = true;
-            pyra.isMovingToInteractuable = false;
-            pyra.canChasePlayer = false;
+            if (Vector3.Distance(player.transform.position, pyra.transform.position) < 7.5f)
+            {
+                pyra.moveToPlatform = true;
+                pyra.isMovingToInteractuable = false;
+                pyra.canChasePlayer = false;
+            }
         }
         else if (player.IsSwimming() && pyra.isInPlatform && !pyra.isJumping && currentCoast)
         {
             CheckForClosestPoint();
-
             pyra.JumpToGround(closestGroundPoint);
         }
     }
@@ -84,7 +97,7 @@ public class WaterPlatformManager : MonoBehaviour
     private void CheckForClosestPoint()
     {
         sortedCoastPoints.Clear();
-        foreach (Transform point in currentCoast.coastPoints)
+        foreach (Transform point in currentCoast.GetCoastPoints())
         {
             CoastPoint coastPoint;
             coastPoint.position = point.position;
