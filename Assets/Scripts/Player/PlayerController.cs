@@ -126,20 +126,23 @@ public class PlayerController : MonoBehaviour
 
     private void HandleRotation()
     {
-        Vector3 positionToLookAt = (axis.x * camRight + axis.y * camForward);
-
-        //Setear la rotacion en la cual va a girar
-
-        positionToLookAt.y = 0.0f;
-
-        //Obtenemos la rotacion actual del Player
-        Quaternion currentRotation = transform.rotation;
-
-        if (isMovementPressed)
+        if (canMove)
         {
-            //Hacemos una interpolaci�n en la rotacion que va a girar cuando el player se mueve
-            Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
-            transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
+            Vector3 positionToLookAt = (axis.x * camRight + axis.y * camForward);
+
+            //Setear la rotacion en la cual va a girar
+
+            positionToLookAt.y = 0.0f;
+
+            //Obtenemos la rotacion actual del Player
+            Quaternion currentRotation = transform.rotation;
+
+            if (isMovementPressed)
+            {
+                //Hacemos una interpolaci�n en la rotacion que va a girar cuando el player se mueve
+                Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
+                transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
+            }
         }
     }
 
@@ -161,7 +164,7 @@ public class PlayerController : MonoBehaviour
             {
                 animator.SetBool(isJumpingHash, false);
                 isJumpAnimating = false;
-                brelloOpenManager.CloseBrello();
+                brelloOpenManager.SetOpen(false);
             }
             currentGravity.y = groundGravity;
         }
@@ -173,7 +176,7 @@ public class PlayerController : MonoBehaviour
             float nextYVelocity = (previousYVelocity + newYVelocity) * .5f;
             currentGravity.y = nextYVelocity;
 
-            brelloOpenManager.OpenBrello();
+            brelloOpenManager.SetOpen(true);
         }
         //Falling
         else if (isFalling && !characterController.isGrounded && !isSwimming)
@@ -222,7 +225,8 @@ public class PlayerController : MonoBehaviour
 
     public void HandleDash()
     {
-        StartCoroutine(Dash());
+        if (!isSwimming)
+            StartCoroutine(Dash());
     }
 
     private IEnumerator Dash()
@@ -281,7 +285,7 @@ public class PlayerController : MonoBehaviour
 
             animator.SetBool("isSwiming", false);
 
-            brelloOpenManager.CloseBrello();
+            brelloOpenManager.SetOpen(false);
 
             //Matamos a la animacion por si se sale antes, que no se quede flotando
             swimingTwee.Kill();
@@ -293,11 +297,20 @@ public class PlayerController : MonoBehaviour
         if (isSwimming)
         {
             currentGravity.y = 0;
-            brelloOpenManager.OpenBrello();
+            brelloOpenManager.SetOpen(true);
         }
     }
 
     #endregion Swiming functions
+
+    #region Umbrella Functions
+
+    public void OpenUmbrellaManager(bool _value)
+    {
+        brelloOpenManager.SetOpen(_value);
+    }
+
+    #endregion Umbrella Functions
 
     private void OnTriggerEnter(Collider other)
     {

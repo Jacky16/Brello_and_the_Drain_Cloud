@@ -29,6 +29,13 @@ public class InputManager : MonoBehaviour
 
         //Attack
         playerInput.CharacterControls.Attack.started += OnAttack;
+
+        //Open Umbrella
+        playerInput.CharacterControls.OpenUmbrella.started += OnUmbrella;
+        playerInput.CharacterControls.OpenUmbrella.canceled += OnUmbrella;
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void OnGlade(InputAction.CallbackContext ctx)
@@ -56,6 +63,11 @@ public class InputManager : MonoBehaviour
     private void OnAttack(InputAction.CallbackContext ctx)
     {
         playerController.HandleAttack();
+    }
+
+    private void OnUmbrella(InputAction.CallbackContext ctx)
+    {
+        playerController.OpenUmbrellaManager(ctx.ReadValueAsButton());
     }
 
     private void OnEnable()

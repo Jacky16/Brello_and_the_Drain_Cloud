@@ -89,6 +89,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenUmbrella"",
+                    ""type"": ""Button"",
+                    ""id"": ""6907cef6-8450-4a7c-8895-afc106085e36"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -256,6 +265,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Interactuable"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5dc2170d-ca47-4ab7-9d4b-182d6bac62af"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenUmbrella"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -271,6 +291,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_CharacterControls_Attack = m_CharacterControls.FindAction("Attack", throwIfNotFound: true);
         m_CharacterControls_CameraMovement = m_CharacterControls.FindAction("CameraMovement", throwIfNotFound: true);
         m_CharacterControls_Interactuable = m_CharacterControls.FindAction("Interactuable", throwIfNotFound: true);
+        m_CharacterControls_OpenUmbrella = m_CharacterControls.FindAction("OpenUmbrella", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -337,6 +358,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_CharacterControls_Attack;
     private readonly InputAction m_CharacterControls_CameraMovement;
     private readonly InputAction m_CharacterControls_Interactuable;
+    private readonly InputAction m_CharacterControls_OpenUmbrella;
     public struct CharacterControlsActions
     {
         private @PlayerInput m_Wrapper;
@@ -348,6 +370,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_CharacterControls_Attack;
         public InputAction @CameraMovement => m_Wrapper.m_CharacterControls_CameraMovement;
         public InputAction @Interactuable => m_Wrapper.m_CharacterControls_Interactuable;
+        public InputAction @OpenUmbrella => m_Wrapper.m_CharacterControls_OpenUmbrella;
         public InputActionMap Get() { return m_Wrapper.m_CharacterControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -378,6 +401,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Interactuable.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnInteractuable;
                 @Interactuable.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnInteractuable;
                 @Interactuable.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnInteractuable;
+                @OpenUmbrella.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnOpenUmbrella;
+                @OpenUmbrella.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnOpenUmbrella;
+                @OpenUmbrella.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnOpenUmbrella;
             }
             m_Wrapper.m_CharacterControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -403,6 +429,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Interactuable.started += instance.OnInteractuable;
                 @Interactuable.performed += instance.OnInteractuable;
                 @Interactuable.canceled += instance.OnInteractuable;
+                @OpenUmbrella.started += instance.OnOpenUmbrella;
+                @OpenUmbrella.performed += instance.OnOpenUmbrella;
+                @OpenUmbrella.canceled += instance.OnOpenUmbrella;
             }
         }
     }
@@ -416,5 +445,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnCameraMovement(InputAction.CallbackContext context);
         void OnInteractuable(InputAction.CallbackContext context);
+        void OnOpenUmbrella(InputAction.CallbackContext context);
     }
 }

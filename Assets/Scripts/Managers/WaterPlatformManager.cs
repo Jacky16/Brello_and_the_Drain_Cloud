@@ -44,6 +44,7 @@ public class WaterPlatformManager : MonoBehaviour
         playerInput = new PlayerInput();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         pyra = GameObject.FindGameObjectWithTag("Pyra").GetComponent<PyraAI>();
+
         playerInput.CharacterControls.Interactuable.started += OnInteractuable;
     }
 
