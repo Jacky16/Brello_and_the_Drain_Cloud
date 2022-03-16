@@ -4,6 +4,9 @@ using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
+    //References/Components
+
+    private BrelloOpenManager brelloOpenManager;
     private CharacterController characterController;
     private Animator animator;
 
@@ -58,16 +61,20 @@ public class PlayerController : MonoBehaviour
     private bool isJumping;
     private bool isJumpAnimating;
 
-    //Attack
+    //Attack variables
 
     private float timeBtwAttacks = 0.25f;
     private int currentAttack = 0;
     private int numAttacks = 3;
 
-    //Swiming
+    //Swiming variables
+
     private Tween swimingTwee;
 
-    private BrelloOpenManager brelloOpenManager;
+    //Air movement variables
+
+    private bool isAirMoving;
+    private Tween tweenAirMovement;
 
     private void Awake()
     {
@@ -89,6 +96,7 @@ public class PlayerController : MonoBehaviour
         HandleGravity();
         HandleJump();
         SwimingManager();
+        AirMovementManager();
     }
 
     #region Main movement functions
@@ -164,7 +172,6 @@ public class PlayerController : MonoBehaviour
             {
                 animator.SetBool(isJumpingHash, false);
                 isJumpAnimating = false;
-                brelloOpenManager.SetOpen(false);
             }
             currentGravity.y = groundGravity;
         }
@@ -277,7 +284,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OutSwiming(Collider other)
+    private void OnOutSwiming(Collider other)
     {
         if (other.CompareTag("Water"))
         {
@@ -303,31 +310,58 @@ public class PlayerController : MonoBehaviour
 
     #endregion Swiming functions
 
-    #region Umbrella Functions
-
     public void OpenUmbrellaManager(bool _value)
     {
-        brelloOpenManager.SetOpen(_value);
+        isGladePressed = _value;
+        brelloOpenManager.SetOpen(isGladePressed);
     }
 
-    #endregion Umbrella Functions
+    #region Air Movement Functions
+
+    //Funcion que se ejecuta en el update, y bloquea la gravedad a 0
+    private void AirMovementManager()
+    {
+        if (isAirMoving)
+            currentGravity.y = 0;
+    }
+
+    //Funcion que se llama cuando entra en contacto con la zona de aire
+    private void OnAirMovement(Collider other)
+    {
+        if (other.CompareTag("Air") && !isAirMoving)
+        {
+            isAirMoving = true;
+            Transform pivotAir = other.transform.GetChild(0).transform;
+
+            tweenAirMovement = transform.DOMoveY(pivotAir.position.y, 1).SetEase(Ease.Linear);
+        }
+    }
+
+    //Funcion que se llama cuando se va de la zona de aire
+    private void OutMovementAir(Collider other)
+    {
+        if (other.CompareTag("Air"))
+        {
+            isAirMoving = false;
+            tweenAirMovement.Kill();
+        }
+    }
+
+    #endregion Air Movement Functions
 
     private void OnTriggerEnter(Collider other)
     {
         OnSwiming(other);
+        OnAirMovement(other);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        OutSwiming(other);
+        OnOutSwiming(other);
+        OutMovementAir(other);
     }
 
     #region Inputs setters
-
-    public void SetGladePressed(bool _value)
-    {
-        isGladePressed = _value;
-    }
 
     public void SetJumPressed(bool _value)
     {
