@@ -24,7 +24,6 @@ public sealed class BrelloHealth : Health
 
     private void Update()
     {
-        Debug.Log(currLife);
         if (lifeChanged)
         {
             lastLifeChange += Time.deltaTime;
