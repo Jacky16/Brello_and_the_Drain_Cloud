@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using DG.Tweening;
 
 
 [RequireComponent(typeof(SphereCollider))]
@@ -36,7 +37,6 @@ public class SteamlingAI : EnemyAI
 
         if(Vector3.Distance(transform.position, attackPos) <= agent.stoppingDistance)
         {
-            isAttacking = false;
             currentDamage = normalDamage;
             agent.speed = initSpeed;
         }
@@ -49,8 +49,6 @@ public class SteamlingAI : EnemyAI
 
     private IEnumerator Assault()
     {
-        isAttacking = true;
-
         agent.speed = 0f;
         agent.destination = transform.position;  
 
@@ -75,7 +73,7 @@ public class SteamlingAI : EnemyAI
     {
         if(collision.collider.gameObject.TryGetComponent(out BrelloHealth playerHealth))
         {
-            //playerHealth.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * impulseForce, ForceMode.Impulse);
+            //playerHealth.GetComponent<CharacterController>().Move(transform.forward * impulseForce * Time.deltaTime);
 
             playerHealth.DoDamage(currentDamage);
         }

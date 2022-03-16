@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float rotationSpeed = 15f;
     private float currentSpeed = 0;
     private float dashTime = 0.25f;
+    private bool canMove = true;
 
     [Header("Gravity Settings")]
     [SerializeField] private float groundGravity = .05f;
@@ -58,15 +59,21 @@ public class PlayerController : MonoBehaviour
     private bool isJumpAnimating;
 
     //Attack
-    private float timeBtwAttacks = 0.25f;
 
+    private float timeBtwAttacks = 0.25f;
     private int currentAttack = 0;
     private int numAttacks = 3;
+
+    //Swiming
+    private Tween swimingTwee;
+
+    private BrelloOpenManager brelloOpenManager;
 
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        brelloOpenManager = GetComponent<BrelloOpenManager>();
 
         SetAnimatorsHashes();
         SetUpJumpvariables();
@@ -84,8 +91,8 @@ public class PlayerController : MonoBehaviour
         SwimingManager();
     }
 
-
     #region Main movement functions
+
     private void Movement()
     {
         //Acceleration
@@ -97,8 +104,8 @@ public class PlayerController : MonoBehaviour
         Vector3 currDir = camDir * currentSpeed;
 
         currDir.y = currentGravity.y;
-
-        characterController.Move(currDir * Time.deltaTime);
+        if (canMove)
+            characterController.Move(currDir * Time.deltaTime);
     }
 
     private void HandleJump()
@@ -154,8 +161,8 @@ public class PlayerController : MonoBehaviour
             {
                 animator.SetBool(isJumpingHash, false);
                 isJumpAnimating = false;
+                brelloOpenManager.CloseBrello();
             }
-
             currentGravity.y = groundGravity;
         }
         //Glading
@@ -164,25 +171,25 @@ public class PlayerController : MonoBehaviour
             float previousYVelocity = currentGravity.y;
             float newYVelocity = currentGravity.y + (gravity / gladeForce * Time.deltaTime);
             float nextYVelocity = (previousYVelocity + newYVelocity) * .5f;
-
             currentGravity.y = nextYVelocity;
+
+            brelloOpenManager.OpenBrello();
         }
         //Falling
-        else if (isFalling)
+        else if (isFalling && !characterController.isGrounded && !isSwimming)
         {
             float previousYVelocity = currentGravity.y;
             float newYVelocity = currentGravity.y + (gravity * fallMultiplier * Time.deltaTime);
             float nextYVelocity = (previousYVelocity + newYVelocity) * .5f;
-
             currentGravity.y = nextYVelocity;
         }
         //Normal Gravity
         else
         {
+            if (isSwimming) return;
             float previousYVelocity = currentGravity.y;
             float newYVelocity = currentGravity.y + (gravity * Time.deltaTime);
             float nextYVelocity = (previousYVelocity + newYVelocity) * .5f;
-
             currentGravity.y = nextYVelocity;
         }
     }
@@ -199,10 +206,20 @@ public class PlayerController : MonoBehaviour
         camDir = (axis.x * camRight + axis.y * camForward);
     }
 
-    #endregion
+    public void BlockMovement()
+    {
+        canMove = false;
+    }
 
+    public void EnableMovement()
+    {
+        canMove = true;
+    }
+
+    #endregion Main movement functions
 
     #region Dash functions
+
     public void HandleDash()
     {
         StartCoroutine(Dash());
@@ -219,15 +236,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    #endregion
+    #endregion Dash functions
 
     #region Attack functions
+
     public void HandleAttack()
     {
         animator.SetTrigger(attackHash);
 
         DoAttack();
     }
+
     private void DoAttack()
     {
         if (currentAttack == numAttacks)
@@ -236,34 +255,49 @@ public class PlayerController : MonoBehaviour
         animator.SetInteger(numAttackHash, currentAttack);
         currentAttack++;
     }
-    #endregion
+
+    #endregion Attack functions
 
     #region Swiming functions
+
     private void OnSwiming(Collider other)
     {
         if (other.CompareTag("Water") && !isSwimming)
         {
             isSwimming = true;
+
             animator.SetBool("isSwiming", true);
+
             Transform pivotWater = other.transform.GetChild(0).transform;
-            transform.DOMoveY(pivotWater.position.y, 2).SetEase(Ease.OutElastic);
+            swimingTwee = transform.DOMoveY(pivotWater.position.y, 2).SetEase(Ease.OutElastic);
         }
     }
+
     private void OutSwiming(Collider other)
     {
         if (other.CompareTag("Water"))
         {
-            Debug.Log("Fuera del agua");
-            animator.SetBool("isSwiming", false);
             isSwimming = false;
+
+            animator.SetBool("isSwiming", false);
+
+            brelloOpenManager.CloseBrello();
+
+            //Matamos a la animacion por si se sale antes, que no se quede flotando
+            swimingTwee.Kill();
         }
     }
+
     private void SwimingManager()
     {
         if (isSwimming)
+        {
             currentGravity.y = 0;
+            brelloOpenManager.OpenBrello();
+        }
     }
-    #endregion
+
+    #endregion Swiming functions
 
     private void OnTriggerEnter(Collider other)
     {
@@ -274,7 +308,6 @@ public class PlayerController : MonoBehaviour
     {
         OutSwiming(other);
     }
-
 
     #region Inputs setters
 
@@ -300,7 +333,17 @@ public class PlayerController : MonoBehaviour
 
     #endregion Inputs setters
 
+    #region Getters
+
+    public bool IsSwimming()
+    {
+        return isSwimming;
+    }
+
+    #endregion Getters
+
     #region Init functions
+
     private void SetUpJumpvariables()
     {
         float timeToApex = maxJumpTime / 2;
@@ -318,5 +361,6 @@ public class PlayerController : MonoBehaviour
         attackHash = Animator.StringToHash("attack");
         numAttackHash = Animator.StringToHash("numAttack");
     }
-    #endregion
+
+    #endregion Init functions
 }
