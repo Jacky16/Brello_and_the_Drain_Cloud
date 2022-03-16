@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.Rendering;
+using UnityEngine.InputSystem;
 
 public class Dialogue_Trigger : MonoBehaviour
 {
-
     private Dialogue_Manager ui;
     private Dialogue_NPC currentVillager;
+
     //private MovementInput movement;
     public CinemachineTargetGroup targetGroup;
 
@@ -16,15 +17,30 @@ public class Dialogue_Trigger : MonoBehaviour
     [Header("Post Processing")]
     public Volume dialogueDof;
 
-    void Start()
+    //Input player
+    private PlayerInput playerInput;
+
+    private void Awake()
+    {
+        playerInput = new PlayerInput();
+        playerInput.CharacterControls.Interactuable.started += OnInteractuable;
+    }
+
+    private void Start()
     {
         ui = Dialogue_Manager.instance;
+
         //movement = GetComponent<MovementInput>();
     }
 
-    void Update()
+    private void OnInteractuable(InputAction.CallbackContext ctx)
     {
-        if (Input.GetKeyDown(KeyCode.E) && !ui.inDialogue && currentVillager != null)
+        DialogueTrigger();
+    }
+
+    private void DialogueTrigger()
+    {
+        if (!ui.inDialogue && currentVillager != null)
         {
             targetGroup.m_Targets[1].target = currentVillager.transform;
             //movement.active = false;
@@ -53,5 +69,14 @@ public class Dialogue_Trigger : MonoBehaviour
             currentVillager = null;
             ui.currentVillager = currentVillager;
         }
+    }
+    private void OnEnable()
+    {
+        playerInput.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerInput.Disable();
     }
 }

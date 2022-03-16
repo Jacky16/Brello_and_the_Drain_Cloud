@@ -44,7 +44,6 @@ public class InputManager : MonoBehaviour
     private void OnMovementInput(InputAction.CallbackContext ctx)
     {
         Vector2 axis = ctx.ReadValue<Vector2>();
-
         playerController.SetAxis(axis);
         playerController.SetMovementPressed(axis.x != 0 || axis.y != 0);
     }
