@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine;
 
-public class BrelloHealth : Health
+public sealed class BrelloHealth : Health
 {
     [Header("Life Sprite Variables")]
     [SerializeField] Sprite[] healthImages;
@@ -24,7 +24,6 @@ public class BrelloHealth : Health
 
     private void Update()
     {
-        Debug.Log(currLife);
         if (lifeChanged)
         {
             lastLifeChange += Time.deltaTime;

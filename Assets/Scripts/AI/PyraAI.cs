@@ -2,18 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using DG.Tweening;
 
-public class PyraAI : MonoBehaviour
+[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(Rigidbody))]
+public sealed class PyraAI : MonoBehaviour
 {
     //Variables de Pyra.
     private NavMeshAgent agent;
 
-    private Transform player;
+    private PlayerController player;
+    private Rigidbody rb;
 
     //Variables de detección de objetos interactuables.
-    private bool canChasePlayer = true, isMovingToInteractuable;
+    public bool canChasePlayer = true;
 
-    private float distanceOffset = 0.5f;
+    public bool isMovingToInteractuable;
 
     [Header("Radio en el que detectará objetos interactuables.")]
     [SerializeField] private float detectionRadius;
@@ -26,10 +30,25 @@ public class PyraAI : MonoBehaviour
 
     private Interactable currentInteractuable;
 
+    //Variables de movimiento.
+    public bool moveToPlatform = false, isInPlatform = false, isJumping = false;
+
+    [Header("Jump settings")]
+    [SerializeField] private float jumpPower;
+
+    [SerializeField] private float jumpDuration;
+    [SerializeField] private float distanceToJump;
+    [SerializeField] private Transform platform;
+    [SerializeField] private Transform platformParent;
+
+    bool stayUnderBrello;
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true;
+        //platformParent = platform;
     }
 
     private void Update()
@@ -41,9 +60,43 @@ public class PyraAI : MonoBehaviour
     {
         if (canChasePlayer)
         {
-            agent.SetDestination(player.position);
+            agent.SetDestination(player.transform.position);
         }
+        else if (moveToPlatform)
+        {
+            if (!isJumping)
+            {
+                //Este sistema de condiciones comprueba lo siguiente:
+                //Si el player pulsa la E en el agua pero pyra está muy lejos de el, esta se acercará hasta que esté a 
+                //la suficiente distancia como para saltar encima de el.
+                if (Vector3.Distance(transform.position, player.transform.position) <= distanceToJump)
+                {
+                    isJumping = true;
 
+                    //Desactivamos el agent para que podamos mover a pyra mediante rigidbody.
+                    agent.enabled = false;
+               
+                    transform.DOJump(platform.position, jumpPower, 1, jumpDuration)
+                        .OnStart(() =>
+                        { 
+                            //Desactivamos fisicas propias de unity y ponemos que la plataforma destino no tenga parent
+                            //para que el movimiento sea en world en lugar de local.
+                            rb.isKinematic = false;
+                            platform.SetParent(null);
+                            player.BlockMovement();
+                        })
+                        .OnComplete(EnableAgentOnPlatform);
+                }
+                else
+                {
+                    agent.SetDestination(player.transform.position);
+                }
+            }
+        }
+        else if (stayUnderBrello)
+        {
+            agent.SetDestination(player.transform.GetChild(0).position);
+        }
         //Se mueve a los interactuables si hay algo en la lista
         else if (isMovingToInteractuable)
         {
@@ -61,6 +114,54 @@ public class PyraAI : MonoBehaviour
     }
 
     #region MOVEMENT_FUNCTIONS
+
+    private void EnableAgentOnPlatform()
+    {
+        //Ponemos kinematic el rb para que no le afecten fuerzas externas.
+        //Cambiamos los parents para que el movimiento no se mueva en world sino en local.
+        //Finalmente colocamos a pyra en el origen de coords de su posicion local.
+        rb.isKinematic = true;
+        platform.SetParent(platformParent);
+        transform.SetParent(platform);
+        transform.localPosition = Vector3.zero;
+
+        //Reactivamos el movimiento del player;
+        player.EnableMovement();
+
+        isJumping = false;
+        isInPlatform = true;
+        moveToPlatform = false;
+    }
+
+
+    private void EnableAgentOnGround()
+    {
+        //Hacemos que le afecten las fisicas y que vuelva a navegar por la navmesh.
+        rb.isKinematic = true;
+        isJumping = false;
+        agent.enabled = true;
+        canChasePlayer = true;
+        isInPlatform = false;
+
+        //Habilitamos el movimiento del player y volvemos a poner el padre que toca (armature) a la plataforma.
+        player.EnableMovement();
+        platform.SetParent(platformParent);
+    }
+
+    public void JumpToGround(Vector3 posToJump)
+    {
+        isJumping = true;
+
+        //Hacemos que tanto pyra como la plataforma no tengan parent para que el movimiento se haga en world en lugar de en local.
+        platform.SetParent(null);
+        transform.SetParent(null);
+
+        //Desactivamos fisicas y hacemos que el player no pueda moverse, para evitar que el spot de salto de pyra se desplace.
+        rb.isKinematic = false;
+        player.BlockMovement();
+
+        rb.DOJump(posToJump, jumpPower, 1, jumpDuration).OnComplete(EnableAgentOnGround);
+    }
 
     private void RefreshDetectedObject()
     {
@@ -100,14 +201,14 @@ public class PyraAI : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        OnInteractuableCollision(other);
-    }
-
     private int SortByPriority(Interactable p1, Interactable p2)
     {
         return p1.priority.CompareTo(p2.priority);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        OnInteractuableCollision(other);
     }
 
     private void OnDrawGizmosSelected()
