@@ -104,7 +104,7 @@ public sealed class PyraAI : MonoBehaviour
             agent.SetDestination(currentInteractuable.transform.position);
 
             //Cuando estas cerca del interactuable ve a por el siguiente
-            if (Vector3.Distance(transform.position, currentInteractuable.transform.position) <= agent.stoppingDistance)
+            if (Vector3.Distance(transform.position, currentInteractuable.transform.position) <= agent.stoppingDistance + 3)
             {
                 currentInteractuable.Interact();
 

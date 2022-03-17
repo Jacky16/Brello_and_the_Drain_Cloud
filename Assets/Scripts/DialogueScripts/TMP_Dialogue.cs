@@ -68,7 +68,7 @@ public class TMP_Dialogue : TextMeshProUGUI
                 {
                     while (visibleCounter < subTexts[subCounter].Length)
                     {
-                        onTextReveal.Invoke(subTexts[subCounter][visibleCounter]);
+                        //onTextReveal.Invoke(subTexts[subCounter][visibleCounter]);
                         visibleCounter++;
                         maxVisibleCharacters++;
                         yield return new WaitForSeconds(1f / speed);
