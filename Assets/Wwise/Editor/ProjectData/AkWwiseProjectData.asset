@@ -66,7 +66,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: b7fee57a9b67c343a46eab594f457684
     GuidInternal: 
-    m_lastTime: -8585545107352475796
+    m_lastTime: -8585540477370746906
     List:
     - name: General
       guid: 9ac68b89cd0b2543aa435561f078908b
@@ -94,7 +94,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 1a1dad3e5c7a724abc36cb5e26e00782
     GuidInternal: 
-    m_lastTime: -8585545107353004337
+    m_lastTime: -8585539876949402404
     List:
     - name: Attack_Combo_Brello
       guid: 002aa748b1bcd6438e803e80ac434cfc
@@ -114,8 +114,8 @@ MonoBehaviour:
         guid: 002aa748b1bcd6438e803e80ac434cfc
       Path: Events\Default Work Unit\Brello\Attack_Combo_Brello
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0.325832
+      minDuration: 0.210777
     - name: Awake_Boiler
       guid: 4843fbbcffd37c4a9720f274f72658c5
       id: 183731594
@@ -368,8 +368,8 @@ MonoBehaviour:
         guid: 525ee8d23a89a348b73df0708b7984fb
       Path: Events\Default Work Unit\Brello\Footstep_Brello
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0.541334
+      minDuration: 0
     - name: Footstep_Pyra
       guid: ce99340e72fd274a8c35633812a88227
       id: 1517232512
@@ -633,6 +633,26 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: Open_Brello
+      guid: 4c97a0bc55fba4418d9366164c5c9141
+      id: 692676672
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Brello
+        ObjectType: 4
+        guid: 57c2bd93ba34ae4790c1aeb835adc319
+      - ElementName: Open_Brello
+        ObjectType: 3
+        guid: 4c97a0bc55fba4418d9366164c5c9141
+      Path: Events\Default Work Unit\Brello\Open_Brello
+      maxAttenuation: 0
+      maxDuration: 0.806848
+      minDuration: 0.806848
     - name: Preparing_Charge_Steamling
       guid: a3e3ac6b981a3342b22552d32a9aa563
       id: 1765157707
@@ -704,6 +724,26 @@ MonoBehaviour:
         ObjectType: 3
         guid: ca02544bf6d6ee40abdffa7dcbb3a8dc
       Path: Events\Default Work Unit\Steamling\Recovering_Steamling
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Restart_Attack_Combo_Brello
+      guid: 5c51b1a83730da4ab3a820ef6a3f50d8
+      id: 1804471233
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Brello
+        ObjectType: 4
+        guid: 57c2bd93ba34ae4790c1aeb835adc319
+      - ElementName: Restart_Attack_Combo_Brello
+        ObjectType: 3
+        guid: 5c51b1a83730da4ab3a820ef6a3f50d8
+      Path: Events\Default Work Unit\Brello\Restart_Attack_Combo_Brello
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -979,8 +1019,106 @@ MonoBehaviour:
     ParentPath: Switches\Default Work Unit
     guid: 3652c387ca18794085902b6748b43d1c
     GuidInternal: 
-    m_lastTime: -8585545815314406445
-    List: []
+    m_lastTime: -8585539876948882595
+    List:
+    - name: FootstepTerrainType
+      guid: 5370e81ddde85840a97b77e23f265148
+      id: 3978675434
+      PathAndIcons:
+      - ElementName: Switches
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 3652c387ca18794085902b6748b43d1c
+      - ElementName: FootstepTerrainType
+        ObjectType: 11
+        guid: 5370e81ddde85840a97b77e23f265148
+      Path: Switches\Default Work Unit\FootstepTerrainType
+      values:
+      - name: Default
+        guid: edb867e9c54dfa44bc7e29fdf9e393ee
+        id: 782826392
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 3652c387ca18794085902b6748b43d1c
+        - ElementName: FootstepTerrainType
+          ObjectType: 11
+          guid: 5370e81ddde85840a97b77e23f265148
+        - ElementName: Default
+          ObjectType: 10
+          guid: edb867e9c54dfa44bc7e29fdf9e393ee
+      - name: Grass
+        guid: 565450ede459af49826e71f202cf2658
+        id: 4248645337
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 3652c387ca18794085902b6748b43d1c
+        - ElementName: FootstepTerrainType
+          ObjectType: 11
+          guid: 5370e81ddde85840a97b77e23f265148
+        - ElementName: Grass
+          ObjectType: 10
+          guid: 565450ede459af49826e71f202cf2658
+      - name: Rock
+        guid: 03dbf29e4f777047a77339835f8091ee
+        id: 2144363834
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 3652c387ca18794085902b6748b43d1c
+        - ElementName: FootstepTerrainType
+          ObjectType: 11
+          guid: 5370e81ddde85840a97b77e23f265148
+        - ElementName: Rock
+          ObjectType: 10
+          guid: 03dbf29e4f777047a77339835f8091ee
+      - name: Sand
+        guid: bd8e9e119b198c468f534c89cac86760
+        id: 803837735
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 3652c387ca18794085902b6748b43d1c
+        - ElementName: FootstepTerrainType
+          ObjectType: 11
+          guid: 5370e81ddde85840a97b77e23f265148
+        - ElementName: Sand
+          ObjectType: 10
+          guid: bd8e9e119b198c468f534c89cac86760
+      - name: Water
+        guid: 7accafa12cab444dba6cdeafa2c72acd
+        id: 2654748154
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 3652c387ca18794085902b6748b43d1c
+        - ElementName: FootstepTerrainType
+          ObjectType: 11
+          guid: 5370e81ddde85840a97b77e23f265148
+        - ElementName: Water
+          ObjectType: 10
+          guid: 7accafa12cab444dba6cdeafa2c72acd
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
   TriggerWwu:
   - PhysicalPath: Triggers\Default Work Unit.wwu
     PathAndIcons:
@@ -996,7 +1134,7 @@ MonoBehaviour:
     m_lastTime: -8585545815314396477
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 
+  ExpandedWaapiItemIds: 05000000060000000700000008000000090000000a0000001000000011000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0
