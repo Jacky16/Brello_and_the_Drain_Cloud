@@ -62,10 +62,14 @@ public class PlayerController : MonoBehaviour
     private bool isJumpAnimating;
 
     //Attack variables
+    [Header("Attack Settings")]
+    [SerializeField] private Transform pivotAttack;
 
+    [SerializeField] private int damage = 1;
+    [SerializeField] private Vector3 sizeCubeAttack;
     private float timeBtwAttacks = 0.25f;
     private int currentAttack = 0;
-    private int numAttacks = 3;
+    private int numAttacks = 2;
 
     //Swiming variables
 
@@ -255,16 +259,31 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetTrigger(attackHash);
 
-        DoAttack();
+        DoAttackAnimation();
     }
 
-    private void DoAttack()
+    private void DoAttackAnimation()
     {
         if (currentAttack == numAttacks)
             currentAttack = 0;
 
         animator.SetInteger(numAttackHash, currentAttack);
         currentAttack++;
+    }
+
+    private void Attack()
+    {
+        Collider[] colliders = Physics.OverlapBox(pivotAttack.position, sizeCubeAttack, Quaternion.identity);
+        foreach (Collider collider in colliders)
+        {
+            if (collider.TryGetComponent(out Health _health))
+            {
+                if (!collider.CompareTag("Player"))
+                {
+                    _health.DoDamage(damage);
+                }
+            }
+        }
     }
 
     #endregion Attack functions
@@ -359,6 +378,12 @@ public class PlayerController : MonoBehaviour
     {
         OnOutSwiming(other);
         OutMovementAir(other);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(pivotAttack.position, sizeCubeAttack);
     }
 
     #region Inputs setters
