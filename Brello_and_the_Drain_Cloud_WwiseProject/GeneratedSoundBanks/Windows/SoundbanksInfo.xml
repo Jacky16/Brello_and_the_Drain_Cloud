@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="140">
+	<RootPaths>
+		<ProjectRoot>D:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\</ProjectRoot>
+		<SourceFilesRoot>D:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>D:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>D:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="133642231" Language="SFX" Hash="3005475540">
+			<ObjectPath>\SoundBanks\Default Work Unit\General</ObjectPath>
+			<ShortName>General</ShortName>
+			<Path>General.bnk</Path>
+			<IncludedEvents>
+				<Event Id="211679341" Name="Attack_Combo_Brello" ObjectPath="\Events\Default Work Unit\Brello\Attack_Combo_Brello" DurationType="OneShot" DurationMin="0.210777" DurationMax="0.325832">
+					<IncludedMemoryFiles>
+						<File Id="118440027" Language="SFX">
+							<ShortName>Attack\Attack1.wav</ShortName>
+							<Path>SFX\Attack\Attack1_10C4C929.wem</Path>
+						</File>
+						<File Id="130473096" Language="SFX">
+							<ShortName>Attack\Attack2.wav</ShortName>
+							<Path>SFX\Attack\Attack2_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2749921882" Name="Footstep_Brello" ObjectPath="\Events\Default Work Unit\Brello\Footstep_Brello" DurationType="OneShot" DurationMin="0." DurationMax="0.541334">
+					<IncludedMemoryFiles>
+						<File Id="88877710" Language="SFX">
+							<ShortName>Footstep_Grass\Brello_Footstep_Grass (8).wav</ShortName>
+							<Path>SFX\Footstep_Grass\Brello_Footstep_Grass (8)_10C4C929.wem</Path>
+						</File>
+						<File Id="92968298" Language="SFX">
+							<ShortName>Footstep_Grass\Brello_Footstep_Grass (5).wav</ShortName>
+							<Path>SFX\Footstep_Grass\Brello_Footstep_Grass (5)_10C4C929.wem</Path>
+						</File>
+						<File Id="576936516" Language="SFX">
+							<ShortName>Footstep_Grass\Brello_Footstep_Grass (4).wav</ShortName>
+							<Path>SFX\Footstep_Grass\Brello_Footstep_Grass (4)_10C4C929.wem</Path>
+						</File>
+						<File Id="973452232" Language="SFX">
+							<ShortName>Footstep_Grass\Brello_Footstep_Grass (6).wav</ShortName>
+							<Path>SFX\Footstep_Grass\Brello_Footstep_Grass (6)_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+					<SwitchContainers>
+						<SwitchContainer SwitchValue="{ED505456-59E4-49AF-826E-71F202CF2658}">
+							<Media>
+								<File Id="88877710"/>
+								<File Id="92968298"/>
+								<File Id="576936516"/>
+								<File Id="973452232"/>
+							</Media>
+						</SwitchContainer>
+					</SwitchContainers>
+				</Event>
+				<Event Id="3653428579" Name="Glide_Brello" ObjectPath="\Events\Default Work Unit\Brello\Glide_Brello" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="213251508" Language="SFX">
+							<ShortName>Glide.wav</ShortName>
+							<Path>SFX\Glide_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="692676672" Name="Open_Brello" ObjectPath="\Events\Default Work Unit\Brello\Open_Brello" DurationType="OneShot" DurationMin="0.806848" DurationMax="0.806848">
+					<IncludedMemoryFiles>
+						<File Id="961183922" Language="SFX">
+							<ShortName>Open.wav</ShortName>
+							<Path>SFX\Open_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+			</IncludedEvents>
+			<SwitchGroups>
+				<SwitchGroup Id="3978675434" Name="FootstepTerrainType" ObjectPath="\Switches\Default Work Unit\FootstepTerrainType" GUID="{1DE87053-E8DD-4058-A97B-77E23F265148}">
+					<Switches>
+						<Switch Id="4248645337" Name="Grass" ObjectPath="\Switches\Default Work Unit\FootstepTerrainType\Grass" GUID="{ED505456-59E4-49AF-826E-71F202CF2658}"/>
+						<Switch Id="2144363834" Name="Rock" ObjectPath="\Switches\Default Work Unit\FootstepTerrainType\Rock" GUID="{9EF2DB03-774F-4770-A773-39835F8091EE}"/>
+						<Switch Id="2654748154" Name="Water" ObjectPath="\Switches\Default Work Unit\FootstepTerrainType\Water" GUID="{A1AFCC7A-AB2C-4D44-BA6C-DEAFA2C72ACD}"/>
+						<Switch Id="782826392" Name="Default" ObjectPath="\Switches\Default Work Unit\FootstepTerrainType\Default" GUID="{E967B8ED-4DC5-44FA-BC7E-29FDF9E393EE}"/>
+						<Switch Id="803837735" Name="Sand" ObjectPath="\Switches\Default Work Unit\FootstepTerrainType\Sand" GUID="{119E8EBD-199B-468C-8F53-4C89CAC86760}"/>
+					</Switches>
+				</SwitchGroup>
+			</SwitchGroups>
+		</SoundBank>
+		<SoundBank Id="1355168291" Language="SFX" Hash="3690994985">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>

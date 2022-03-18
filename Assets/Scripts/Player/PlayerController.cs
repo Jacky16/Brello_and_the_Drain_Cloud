@@ -97,7 +97,10 @@ public class PlayerController : MonoBehaviour
     {
         //Acceleration
         if (isMovementPressed)
+        {
             currentSpeed = Mathf.Lerp(currentSpeed, speed, acceleration * Time.deltaTime);
+            //AkSoundEngine.PostEvent("Footstep_Brello", gameObject);
+        }
         else
             currentSpeed = Mathf.Lerp(currentSpeed, 0, acceleration * Time.deltaTime);
 
@@ -254,6 +257,7 @@ public class PlayerController : MonoBehaviour
 
         animator.SetInteger(numAttackHash, currentAttack);
         currentAttack++;
+        AkSoundEngine.PostEvent("Attack_Combo_Brello", WwiseManager.instance.gameObject);
     }
 
     #endregion Attack functions
