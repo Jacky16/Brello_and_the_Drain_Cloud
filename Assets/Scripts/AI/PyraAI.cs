@@ -18,6 +18,7 @@ public sealed class PyraAI : MonoBehaviour
     public bool canChasePlayer = true;
 
     public bool isMovingToInteractuable;
+    public bool isInteracting;
 
     [Header("Radio en el que detectará objetos interactuables.")]
     [SerializeField] private float detectionRadius;
@@ -48,6 +49,7 @@ public sealed class PyraAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
+        isInteracting = false;
         //platformParent = platform;
     }
 
@@ -58,7 +60,7 @@ public sealed class PyraAI : MonoBehaviour
 
     private void InteractuableManager()
     {
-        if (canChasePlayer)
+        if (canChasePlayer && !isInteracting)
         {
             agent.SetDestination(player.transform.position);
         }
@@ -75,13 +77,13 @@ public sealed class PyraAI : MonoBehaviour
 
                     //Desactivamos el agent para que podamos mover a pyra mediante rigidbody.
                     agent.enabled = false;
-               
+
                     transform.DOJump(platform.position, jumpPower, 1, jumpDuration)
                         .OnStart(() =>
-                        { 
-                            //Desactivamos fisicas propias de unity y ponemos que la plataforma destino no tenga parent
-                            //para que el movimiento sea en world en lugar de local.
-                            rb.isKinematic = false;
+                        {
+                        //Desactivamos fisicas propias de unity y ponemos que la plataforma destino no tenga parent
+                        //para que el movimiento sea en world en lugar de local.
+                        rb.isKinematic = false;
                             platform.SetParent(null);
                             player.BlockMovement();
                         })
@@ -98,7 +100,7 @@ public sealed class PyraAI : MonoBehaviour
             agent.SetDestination(player.transform.GetChild(0).position);
         }
         //Se mueve a los interactuables si hay algo en la lista
-        else if (isMovingToInteractuable)
+        else if (isMovingToInteractuable && !stayUnderBrello && !moveToPlatform && !isInPlatform)
         {
             //Mientras haya algo a la lista sigue el actual Interactuable
             agent.SetDestination(currentInteractuable.transform.position);
@@ -107,7 +109,7 @@ public sealed class PyraAI : MonoBehaviour
             if (Vector3.Distance(transform.position, currentInteractuable.transform.position) <= agent.stoppingDistance + 3)
             {
                 currentInteractuable.Interact();
-
+                isInteracting = true;
                 RefreshDetectedObject();
             }
         }
