@@ -4,7 +4,11 @@ using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
+    //References/Components
+
+    private BrelloOpenManager brelloOpenManager;
     private CharacterController characterController;
+    private WaterPlatformManager waterPlatformManager;
     private Animator animator;
 
     //Variables para almacenar los ID's de las animaciones
@@ -58,22 +62,31 @@ public class PlayerController : MonoBehaviour
     private bool isJumping;
     private bool isJumpAnimating;
 
-    //Attack
+    //Attack variables
+    [Header("Attack Settings")]
+    [SerializeField] private Transform pivotAttack;
 
+    [SerializeField] private int damage = 1;
+    [SerializeField] private Vector3 sizeCubeAttack;
     private float timeBtwAttacks = 0.25f;
     private int currentAttack = 0;
-    private int numAttacks = 3;
+    private int numAttacks = 2;
 
-    //Swiming
-    private Tween swimingTwee;
+    //Swiming variables
 
-    private BrelloOpenManager brelloOpenManager;
+    private Tween tweenSwiming;
+
+    //Air movement variables
+
+    private bool isAirMoving;
+    private Tween tweenAirMovement;
 
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         brelloOpenManager = GetComponent<BrelloOpenManager>();
+        waterPlatformManager = GetComponent<WaterPlatformManager>();
 
         SetAnimatorsHashes();
         SetUpJumpvariables();
@@ -89,6 +102,7 @@ public class PlayerController : MonoBehaviour
         HandleGravity();
         HandleJump();
         SwimingManager();
+        AirMovementManager();
     }
 
     #region Main movement functions
@@ -115,11 +129,7 @@ public class PlayerController : MonoBehaviour
     {
         if (characterController.isGrounded && !isJumping && isJumPressed)
         {
-            animator.SetBool(isJumpingHash, true);
-            isJumping = true;
-            isJumpAnimating = true;
-            currentGravity.y = initialJumpVelocity;
-            currentRunMovement.y = initialJumpVelocity;
+            Jump();
         }
         else if (characterController.isGrounded && isJumping && !isJumPressed)
         {
@@ -129,20 +139,23 @@ public class PlayerController : MonoBehaviour
 
     private void HandleRotation()
     {
-        Vector3 positionToLookAt = (axis.x * camRight + axis.y * camForward);
-
-        //Setear la rotacion en la cual va a girar
-
-        positionToLookAt.y = 0.0f;
-
-        //Obtenemos la rotacion actual del Player
-        Quaternion currentRotation = transform.rotation;
-
-        if (isMovementPressed)
+        if (canMove)
         {
-            //Hacemos una interpolaci�n en la rotacion que va a girar cuando el player se mueve
-            Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
-            transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
+            Vector3 positionToLookAt = (axis.x * camRight + axis.y * camForward);
+
+            //Setear la rotacion en la cual va a girar
+
+            positionToLookAt.y = 0.0f;
+
+            //Obtenemos la rotacion actual del Player
+            Quaternion currentRotation = transform.rotation;
+
+            if (isMovementPressed)
+            {
+                //Hacemos una interpolaci�n en la rotacion que va a girar cuando el player se mueve
+                Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
+                transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
+            }
         }
     }
 
@@ -164,7 +177,6 @@ public class PlayerController : MonoBehaviour
             {
                 animator.SetBool(isJumpingHash, false);
                 isJumpAnimating = false;
-                brelloOpenManager.CloseBrello();
             }
             currentGravity.y = groundGravity;
         }
@@ -176,7 +188,7 @@ public class PlayerController : MonoBehaviour
             float nextYVelocity = (previousYVelocity + newYVelocity) * .5f;
             currentGravity.y = nextYVelocity;
 
-            brelloOpenManager.OpenBrello();
+            brelloOpenManager.SetOpen(true);
         }
         //Falling
         else if (isFalling && !characterController.isGrounded && !isSwimming)
@@ -219,13 +231,26 @@ public class PlayerController : MonoBehaviour
         canMove = true;
     }
 
+    private void Jump()
+    {
+        animator.SetBool(isJumpingHash, true);
+
+        isSwimming = false;
+        isJumping = true;
+        isJumpAnimating = true;
+
+        currentGravity.y = initialJumpVelocity;
+        currentRunMovement.y = initialJumpVelocity;
+    }
+
     #endregion Main movement functions
 
     #region Dash functions
 
     public void HandleDash()
     {
-        StartCoroutine(Dash());
+        if (!isSwimming)
+            StartCoroutine(Dash());
     }
 
     private IEnumerator Dash()
@@ -247,10 +272,10 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetTrigger(attackHash);
 
-        DoAttack();
+        DoAttackAnimation();
     }
 
-    private void DoAttack()
+    private void DoAttackAnimation()
     {
         if (currentAttack == numAttacks)
             currentAttack = 0;
@@ -258,6 +283,21 @@ public class PlayerController : MonoBehaviour
         animator.SetInteger(numAttackHash, currentAttack);
         currentAttack++;
         AkSoundEngine.PostEvent("Attack_Combo_Brello", WwiseManager.instance.gameObject);
+    }
+
+    private void Attack()
+    {
+        Collider[] colliders = Physics.OverlapBox(pivotAttack.position, sizeCubeAttack, Quaternion.identity);
+        foreach (Collider collider in colliders)
+        {
+            if (collider.TryGetComponent(out Health _health))
+            {
+                if (!collider.CompareTag("Player"))
+                {
+                    _health.DoDamage(damage);
+                }
+            }
+        }
     }
 
     #endregion Attack functions
@@ -269,15 +309,16 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Water") && !isSwimming)
         {
             isSwimming = true;
-
+            isJumping = false;
+            isJumPressed = false;
             animator.SetBool("isSwiming", true);
 
             Transform pivotWater = other.transform.GetChild(0).transform;
-            swimingTwee = transform.DOMoveY(pivotWater.position.y, 2).SetEase(Ease.OutElastic);
+            tweenSwiming = transform.DOMoveY(pivotWater.position.y, 2).SetEase(Ease.OutElastic);
         }
     }
 
-    private void OutSwiming(Collider other)
+    private void OnOutSwiming(Collider other)
     {
         if (other.CompareTag("Water"))
         {
@@ -285,40 +326,89 @@ public class PlayerController : MonoBehaviour
 
             animator.SetBool("isSwiming", false);
 
-            brelloOpenManager.CloseBrello();
+            brelloOpenManager.SetOpen(false);
 
             //Matamos a la animacion por si se sale antes, que no se quede flotando
-            swimingTwee.Kill();
+            tweenSwiming.Kill();
         }
     }
 
     private void SwimingManager()
     {
-        if (isSwimming)
+        if (isSwimming && isJumPressed && !isJumping)
+        {
+            tweenSwiming.Kill();
+
+            if (!waterPlatformManager.IsPyraInPlatform())
+                Jump();
+        }
+        else if (isSwimming)
         {
             currentGravity.y = 0;
-            brelloOpenManager.OpenBrello();
+            brelloOpenManager.SetOpen(true);
         }
     }
 
     #endregion Swiming functions
 
+    public void OpenUmbrellaManager(bool _value)
+    {
+        isGladePressed = _value;
+        brelloOpenManager.SetOpen(isGladePressed);
+    }
+
+    #region Air Movement Functions
+
+    //Funcion que se ejecuta en el update, y bloquea la gravedad a 0
+    private void AirMovementManager()
+    {
+        if (isAirMoving)
+            currentGravity.y = 0;
+    }
+
+    //Funcion que se llama cuando entra en contacto con la zona de aire
+    private void OnAirMovement(Collider other)
+    {
+        if (other.CompareTag("Air") && !isAirMoving)
+        {
+            isAirMoving = true;
+            Transform pivotAir = other.transform.GetChild(0).transform;
+
+            tweenAirMovement = transform.DOMoveY(pivotAir.position.y, 1).SetEase(Ease.Linear);
+        }
+    }
+
+    //Funcion que se llama cuando se va de la zona de aire
+    private void OutMovementAir(Collider other)
+    {
+        if (other.CompareTag("Air"))
+        {
+            isAirMoving = false;
+            tweenAirMovement.Kill();
+        }
+    }
+
+    #endregion Air Movement Functions
+
     private void OnTriggerEnter(Collider other)
     {
         OnSwiming(other);
+        OnAirMovement(other);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        OutSwiming(other);
+        OnOutSwiming(other);
+        OutMovementAir(other);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(pivotAttack.position, sizeCubeAttack);
     }
 
     #region Inputs setters
-
-    public void SetGladePressed(bool _value)
-    {
-        isGladePressed = _value;
-    }
 
     public void SetJumPressed(bool _value)
     {

@@ -55,15 +55,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Glade"",
-                    ""type"": ""Button"",
-                    ""id"": ""50a12a49-10f2-4b8c-9200-3f1367109438"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press"",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Attack"",
                     ""type"": ""Button"",
                     ""id"": ""2d536e2b-1dec-4edd-9906-41ccaf7c013e"",
@@ -85,6 +76,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""name"": ""Interactuable"",
                     ""type"": ""Button"",
                     ""id"": ""490d960a-3774-416e-9bab-1f7e9680f208"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenUmbrella"",
+                    ""type"": ""Button"",
+                    ""id"": ""6907cef6-8450-4a7c-8895-afc106085e36"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -204,17 +204,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""db829447-2070-48ad-9923-0a9fdae45ecb"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Glade"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""8e27bc9b-a02b-44e5-8121-c1d0151d238b"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
@@ -256,6 +245,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Interactuable"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5dc2170d-ca47-4ab7-9d4b-182d6bac62af"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenUmbrella"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -267,10 +267,10 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_CharacterControls_Move = m_CharacterControls.FindAction("Move", throwIfNotFound: true);
         m_CharacterControls_Dash = m_CharacterControls.FindAction("Dash", throwIfNotFound: true);
         m_CharacterControls_Jump = m_CharacterControls.FindAction("Jump", throwIfNotFound: true);
-        m_CharacterControls_Glade = m_CharacterControls.FindAction("Glade", throwIfNotFound: true);
         m_CharacterControls_Attack = m_CharacterControls.FindAction("Attack", throwIfNotFound: true);
         m_CharacterControls_CameraMovement = m_CharacterControls.FindAction("CameraMovement", throwIfNotFound: true);
         m_CharacterControls_Interactuable = m_CharacterControls.FindAction("Interactuable", throwIfNotFound: true);
+        m_CharacterControls_OpenUmbrella = m_CharacterControls.FindAction("OpenUmbrella", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -333,10 +333,10 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_CharacterControls_Move;
     private readonly InputAction m_CharacterControls_Dash;
     private readonly InputAction m_CharacterControls_Jump;
-    private readonly InputAction m_CharacterControls_Glade;
     private readonly InputAction m_CharacterControls_Attack;
     private readonly InputAction m_CharacterControls_CameraMovement;
     private readonly InputAction m_CharacterControls_Interactuable;
+    private readonly InputAction m_CharacterControls_OpenUmbrella;
     public struct CharacterControlsActions
     {
         private @PlayerInput m_Wrapper;
@@ -344,10 +344,10 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_CharacterControls_Move;
         public InputAction @Dash => m_Wrapper.m_CharacterControls_Dash;
         public InputAction @Jump => m_Wrapper.m_CharacterControls_Jump;
-        public InputAction @Glade => m_Wrapper.m_CharacterControls_Glade;
         public InputAction @Attack => m_Wrapper.m_CharacterControls_Attack;
         public InputAction @CameraMovement => m_Wrapper.m_CharacterControls_CameraMovement;
         public InputAction @Interactuable => m_Wrapper.m_CharacterControls_Interactuable;
+        public InputAction @OpenUmbrella => m_Wrapper.m_CharacterControls_OpenUmbrella;
         public InputActionMap Get() { return m_Wrapper.m_CharacterControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -366,9 +366,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnJump;
-                @Glade.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnGlade;
-                @Glade.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnGlade;
-                @Glade.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnGlade;
                 @Attack.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnAttack;
                 @Attack.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnAttack;
                 @Attack.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnAttack;
@@ -378,6 +375,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Interactuable.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnInteractuable;
                 @Interactuable.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnInteractuable;
                 @Interactuable.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnInteractuable;
+                @OpenUmbrella.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnOpenUmbrella;
+                @OpenUmbrella.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnOpenUmbrella;
+                @OpenUmbrella.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnOpenUmbrella;
             }
             m_Wrapper.m_CharacterControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -391,9 +391,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @Glade.started += instance.OnGlade;
-                @Glade.performed += instance.OnGlade;
-                @Glade.canceled += instance.OnGlade;
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
@@ -403,6 +400,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Interactuable.started += instance.OnInteractuable;
                 @Interactuable.performed += instance.OnInteractuable;
                 @Interactuable.canceled += instance.OnInteractuable;
+                @OpenUmbrella.started += instance.OnOpenUmbrella;
+                @OpenUmbrella.performed += instance.OnOpenUmbrella;
+                @OpenUmbrella.canceled += instance.OnOpenUmbrella;
             }
         }
     }
@@ -412,9 +412,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnGlade(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnCameraMovement(InputAction.CallbackContext context);
         void OnInteractuable(InputAction.CallbackContext context);
+        void OnOpenUmbrella(InputAction.CallbackContext context);
     }
 }
