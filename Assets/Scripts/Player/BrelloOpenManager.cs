@@ -6,21 +6,22 @@ public class BrelloOpenManager : MonoBehaviour
 {
     [SerializeField] private GameObject openBrelloPrefab;
     [SerializeField] private GameObject closedBrelloPrefab;
+    private bool isOpened;
 
     private void Start()
     {
-        CloseBrello();
+        SetOpen(false);
     }
 
-    public void OpenBrello()
+    public void SetOpen(bool _value)
     {
-        closedBrelloPrefab.SetActive(false);
-        openBrelloPrefab.SetActive(true);
+        isOpened = _value;
+        openBrelloPrefab.SetActive(_value);
+        closedBrelloPrefab.SetActive(!_value);
     }
 
-    public void CloseBrello()
+    public bool GetIsOpen()
     {
-        closedBrelloPrefab.SetActive(true);
-        openBrelloPrefab.SetActive(false);
+        return isOpened;
     }
 }

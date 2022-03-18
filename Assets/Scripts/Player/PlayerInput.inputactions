@@ -33,15 +33,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Glade",
-                    "type": "Button",
-                    "id": "50a12a49-10f2-4b8c-9200-3f1367109438",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Attack",
                     "type": "Button",
                     "id": "2d536e2b-1dec-4edd-9906-41ccaf7c013e",
@@ -63,6 +54,15 @@
                     "name": "Interactuable",
                     "type": "Button",
                     "id": "490d960a-3774-416e-9bab-1f7e9680f208",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "OpenUmbrella",
+                    "type": "Button",
+                    "id": "6907cef6-8450-4a7c-8895-afc106085e36",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -182,17 +182,6 @@
                 },
                 {
                     "name": "",
-                    "id": "db829447-2070-48ad-9923-0a9fdae45ecb",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Glade",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "8e27bc9b-a02b-44e5-8121-c1d0151d238b",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
@@ -232,6 +221,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interactuable",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5dc2170d-ca47-4ab7-9d4b-182d6bac62af",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenUmbrella",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
