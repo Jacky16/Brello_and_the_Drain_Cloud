@@ -5,7 +5,7 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     public float priority;
-    [SerializeField] protected PyraAI pyra;
+    protected PyraAI pyra;
     virtual public void Interact() { }
 
     protected virtual void Start()
