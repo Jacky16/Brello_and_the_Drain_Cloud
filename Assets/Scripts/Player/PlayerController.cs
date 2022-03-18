@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 
     private BrelloOpenManager brelloOpenManager;
     private CharacterController characterController;
+    private WaterPlatformManager waterPlatformManager;
     private Animator animator;
 
     //Variables para almacenar los ID's de las animaciones
@@ -73,7 +74,7 @@ public class PlayerController : MonoBehaviour
 
     //Swiming variables
 
-    private Tween swimingTwee;
+    private Tween tweenSwiming;
 
     //Air movement variables
 
@@ -85,6 +86,7 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         brelloOpenManager = GetComponent<BrelloOpenManager>();
+        waterPlatformManager = GetComponent<WaterPlatformManager>();
 
         SetAnimatorsHashes();
         SetUpJumpvariables();
@@ -124,11 +126,7 @@ public class PlayerController : MonoBehaviour
     {
         if (characterController.isGrounded && !isJumping && isJumPressed)
         {
-            animator.SetBool(isJumpingHash, true);
-            isJumping = true;
-            isJumpAnimating = true;
-            currentGravity.y = initialJumpVelocity;
-            currentRunMovement.y = initialJumpVelocity;
+            Jump();
         }
         else if (characterController.isGrounded && isJumping && !isJumPressed)
         {
@@ -230,6 +228,18 @@ public class PlayerController : MonoBehaviour
         canMove = true;
     }
 
+    private void Jump()
+    {
+        animator.SetBool(isJumpingHash, true);
+
+        isSwimming = false;
+        isJumping = true;
+        isJumpAnimating = true;
+
+        currentGravity.y = initialJumpVelocity;
+        currentRunMovement.y = initialJumpVelocity;
+    }
+
     #endregion Main movement functions
 
     #region Dash functions
@@ -295,11 +305,12 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Water") && !isSwimming)
         {
             isSwimming = true;
-
+            isJumping = false;
+            isJumPressed = false;
             animator.SetBool("isSwiming", true);
 
             Transform pivotWater = other.transform.GetChild(0).transform;
-            swimingTwee = transform.DOMoveY(pivotWater.position.y, 2).SetEase(Ease.OutElastic);
+            tweenSwiming = transform.DOMoveY(pivotWater.position.y, 2).SetEase(Ease.OutElastic);
         }
     }
 
@@ -314,13 +325,20 @@ public class PlayerController : MonoBehaviour
             brelloOpenManager.SetOpen(false);
 
             //Matamos a la animacion por si se sale antes, que no se quede flotando
-            swimingTwee.Kill();
+            tweenSwiming.Kill();
         }
     }
 
     private void SwimingManager()
     {
-        if (isSwimming)
+        if (isSwimming && isJumPressed && !isJumping)
+        {
+            tweenSwiming.Kill();
+
+            if (!waterPlatformManager.IsPyraInPlatform())
+                Jump();
+        }
+        else if (isSwimming)
         {
             currentGravity.y = 0;
             brelloOpenManager.SetOpen(true);

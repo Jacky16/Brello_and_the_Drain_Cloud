@@ -17,6 +17,7 @@ public class WaterPlatformManager : MonoBehaviour
 
     [SerializeField] private Image platformMessage;
     [SerializeField] private Sprite[] platformImages;
+    private bool isPyraInPlatform;
     //private List<Transform> positionsClose;
 
     private CoastPoints currentCoast;
@@ -126,6 +127,11 @@ public class WaterPlatformManager : MonoBehaviour
             Gizmos.color = Color.green;
             Gizmos.DrawLine(player.transform.position, closestGroundPoint);
         }
+    }
+
+    public bool IsPyraInPlatform()
+    {
+        return pyra.isInPlatform;
     }
 
     private void OnEnable()
