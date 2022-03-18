@@ -23,17 +23,15 @@ public class InputManager : MonoBehaviour
         //Dash
         playerInput.CharacterControls.Dash.started += OnDash;
 
-        //Glade
-        playerInput.CharacterControls.Glade.started += OnGlade;
-        playerInput.CharacterControls.Glade.canceled += OnGlade;
-
         //Attack
         playerInput.CharacterControls.Attack.started += OnAttack;
-    }
 
-    private void OnGlade(InputAction.CallbackContext ctx)
-    {
-        playerController.SetGladePressed(ctx.ReadValueAsButton());
+        //Open Umbrella
+        playerInput.CharacterControls.OpenUmbrella.started += OnUmbrella;
+        playerInput.CharacterControls.OpenUmbrella.canceled += OnUmbrella;
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void OnJump(InputAction.CallbackContext ctx)
@@ -56,6 +54,15 @@ public class InputManager : MonoBehaviour
     private void OnAttack(InputAction.CallbackContext ctx)
     {
         playerController.HandleAttack();
+    }
+
+    private void OnUmbrella(InputAction.CallbackContext ctx)
+    {
+        //Abrir en el aire
+        //playerController.SetGladePressed(ctx.ReadValueAsButton());
+
+        //Abrir en el suelo
+        playerController.OpenUmbrellaManager(ctx.ReadValueAsButton());
     }
 
     private void OnEnable()
