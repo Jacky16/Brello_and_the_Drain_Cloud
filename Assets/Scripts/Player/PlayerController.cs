@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
     private float gravity = -9.8f;
 
     [Header("Glade Settings")]
-    [SerializeField] private float gladeForce = 4;
+    [SerializeField] private float gladeForce = 4; 
 
     [SerializeField] private float velocityToGlade = 0;
 
@@ -160,7 +160,8 @@ public class PlayerController : MonoBehaviour
     {
         bool canGlade = currentGravity.y < velocityToGlade;
         bool isFalling = currentGravity.y < 0 || !isJumPressed && !characterController.isGrounded;
-
+        print(currentGravity.y);
+        animator.SetFloat("fallSpeed", currentGravity.y);
         //Grounded animator
         animator.SetBool(isGroundedHash, characterController.isGrounded);
 
@@ -237,7 +238,6 @@ public class PlayerController : MonoBehaviour
         isJumpAnimating = true;
 
         currentGravity.y = initialJumpVelocity;
-        currentRunMovement.y = initialJumpVelocity;
     }
 
     #endregion Main movement functions
@@ -347,12 +347,6 @@ public class PlayerController : MonoBehaviour
 
     #endregion Swiming functions
 
-    public void OpenUmbrellaManager(bool _value)
-    {
-        isGladePressed = _value;
-        brelloOpenManager.SetOpen(isGladePressed);
-    }
-
     #region Air Movement Functions
 
     //Funcion que se ejecuta en el update, y bloquea la gravedad a 0
@@ -385,6 +379,12 @@ public class PlayerController : MonoBehaviour
     }
 
     #endregion Air Movement Functions
+
+    public void OpenUmbrellaManager(bool _value)
+    {
+        isGladePressed = _value;
+        brelloOpenManager.SetOpen(isGladePressed);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
