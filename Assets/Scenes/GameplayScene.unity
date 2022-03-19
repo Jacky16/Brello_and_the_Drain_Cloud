@@ -135,7 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966fd06936aa2b8419c65b3b72963c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  runSpeed: 3
+  walkSpeed: 10
   dashSpeed: 5
   acceleration: 1
   rotationSpeed: 15
@@ -145,9 +146,11 @@ MonoBehaviour:
   velocityToGlade: -3
   maxJumpHeight: 2.5
   maxJumpTime: 0.5
-  pivotAttack: {fileID: 0}
   damage: 1
+  timeBtwAttacks: 1
+  timeResetComboAttack: 0
   sizeCubeAttack: {x: 0, y: 0, z: 0}
+  pivotAttack: {fileID: 0}
 --- !u!143 &88156703
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1456,7 +1459,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194638435}
-  m_LocalRotation: {x: 0.02191935, y: 0.86606586, z: -0.038120236, w: 0.49799243}
+  m_LocalRotation: {x: 0.021919342, y: 0.8660658, z: -0.03812023, w: 0.49799252}
   m_LocalPosition: {x: -13.745191, y: 5.0620003, z: 12.360921}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1815,7 +1818,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445621722}
-  m_LocalRotation: {x: 0.021919344, y: 0.8660658, z: -0.038120236, w: 0.4979925}
+  m_LocalRotation: {x: 0.02191934, y: 0.86606574, z: -0.038120236, w: 0.49799252}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -7601,9 +7604,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 125317967448489336, guid: eb5cfc309adb93d44a30ea2ca01743d1, type: 3}
+      propertyPath: walkSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 125317967448489336, guid: eb5cfc309adb93d44a30ea2ca01743d1, type: 3}
       propertyPath: pivotAttack
       value: 
       objectReference: {fileID: 2055791892}
+    - target: {fileID: 125317967448489336, guid: eb5cfc309adb93d44a30ea2ca01743d1, type: 3}
+      propertyPath: timeBtwAttacks
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 125317967448489336, guid: eb5cfc309adb93d44a30ea2ca01743d1, type: 3}
       propertyPath: sizeCubeAttack.x
       value: 1.82
