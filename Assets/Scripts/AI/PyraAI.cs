@@ -13,6 +13,9 @@ public sealed class PyraAI : MonoBehaviour
 
     private PlayerController player;
     private Rigidbody rb;
+    private PyraProtection pyraProtection;
+    private PyraHealth pyraHealth;
+    private Animator animator;
 
     //Variables de detección de objetos interactuables.
     public bool canChasePlayer = true;
@@ -25,6 +28,9 @@ public sealed class PyraAI : MonoBehaviour
 
     [Header("Layer(s) con las que interesa que interactue Pyra.")]
     [SerializeField] private LayerMask interactable;
+
+    [Header("Layer de lluvia para comprobar los raycast.")]
+    [SerializeField] private LayerMask rainMask;
 
     //Variables de objetos detectados.
     [SerializeField] private List<Interactable> detectedObjects;
@@ -42,10 +48,14 @@ public sealed class PyraAI : MonoBehaviour
     [SerializeField] private Transform platform;
     [SerializeField] private Transform platformParent;
 
+    private Vector3 posToJump;
     bool stayUnderBrello;
     private void Awake()
     {
+        pyraProtection = GameObject.FindGameObjectWithTag("Player").GetComponent<PyraProtection>();
+        pyraHealth = GetComponent<PyraHealth>();
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
@@ -60,14 +70,52 @@ public sealed class PyraAI : MonoBehaviour
 
     private void InteractuableManager()
     {
-        if (canChasePlayer && !isInteracting)
+        if (player.GetComponent<BrelloOpenManager>().GetIsOpen())
         {
-            agent.SetDestination(player.transform.position);
+            stayUnderBrello = true;
+            canChasePlayer = false;
+            agent.speed = 10f;
+        }
+        else
+        {
+            canChasePlayer = true;
+            stayUnderBrello = false;
+            agent.speed = 7f;
+        }
+
+        if (canChasePlayer && !isInteracting && !pyraProtection.GetIsInRain())
+        {
+            Vector3 dir = player.transform.position - transform.position;
+            float rayDistance = Vector3.Distance(transform.position, player.transform.position);
+
+            if (!Physics.Raycast(transform.position, dir, rayDistance, rainMask))
+            {
+                Vector3 rotation = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+
+                transform.LookAt(rotation);
+
+                animator.SetFloat("Speed", agent.speed);
+                animator.SetBool("isWalking", true);
+                agent.SetDestination(player.transform.position);
+            }
+            else
+            {
+                animator.SetBool("isWalking", false);
+                agent.SetDestination(transform.position);
+            }
+        }
+        else if(canChasePlayer && !isInteracting && pyraProtection.GetIsInRain())
+        {
+            animator.SetBool("isWalking", false);
+            agent.SetDestination(transform.position);
         }
         else if (moveToPlatform)
         {
             if (!isJumping)
             {
+                Vector3 rotation = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+
+                transform.LookAt(rotation);
                 //Este sistema de condiciones comprueba lo siguiente:
                 //Si el player pulsa la E en el agua pero pyra está muy lejos de el, esta se acercará hasta que esté a 
                 //la suficiente distancia como para saltar encima de el.
@@ -78,31 +126,32 @@ public sealed class PyraAI : MonoBehaviour
                     //Desactivamos el agent para que podamos mover a pyra mediante rigidbody.
                     agent.enabled = false;
 
-                    transform.DOJump(platform.position, jumpPower, 1, jumpDuration)
-                        .OnStart(() =>
-                        {
-                        //Desactivamos fisicas propias de unity y ponemos que la plataforma destino no tenga parent
-                        //para que el movimiento sea en world en lugar de local.
-                        rb.isKinematic = false;
-                            platform.SetParent(null);
-                            player.BlockMovement();
-                        })
-                        .OnComplete(EnableAgentOnPlatform);
+                    animator.SetTrigger("JumpToPlatform");
                 }
                 else
                 {
+                    animator.SetFloat("Speed", agent.speed);
                     agent.SetDestination(player.transform.position);
                 }
             }
         }
-        else if (stayUnderBrello)
+        else if (stayUnderBrello && (!pyraProtection.GetIsInRain() || pyraHealth.GetIsProtected()))
         {
+            Vector3 rotation = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+
+            transform.LookAt(rotation);
+
+            animator.SetFloat("Speed", agent.speed);
             agent.SetDestination(player.transform.GetChild(0).position);
         }
         //Se mueve a los interactuables si hay algo en la lista
         else if (isMovingToInteractuable && !stayUnderBrello && !moveToPlatform && !isInPlatform)
         {
+            Vector3 rotation = new Vector3(currentInteractuable.transform.position.x, transform.position.y, currentInteractuable.transform.position.z);
+
+            transform.LookAt(rotation);
             //Mientras haya algo a la lista sigue el actual Interactuable
+            animator.SetFloat("Speed", agent.speed);
             agent.SetDestination(currentInteractuable.transform.position);
 
             //Cuando estas cerca del interactuable ve a por el siguiente
@@ -117,11 +166,28 @@ public sealed class PyraAI : MonoBehaviour
 
     #region MOVEMENT_FUNCTIONS
 
+    //Funcion para el salto desde tierra hasta plataforma (para el animator).
+    public void JumpToPlatform()
+    {
+        transform.DOJump(platform.position, jumpPower, 1, jumpDuration)
+        .OnStart(() =>
+        {
+            //Desactivamos fisicas propias de unity y ponemos que la plataforma destino no tenga parent
+            //para que el movimiento sea en world en lugar de local.
+            rb.isKinematic = false;
+            platform.SetParent(null);
+            player.BlockMovement();
+        })
+        .OnComplete(EnableAgentOnPlatform);
+    }
+
     private void EnableAgentOnPlatform()
     {
         //Ponemos kinematic el rb para que no le afecten fuerzas externas.
         //Cambiamos los parents para que el movimiento no se mueva en world sino en local.
         //Finalmente colocamos a pyra en el origen de coords de su posicion local.
+        animator.SetTrigger("Land");
+        animator.SetBool("landedOnPlatform", true);
         rb.isKinematic = true;
         platform.SetParent(platformParent);
         transform.SetParent(platform);
@@ -133,11 +199,13 @@ public sealed class PyraAI : MonoBehaviour
         isJumping = false;
         isInPlatform = true;
         moveToPlatform = false;
+        animator.SetBool("landedOnPlatform", false);
     }
-
 
     private void EnableAgentOnGround()
     {
+        animator.SetTrigger("Land");
+        animator.SetBool("landedOnPlatform", false);
         //Hacemos que le afecten las fisicas y que vuelva a navegar por la navmesh.
         rb.isKinematic = true;
         isJumping = false;
@@ -150,7 +218,12 @@ public sealed class PyraAI : MonoBehaviour
         platform.SetParent(platformParent);
     }
 
-    public void JumpToGround(Vector3 posToJump)
+    //Funcion para el salto desde plataforma hacia la tierra (en animator).
+    public void StartJump()
+    {
+        rb.DOJump(posToJump, jumpPower, 1, jumpDuration).OnComplete(EnableAgentOnGround);
+    }
+    public void JumpToGround(Vector3 _posToJump)
     {
         isJumping = true;
 
@@ -162,7 +235,10 @@ public sealed class PyraAI : MonoBehaviour
         rb.isKinematic = false;
         player.BlockMovement();
 
-        rb.DOJump(posToJump, jumpPower, 1, jumpDuration).OnComplete(EnableAgentOnGround);
+        animator.SetTrigger("WakeUp");
+        animator.SetTrigger("JumpToGround");
+
+        posToJump = _posToJump; 
     }
 
     private void RefreshDetectedObject()
@@ -211,6 +287,22 @@ public sealed class PyraAI : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         OnInteractuableCollision(other);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent(out Interactable inter))
+        {
+            detectedObjects.Remove(inter);
+
+            if (detectedObjects.Count != 0)
+            {
+                detectedObjects.Sort(SortByPriority);
+
+                //Como la lista esta ordenad, asignamos el indice 0 al 'CurrentInteractuable'
+                currentInteractuable = detectedObjects[0];
+            }
+        }
     }
 
     private void OnDrawGizmosSelected()

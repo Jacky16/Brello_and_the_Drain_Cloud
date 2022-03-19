@@ -14,6 +14,7 @@ public class RainZone : MonoBehaviour
     private PyraHealth pyra;
     private bool pyraInZone;
     private List<Position> positions;
+    private PyraProtection pyraProtection;
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class RainZone : MonoBehaviour
     }
     private void Init()
     {
+        pyraProtection = GameObject.FindGameObjectWithTag("Player").GetComponent<PyraProtection>();
         tpPoints = new List<Transform>();
         positions = new List<Position>();
         pyraInZone = false;
@@ -69,12 +71,20 @@ public class RainZone : MonoBehaviour
             pyraInZone = true;
             CheckForClosestPoint();
         }
+        else if (other.CompareTag("Player"))
+        {
+            pyraProtection.SetIsInRain(true);
+        }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Pyra"))
         {
-            pyraInZone = false;
+            pyraInZone = false;          
+        }
+        else if (other.CompareTag("Player"))
+        {
+            pyraProtection.SetIsInRain(false);
         }
     }
 }

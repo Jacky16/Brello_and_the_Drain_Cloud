@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
 
     private BrelloOpenManager brelloOpenManager;
     private CharacterController characterController;
-    private WaterPlatformManager waterPlatformManager;
     private Animator animator;
 
     //Variables para almacenar los ID's de las animaciones
@@ -86,7 +85,6 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         brelloOpenManager = GetComponent<BrelloOpenManager>();
-        waterPlatformManager = GetComponent<WaterPlatformManager>();
 
         SetAnimatorsHashes();
         SetUpJumpvariables();
@@ -288,7 +286,7 @@ public class PlayerController : MonoBehaviour
         {
             if (collider.TryGetComponent(out Health _health))
             {
-                if (!collider.CompareTag("Player"))
+                if (!collider.CompareTag("Player") && !collider.CompareTag("Pyra"))
                 {
                     _health.DoDamage(damage);
                 }
@@ -335,7 +333,7 @@ public class PlayerController : MonoBehaviour
         {
             tweenSwiming.Kill();
 
-            if (!waterPlatformManager.IsPyraInPlatform())
+            if (!WaterPlatformManager.singletone.IsPyraInPlatform())
                 Jump();
         }
         else if (isSwimming)
