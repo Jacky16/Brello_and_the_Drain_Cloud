@@ -452,6 +452,10 @@ public class PlayerController : MonoBehaviour
         return isSwimming;
     }
 
+    public bool IsMoving()
+    {
+        return isMovementPressed;
+    }
     #endregion Getters
 
     #region Init functions

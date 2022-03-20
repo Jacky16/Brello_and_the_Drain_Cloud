@@ -43,6 +43,8 @@ public sealed class PyraAI : MonoBehaviour
     [Header("Jump settings")]
     [SerializeField] private float jumpPower;
 
+    [SerializeField] float walkSpeed;
+    [SerializeField] float runSpeed;
     [SerializeField] private float jumpDuration;
     [SerializeField] private float distanceToJump;
     [SerializeField] private Transform platform;
@@ -65,57 +67,56 @@ public sealed class PyraAI : MonoBehaviour
 
     private void Update()
     {
-        InteractuableManager();
+        AIManager();
+        RotationManager();
+        AnimationManager();
     }
 
-    private void InteractuableManager()
+    private void AIManager()
     {
         if (player.GetComponent<BrelloOpenManager>().GetIsOpen())
         {
             stayUnderBrello = true;
             canChasePlayer = false;
-            agent.speed = 10f;
+            agent.speed = walkSpeed;
         }
         else
         {
             canChasePlayer = true;
             stayUnderBrello = false;
-            agent.speed = 7f;
+            agent.speed = runSpeed;
         }
 
-        if (canChasePlayer && !isInteracting && !pyraProtection.GetIsInRain())
+        if (canChasePlayer && !isInteracting && !pyraProtection.GetIsInRain() && !isInPlatform && !player.IsSwimming())
         {
             Vector3 dir = player.transform.position - transform.position;
             float rayDistance = Vector3.Distance(transform.position, player.transform.position);
 
             if (!Physics.Raycast(transform.position, dir, rayDistance, rainMask))
             {
-                Vector3 rotation = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+                Vector3 relativeDistance = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
 
-                transform.LookAt(rotation);
-
-                animator.SetFloat("Speed", agent.speed);
-                animator.SetBool("isWalking", true);
-                agent.SetDestination(player.transform.position);
+                if (!(Vector3.Distance(transform.position, relativeDistance) <= agent.stoppingDistance)) {
+                    agent.SetDestination(player.transform.position);
+                }
+                else
+                {
+                    agent.SetDestination(transform.position);
+                }             
             }
             else
             {
-                animator.SetBool("isWalking", false);
                 agent.SetDestination(transform.position);
             }
         }
-        else if(canChasePlayer && !isInteracting && pyraProtection.GetIsInRain())
+        else if(canChasePlayer && !isInteracting && pyraProtection.GetIsInRain() && !isInPlatform)
         {
-            animator.SetBool("isWalking", false);
             agent.SetDestination(transform.position);
         }
         else if (moveToPlatform)
         {
             if (!isJumping)
             {
-                Vector3 rotation = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
-
-                transform.LookAt(rotation);
                 //Este sistema de condiciones comprueba lo siguiente:
                 //Si el player pulsa la E en el agua pero pyra está muy lejos de el, esta se acercará hasta que esté a 
                 //la suficiente distancia como para saltar encima de el.
@@ -125,33 +126,23 @@ public sealed class PyraAI : MonoBehaviour
 
                     //Desactivamos el agent para que podamos mover a pyra mediante rigidbody.
                     agent.enabled = false;
-
+                    posToJump = platform.transform.position;
                     animator.SetTrigger("JumpToPlatform");
                 }
                 else
                 {
-                    animator.SetFloat("Speed", agent.speed);
                     agent.SetDestination(player.transform.position);
                 }
             }
         }
-        else if (stayUnderBrello && (!pyraProtection.GetIsInRain() || pyraHealth.GetIsProtected()))
+        else if (stayUnderBrello && (!pyraProtection.GetIsInRain() || pyraHealth.GetIsProtected()) && !player.IsSwimming())
         {
-            Vector3 rotation = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
-
-            transform.LookAt(rotation);
-
-            animator.SetFloat("Speed", agent.speed);
             agent.SetDestination(player.transform.GetChild(0).position);
         }
         //Se mueve a los interactuables si hay algo en la lista
         else if (isMovingToInteractuable && !stayUnderBrello && !moveToPlatform && !isInPlatform)
         {
-            Vector3 rotation = new Vector3(currentInteractuable.transform.position.x, transform.position.y, currentInteractuable.transform.position.z);
-
-            transform.LookAt(rotation);
             //Mientras haya algo a la lista sigue el actual Interactuable
-            animator.SetFloat("Speed", agent.speed);
             agent.SetDestination(currentInteractuable.transform.position);
 
             //Cuando estas cerca del interactuable ve a por el siguiente
@@ -164,11 +155,57 @@ public sealed class PyraAI : MonoBehaviour
         }
     }
 
+    private void RotationManager()
+    {
+        if (isJumping)
+        {
+            Vector3 rotation = new Vector3(posToJump.x, transform.position.y, posToJump.z);
+            transform.LookAt(rotation);
+            Debug.Log("Rota a isJumping");
+        }
+        else if(isInPlatform)
+        {
+            //transform.rotation = Quaternion.LookRotation(transform.forward);
+            Debug.Log("Rota a isInPlatform");
+        }
+        else if(stayUnderBrello && !player.IsSwimming())
+        {
+            Vector3 rotation = new Vector3(player.transform.GetChild(0).position.x, transform.position.y, player.transform.GetChild(0).position.z);
+            transform.LookAt(rotation);
+            Debug.Log("Rota a stayUnderBrello");
+        }
+        else if(isMovingToInteractuable)
+        {
+            Vector3 rotation = new Vector3(currentInteractuable.transform.position.x, transform.position.y, currentInteractuable.transform.position.z);
+            transform.LookAt(rotation);
+            Debug.Log("Rota a isMovingToInteractuable");
+        }
+        else
+        {
+            Vector3 rotation = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+            transform.LookAt(rotation);
+            Debug.Log("Rota a Brello");
+        }
+    }
+
+    private void AnimationManager()
+    {
+        if ((player.IsMoving() && !player.IsSwimming()) || (isMovingToInteractuable && !isInteracting) || moveToPlatform)
+        {
+            animator.SetBool("isWalking", true);
+            animator.SetFloat("Speed", agent.speed);
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
+        }
+    }
+
     #region MOVEMENT_FUNCTIONS
 
     //Funcion para el salto desde tierra hasta plataforma (para el animator).
     public void JumpToPlatform()
-    {
+    {     
         transform.DOJump(platform.position, jumpPower, 1, jumpDuration)
         .OnStart(() =>
         {
@@ -199,7 +236,6 @@ public sealed class PyraAI : MonoBehaviour
         isJumping = false;
         isInPlatform = true;
         moveToPlatform = false;
-        animator.SetBool("landedOnPlatform", false);
     }
 
     private void EnableAgentOnGround()
@@ -210,7 +246,10 @@ public sealed class PyraAI : MonoBehaviour
         rb.isKinematic = true;
         isJumping = false;
         agent.enabled = true;
-        canChasePlayer = true;
+        if (!player.IsSwimming())
+        {
+            canChasePlayer = true;
+        }
         isInPlatform = false;
 
         //Habilitamos el movimiento del player y volvemos a poner el padre que toca (armature) a la plataforma.
@@ -221,12 +260,6 @@ public sealed class PyraAI : MonoBehaviour
     //Funcion para el salto desde plataforma hacia la tierra (en animator).
     public void StartJump()
     {
-        rb.DOJump(posToJump, jumpPower, 1, jumpDuration).OnComplete(EnableAgentOnGround);
-    }
-    public void JumpToGround(Vector3 _posToJump)
-    {
-        isJumping = true;
-
         //Hacemos que tanto pyra como la plataforma no tengan parent para que el movimiento se haga en world en lugar de en local.
         platform.SetParent(null);
         transform.SetParent(null);
@@ -235,6 +268,13 @@ public sealed class PyraAI : MonoBehaviour
         rb.isKinematic = false;
         player.BlockMovement();
 
+        rb.DOJump(posToJump, jumpPower, 1, jumpDuration).OnComplete(EnableAgentOnGround);
+    }
+
+    public void JumpToGround(Vector3 _posToJump)
+    {
+        isJumping = true;
+        animator.SetBool("landedOnPlatform", false);
         animator.SetTrigger("WakeUp");
         animator.SetTrigger("JumpToGround");
 
