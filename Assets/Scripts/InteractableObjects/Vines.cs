@@ -11,8 +11,8 @@ public class Vines : Interactable
     {
         base.Start();
         gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-        fire = GetComponentInChildren<ParticleSystem>();
-        fire.gameObject.SetActive(false);
+        //fire = GetComponentInChildren<ParticleSystem>();
+        //fire.gameObject.SetActive(false);
     }
     public override void Interact()
     {
@@ -22,10 +22,24 @@ public class Vines : Interactable
     private IEnumerator Burn()
     {
         gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
-        fire.gameObject.SetActive(true);
+        //fire.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(timeToDestroy);
 
+        pyra.isInteracting = false;
         Destroy(gameObject);
+    }
+
+    public override void ResetInter()
+    {
+        StopAllCoroutines();
+        ResetAll();
+    }
+
+    protected override void ResetAll()
+    {
+        gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+        pyra.isInteracting = false;
+        //fire.gameObject.SetActive(false);
     }
 }
