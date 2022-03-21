@@ -19,10 +19,10 @@ public class PlayerController : MonoBehaviour
     private int isGroundedHash;
     private int speedHash;
     private int numAttackHash;
+    private int fallSpeedHash;
 
     private Vector2 axis;
     private Vector3 currentGravity;
-    private Vector3 currentRunMovement;
     private Vector3 camForward;
     private Vector3 camRight;
     private Vector3 camDir;
@@ -33,11 +33,12 @@ public class PlayerController : MonoBehaviour
     private bool isSwimming;
 
     [Header("Movement Settings")]
-    [SerializeField] private float speed = 3;
-
+    [SerializeField] private float runSpeed = 10;
+    [SerializeField] private float walkSpeed = 10;
     [SerializeField] private float dashSpeed = 5;
     [SerializeField] private float acceleration = 1;
     [SerializeField] private float rotationSpeed = 15f;
+    bool isWalking;
     private float currentSpeed = 0;
     private float dashTime = 0.25f;
     private bool canMove = true;
@@ -50,7 +51,7 @@ public class PlayerController : MonoBehaviour
     private float gravity = -9.8f;
 
     [Header("Glade Settings")]
-    [SerializeField] private float gladeForce = 4;
+    [SerializeField] private float gladeForce = 4; 
 
     [SerializeField] private float velocityToGlade = 0;
 
@@ -64,13 +65,16 @@ public class PlayerController : MonoBehaviour
 
     //Attack variables
     [Header("Attack Settings")]
-    [SerializeField] private Transform pivotAttack;
 
     [SerializeField] private int damage = 1;
+    [SerializeField] private float timeBtwAttacks = 0.25f;
+    [SerializeField] float timeResetComboAttack = 1;
     [SerializeField] private Vector3 sizeCubeAttack;
-    private float timeBtwAttacks = 0.25f;
+    [SerializeField] private Transform pivotAttack;
     private int currentAttack = 0;
     private int numAttacks = 2;
+    float nextAttack = 0;
+    float nextResetAttack = 0;
 
     //Swiming variables
 
@@ -112,8 +116,10 @@ public class PlayerController : MonoBehaviour
         //Acceleration
         if (isMovementPressed)
         {
-            currentSpeed = Mathf.Lerp(currentSpeed, speed, acceleration * Time.deltaTime);
-            //AkSoundEngine.PostEvent("Footstep_Brello", gameObject);
+            if(!isWalking)
+                currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, acceleration * Time.deltaTime);
+            else
+                currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, acceleration * Time.deltaTime);
         }
         else
             currentSpeed = Mathf.Lerp(currentSpeed, 0, acceleration * Time.deltaTime);
@@ -163,6 +169,9 @@ public class PlayerController : MonoBehaviour
     {
         bool canGlade = currentGravity.y < velocityToGlade;
         bool isFalling = currentGravity.y < 0 || !isJumPressed && !characterController.isGrounded;
+
+        //Fall speed animator
+        animator.SetFloat(fallSpeedHash, currentGravity.y);
 
         //Grounded animator
         animator.SetBool(isGroundedHash, characterController.isGrounded);
@@ -240,7 +249,6 @@ public class PlayerController : MonoBehaviour
         isJumpAnimating = true;
 
         currentGravity.y = initialJumpVelocity;
-        currentRunMovement.y = initialJumpVelocity;
     }
 
     #endregion Main movement functions
@@ -270,15 +278,27 @@ public class PlayerController : MonoBehaviour
 
     public void HandleAttack()
     {
-        animator.SetTrigger(attackHash);
-
-        DoAttackAnimation();
+        if (Time.time >= nextAttack)
+        {
+            nextAttack = Time.time + timeBtwAttacks;
+            DoAttackAnimation();
+        }
     }
 
     private void DoAttackAnimation()
     {
-        if (currentAttack == numAttacks)
+        animator.SetTrigger(attackHash);
+
+        if (Time.time >= nextResetAttack)
+        {
+           
+            nextResetAttack = Time.time + timeResetComboAttack;
             currentAttack = 0;
+        }
+        if (currentAttack == numAttacks)
+        {
+            currentAttack = 0;
+        }
 
         animator.SetInteger(numAttackHash, currentAttack);
         currentAttack++;
@@ -351,12 +371,6 @@ public class PlayerController : MonoBehaviour
 
     #endregion Swiming functions
 
-    public void OpenUmbrellaManager(bool _value)
-    {
-        isGladePressed = _value;
-        brelloOpenManager.SetOpen(isGladePressed);
-    }
-
     #region Air Movement Functions
 
     //Funcion que se ejecuta en el update, y bloquea la gravedad a 0
@@ -389,6 +403,13 @@ public class PlayerController : MonoBehaviour
     }
 
     #endregion Air Movement Functions
+
+    public void OpenUmbrellaManager(bool _value)
+    {
+        isWalking = _value;
+        isGladePressed = _value;
+        brelloOpenManager.SetOpen(isGladePressed);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -454,6 +475,7 @@ public class PlayerController : MonoBehaviour
         speedHash = Animator.StringToHash("speed");
         attackHash = Animator.StringToHash("attack");
         numAttackHash = Animator.StringToHash("numAttack");
+        fallSpeedHash = Animator.StringToHash("fallSpeed");
     }
 
     #endregion Init functions
