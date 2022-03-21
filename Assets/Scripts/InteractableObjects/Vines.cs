@@ -29,4 +29,17 @@ public class Vines : Interactable
         pyra.isInteracting = false;
         Destroy(gameObject);
     }
+
+    public override void ResetInter()
+    {
+        StopAllCoroutines();
+        ResetAll();
+    }
+
+    protected override void ResetAll()
+    {
+        gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+        pyra.isInteracting = false;
+        //fire.gameObject.SetActive(false);
+    }
 }

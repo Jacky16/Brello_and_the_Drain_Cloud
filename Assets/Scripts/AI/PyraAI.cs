@@ -72,13 +72,29 @@ public sealed class PyraAI : MonoBehaviour
         AnimationManager();
     }
 
+    private void FixedUpdate()
+    {
+        if(Physics.CheckSphere(transform.position, detectionRadius, interactable))
+        {
+            Collider[] interactables = Physics.OverlapSphere(transform.position, detectionRadius, interactable);
+
+            foreach(Collider interactable in interactables)
+            {
+                OnInteractuableCollision(interactable);
+            }
+        }
+    }
+
     private void AIManager()
     {
         if (player.GetComponent<BrelloOpenManager>().GetIsOpen())
         {
             stayUnderBrello = true;
             canChasePlayer = false;
-            agent.speed = walkSpeed;
+            if (pyraHealth.GetIsProtected())
+            {
+                agent.speed = walkSpeed;
+            }
         }
         else
         {
@@ -87,7 +103,7 @@ public sealed class PyraAI : MonoBehaviour
             agent.speed = runSpeed;
         }
 
-        if (canChasePlayer && !isInteracting && !pyraProtection.GetIsInRain() && !isInPlatform && !player.IsSwimming())
+        if (canChasePlayer && !isInteracting && !pyraProtection.GetIsInRain() && !isInPlatform && !player.IsSwimming() && !isMovingToInteractuable)
         {
             Vector3 dir = player.transform.position - transform.position;
             float rayDistance = Vector3.Distance(transform.position, player.transform.position);
@@ -117,6 +133,15 @@ public sealed class PyraAI : MonoBehaviour
         {
             if (!isJumping)
             {
+                if (isInteracting)
+                {
+                    if (currentInteractuable)
+                    {
+                        currentInteractuable.ResetInter();
+                        detectedObjects.Clear();
+                        currentInteractuable = null;
+                    }
+                }
                 //Este sistema de condiciones comprueba lo siguiente:
                 //Si el player pulsa la E en el agua pero pyra está muy lejos de el, esta se acercará hasta que esté a 
                 //la suficiente distancia como para saltar encima de el.
@@ -138,6 +163,15 @@ public sealed class PyraAI : MonoBehaviour
         else if (stayUnderBrello && (!pyraProtection.GetIsInRain() || pyraHealth.GetIsProtected()) && !player.IsSwimming())
         {
             agent.SetDestination(player.transform.GetChild(0).position);
+
+            if (currentInteractuable)
+            {
+                isMovingToInteractuable = false;
+                currentInteractuable.ResetInter();
+                detectedObjects.Clear();
+                currentInteractuable = null;
+            }
+
         }
         //Se mueve a los interactuables si hay algo en la lista
         else if (isMovingToInteractuable && !stayUnderBrello && !moveToPlatform && !isInPlatform)
@@ -174,7 +208,7 @@ public sealed class PyraAI : MonoBehaviour
             transform.LookAt(rotation);
             Debug.Log("Rota a stayUnderBrello");
         }
-        else if(isMovingToInteractuable)
+        else if((isMovingToInteractuable || isInteracting || isInteracting && player.IsSwimming()) && !moveToPlatform)
         {
             Vector3 rotation = new Vector3(currentInteractuable.transform.position.x, transform.position.y, currentInteractuable.transform.position.z);
             transform.LookAt(rotation);
@@ -190,7 +224,12 @@ public sealed class PyraAI : MonoBehaviour
 
     private void AnimationManager()
     {
-        if ((player.IsMoving() && !player.IsSwimming()) || (isMovingToInteractuable && !isInteracting) || moveToPlatform)
+        float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
+
+        if ((player.IsMoving() && !player.IsSwimming() && !isInteracting && (!pyraProtection.GetIsInRain() || pyraHealth.GetIsProtected())) 
+            || (isMovingToInteractuable && !isInteracting)
+            || (!(distanceToPlayer <= agent.stoppingDistance+0.5f) && !player.IsSwimming() && !isInteracting && (!pyraProtection.GetIsInRain() || pyraHealth.GetIsProtected()))
+            || moveToPlatform)
         {
             animator.SetBool("isWalking", true);
             animator.SetFloat("Speed", agent.speed);
@@ -246,6 +285,7 @@ public sealed class PyraAI : MonoBehaviour
         rb.isKinematic = true;
         isJumping = false;
         agent.enabled = true;
+
         if (!player.IsSwimming())
         {
             canChasePlayer = true;
@@ -302,6 +342,11 @@ public sealed class PyraAI : MonoBehaviour
     {
         if (other.TryGetComponent(out Interactable inter))
         {
+            if (detectedObjects.Contains(inter))
+            {
+                return;
+            }
+
             //Dejamos de seguir al player cuando entra un interactuable
             canChasePlayer = false;
 
@@ -324,26 +369,26 @@ public sealed class PyraAI : MonoBehaviour
         return p1.priority.CompareTo(p2.priority);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        OnInteractuableCollision(other);
-    }
+    ////private void OnTriggerEnter(Collider other)
+    //{
+    //    OnInteractuableCollision(other);
+    //}
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.TryGetComponent(out Interactable inter))
-        {
-            detectedObjects.Remove(inter);
+    ////private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.TryGetComponent(out Interactable inter))
+    //    {
+    //        detectedObjects.Remove(inter);
 
-            if (detectedObjects.Count != 0)
-            {
-                detectedObjects.Sort(SortByPriority);
+    //        if (detectedObjects.Count != 0)
+    //        {
+    //            detectedObjects.Sort(SortByPriority);
 
-                //Como la lista esta ordenad, asignamos el indice 0 al 'CurrentInteractuable'
-                currentInteractuable = detectedObjects[0];
-            }
-        }
-    }
+    //            //Como la lista esta ordenad, asignamos el indice 0 al 'CurrentInteractuable'
+    //            currentInteractuable = detectedObjects[0];
+    //        }
+    //    }
+    //}
 
     private void OnDrawGizmosSelected()
     {
