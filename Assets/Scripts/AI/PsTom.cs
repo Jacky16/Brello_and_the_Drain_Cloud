@@ -15,6 +15,7 @@ public class PsTom : MonoBehaviour
     //Bools variables
     bool canAssaultPlayer = true;
     bool isAssaltingPlayer;
+    bool isJumpingAttack;
 
     Vector3 startPosition;
 
@@ -28,6 +29,7 @@ public class PsTom : MonoBehaviour
     [Header("Return Jump Settings")]
     [SerializeField] float jumpReturnPower;
     [SerializeField] float jumpReturnDuration;
+    
 
     [Header("Attack Jump Settings")]
     [SerializeField] float jumpAttackPower;
@@ -51,7 +53,7 @@ public class PsTom : MonoBehaviour
     }
     private void Update()
     {
-        
+        JumpAttack();
     }
 
     void BossManager()
@@ -92,7 +94,20 @@ public class PsTom : MonoBehaviour
     }
     void JumpAttack()
     {
+        Vector3 currentPosPlayer = player.transform.position;
+        if (!isJumpingAttack)
+        {
+            isJumpingAttack = true;
 
+            navMeshAgent.enabled = false;
+
+            Sequence sequence = DOTween.Sequence();
+            sequence.AppendInterval(2);
+            sequence.Append(transform.DOJump(currentPosPlayer, jumpAttackPower, 1, jumpAttackDuration).SetEase(Ease.InOutExpo));
+            sequence.AppendInterval(timeStuned);
+            sequence.Append(transform.DOJump(startPosition, jumpReturnPower, 1, jumpReturnDuration));
+            sequence.OnComplete(() => isJumpingAttack = false);
+        }
     }
     void Assault()
     {
@@ -112,13 +127,13 @@ public class PsTom : MonoBehaviour
         if(distance <= navMeshAgent.stoppingDistance && isAssaltingPlayer)
         {
             isAssaltingPlayer = false;
-            JumpToStartPosition();
+            JumpReturn();
         }
     }
     #endregion
 
   
-    Sequence JumpToStartPosition()
+    Sequence JumpReturn()
     {
         navMeshAgent.enabled = false;
         Sequence sequence = DOTween.Sequence();
@@ -149,7 +164,7 @@ public class PsTom : MonoBehaviour
         if (other.gameObject.CompareTag("Wall") && isAssaltingPlayer)
         {
             isAssaltingPlayer = false;
-            JumpToStartPosition();
+            JumpReturn();
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -157,12 +172,12 @@ public class PsTom : MonoBehaviour
         if (collision.collider.CompareTag("Player") && isAssaltingPlayer)
         {
             isAssaltingPlayer = false;
-            JumpToStartPosition();
+            JumpReturn();
         }
         if (collision.collider.CompareTag("Wall") && isAssaltingPlayer)
         {
             isAssaltingPlayer = false;
-            JumpToStartPosition();
+            JumpReturn();
         }
     }
 
