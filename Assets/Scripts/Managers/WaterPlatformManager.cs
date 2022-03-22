@@ -82,12 +82,9 @@ public class WaterPlatformManager : MonoBehaviour
     {
         if (player.IsSwimming() && !pyra.isInPlatform && !pyra.isJumping && currentCoast)
         {
-            if (Vector3.Distance(player.transform.position, pyra.transform.position) < 7.5f)
-            {
-                pyra.moveToPlatform = true;
-                pyra.isMovingToInteractuable = false;
-                pyra.canChasePlayer = false;
-            }
+            pyra.moveToPlatform = true;
+            pyra.isMovingToInteractuable = false;
+            pyra.canChasePlayer = false;
         }
         else if (player.IsSwimming() && pyra.isInPlatform && !pyra.isJumping && currentCoast)
         {
