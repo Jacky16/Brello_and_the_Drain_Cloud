@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     private WaterPlatformManager waterPlatformManager;
     private Animator animator;
 
+    private PlayerAudio playerAudio;
+
     //Variables para almacenar los ID's de las animaciones
 
     private int isJumpingHash;
@@ -81,12 +83,16 @@ public class PlayerController : MonoBehaviour
     private bool isAirMoving;
     private Tween tweenAirMovement;
 
+
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         brelloOpenManager = GetComponent<BrelloOpenManager>();
         waterPlatformManager = GetComponent<WaterPlatformManager>();
+
+        playerAudio = GetComponent<PlayerAudio>();
 
         SetAnimatorsHashes();
         SetUpJumpvariables();
@@ -282,7 +288,7 @@ public class PlayerController : MonoBehaviour
 
         animator.SetInteger(numAttackHash, currentAttack);
         currentAttack++;
-        AkSoundEngine.PostEvent("Attack_Combo_Brello", WwiseManager.instance.gameObject);
+        playerAudio.PlayAttack();
     }
 
     private void Attack()
@@ -457,4 +463,11 @@ public class PlayerController : MonoBehaviour
     }
 
     #endregion Init functions
+
+
+    #region Audio
+
+
+
+    #endregion
 }

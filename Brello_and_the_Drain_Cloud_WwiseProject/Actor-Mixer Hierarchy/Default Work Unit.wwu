@@ -22,6 +22,11 @@
 									</ModifierList>
 								</Property>
 								<Property Name="RandomOrSequence" Type="int16" Value="0"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-12</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -105,7 +110,7 @@
 									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
 								</Reference>
 								<Reference Name="SwitchGroupOrStateGroup">
-									<ObjectRef Name="FootstepTerrainType" ID="{1DE87053-E8DD-4058-A97B-77E23F265148}" WorkUnitID="{87C35236-18CA-4079-8590-2B6748B43D1C}"/>
+									<ObjectRef Name="FootstepSurfaceType" ID="{1DE87053-E8DD-4058-A97B-77E23F265148}" WorkUnitID="{87C35236-18CA-4079-8590-2B6748B43D1C}"/>
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
