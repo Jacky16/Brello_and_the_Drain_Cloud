@@ -24,7 +24,7 @@ MonoBehaviour:
     ParentPath: Virtual Acoustics\Default Work Unit
     guid: 166bb2b7fc13db45b69f5a19518cf21f
     GuidInternal: 
-    m_lastTime: -8585538331560743625
+    m_lastTime: -8585537434640120418
     List: []
   AuxBusWwu:
   - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
@@ -38,7 +38,7 @@ MonoBehaviour:
     ParentPath: Master-Mixer Hierarchy\Default Work Unit
     guid: b11d140495a5214693f79f09da626fbf
     GuidInternal: 
-    m_lastTime: -8585538331565950330
+    m_lastTime: -8585537434640993164
     List:
     - name: Master Audio Bus
       guid: d8a41415a61d2a41a17e75ca0c2149f3
@@ -66,7 +66,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: b7fee57a9b67c343a46eab594f457684
     GuidInternal: 
-    m_lastTime: -8585538331560763570
+    m_lastTime: -8585537434640200202
     List:
     - name: General
       guid: 9ac68b89cd0b2543aa435561f078908b
@@ -94,7 +94,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 1a1dad3e5c7a724abc36cb5e26e00782
     GuidInternal: 
-    m_lastTime: -8585538325226121190
+    m_lastTime: -8585537434641072960
     List:
     - name: Attack_Combo_Brello
       guid: 002aa748b1bcd6438e803e80ac434cfc
@@ -991,7 +991,7 @@ MonoBehaviour:
     ParentPath: Game Parameters\Default Work Unit
     guid: e4f736cbb2288f459e9c3c36b3575dbc
     GuidInternal: 
-    m_lastTime: -8585538331567912648
+    m_lastTime: -8585537434641262449
     List: []
   StateWwu:
   - PhysicalPath: States\Default Work Unit.wwu
@@ -1005,7 +1005,7 @@ MonoBehaviour:
     ParentPath: States\Default Work Unit
     guid: 13117027c1e0a84b83ede94da2174f6f
     GuidInternal: 
-    m_lastTime: -8585538331560753598
+    m_lastTime: -8585537434640080523
     List: []
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
@@ -1019,8 +1019,106 @@ MonoBehaviour:
     ParentPath: Switches\Default Work Unit
     guid: 3652c387ca18794085902b6748b43d1c
     GuidInternal: 
-    m_lastTime: -8585538325226101247
-    List: []
+    m_lastTime: -8585537434640150335
+    List:
+    - name: FootstepTerrainType
+      guid: 5370e81ddde85840a97b77e23f265148
+      id: 3978675434
+      PathAndIcons:
+      - ElementName: Switches
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 3652c387ca18794085902b6748b43d1c
+      - ElementName: FootstepTerrainType
+        ObjectType: 11
+        guid: 5370e81ddde85840a97b77e23f265148
+      Path: Switches\Default Work Unit\FootstepTerrainType
+      values:
+      - name: Default
+        guid: edb867e9c54dfa44bc7e29fdf9e393ee
+        id: 782826392
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 3652c387ca18794085902b6748b43d1c
+        - ElementName: FootstepTerrainType
+          ObjectType: 11
+          guid: 5370e81ddde85840a97b77e23f265148
+        - ElementName: Default
+          ObjectType: 10
+          guid: edb867e9c54dfa44bc7e29fdf9e393ee
+      - name: Grass
+        guid: 565450ede459af49826e71f202cf2658
+        id: 4248645337
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 3652c387ca18794085902b6748b43d1c
+        - ElementName: FootstepTerrainType
+          ObjectType: 11
+          guid: 5370e81ddde85840a97b77e23f265148
+        - ElementName: Grass
+          ObjectType: 10
+          guid: 565450ede459af49826e71f202cf2658
+      - name: Rock
+        guid: 03dbf29e4f777047a77339835f8091ee
+        id: 2144363834
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 3652c387ca18794085902b6748b43d1c
+        - ElementName: FootstepTerrainType
+          ObjectType: 11
+          guid: 5370e81ddde85840a97b77e23f265148
+        - ElementName: Rock
+          ObjectType: 10
+          guid: 03dbf29e4f777047a77339835f8091ee
+      - name: Sand
+        guid: bd8e9e119b198c468f534c89cac86760
+        id: 803837735
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 3652c387ca18794085902b6748b43d1c
+        - ElementName: FootstepTerrainType
+          ObjectType: 11
+          guid: 5370e81ddde85840a97b77e23f265148
+        - ElementName: Sand
+          ObjectType: 10
+          guid: bd8e9e119b198c468f534c89cac86760
+      - name: Water
+        guid: 7accafa12cab444dba6cdeafa2c72acd
+        id: 2654748154
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 3652c387ca18794085902b6748b43d1c
+        - ElementName: FootstepTerrainType
+          ObjectType: 11
+          guid: 5370e81ddde85840a97b77e23f265148
+        - ElementName: Water
+          ObjectType: 10
+          guid: 7accafa12cab444dba6cdeafa2c72acd
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
   TriggerWwu:
   - PhysicalPath: Triggers\Default Work Unit.wwu
     PathAndIcons:
@@ -1033,10 +1131,10 @@ MonoBehaviour:
     ParentPath: Triggers\Default Work Unit
     guid: c350db81a104204da106bd1f7e8437ba
     GuidInternal: 
-    m_lastTime: -8585538331560753598
+    m_lastTime: -8585537434640070552
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 0500000007000000090000000a000000100000001100000012000000140000001500000016000000
+  ExpandedWaapiItemIds: 
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0
