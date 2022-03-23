@@ -300,7 +300,6 @@ public class PlayerController : MonoBehaviour
 
         animator.SetInteger(numAttackHash, currentAttack);
         currentAttack++;
-        AkSoundEngine.PostEvent("Attack_Combo_Brello", WwiseManager.instance.gameObject);
     }
 
     private void Attack()
