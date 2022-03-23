@@ -44,6 +44,10 @@ public class PsTom : MonoBehaviour
     [SerializeField] float jumpAttackPower;
     [SerializeField] float jumpAttackDuration;
 
+    [Header("Boiler Settings")]
+    [SerializeField] GameObject[] boilers;
+    int maxBoilers;
+    int currentBoilersActive = 0;
 
 
     enum Phases {PHASE_1,PHASE_2,PHASE_3,PHASE_4,PHASE_5,PHASE_6 }
@@ -58,11 +62,11 @@ public class PsTom : MonoBehaviour
     private void Start()
     {
         startPosition = transform.position;
-
+        maxBoilers = boilers.Length;
     }
     private void Update()
     {
-        Trash();
+        //Trash();
     }
 
     void BossManager()
@@ -108,7 +112,11 @@ public class PsTom : MonoBehaviour
     }
     void InvokeBoiler()
     {
-
+        if (currentBoilersActive < maxBoilers)
+        {
+            boilers[currentBoilersActive].SetActive(true);
+            currentBoilersActive++;
+        }
     }
     void PunchNormal()
     {
@@ -181,6 +189,7 @@ public class PsTom : MonoBehaviour
     {
         currentPhase = _phase;
     }
+ 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Wall") && isAssaltingPlayer)

@@ -1,8 +1,38 @@
 fileFormatVersion: 2
-guid: 89571c0be5f218f44bd0e1f6bddff4d8
+guid: 14fb10608134f394eb8aa062cda38404
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: -9166241702320232865
+    second: Armature|beggin_stun
+  - first:
+      74: 5866576275671282845
+    second: Armature|death
+  - first:
+      74: 1323920681783110427
+    second: Armature|hurt
+  - first:
+      74: -1978303741906493279
+    second: Armature|idle
+  - first:
+      74: 7708923615119871136
+    second: Armature|punch
+  - first:
+      74: 4459779184967416221
+    second: Armature|rabieta
+  - first:
+      74: 3883883874051132864
+    second: Armature|ready
+  - first:
+      74: 6202907327143049084
+    second: Armature|recharge
+  - first:
+      74: -273944147360222477
+    second: Armature|stun
+  - first:
+      74: -6832921014178580462
+    second: Armature|windup
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -23,7 +53,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -34,7 +64,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 40
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -85,16 +115,16 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.39999998
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   additionalBone: 0
   userData: 
