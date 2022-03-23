@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -32,6 +33,15 @@ public class InputManager : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        //Input Mouse
+        playerInput.CharacterControls.CameraMovement.performed += OnMouseMovement;
+        playerInput.CharacterControls.CameraMovement.canceled += OnMouseMovement;
+    }
+
+    private void OnMouseMovement(InputAction.CallbackContext ctx)
+    {
+        Vector2 mouseAxis = ctx.ReadValue<Vector2>();
     }
 
     private void OnJump(InputAction.CallbackContext ctx)

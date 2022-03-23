@@ -19,6 +19,15 @@ public class PsTom : MonoBehaviour
 
     Vector3 startPosition;
 
+    [Header("Settings Trash Settings")]
+    [SerializeField] float throwTrashPower;
+    [SerializeField] float timeToThrowTrash;
+    [SerializeField] GameObject trashPrefab;
+    [SerializeField] Transform trashSpawn_1;
+    [SerializeField] Transform trashSpawn_2;
+    float counterTrash = 0;
+    
+
     [Header("Settins Assault Attack")]
     [SerializeField] float speedAssault;
     [SerializeField] float accelerationAssault;
@@ -53,7 +62,7 @@ public class PsTom : MonoBehaviour
     }
     private void Update()
     {
-        JumpAttack();
+        Trash();
     }
 
     void BossManager()
@@ -80,9 +89,22 @@ public class PsTom : MonoBehaviour
     {
 
     }
-    void InvokeTrush()
+    void Trash()
     {
+        counterTrash += Time.deltaTime;
+        if(counterTrash >= timeToThrowTrash)
+        {
+            counterTrash = 0;
+            GameObject go1 = Instantiate(trashPrefab, trashSpawn_1.position, Quaternion.identity);
+            GameObject go2 = Instantiate(trashPrefab, trashSpawn_2.position, Quaternion.identity);
 
+            Vector3 playerDir_1 = (player.transform.position - go1.transform.position).normalized;
+            Vector3 playerDir_2 = (player.transform.position - go2.transform.position).normalized;
+
+            go1.GetComponent<Rigidbody>().AddForce(playerDir_1 * throwTrashPower, ForceMode.Impulse);
+            go2.GetComponent<Rigidbody>().AddForce(playerDir_2 * throwTrashPower, ForceMode.Impulse);
+
+        }
     }
     void InvokeBoiler()
     {
