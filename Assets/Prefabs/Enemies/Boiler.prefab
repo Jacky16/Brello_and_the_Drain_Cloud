@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 237398018956787406}
   - component: {fileID: 2643506828538546692}
   - component: {fileID: 3705911456889457807}
+  - component: {fileID: 4640741534543711163}
   m_Layer: 0
   m_Name: Boiler
   m_TagString: Untagged
@@ -56,9 +57,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4588995415536544721}
-  m_LocalRotation: {x: -0.5362079, y: 0.4609568, z: 0.46095678, w: 0.5362078}
+  m_LocalRotation: {x: -0.53620666, y: 0.46095815, z: 0.46095815, w: 0.53620666}
   m_LocalPosition: {x: 11.029762, y: -2.51, z: -9.836032}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3705911455932439833}
   m_Father: {fileID: 0}
@@ -132,3 +133,17 @@ MonoBehaviour:
     m_Bits: 64
   coalBall: {fileID: 8352578658043346794, guid: 575d122a308146f459af65de8b10f67f, type: 3}
   timeBetweenAttacks: 5
+--- !u!136 &4640741534543711163
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4588995415536544721}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2.28
+  m_Height: 7.87
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 1.89}
