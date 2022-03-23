@@ -5,6 +5,7 @@ public class InputManager : MonoBehaviour
 {
     private PlayerInput playerInput;
     private PlayerController playerController;
+    [SerializeField] private SphericPosition cameraPosition;
 
     private void Awake()
     {
@@ -29,6 +30,10 @@ public class InputManager : MonoBehaviour
         //Open Umbrella
         playerInput.CharacterControls.OpenUmbrella.started += OnUmbrella;
         playerInput.CharacterControls.OpenUmbrella.canceled += OnUmbrella;
+
+        //Input Mouse
+        playerInput.CharacterControls.CameraMovement.performed += OnMouseMovement;
+        playerInput.CharacterControls.CameraMovement.canceled += OnMouseMovement;
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -65,6 +70,11 @@ public class InputManager : MonoBehaviour
         playerController.OpenUmbrellaManager(ctx.ReadValueAsButton());
     }
 
+    private void OnMouseMovement(InputAction.CallbackContext ctx)
+    {
+        Vector2 mouseAxis = ctx.ReadValue<Vector2>();
+
+    }
     private void OnEnable()
     {
         playerInput.Enable();

@@ -32,7 +32,7 @@ public class Brello_Collectables : MonoBehaviour
 
     private void UpdateHUD()
     {
-        coinText.text = coins.ToString();
+        //coinText.text = coins.ToString();
         droplyText.text = droply.ToString();
     }
 }
