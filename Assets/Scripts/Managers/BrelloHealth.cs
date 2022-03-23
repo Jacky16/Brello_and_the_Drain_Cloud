@@ -17,7 +17,7 @@ public sealed class BrelloHealth : Health
     protected override void Start()
     {
         base.Start();
-        imageAnimator = currentImage.GetComponent<Animator>();
+        //imageAnimator = currentImage.GetComponent<Animator>();
         lastLifeChange = 0f;
         lifeChanged = false;
     }
@@ -34,7 +34,7 @@ public sealed class BrelloHealth : Health
                     
                     lastLifeChange = 0f;
                     lifeChanged = false;
-                    imageAnimator.SetTrigger("Disappear");
+                    //imageAnimator.SetTrigger("Disappear");
                 }
             }
         }
@@ -44,7 +44,7 @@ public sealed class BrelloHealth : Health
     {
         Camera.main.GetComponent<CinemachineImpulseSource>().GenerateImpulse();
         lifeChanged = true;
-        imageAnimator.SetTrigger("Appear");
+        //imageAnimator.SetTrigger("Appear");
         lastLifeChange = 0f;
         currentImage.sprite = healthImages[currLife];
     }
@@ -53,7 +53,7 @@ public sealed class BrelloHealth : Health
     {
 
         lifeChanged = true;
-        imageAnimator.SetTrigger("Appear");
+        //imageAnimator.SetTrigger("Appear");
         lastLifeChange = 0f;
         currentImage.sprite = healthImages[currLife];
     }
