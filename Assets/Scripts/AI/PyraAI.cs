@@ -167,9 +167,8 @@ public sealed class PyraAI : MonoBehaviour
             if (currentInteractuable)
             {
                 isMovingToInteractuable = false;
-                currentInteractuable.ResetInter();
-                detectedObjects.Clear();
-                currentInteractuable = null;
+                //currentInteractuable.ResetInter();
+                isInteracting = false;
             }
 
         }
@@ -226,10 +225,7 @@ public sealed class PyraAI : MonoBehaviour
     {
         float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
 
-        if ((player.IsMoving() && !player.IsSwimming() && !isInteracting && (!pyraProtection.GetIsInRain() || pyraHealth.GetIsProtected())) 
-            || (isMovingToInteractuable && !isInteracting)
-            || (!(distanceToPlayer <= agent.stoppingDistance+0.5f) && !player.IsSwimming() && !isInteracting && (!pyraProtection.GetIsInRain() || pyraHealth.GetIsProtected()))
-            || moveToPlatform)
+        if (agent.velocity != Vector3.zero)
         {
             animator.SetBool("isWalking", true);
             animator.SetFloat("Speed", agent.speed);
