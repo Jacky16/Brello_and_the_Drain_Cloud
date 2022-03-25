@@ -16,7 +16,10 @@ public class Brello_Collectables : MonoBehaviour
     {
         coins = droply = 0;
     }
+    private void Update()
+    {
 
+    }
 
     public void AddCoin()
     {
