@@ -42,7 +42,7 @@ public class InputManager : MonoBehaviour
     private void OnMouseMovement(InputAction.CallbackContext ctx)
     {
         Vector2 mouseAxis = ctx.ReadValue<Vector2>();
-        print(mouseAxis);
+        
     }
 
     private void OnJump(InputAction.CallbackContext ctx)

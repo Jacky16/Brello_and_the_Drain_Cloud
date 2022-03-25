@@ -11,6 +11,7 @@ public class PsTom : MonoBehaviour
     NavMeshAgent navMeshAgent;
     PsTomHealth psTomHealth;
     GameObject player;
+    Collider collider;
 
     //Bools variables
     bool canAssaultPlayer = true;
@@ -43,6 +44,7 @@ public class PsTom : MonoBehaviour
     [Header("Attack Jump Settings")]
     [SerializeField] float jumpAttackPower;
     [SerializeField] float jumpAttackDuration;
+    [SerializeField] float impulseForceOnPlayer = 150;
 
     [Header("Boiler Settings")]
     [SerializeField] GameObject[] boilers;
@@ -58,6 +60,7 @@ public class PsTom : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         psTomHealth = GetComponent<PsTomHealth>();
         player = GameObject.FindGameObjectWithTag("Player");
+        collider = GetComponent<Collider>();
     }
     private void Start()
     {
@@ -67,6 +70,7 @@ public class PsTom : MonoBehaviour
     private void Update()
     {
         //Trash();
+        JumpAttack();
     }
 
     void BossManager()
@@ -132,11 +136,28 @@ public class PsTom : MonoBehaviour
             navMeshAgent.enabled = false;
 
             Sequence sequence = DOTween.Sequence();
+            
             sequence.AppendInterval(2);
-            sequence.Append(transform.DOJump(currentPosPlayer, jumpAttackPower, 1, jumpAttackDuration).SetEase(Ease.InOutExpo));
+
+            //Start
+            sequence.AppendCallback(() => collider.isTrigger = true);
+
+            //Jump Attack
+            sequence.Append(transform.DOJump(currentPosPlayer + new Vector3(0.5f,.5f,0.5f), jumpAttackPower, 1, jumpAttackDuration));
+                
+            //On complete
+            sequence.AppendCallback(() => AddImpulseToPlayer());
+
+            sequence.AppendInterval(.5f);
+
+            sequence.AppendCallback(() => collider.isTrigger = false);
+
             sequence.AppendInterval(timeStuned);
+
+            //Jump return
             sequence.Append(transform.DOJump(startPosition, jumpReturnPower, 1, jumpReturnDuration));
             sequence.OnComplete(() => isJumpingAttack = false);
+           
         }
     }
     void Assault()
@@ -162,7 +183,7 @@ public class PsTom : MonoBehaviour
     }
     #endregion
 
-  
+
     Sequence JumpReturn()
     {
         navMeshAgent.enabled = false;
@@ -189,7 +210,29 @@ public class PsTom : MonoBehaviour
     {
         currentPhase = _phase;
     }
- 
+
+    void AddImpulseToPlayer()
+    {
+        if (CheckIfPlayerInside())
+        {
+            Vector3 dir = player.transform.position - transform.position;
+            player.GetComponent<AddForceCharacterController>().AddImpact(dir, 150);
+                
+            //player.GetComponent<PlayerController>().HandleAddForce(dir, 20);
+        }
+    }
+    bool CheckIfPlayerInside()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 2);
+        foreach (Collider col in colliders)
+        {
+            if (col.TryGetComponent(out PlayerController _pc)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Wall") && isAssaltingPlayer)
@@ -211,6 +254,7 @@ public class PsTom : MonoBehaviour
             JumpReturn();
         }
     }
+    
 
 
 }

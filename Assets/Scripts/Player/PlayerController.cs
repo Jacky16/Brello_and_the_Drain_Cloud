@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     private BrelloOpenManager brelloOpenManager;
     private CharacterController characterController;
     private Animator animator;
-
     //Variables para almacenar los ID's de las animaciones
 
     private int isJumpingHash;
@@ -256,18 +255,7 @@ public class PlayerController : MonoBehaviour
     public void HandleDash()
     {
         if (!isSwimming)
-            StartCoroutine(Dash());
-    }
-
-    private IEnumerator Dash()
-    {
-        float startTime = Time.time;
-        while (Time.time < startTime + dashTime)
-        {
-            characterController.Move(camDir * dashSpeed * Time.deltaTime);
-
-            yield return null;
-        }
+            StartCoroutine(AddForce(camDir,dashSpeed,dashSpeed));
     }
 
     #endregion Dash functions
@@ -407,6 +395,21 @@ public class PlayerController : MonoBehaviour
         isWalking = _value;
         isGladePressed = _value;
         brelloOpenManager.SetOpen(isGladePressed);
+    }
+    public void HandleAddForce(Vector3 _dir, float _force,float time = .1f)
+    {
+        StartCoroutine(AddForce(_dir, _force,time));
+    }
+    private IEnumerator AddForce(Vector3 _dir, float force,float time = .25f)
+    {
+        float startTime = Time.time;
+        yield return new WaitForSeconds(2);
+        while (Time.time < startTime + time)
+        {
+            characterController.Move(_dir * force * Time.deltaTime);
+
+            yield return null;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
