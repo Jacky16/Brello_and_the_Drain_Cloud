@@ -11,24 +11,12 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="133642231" Language="SFX" Hash="3005475540">
+		<SoundBank Id="133642231" Language="SFX" Hash="3077547036">
 			<ObjectPath>\SoundBanks\Default Work Unit\General</ObjectPath>
 			<ShortName>General</ShortName>
 			<Path>General.bnk</Path>
 			<IncludedEvents>
-				<Event Id="211679341" Name="Attack_Combo_Brello" ObjectPath="\Events\Default Work Unit\Brello\Attack_Combo_Brello" DurationType="OneShot" DurationMin="0.210777" DurationMax="0.325832">
-					<IncludedMemoryFiles>
-						<File Id="118440027" Language="SFX">
-							<ShortName>Attack\Attack1.wav</ShortName>
-							<Path>SFX\Attack\Attack1_10C4C929.wem</Path>
-						</File>
-						<File Id="130473096" Language="SFX">
-							<ShortName>Attack\Attack2.wav</ShortName>
-							<Path>SFX\Attack\Attack2_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="2749921882" Name="Footstep_Brello" ObjectPath="\Events\Default Work Unit\Brello\Footstep_Brello" DurationType="OneShot" DurationMin="0." DurationMax="0.541334">
+				<Event Id="2749921882" Name="Footstep_Brello" ObjectPath="\Events\Default Work Unit\Brello\Footstep_Brello" DurationType="OneShot" DurationMin="0.326086" DurationMax="1.">
 					<IncludedMemoryFiles>
 						<File Id="88877710" Language="SFX">
 							<ShortName>Footstep_Grass\Brello_Footstep_Grass (8).wav</ShortName>
@@ -47,6 +35,7 @@
 							<Path>SFX\Footstep_Grass\Brello_Footstep_Grass (6)_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
+					<DefaultSwitchValue>{E967B8ED-4DC5-44FA-BC7E-29FDF9E393EE}</DefaultSwitchValue>
 					<SwitchContainers>
 						<SwitchContainer SwitchValue="{ED505456-59E4-49AF-826E-71F202CF2658}">
 							<Media>
@@ -57,22 +46,6 @@
 							</Media>
 						</SwitchContainer>
 					</SwitchContainers>
-				</Event>
-				<Event Id="3653428579" Name="Glide_Brello" ObjectPath="\Events\Default Work Unit\Brello\Glide_Brello" DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="213251508" Language="SFX">
-							<ShortName>Glide.wav</ShortName>
-							<Path>SFX\Glide_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="692676672" Name="Open_Brello" ObjectPath="\Events\Default Work Unit\Brello\Open_Brello" DurationType="OneShot" DurationMin="0.806848" DurationMax="0.806848">
-					<IncludedMemoryFiles>
-						<File Id="961183922" Language="SFX">
-							<ShortName>Open.wav</ShortName>
-							<Path>SFX\Open_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
 				</Event>
 			</IncludedEvents>
 			<SwitchGroups>
@@ -87,7 +60,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="3690994985">
+		<SoundBank Id="1355168291" Language="SFX" Hash="2591535158">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>

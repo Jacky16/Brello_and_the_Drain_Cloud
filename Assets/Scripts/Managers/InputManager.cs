@@ -5,7 +5,7 @@ public class InputManager : MonoBehaviour
 {
     private PlayerInput playerInput;
     private PlayerController playerController;
-    [SerializeField] private SphericPosition cameraPosition;
+    //[SerializeField] private SphericPosition cameraPosition;
 
     private void Awake()
     {

@@ -13,10 +13,7 @@ namespace AK
 {
     namespace EVENTS
     {
-        static const AkUniqueID ATTACK_COMBO_BRELLO = 211679341U;
         static const AkUniqueID FOOTSTEP_BRELLO = 2749921882U;
-        static const AkUniqueID GLIDE_BRELLO = 3653428579U;
-        static const AkUniqueID OPEN_BRELLO = 692676672U;
     } // namespace EVENTS
 
     namespace SWITCHES
