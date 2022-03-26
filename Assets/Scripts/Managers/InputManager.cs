@@ -5,7 +5,7 @@ public class InputManager : MonoBehaviour
 {
     private PlayerInput playerInput;
     private PlayerController playerController;
-    //[SerializeField] private SphericPosition cameraPosition;
+    
 
     private void Awake()
     {
@@ -73,7 +73,6 @@ public class InputManager : MonoBehaviour
     private void OnMouseMovement(InputAction.CallbackContext ctx)
     {
         Vector2 mouseAxis = ctx.ReadValue<Vector2>();
-
     }
     private void OnEnable()
     {
