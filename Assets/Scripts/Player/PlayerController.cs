@@ -141,17 +141,22 @@ public class PlayerController : MonoBehaviour
         //Acceleration
         if (isMovementPressed)
         {
-            //Planeando
-            if (isUmbrellaOpen && !characterController.isGrounded)
-                currentSpeed = Mathf.Lerp(currentSpeed, gladingSpeed, acceleration * Time.deltaTime);
-
             //Paraguas abierto
-            else if (isUmbrellaOpen)
+            if (isUmbrellaOpen && currentGravity.y > 1)
+            {
                 currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, acceleration * Time.deltaTime);
-
+            }
+            //Planeando
+            else if (isUmbrellaOpen && currentGravity.y < 1)
+            {
+                currentSpeed = Mathf.Lerp(currentSpeed, gladingSpeed, acceleration * Time.deltaTime);
+            }
             //Correr
             else
+            {
                 currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, acceleration * Time.deltaTime);
+            }
+
         }
         else
             currentSpeed = Mathf.Lerp(currentSpeed, 0, acceleration * Time.deltaTime);

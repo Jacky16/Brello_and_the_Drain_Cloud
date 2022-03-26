@@ -203,27 +203,22 @@ public sealed class PyraAI : MonoBehaviour
         {
             Vector3 rotation = new Vector3(posToJump.x, transform.position.y, posToJump.z);
             transform.DOLookAt(rotation, 0.5f);
-
-            Debug.Log("Rota a isJumping");
-
         }
         else if(stayUnderBrello && !player.IsSwimming())
         {
             Vector3 rotation = new Vector3(player.transform.GetChild(0).position.x, transform.position.y, player.transform.GetChild(0).position.z);
             transform.DOLookAt(rotation, 0.5f);
-            Debug.Log("Rota a stayUnderBrello");
+            
         }
         else if((isMovingToInteractuable || isInteracting || isInteracting && player.IsSwimming()) && !moveToPlatform)
         {
             Vector3 rotation = new Vector3(currentInteractuable.transform.position.x, transform.position.y, currentInteractuable.transform.position.z);
             transform.DOLookAt(rotation, 0.5f);
-            Debug.Log("Rota a isMovingToInteractuable");
         }
         else
         {
             Vector3 rotation = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
             transform.DOLookAt(rotation, 0.5f);
-            Debug.Log("Rota a Brello");
         }
     }
 
