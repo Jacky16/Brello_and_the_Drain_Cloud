@@ -236,12 +236,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runSpeed: 10
   walkSpeed: 5
+  gladingSpeed: 20
   dashSpeed: 20
   acceleration: 10
   rotationSpeed: 15
-  groundGravity: 0.05
+  groundGravity: 1
   fallMultiplier: 2
-  gladeForce: 8
+  divideGravityGlade: 4
   velocityToGlade: -3
   maxJumpHeight: 2.5
   maxJumpTime: 0.5
@@ -333,7 +334,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   droplyText: {fileID: 0}
-  coinText: {fileID: 0}
 --- !u!1 &2895731911442761339
 GameObject:
   m_ObjectHideFlags: 0
