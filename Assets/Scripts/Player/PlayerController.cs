@@ -58,6 +58,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float velocityToGlade = 0;
 
+    private bool canGlade;
+
     [Header("Jump Settings")]
     [SerializeField] private float maxJumpHeight = 1.0f;
 
@@ -89,6 +91,9 @@ public class PlayerController : MonoBehaviour
     private Tween tweenAirMovement;
 
 
+    //Audio variables
+
+    private bool isGlidePlaying = false;
 
     private void Awake()
     {
@@ -210,7 +215,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleGravity()
     {
-        bool canGlade = currentGravity.y < velocityToGlade;
+        canGlade = currentGravity.y < velocityToGlade;
         bool isFalling = currentGravity.y < 0 || !isJumPressed && !characterController.isGrounded;
 
         //Fall speed animator
@@ -231,6 +236,12 @@ public class PlayerController : MonoBehaviour
                 isJumpAnimating = false;
             }
             currentGravity.y = groundGravity;
+
+            if (isGlidePlaying)
+            {
+                playerAudio.StopGlide();
+                isGlidePlaying = false;
+            }
         }
         //Glading
         else if (canGlade && isUmbrellaOpen && !characterController.isGrounded)
@@ -241,6 +252,12 @@ public class PlayerController : MonoBehaviour
             currentGravity.y = nextYVelocity;
 
             brelloOpenManager.SetOpen(true);
+
+            if (!isGlidePlaying)
+            {
+                playerAudio.PlayStartGlide();
+                isGlidePlaying = true;
+            }
         }
         //Falling
         else if (isFalling && !characterController.isGrounded && !isSwimming)
@@ -327,6 +344,8 @@ public class PlayerController : MonoBehaviour
         {
             nextAttack = Time.time + timeBtwAttacks;
             DoAttackAnimation();
+
+            playerAudio.PlayAttack();
         }
     }
 
@@ -379,6 +398,8 @@ public class PlayerController : MonoBehaviour
 
             Transform pivotWater = other.transform.GetChild(0).transform;
             tweenSwiming = transform.DOMoveY(pivotWater.position.y, 2).SetEase(Ease.OutElastic);
+
+            AkSoundEngine.PostEvent("WaterSplash_Brello", WwiseManager.instance.gameObject);
         }
     }
 
@@ -421,7 +442,10 @@ public class PlayerController : MonoBehaviour
     private void AirMovementManager()
     {
         if (isAirMoving)
+        {
             currentGravity.y = 0;
+
+        }
     }
 
     //Funcion que se llama cuando entra en contacto con la zona de aire
@@ -433,6 +457,7 @@ public class PlayerController : MonoBehaviour
             Transform pivotAir = other.transform.GetChild(0).transform;
 
             tweenAirMovement = transform.DOMoveY(pivotAir.position.y, 1).SetEase(Ease.Linear);
+
         }
     }
 
@@ -443,6 +468,7 @@ public class PlayerController : MonoBehaviour
         {
             isAirMoving = false;
             tweenAirMovement.Kill();
+
         }
     }
 
@@ -452,6 +478,20 @@ public class PlayerController : MonoBehaviour
     {
         isUmbrellaOpen = _value;
         brelloOpenManager.SetOpen(isUmbrellaOpen);
+
+        //Audio de apertura de paraguas
+        if (_value)
+        {
+            playerAudio.PlayOpen();
+
+        }
+        else
+        {
+            playerAudio.PlayClose();
+            isGlidePlaying = false;
+            playerAudio.StopGlide();
+        }
+        
     }
 
     private void OnTriggerEnter(Collider other)

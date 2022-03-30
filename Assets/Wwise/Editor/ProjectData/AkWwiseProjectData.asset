@@ -66,7 +66,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: b7fee57a9b67c343a46eab594f457684
     GuidInternal: 
-    m_lastTime: -8585529568901660800
+    m_lastTime: -8585529415461937782
     List:
     - name: General
       guid: 9ac68b89cd0b2543aa435561f078908b
@@ -94,7 +94,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 1a1dad3e5c7a724abc36cb5e26e00782
     GuidInternal: 
-    m_lastTime: -8585539813293374138
+    m_lastTime: -8585529415464203049
     List:
     - name: Attack_Combo_Brello
       guid: 002aa748b1bcd6438e803e80ac434cfc
@@ -114,8 +114,8 @@ MonoBehaviour:
         guid: 002aa748b1bcd6438e803e80ac434cfc
       Path: Events\Default Work Unit\Brello\Attack_Combo_Brello
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0.077716
+      minDuration: 0.041168
     - name: Awake_Boiler
       guid: 4843fbbcffd37c4a9720f274f72658c5
       id: 183731594
@@ -149,16 +149,16 @@ MonoBehaviour:
       - ElementName: Environment
         ObjectType: 4
         guid: bc19f43cbe6aea478d686b59f8728304
-      - ElementName: Level1
+      - ElementName: Grasslands
         ObjectType: 4
         guid: 9d78abd37e2c6c44b3f1e01b14015c75
       - ElementName: BackgroundMusic_Level1
         ObjectType: 3
         guid: d1036f8e53ea1b47ab82209494d2a706
-      Path: Events\Default Work Unit\Environment\Level1\BackgroundMusic_Level1
+      Path: Events\Default Work Unit\Environment\Grasslands\BackgroundMusic_Level1
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
     - name: Boiler
       guid: c36ca0379bc8184fa50ff65f3e1b8117
       id: 260303802
@@ -231,8 +231,28 @@ MonoBehaviour:
         guid: e315ea326779524db1e8a061ac9f3184
       Path: Events\Default Work Unit\Steamling\Charging_Steamling
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
+    - name: Close_Brello
+      guid: faff318fef18404ea8ad91ce610eb926
+      id: 3567626122
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Brello
+        ObjectType: 4
+        guid: 57c2bd93ba34ae4790c1aeb835adc319
+      - ElementName: Close_Brello
+        ObjectType: 3
+        guid: faff318fef18404ea8ad91ce610eb926
+      Path: Events\Default Work Unit\Brello\Close_Brello
+      maxAttenuation: 0
+      maxDuration: 0.306009
+      minDuration: 0.306009
     - name: Cool_Boiler
       guid: 04e0326037dd734a95d6afb6f07c2be8
       id: 1721372914
@@ -271,8 +291,8 @@ MonoBehaviour:
         guid: 162bb216ec8f674984f4d2876228d87e
       Path: Events\Default Work Unit\Brello\Death_Brello
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
     - name: Death_Pyra
       guid: fd62a9adc0e5b04bbf8ea669d9a3c8a1
       id: 1095581318
@@ -311,8 +331,8 @@ MonoBehaviour:
         guid: 67edcafcb0beb44f96247cf2143a91c2
       Path: Events\Default Work Unit\Steamling\Death_Steamling
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
     - name: Environment
       guid: bc19f43cbe6aea478d686b59f8728304
       id: 1229948536
@@ -368,8 +388,8 @@ MonoBehaviour:
         guid: 525ee8d23a89a348b73df0708b7984fb
       Path: Events\Default Work Unit\Brello\Footstep_Brello
       maxAttenuation: 0
-      maxDuration: 1
-      minDuration: 0.326086
+      maxDuration: 1.122462
+      minDuration: 0.12338
     - name: Footstep_Pyra
       guid: ce99340e72fd274a8c35633812a88227
       id: 1517232512
@@ -390,26 +410,6 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
-    - name: Glide_Brello
-      guid: 34b39946bd80374396a869ad2991c377
-      id: 3653428579
-      PathAndIcons:
-      - ElementName: Events
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: Default Work Unit
-        ObjectType: 12
-        guid: 1a1dad3e5c7a724abc36cb5e26e00782
-      - ElementName: Brello
-        ObjectType: 4
-        guid: 57c2bd93ba34ae4790c1aeb835adc319
-      - ElementName: Glide_Brello
-        ObjectType: 3
-        guid: 34b39946bd80374396a869ad2991c377
-      Path: Events\Default Work Unit\Brello\Glide_Brello
-      maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
     - name: Grass_Shake_Level1
       guid: 4e2154ba7816a348b88e012da5d0426e
       id: 393977686
@@ -423,13 +423,33 @@ MonoBehaviour:
       - ElementName: Environment
         ObjectType: 4
         guid: bc19f43cbe6aea478d686b59f8728304
-      - ElementName: Level1
+      - ElementName: Grasslands
         ObjectType: 4
         guid: 9d78abd37e2c6c44b3f1e01b14015c75
       - ElementName: Grass_Shake_Level1
         ObjectType: 3
         guid: 4e2154ba7816a348b88e012da5d0426e
-      Path: Events\Default Work Unit\Environment\Level1\Grass_Shake_Level1
+      Path: Events\Default Work Unit\Environment\Grasslands\Grass_Shake_Level1
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: Grasslands
+      guid: 9d78abd37e2c6c44b3f1e01b14015c75
+      id: 1458143973
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Environment
+        ObjectType: 4
+        guid: bc19f43cbe6aea478d686b59f8728304
+      - ElementName: Grasslands
+        ObjectType: 4
+        guid: 9d78abd37e2c6c44b3f1e01b14015c75
+      Path: Events\Default Work Unit\Environment\Grasslands
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -451,8 +471,8 @@ MonoBehaviour:
         guid: 72c2c0b05c752d4faa870d1d5a1db8d4
       Path: Events\Default Work Unit\Brello\Hum_Brello
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
     - name: Hum_Pyra
       guid: ab4c9717980c004591da0941efe6a3f9
       id: 357557170
@@ -491,8 +511,8 @@ MonoBehaviour:
         guid: bbead347ce916a4a94110c4412ec1286
       Path: Events\Default Work Unit\Brello\Hurt_Brello
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
     - name: Hurt_Steamling
       guid: 3205300a25b6a64d9e2d38283f30abcb
       id: 3566808571
@@ -511,8 +531,8 @@ MonoBehaviour:
         guid: 3205300a25b6a64d9e2d38283f30abcb
       Path: Events\Default Work Unit\Steamling\Hurt_Steamling
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0.441586
+      minDuration: 0.312249
     - name: Idle_Boiler
       guid: 8995939f6fafeb44b2f53d7c49347e06
       id: 1335820033
@@ -551,8 +571,8 @@ MonoBehaviour:
         guid: 8b68a9c7d8d91842a0363c599abcb513
       Path: Events\Default Work Unit\Steamling\Idle_Steamling
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
     - name: Impact_Steamling
       guid: 735e9bb7c30d824c8d365b239baef5c6
       id: 983408950
@@ -571,8 +591,8 @@ MonoBehaviour:
         guid: 735e9bb7c30d824c8d365b239baef5c6
       Path: Events\Default Work Unit\Steamling\Impact_Steamling
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
     - name: Jump_Brello
       guid: 978610f81f0e614e96d14ae3ed3b6e50
       id: 2093704360
@@ -591,8 +611,8 @@ MonoBehaviour:
         guid: 978610f81f0e614e96d14ae3ed3b6e50
       Path: Events\Default Work Unit\Brello\Jump_Brello
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
     - name: Land_Brello
       guid: 560c080dcc9c1b47ae344b9d167f6a46
       id: 658189305
@@ -611,28 +631,8 @@ MonoBehaviour:
         guid: 560c080dcc9c1b47ae344b9d167f6a46
       Path: Events\Default Work Unit\Brello\Land_Brello
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
-    - name: Level1
-      guid: 9d78abd37e2c6c44b3f1e01b14015c75
-      id: 2678230382
-      PathAndIcons:
-      - ElementName: Events
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: Default Work Unit
-        ObjectType: 12
-        guid: 1a1dad3e5c7a724abc36cb5e26e00782
-      - ElementName: Environment
-        ObjectType: 4
-        guid: bc19f43cbe6aea478d686b59f8728304
-      - ElementName: Level1
-        ObjectType: 4
-        guid: 9d78abd37e2c6c44b3f1e01b14015c75
-      Path: Events\Default Work Unit\Environment\Level1
-      maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
     - name: Open_Brello
       guid: 4c97a0bc55fba4418d9366164c5c9141
       id: 692676672
@@ -651,8 +651,8 @@ MonoBehaviour:
         guid: 4c97a0bc55fba4418d9366164c5c9141
       Path: Events\Default Work Unit\Brello\Open_Brello
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0.306009
+      minDuration: 0.306009
     - name: Preparing_Charge_Steamling
       guid: a3e3ac6b981a3342b22552d32a9aa563
       id: 1765157707
@@ -671,8 +671,8 @@ MonoBehaviour:
         guid: a3e3ac6b981a3342b22552d32a9aa563
       Path: Events\Default Work Unit\Steamling\Preparing_Charge_Steamling
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
     - name: PSTom
       guid: 4b4905bcdf2d1f4d9c71acc6e552739f
       id: 3759751106
@@ -725,8 +725,8 @@ MonoBehaviour:
         guid: ca02544bf6d6ee40abdffa7dcbb3a8dc
       Path: Events\Default Work Unit\Steamling\Recovering_Steamling
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
     - name: Restart_Attack_Combo_Brello
       guid: 5c51b1a83730da4ab3a820ef6a3f50d8
       id: 1804471233
@@ -745,8 +745,8 @@ MonoBehaviour:
         guid: 5c51b1a83730da4ab3a820ef6a3f50d8
       Path: Events\Default Work Unit\Brello\Restart_Attack_Combo_Brello
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
     - name: River_Level1
       guid: a4fd90b524da0f458cd134e0a17c1b5e
       id: 1341948043
@@ -760,16 +760,16 @@ MonoBehaviour:
       - ElementName: Environment
         ObjectType: 4
         guid: bc19f43cbe6aea478d686b59f8728304
-      - ElementName: Level1
+      - ElementName: Grasslands
         ObjectType: 4
         guid: 9d78abd37e2c6c44b3f1e01b14015c75
       - ElementName: River_Level1
         ObjectType: 3
         guid: a4fd90b524da0f458cd134e0a17c1b5e
-      Path: Events\Default Work Unit\Environment\Level1\River_Level1
+      Path: Events\Default Work Unit\Environment\Grasslands\River_Level1
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 120.12
+      minDuration: 120.12
     - name: Shoot_Boiler
       guid: 6766325350a3b042b61d086a64a39a4a
       id: 3667284842
@@ -803,16 +803,16 @@ MonoBehaviour:
       - ElementName: Environment
         ObjectType: 4
         guid: bc19f43cbe6aea478d686b59f8728304
-      - ElementName: Level1
+      - ElementName: Grasslands
         ObjectType: 4
         guid: 9d78abd37e2c6c44b3f1e01b14015c75
       - ElementName: ShopMusic_Level1
         ObjectType: 3
         guid: e80039892dc29b41a1afbc259f09f50f
-      Path: Events\Default Work Unit\Environment\Level1\ShopMusic_Level1
+      Path: Events\Default Work Unit\Environment\Grasslands\ShopMusic_Level1
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
     - name: Sleep_Boiler
       guid: f963891d2d84b24d88a07b563e716176
       id: 4013748194
@@ -833,6 +833,26 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: Start_Glide_Brello
+      guid: 34b39946bd80374396a869ad2991c377
+      id: 3020521956
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Brello
+        ObjectType: 4
+        guid: 57c2bd93ba34ae4790c1aeb835adc319
+      - ElementName: Start_Glide_Brello
+        ObjectType: 3
+        guid: 34b39946bd80374396a869ad2991c377
+      Path: Events\Default Work Unit\Brello\Start_Glide_Brello
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Steamling
       guid: 2b3b635336b20e46a66cb4c082a9f854
       id: 339681471
@@ -850,6 +870,26 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: Stop_Glide_Brello
+      guid: dd8cc52a4e1de9468838d39ca40e3446
+      id: 1228236750
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Brello
+        ObjectType: 4
+        guid: 57c2bd93ba34ae4790c1aeb835adc319
+      - ElementName: Stop_Glide_Brello
+        ObjectType: 3
+        guid: dd8cc52a4e1de9468838d39ca40e3446
+      Path: Events\Default Work Unit\Brello\Stop_Glide_Brello
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
     - name: Swimming_Brello
       guid: f12fc90ca0292248bb002c5c932f9bcc
       id: 2196322537
@@ -868,8 +908,8 @@ MonoBehaviour:
         guid: f12fc90ca0292248bb002c5c932f9bcc
       Path: Events\Default Work Unit\Brello\Swimming_Brello
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
     - name: UI
       guid: d4cf38c93c559445b09ff15ddf581ccc
       id: 1551306167
@@ -900,16 +940,16 @@ MonoBehaviour:
       - ElementName: Environment
         ObjectType: 4
         guid: bc19f43cbe6aea478d686b59f8728304
-      - ElementName: Level1
+      - ElementName: Grasslands
         ObjectType: 4
         guid: 9d78abd37e2c6c44b3f1e01b14015c75
       - ElementName: VillageAmbience_Level1
         ObjectType: 3
         guid: 9c8017be6e22914a84f15ce39ad931fa
-      Path: Events\Default Work Unit\Environment\Level1\VillageAmbience_Level1
+      Path: Events\Default Work Unit\Environment\Grasslands\VillageAmbience_Level1
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
     - name: VillageMusic_Level1
       guid: d974143d09106e45ba49beac6b019254
       id: 3399754180
@@ -923,16 +963,16 @@ MonoBehaviour:
       - ElementName: Environment
         ObjectType: 4
         guid: bc19f43cbe6aea478d686b59f8728304
-      - ElementName: Level1
+      - ElementName: Grasslands
         ObjectType: 4
         guid: 9d78abd37e2c6c44b3f1e01b14015c75
       - ElementName: VillageMusic_Level1
         ObjectType: 3
         guid: d974143d09106e45ba49beac6b019254
-      Path: Events\Default Work Unit\Environment\Level1\VillageMusic_Level1
+      Path: Events\Default Work Unit\Environment\Grasslands\VillageMusic_Level1
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
     - name: Waterfall_Level1
       guid: 3f652804c12d01489d7ba57def738fe2
       id: 752800099
@@ -946,16 +986,36 @@ MonoBehaviour:
       - ElementName: Environment
         ObjectType: 4
         guid: bc19f43cbe6aea478d686b59f8728304
-      - ElementName: Level1
+      - ElementName: Grasslands
         ObjectType: 4
         guid: 9d78abd37e2c6c44b3f1e01b14015c75
       - ElementName: Waterfall_Level1
         ObjectType: 3
         guid: 3f652804c12d01489d7ba57def738fe2
-      Path: Events\Default Work Unit\Environment\Level1\Waterfall_Level1
+      Path: Events\Default Work Unit\Environment\Grasslands\Waterfall_Level1
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
+    - name: WaterSplash_Brello
+      guid: 1542d97628950b40aab78e527fa5fb0a
+      id: 2503275970
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Brello
+        ObjectType: 4
+        guid: 57c2bd93ba34ae4790c1aeb835adc319
+      - ElementName: WaterSplash_Brello
+        ObjectType: 3
+        guid: 1542d97628950b40aab78e527fa5fb0a
+      Path: Events\Default Work Unit\Brello\WaterSplash_Brello
+      maxAttenuation: 0
+      maxDuration: 1.367069
+      minDuration: 1.367069
     - name: Wind_Level1
       guid: 6531f9a70933e54d8bc5dd80dad04192
       id: 1810065121
@@ -969,16 +1029,16 @@ MonoBehaviour:
       - ElementName: Environment
         ObjectType: 4
         guid: bc19f43cbe6aea478d686b59f8728304
-      - ElementName: Level1
+      - ElementName: Grasslands
         ObjectType: 4
         guid: 9d78abd37e2c6c44b3f1e01b14015c75
       - ElementName: Wind_Level1
         ObjectType: 3
         guid: 6531f9a70933e54d8bc5dd80dad04192
-      Path: Events\Default Work Unit\Environment\Level1\Wind_Level1
+      Path: Events\Default Work Unit\Environment\Grasslands\Wind_Level1
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     PathAndIcons:
@@ -1019,7 +1079,7 @@ MonoBehaviour:
     ParentPath: Switches\Default Work Unit
     guid: 3652c387ca18794085902b6748b43d1c
     GuidInternal: 
-    m_lastTime: -8585529570388072658
+    m_lastTime: -8585529556248250948
     List:
     - name: FootstepSurfaceType
       guid: 5370e81ddde85840a97b77e23f265148
@@ -1134,7 +1194,7 @@ MonoBehaviour:
     m_lastTime: -8585545815314396477
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 
+  ExpandedWaapiItemIds: 0500000006000000070000000900000030000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0
