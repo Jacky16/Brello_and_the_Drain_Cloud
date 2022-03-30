@@ -170,7 +170,17 @@
 					<ChildrenList>
 						<Folder Name="Grasslands" ID="{D3AB789D-2C7E-446C-B3F1-E01B14015C75}" ShortID="164711223">
 							<ChildrenList>
-								<Event Name="BackgroundMusic_Level1" ID="{8E6F03D1-EA53-471B-AB82-209494D2A706}"/>
+								<Event Name="BackgroundMusic_Level1" ID="{8E6F03D1-EA53-471B-AB82-209494D2A706}">
+									<ChildrenList>
+										<Action Name="" ID="{96E21D75-2C01-477B-92AF-DAB65AAB56C1}" ShortID="404636384">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="GrasslandMusic" ID="{207DF045-E198-4152-A063-09A0201AC8D6}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
 								<Event Name="River_Level1" ID="{B590FDA4-DA24-450F-8CD1-34E0A17C1B5E}">
 									<ChildrenList>
 										<Action Name="" ID="{7FF10F20-984B-4D3F-B893-82FAC0F0DC56}" ShortID="763964014">

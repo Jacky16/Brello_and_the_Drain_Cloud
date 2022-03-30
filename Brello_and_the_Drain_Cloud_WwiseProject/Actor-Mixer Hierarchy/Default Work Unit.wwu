@@ -800,7 +800,6 @@
 					<ChildrenList>
 						<Folder Name="Grasslands" ID="{25D0EFF1-3460-4E0C-9C60-1F5E5C7FE83F}" ShortID="657204328">
 							<ChildrenList>
-								<Folder Name="BackgroundMusic" ID="{B86756FA-B5C4-4391-B277-F009667786A2}" ShortID="751005236"/>
 								<Sound Name="Waterfall" ID="{16A255F2-0C2A-48ED-8134-6C182696E351}" ShortID="201975704">
 									<ReferenceList>
 										<Reference Name="Conversion">
@@ -868,7 +867,13 @@
 									<ObjectLists/>
 								</Sound>
 								<Sound Name="River" ID="{ED49E6F9-45E1-4C4B-A582-40279FDFC0D2}" ShortID="268288647">
+									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="1"/>
+									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="Low_Attenuation" ID="{AF0F7070-1466-4ABC-8412-031B679D6E2A}" WorkUnitID="{D4E67D86-651B-4CCE-8108-48600BB7AC6E}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
 										</Reference>
@@ -888,6 +893,37 @@
 									<ObjectLists/>
 									<ActiveSourceList>
 										<ActiveSource Name="River" ID="{DD5BA94D-080C-4C9C-B892-67C0187A588B}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="GrasslandMusic" ID="{207DF045-E198-4152-A063-09A0201AC8D6}" ShortID="716921295">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-12</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="GrasslandMusic" ID="{7A734C2C-48F8-4B1A-ACC1-8109D16856BD}">
+											<Language>SFX</Language>
+											<AudioFile>GrasslandMusic.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="1022260136"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="GrasslandMusic" ID="{7A734C2C-48F8-4B1A-ACC1-8109D16856BD}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
