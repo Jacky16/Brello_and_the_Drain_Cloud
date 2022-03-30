@@ -214,7 +214,7 @@ public class PlayerController : MonoBehaviour
         animator.SetBool(isGroundedHash, characterController.isGrounded);
 
         //Glading animator
-        animator.SetBool(isGlidingHash, canGlade && isUmbrellaOpen && !characterController.isGrounded);
+        animator.SetBool(isGlidingHash, isFalling && isUmbrellaOpen);
 
         //Grounded
         if (characterController.isGrounded)
@@ -296,7 +296,8 @@ public class PlayerController : MonoBehaviour
 
     public void HandleDash()
     {
-        if (!isSwimming)
+        bool canGlade = currentGravity.y < velocityToGlade;
+        if (!isSwimming && !isUmbrellaOpen)
             StartCoroutine(Dash());
     }
 
