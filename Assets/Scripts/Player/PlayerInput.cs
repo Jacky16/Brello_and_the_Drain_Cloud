@@ -68,7 +68,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""1b80e2cc-29a9-47b3-9d87-511f1a1992a4"",
                     ""expectedControlType"": """",
-                    ""processors"": """",
+                    ""processors"": ""AxisDeadzone,NormalizeVector2"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },

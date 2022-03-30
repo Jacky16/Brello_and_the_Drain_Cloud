@@ -30,16 +30,18 @@ public class PlayerController : MonoBehaviour
 
     private bool isMovementPressed;
     private bool isJumPressed;
-    private bool isGladePressed;
     private bool isSwimming;
 
+    [Header("Speed Settings")]
     [Header("Movement Settings")]
     [SerializeField] private float runSpeed = 10;
     [SerializeField] private float walkSpeed = 10;
+    [SerializeField] private float gladingSpeed = 20;
     [SerializeField] private float dashSpeed = 5;
+    [Space]
     [SerializeField] private float acceleration = 1;
     [SerializeField] private float rotationSpeed = 15f;
-    bool isWalking;
+    bool isUmbrellaOpen;
     private float currentSpeed = 0;
     private float dashTime = 0.25f;
     private bool canMove = true;
@@ -50,9 +52,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float fallMultiplier = 2;
 
     private float gravity = -9.8f;
-
+    
     [Header("Glade Settings")]
-    [SerializeField] private float gladeForce = 4; 
+    [SerializeField] private float divideGravityGlade = 4; 
 
     [SerializeField] private float velocityToGlade = 0;
 
@@ -106,7 +108,7 @@ public class PlayerController : MonoBehaviour
         HandleRotation();
         HandleAnimation();
 
-        Movement();
+        MovementManager();
         HandleGravity();
         HandleJump();
         SwimingManager();
@@ -115,24 +117,61 @@ public class PlayerController : MonoBehaviour
 
     #region Main movement functions
 
+    private void MovementManager()
+    {
+        Movement();
+
+        Vector3 currDir = CanMoveManager();
+
+        characterController.Move(currDir * Time.deltaTime);
+    }
+
+    private Vector3 CanMoveManager()
+    {
+        Vector3 currDir = Vector3.zero;
+        bool canGlade = currentGravity.y < velocityToGlade;
+
+        if (canMove)
+        {
+            currDir = camDir * currentSpeed;
+        }
+        else
+        {
+            currDir.x = 0;
+            currDir.z = 0;
+        }
+        currDir.y = currentGravity.y;
+        if (isUmbrellaOpen && canGlade)
+        {
+            //currDir.y = currentGravity.y / divideGravityGlade;
+        }
+        return currDir;
+    }
+
     private void Movement()
     {
         //Acceleration
         if (isMovementPressed)
         {
-            if(!isWalking)
-                currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, acceleration * Time.deltaTime);
-            else
+            //Paraguas abierto
+            if (isUmbrellaOpen && currentGravity.y > 0)
+            {
                 currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, acceleration * Time.deltaTime);
+            }
+            //Planeando
+            else if (isUmbrellaOpen && currentGravity.y < velocityToGlade)
+            {
+                currentSpeed = Mathf.Lerp(currentSpeed, gladingSpeed, acceleration * Time.deltaTime);
+            }
+            //Correr
+            else if(!isUmbrellaOpen)
+            {
+                currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, acceleration * Time.deltaTime);
+            }
+
         }
         else
             currentSpeed = Mathf.Lerp(currentSpeed, 0, acceleration * Time.deltaTime);
-
-        Vector3 currDir = camDir * currentSpeed;
-
-        currDir.y = currentGravity.y;
-        if (canMove)
-            characterController.Move(currDir * Time.deltaTime);
     }
 
     private void HandleJump()
@@ -181,7 +220,7 @@ public class PlayerController : MonoBehaviour
         animator.SetBool(isGroundedHash, characterController.isGrounded);
 
         //Glading animator
-        animator.SetBool(isGlidingHash, canGlade && isGladePressed && !characterController.isGrounded);
+        animator.SetBool(isGlidingHash, canGlade && isUmbrellaOpen && !characterController.isGrounded);
 
         //Grounded
         if (characterController.isGrounded)
@@ -194,10 +233,10 @@ public class PlayerController : MonoBehaviour
             currentGravity.y = groundGravity;
         }
         //Glading
-        else if (canGlade && isGladePressed && !characterController.isGrounded)
+        else if (canGlade && isUmbrellaOpen && !characterController.isGrounded)
         {
             float previousYVelocity = currentGravity.y;
-            float newYVelocity = currentGravity.y + (gravity / gladeForce * Time.deltaTime);
+            float newYVelocity = currentGravity.y + (divideGravityGlade * Time.deltaTime);
             float nextYVelocity = (previousYVelocity + newYVelocity) * .5f;
             currentGravity.y = nextYVelocity;
 
@@ -232,6 +271,7 @@ public class PlayerController : MonoBehaviour
         camForward = Camera.main.transform.forward.normalized;
         camRight = Camera.main.transform.right.normalized;
         camDir = (axis.x * camRight + axis.y * camForward);
+        camDir.y = 0;
     }
 
     public void BlockMovement()
@@ -246,6 +286,7 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
+        if (!canMove) return;
         animator.SetBool(isJumpingHash, true);
 
         isSwimming = false;
@@ -282,7 +323,7 @@ public class PlayerController : MonoBehaviour
 
     public void HandleAttack()
     {
-        if (Time.time >= nextAttack)
+        if (Time.time >= nextAttack && !isSwimming)
         {
             nextAttack = Time.time + timeBtwAttacks;
             DoAttackAnimation();
@@ -306,7 +347,6 @@ public class PlayerController : MonoBehaviour
 
         animator.SetInteger(numAttackHash, currentAttack);
         currentAttack++;
-        playerAudio.PlayAttack();
     }
 
     private void Attack()
@@ -363,7 +403,7 @@ public class PlayerController : MonoBehaviour
         {
             tweenSwiming.Kill();
 
-            if (!WaterPlatformManager.singletone.IsPyraInPlatform())
+            if (!WaterPlatformManager.singletone.IsPyraInPlatform() && !characterController.isGrounded)
                 Jump();
         }
         else if (isSwimming)
@@ -410,9 +450,8 @@ public class PlayerController : MonoBehaviour
 
     public void OpenUmbrellaManager(bool _value)
     {
-        isWalking = _value;
-        isGladePressed = _value;
-        brelloOpenManager.SetOpen(isGladePressed);
+        isUmbrellaOpen = _value;
+        brelloOpenManager.SetOpen(isUmbrellaOpen);
     }
 
     private void OnTriggerEnter(Collider other)

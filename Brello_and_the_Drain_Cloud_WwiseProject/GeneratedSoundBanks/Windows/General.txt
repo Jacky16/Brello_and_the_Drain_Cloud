@@ -1,8 +1,5 @@
 Event	ID	Name			Wwise Object Path	Notes
-	211679341	Attack_Combo_Brello			\Default Work Unit\Brello\Attack_Combo_Brello	
-	692676672	Open_Brello			\Default Work Unit\Brello\Open_Brello	
 	2749921882	Footstep_Brello			\Default Work Unit\Brello\Footstep_Brello	
-	3653428579	Glide_Brello			\Default Work Unit\Brello\Glide_Brello	
 
 Switch Group	ID	Name			Wwise Object Path	Notes
 	3978675434	FootstepTerrainType			\Default Work Unit\FootstepTerrainType	
@@ -14,13 +11,15 @@ Switch	ID	Name	Switch Group			Notes
 	2654748154	Water	FootstepTerrainType			
 	4248645337	Grass	FootstepTerrainType			
 
+Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
+	340165514	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Brello\Footstep\Default\Silence\Wwise Silence	
+	641587575	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Brello\Footstep\Rock\Silence\Wwise Silence	
+	785395008	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Brello\Footstep\Water\Silence\Wwise Silence	
+	984700344	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Brello\Footstep\Sand\Silence\Wwise Silence	
+
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	88877710	Brello_Footstep_Grass (8)	D:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\Footstep_Grass\Brello_Footstep_Grass (8)_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Brello\Footstep\Grass\Brello_Footstep_Grass (8)		84140
 	92968298	Brello_Footstep_Grass (5)	D:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\Footstep_Grass\Brello_Footstep_Grass (5)_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Brello\Footstep\Grass\Brello_Footstep_Grass (5)		95280
-	118440027	Attack1	D:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\Attack\Attack1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Brello\Attack\Attack1		48396
-	130473096	Attack2	D:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\Attack\Attack2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Brello\Attack\Attack2		44280
-	213251508	Glide	D:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\Glide_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Brello\Glide		2244212
 	576936516	Brello_Footstep_Grass (4)	D:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\Footstep_Grass\Brello_Footstep_Grass (4)_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Brello\Footstep\Grass\Brello_Footstep_Grass (4)		95280
-	961183922	Open	D:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\Open_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Brello\Open		142392
 	973452232	Brello_Footstep_Grass (6)	D:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\Footstep_Grass\Brello_Footstep_Grass (6)_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Brello\Footstep\Grass\Brello_Footstep_Grass (6)		57752
 

@@ -9,14 +9,17 @@ public class Brello_Collectables : MonoBehaviour
     private int droply;
 
     [SerializeField] TextMeshProUGUI droplyText;
-    [SerializeField] TextMeshProUGUI coinText;
+    //[SerializeField] TextMeshProUGUI coinText;
 
     // Start is called before the first frame update
     void Start()
     {
         coins = droply = 0;
     }
+    private void Update()
+    {
 
+    }
 
     public void AddCoin()
     {
@@ -32,7 +35,7 @@ public class Brello_Collectables : MonoBehaviour
 
     private void UpdateHUD()
     {
-        coinText.text = coins.ToString();
+        //coinText.text = coins.ToString();
         droplyText.text = droply.ToString();
     }
 }
