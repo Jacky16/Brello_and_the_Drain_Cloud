@@ -407,7 +407,7 @@ public class PlayerController : MonoBehaviour
             Transform pivotWater = other.transform.GetChild(0).transform;
             tweenSwiming = transform.DOLocalMoveY(pivotWater.position.y, 2).SetEase(Ease.OutElastic);
 
-            //AkSoundEngine.PostEvent("WaterSplash_Brello", WwiseManager.instance.gameObject);
+            AkSoundEngine.PostEvent("WaterSplash_Brello", WwiseManager.instance.gameObject);
         }
     }
 

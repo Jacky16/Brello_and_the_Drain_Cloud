@@ -116,10 +116,10 @@
 						</Event>
 						<Event Name="WaterSplash_Brello" ID="{76D94215-9528-400B-AAB7-8E527FA5FB0A}">
 							<ChildrenList>
-								<Action Name="" ID="{23672B5E-1433-4C61-BCFF-B269B4A6871D}" ShortID="824576428">
+								<Action Name="" ID="{98D8B996-AEA5-4AF6-AA6B-BFC95A33CB0B}" ShortID="47856688">
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="EnterWater" ID="{D98879D3-572D-4B25-B262-83ECE48F8AD1}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+											<ObjectRef Name="WaterSplash" ID="{77ADC4AB-17FE-4B79-86EE-114C1D247DB0}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
@@ -158,8 +158,28 @@
 				<Folder Name="Steamling" ID="{53633B2B-B236-460E-A66C-B4C082A9F854}" ShortID="914197324">
 					<ChildrenList>
 						<Event Name="Idle_Steamling" ID="{C7A9688B-D9D8-4218-A036-3C599ABCB513}"/>
-						<Event Name="Preparing_Charge_Steamling" ID="{6BACE3A3-1A98-4233-B225-52D32A9AA563}"/>
-						<Event Name="Charging_Steamling" ID="{32EA15E3-7967-4D52-B1E8-A061AC9F3184}"/>
+						<Event Name="Preparing_Charge_Steamling" ID="{6BACE3A3-1A98-4233-B225-52D32A9AA563}">
+							<ChildrenList>
+								<Action Name="" ID="{AE558A05-C2D5-4D19-AF18-E7BFDA2F6BF9}" ShortID="983478978">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Prepare" ID="{6FBB339E-1637-4038-BCC3-E65043FCA0A7}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Charging_Steamling" ID="{32EA15E3-7967-4D52-B1E8-A061AC9F3184}">
+							<ChildrenList>
+								<Action Name="" ID="{C04FDD95-2C59-4B9F-97A1-5E0096662FDD}" ShortID="498651176">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Charge" ID="{DB20CE82-A9E9-4ECC-B257-6DB8E70033E0}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 						<Event Name="Recovering_Steamling" ID="{4B5402CA-D6F6-40EE-ABDF-FA7DCBB3A8DC}"/>
 						<Event Name="Impact_Steamling" ID="{B79B5E73-0DC3-4C82-8D36-5B239BAEF5C6}"/>
 						<Event Name="Hurt_Steamling" ID="{0A300532-B625-4DA6-9E2D-38283F30ABCB}">

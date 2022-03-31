@@ -100,7 +100,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: b7fee57a9b67c343a46eab594f457684
     GuidInternal: 
-    m_lastTime: -8585528462451029479
+    m_lastTime: -8585528453522891709
     List:
     - name: General
       guid: 9ac68b89cd0b2543aa435561f078908b
@@ -128,7 +128,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 1a1dad3e5c7a724abc36cb5e26e00782
     GuidInternal: 
-    m_lastTime: -8585528462451229145
+    m_lastTime: -8585528453523071532
     List:
     - name: Attack_Combo_Brello
       guid: 002aa748b1bcd6438e803e80ac434cfc
@@ -701,6 +701,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: MainMenuStop
+      guid: 464a153b4cce034cbd7a6f9db7c24f8d
+      id: 2223599963
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: MainMenuStop
+        ObjectType: 3
+        guid: 464a153b4cce034cbd7a6f9db7c24f8d
+      Path: Events\Default Work Unit\MainMenuStop
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
     - name: Open_Brello
       guid: 4c97a0bc55fba4418d9366164c5c9141
       id: 692676672
@@ -1105,8 +1122,8 @@ MonoBehaviour:
         guid: 1542d97628950b40aab78e527fa5fb0a
       Path: Events\Default Work Unit\Brello\WaterSplash_Brello
       maxAttenuation: 0
-      maxDuration: 1.367069
-      minDuration: 1.367069
+      maxDuration: 2.953163
+      minDuration: 2.953163
     - name: Wind_Level1
       guid: 6531f9a70933e54d8bc5dd80dad04192
       id: 1810065121
@@ -1333,7 +1350,7 @@ MonoBehaviour:
     m_lastTime: -8585528742077617628
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 0500000006000000
+  ExpandedWaapiItemIds: 0100000005000000060000000700000008000000090000000b0000000f00000010000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0
