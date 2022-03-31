@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class TilesPuzzle : MonoBehaviour
 {
     // Los 9 tiles del puzzle
@@ -68,6 +68,6 @@ public class TilesPuzzle : MonoBehaviour
     // Funcion para hacer la conclusión y resultado del puzzle
     private void Completed()
     {
-
+        pillar.DOMove(moveTo.position, 3f).SetEase(Ease.InOutSine);
     }
 }
