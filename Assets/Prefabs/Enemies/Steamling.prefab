@@ -78,8 +78,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.74
+  m_Center: {x: 0, y: 0.87, z: 0}
 --- !u!195 &740326646450868017
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -126,7 +126,6 @@ MonoBehaviour:
   timeBeforeAttacking: 1
   normalDamage: 1
   dashDamage: 2
-  impulseForce: 16553
 --- !u!114 &740326646450868023
 MonoBehaviour:
   m_ObjectHideFlags: 0

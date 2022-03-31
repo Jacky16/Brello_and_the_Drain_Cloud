@@ -86,6 +86,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float offsetTweenY;
     [SerializeField] float time = 1;
     private Tween tweenSwiming;
+    [SerializeField] GameObject splashParticle;
  
 
     //Air movement variables
@@ -400,10 +401,12 @@ public class PlayerController : MonoBehaviour
             isJumPressed = false;
             animator.SetBool("isSwiming", true);
 
+            Instantiate(splashParticle, transform.position, splashParticle.transform.rotation);
+
             Transform pivotWater = other.transform.GetChild(0).transform;
             tweenSwiming = transform.DOLocalMoveY(pivotWater.position.y, 2).SetEase(Ease.OutElastic);
 
-            AkSoundEngine.PostEvent("WaterSplash_Brello", WwiseManager.instance.gameObject);
+            //AkSoundEngine.PostEvent("WaterSplash_Brello", WwiseManager.instance.gameObject);
         }
     }
 

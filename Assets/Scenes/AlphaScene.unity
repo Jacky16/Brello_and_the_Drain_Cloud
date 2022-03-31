@@ -348,7 +348,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2164036362953964463, guid: 5a434fdb74ba1d7458242fbbf8151577, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -147.5
+      value: -149.42
       objectReference: {fileID: 0}
     - target: {fileID: 2164036362953964463, guid: 5a434fdb74ba1d7458242fbbf8151577, type: 3}
       propertyPath: m_LocalPosition.y
@@ -356,7 +356,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2164036362953964463, guid: 5a434fdb74ba1d7458242fbbf8151577, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.5
+      value: 0.62
       objectReference: {fileID: 0}
     - target: {fileID: 2164036362953964463, guid: 5a434fdb74ba1d7458242fbbf8151577, type: 3}
       propertyPath: m_LocalRotation.w
@@ -449,10 +449,6 @@ PrefabInstance:
     - target: {fileID: 6137564616860851786, guid: 5a434fdb74ba1d7458242fbbf8151577, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 42.0597
-      objectReference: {fileID: 0}
-    - target: {fileID: 7810750941276814486, guid: 5a434fdb74ba1d7458242fbbf8151577, type: 3}
-      propertyPath: groundGravity
-      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 9104065267870247534, guid: 5a434fdb74ba1d7458242fbbf8151577, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1140,6 +1136,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a06901370dedd524d96bc471b57343d7, type: 3}
+--- !u!1 &764954069 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a06901370dedd524d96bc471b57343d7, type: 3}
+  m_PrefabInstance: {fileID: 764954068}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &764954070
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764954069}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.12830606
+  m_Center: {x: 0.022724733, y: 0.0002722567, z: 0.0054920833}
 --- !u!64 &774653006
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2271,7 +2285,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-93208
+  m_Name: pb_Mesh-251412
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

@@ -241,7 +241,7 @@ MonoBehaviour:
   dashSpeed: 20
   acceleration: 10
   rotationSpeed: 15
-  groundGravity: 1
+  groundGravity: -1
   fallMultiplier: 2
   divideGravityGlade: 4
   velocityToGlade: -3
@@ -252,6 +252,9 @@ MonoBehaviour:
   timeResetComboAttack: 1
   sizeCubeAttack: {x: 2, y: 2, z: 2}
   pivotAttack: {fileID: 7915186975630010214}
+  offsetTweenY: 0
+  time: 1
+  splashParticle: {fileID: 432596736388223641, guid: aef6f70a7b48aec41a9eb6f2a3705899, type: 3}
 --- !u!114 &7115774039413881488
 MonoBehaviour:
   m_ObjectHideFlags: 0
