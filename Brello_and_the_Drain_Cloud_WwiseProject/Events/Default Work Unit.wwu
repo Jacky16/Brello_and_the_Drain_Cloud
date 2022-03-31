@@ -257,6 +257,20 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="MainMenuStop" ID="{3B154A46-CE4C-4C03-BD7A-6F9DB7C24F8D}">
+					<ChildrenList>
+						<Action Name="" ID="{1A9F47DB-55A0-41F4-A8DE-37A43CE32CE4}" ShortID="269877269">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="MainMenu" ID="{3D130A04-9A51-4248-B40F-6A5AE8A4E1C6}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

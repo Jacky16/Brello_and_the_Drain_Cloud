@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="133642231" Language="SFX" Hash="836822941">
+		<SoundBank Id="133642231" Language="SFX" Hash="3501029590">
 			<ObjectPath>\SoundBanks\Default Work Unit\General</ObjectPath>
 			<ShortName>General</ShortName>
 			<Path>General.bnk</Path>
@@ -151,6 +151,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="2223599963" Name="MainMenuStop" ObjectPath="\Events\Default Work Unit\MainMenuStop" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="692676672" Name="Open_Brello" ObjectPath="\Events\Default Work Unit\Brello\Open_Brello" DurationType="OneShot" DurationMin="0.306009" DurationMax="0.306009">
 					<IncludedMemoryFiles>
 						<File Id="961183922" Language="SFX">
