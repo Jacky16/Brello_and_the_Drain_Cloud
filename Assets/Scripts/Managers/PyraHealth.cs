@@ -18,9 +18,12 @@ public sealed class PyraHealth : Health
     {
         base.ResetStats();
 
+        AkSoundEngine.PostEvent("Death_Pyra", WwiseManager.instance.gameObject);
+
         agent.enabled = false;
         transform.position = closestPointToRespawn;
         agent.enabled = true;
+
     }
 
     public void SetClosestPoint(Vector3 pos)

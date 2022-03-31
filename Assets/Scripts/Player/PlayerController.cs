@@ -183,6 +183,7 @@ public class PlayerController : MonoBehaviour
     {
         if (characterController.isGrounded && !isJumping && isJumPressed)
         {
+            playerAudio.PlayFootstep();
             Jump();
         }
         else if (characterController.isGrounded && isJumping && !isJumPressed)
