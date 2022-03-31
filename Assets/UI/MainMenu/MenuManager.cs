@@ -30,6 +30,8 @@ public class MenuManager : MonoBehaviour
     [SerializeField] const string sensXTag = "SensX";
     [SerializeField] const string sensYTag = "SensY";
 
+    [SerializeField] GameObject stopMusic;
+
     public void SetInvertedXCamera()
     {
         invertedX = !invertedX;
@@ -48,6 +50,7 @@ public class MenuManager : MonoBehaviour
     }
     public void StartGame()
     {
+        AkSoundEngine.PostEvent("MainMenuStop", gameObject);
         SceneManager.LoadScene(1);
     }
     public void QuitGame()
@@ -150,6 +153,8 @@ public class MenuManager : MonoBehaviour
                 musicInput.text = "0";
             }
 
+            
+            
             //musicMixer.SetFloat(musicTag, Mathf.Log10(musicVolume) * 20);
             PlayerPrefs.SetFloat(musicTag, musicVolume);
             musicSlider.value = musicVolume;
@@ -160,11 +165,13 @@ public class MenuManager : MonoBehaviour
         //soundMixer.SetFloat(soundTag, Mathf.Log10(soundSlider.value) * 20);
         PlayerPrefs.SetFloat(soundTag, soundSlider.value);
         soundInput.text = soundSlider.value.ToString();
+        AkSoundEngine.SetRTPCValue("SFX_Volume", soundSlider.value);
     }
     public void ChangeMusicVolumeSlider()
     {
         //musicMixer.SetFloat(musicTag, Mathf.Log10(musicSlider.value) * 20);
         PlayerPrefs.SetFloat(musicTag, musicSlider.value);
         musicInput.text = musicSlider.value.ToString();
+        AkSoundEngine.SetRTPCValue("Music_Volume", musicSlider.value);
     }
 }

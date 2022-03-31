@@ -24,7 +24,7 @@ MonoBehaviour:
     ParentPath: Virtual Acoustics\Default Work Unit
     guid: 166bb2b7fc13db45b69f5a19518cf21f
     GuidInternal: 
-    m_lastTime: -8585528871020741357
+    m_lastTime: -8585528742077587637
     List: []
   AuxBusWwu:
   - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
@@ -38,7 +38,7 @@ MonoBehaviour:
     ParentPath: Master-Mixer Hierarchy\Default Work Unit
     guid: b11d140495a5214693f79f09da626fbf
     GuidInternal: 
-    m_lastTime: -8585528871021589092
+    m_lastTime: -8585528484471580511
     List:
     - name: Master Audio Bus
       guid: d8a41415a61d2a41a17e75ca0c2149f3
@@ -54,6 +54,40 @@ MonoBehaviour:
         ObjectType: 2
         guid: d8a41415a61d2a41a17e75ca0c2149f3
       Path: Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus
+    - name: Music
+      guid: 827767ff111bdb4892b1e627213c1f6c
+      id: 3991942870
+      PathAndIcons:
+      - ElementName: Master-Mixer Hierarchy
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: b11d140495a5214693f79f09da626fbf
+      - ElementName: Master Audio Bus
+        ObjectType: 2
+        guid: d8a41415a61d2a41a17e75ca0c2149f3
+      - ElementName: Music
+        ObjectType: 2
+        guid: 827767ff111bdb4892b1e627213c1f6c
+      Path: Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\Music
+    - name: SFX
+      guid: 1b2419d6667dbd4d81e149ff50db2719
+      id: 393239870
+      PathAndIcons:
+      - ElementName: Master-Mixer Hierarchy
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: b11d140495a5214693f79f09da626fbf
+      - ElementName: Master Audio Bus
+        ObjectType: 2
+        guid: d8a41415a61d2a41a17e75ca0c2149f3
+      - ElementName: SFX
+        ObjectType: 2
+        guid: 1b2419d6667dbd4d81e149ff50db2719
+      Path: Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFX
   BankWwu:
   - PhysicalPath: SoundBanks\Default Work Unit.wwu
     PathAndIcons:
@@ -66,7 +100,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: b7fee57a9b67c343a46eab594f457684
     GuidInternal: 
-    m_lastTime: -8585528722414586048
+    m_lastTime: -8585528453522891709
     List:
     - name: General
       guid: 9ac68b89cd0b2543aa435561f078908b
@@ -94,7 +128,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 1a1dad3e5c7a724abc36cb5e26e00782
     GuidInternal: 
-    m_lastTime: -8585528722420213048
+    m_lastTime: -8585528453523071532
     List:
     - name: Attack_Combo_Brello
       guid: 002aa748b1bcd6438e803e80ac434cfc
@@ -311,8 +345,8 @@ MonoBehaviour:
         guid: fd62a9adc0e5b04bbf8ea669d9a3c8a1
       Path: Events\Default Work Unit\Pyra\Death_Pyra
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0.809819
+      minDuration: 0.809819
     - name: Death_Steamling
       guid: 67edcafcb0beb44f96247cf2143a91c2
       id: 4094738360
@@ -333,6 +367,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+    - name: Dropply
+      guid: 6f299e0022d567408f90a6fd00c36c96
+      id: 274987955
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Dropply
+        ObjectType: 3
+        guid: 6f299e0022d567408f90a6fd00c36c96
+      Path: Events\Default Work Unit\Dropply
+      maxAttenuation: 0
+      maxDuration: 0.926054
+      minDuration: 0.926054
     - name: Environment
       guid: bc19f43cbe6aea478d686b59f8728304
       id: 1229948536
@@ -368,8 +419,8 @@ MonoBehaviour:
         guid: 0365af47e4f08f41ae4d6a83290704c7
       Path: Events\Default Work Unit\Pyra\Fire_Pyra
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 3.152281
+      minDuration: 3.152281
     - name: Footstep_Brello
       guid: 525ee8d23a89a348b73df0708b7984fb
       id: 2749921882
@@ -408,8 +459,8 @@ MonoBehaviour:
         guid: ce99340e72fd274a8c35633812a88227
       Path: Events\Default Work Unit\Pyra\Footstep_Pyra
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
     - name: Grass_Shake_Level1
       guid: 4e2154ba7816a348b88e012da5d0426e
       id: 393977686
@@ -491,8 +542,8 @@ MonoBehaviour:
         guid: ab4c9717980c004591da0941efe6a3f9
       Path: Events\Default Work Unit\Pyra\Hum_Pyra
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
     - name: Hurt_Brello
       guid: bbead347ce916a4a94110c4412ec1286
       id: 1416911989
@@ -633,6 +684,40 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+    - name: MainMenu
+      guid: ae36b2ea07ec30418a2b2138dd20e150
+      id: 3604647259
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: MainMenu
+        ObjectType: 3
+        guid: ae36b2ea07ec30418a2b2138dd20e150
+      Path: Events\Default Work Unit\MainMenu
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: MainMenuStop
+      guid: 464a153b4cce034cbd7a6f9db7c24f8d
+      id: 2223599963
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: MainMenuStop
+        ObjectType: 3
+        guid: 464a153b4cce034cbd7a6f9db7c24f8d
+      Path: Events\Default Work Unit\MainMenuStop
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
     - name: Open_Brello
       guid: 4c97a0bc55fba4418d9366164c5c9141
       id: 692676672
@@ -707,6 +792,29 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: Rain_Level1
+      guid: 2921059cfa54a84f8a5eaa24039c837f
+      id: 1526266773
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Environment
+        ObjectType: 4
+        guid: bc19f43cbe6aea478d686b59f8728304
+      - ElementName: Grasslands
+        ObjectType: 4
+        guid: 9d78abd37e2c6c44b3f1e01b14015c75
+      - ElementName: Rain_Level1
+        ObjectType: 3
+        guid: 2921059cfa54a84f8a5eaa24039c837f
+      Path: Events\Default Work Unit\Environment\Grasslands\Rain_Level1
+      maxAttenuation: 100
+      maxDuration: -1
+      minDuration: -1
     - name: Recovering_Steamling
       guid: ca02544bf6d6ee40abdffa7dcbb3a8dc
       id: 2867905824
@@ -768,8 +876,8 @@ MonoBehaviour:
         guid: a4fd90b524da0f458cd134e0a17c1b5e
       Path: Events\Default Work Unit\Environment\Grasslands\River_Level1
       maxAttenuation: 50
-      maxDuration: 120.12
-      minDuration: 120.12
+      maxDuration: -1
+      minDuration: -1
     - name: Shoot_Boiler
       guid: 6766325350a3b042b61d086a64a39a4a
       id: 3667284842
@@ -1014,8 +1122,8 @@ MonoBehaviour:
         guid: 1542d97628950b40aab78e527fa5fb0a
       Path: Events\Default Work Unit\Brello\WaterSplash_Brello
       maxAttenuation: 0
-      maxDuration: 1.367069
-      minDuration: 1.367069
+      maxDuration: 2.953163
+      minDuration: 2.953163
     - name: Wind_Level1
       guid: 6531f9a70933e54d8bc5dd80dad04192
       id: 1810065121
@@ -1051,8 +1159,56 @@ MonoBehaviour:
     ParentPath: Game Parameters\Default Work Unit
     guid: e4f736cbb2288f459e9c3c36b3575dbc
     GuidInternal: 
-    m_lastTime: -8585528871021768608
-    List: []
+    m_lastTime: -8585528484478372792
+    List:
+    - name: Music_Volume
+      guid: 185956dc6f9e9b48954385ab60d9871a
+      id: 1006694123
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: e4f736cbb2288f459e9c3c36b3575dbc
+      - ElementName: Volume
+        ObjectType: 4
+        guid: c82477382ebd8f4ea859dfb28ff6f55b
+      - ElementName: Music_Volume
+        ObjectType: 13
+        guid: 185956dc6f9e9b48954385ab60d9871a
+      Path: Game Parameters\Default Work Unit\Volume\Music_Volume
+    - name: SFX_Volume
+      guid: 1076820389d58e45ac27c375b3115c53
+      id: 1564184899
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: e4f736cbb2288f459e9c3c36b3575dbc
+      - ElementName: Volume
+        ObjectType: 4
+        guid: c82477382ebd8f4ea859dfb28ff6f55b
+      - ElementName: SFX_Volume
+        ObjectType: 13
+        guid: 1076820389d58e45ac27c375b3115c53
+      Path: Game Parameters\Default Work Unit\Volume\SFX_Volume
+    - name: Volume
+      guid: c82477382ebd8f4ea859dfb28ff6f55b
+      id: 2415836739
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: e4f736cbb2288f459e9c3c36b3575dbc
+      - ElementName: Volume
+        ObjectType: 4
+        guid: c82477382ebd8f4ea859dfb28ff6f55b
+      Path: Game Parameters\Default Work Unit\Volume
   StateWwu:
   - PhysicalPath: States\Default Work Unit.wwu
     PathAndIcons:
@@ -1065,7 +1221,7 @@ MonoBehaviour:
     ParentPath: States\Default Work Unit
     guid: 13117027c1e0a84b83ede94da2174f6f
     GuidInternal: 
-    m_lastTime: -8585528871020751330
+    m_lastTime: -8585528742077647597
     List: []
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
@@ -1079,7 +1235,7 @@ MonoBehaviour:
     ParentPath: Switches\Default Work Unit
     guid: 3652c387ca18794085902b6748b43d1c
     GuidInternal: 
-    m_lastTime: -8585528722414506272
+    m_lastTime: -8585528723879743147
     List:
     - name: FootstepSurfaceType
       guid: 5370e81ddde85840a97b77e23f265148
@@ -1191,10 +1347,10 @@ MonoBehaviour:
     ParentPath: Triggers\Default Work Unit
     guid: c350db81a104204da106bd1f7e8437ba
     GuidInternal: 
-    m_lastTime: -8585528871020741357
+    m_lastTime: -8585528742077617628
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 
+  ExpandedWaapiItemIds: 0100000005000000060000000700000008000000090000000b0000000f00000010000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0

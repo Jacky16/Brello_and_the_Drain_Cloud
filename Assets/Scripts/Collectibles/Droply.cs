@@ -27,6 +27,8 @@ public class Droply : MonoBehaviour
             collectables.AddDroply();
             Instantiate(droplyParticles, transform.position, Quaternion.identity);
             Destroy(gameObject);
+
+            AkSoundEngine.PostEvent("Dropply", WwiseManager.instance.gameObject);
         }
     }
 }

@@ -187,6 +187,7 @@ public class PlayerController : MonoBehaviour
     {
         if (characterController.isGrounded && !isJumping && isJumPressed)
         {
+            playerAudio.PlayFootstep();
             Jump();
         }
         else if (characterController.isGrounded && isJumping && !isJumPressed)
@@ -406,7 +407,7 @@ public class PlayerController : MonoBehaviour
             Transform pivotWater = other.transform.GetChild(0).transform;
             tweenSwiming = transform.DOLocalMoveY(pivotWater.position.y, 2).SetEase(Ease.OutElastic);
 
-            //AkSoundEngine.PostEvent("WaterSplash_Brello", WwiseManager.instance.gameObject);
+            AkSoundEngine.PostEvent("WaterSplash_Brello", WwiseManager.instance.gameObject);
         }
     }
 
