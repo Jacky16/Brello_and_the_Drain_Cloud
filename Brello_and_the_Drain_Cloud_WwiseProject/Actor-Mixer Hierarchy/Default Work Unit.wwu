@@ -656,32 +656,34 @@
 								<ActiveSource Name="Open" ID="{E91CFCEE-97E1-47C5-8104-7C71544AC16D}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
-						<Sound Name="EnterWater" ID="{D98879D3-572D-4B25-B262-83ECE48F8AD1}" ShortID="388240831">
+						<Sound Name="WaterSplash" ID="{77ADC4AB-17FE-4B79-86EE-114C1D247DB0}" ShortID="430450038">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-12</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
 								</Reference>
 								<Reference Name="OutputBus">
-									<ObjectRef Name="SFX" ID="{D619241B-7D66-4DBD-81E1-49FF50DB2719}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="EnterWater" ID="{59500088-1110-48CB-A205-ED3D82A6BF18}">
-									<PropertyList>
-										<Property Name="FadeOutDuration" Type="Real64" Value="0.92235984952748"/>
-										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-										<Property Name="TrimEnd" Type="Real64" Value="1.36706906269251"/>
-									</PropertyList>
+								<AudioFileSource Name="WaterSplash" ID="{79839936-E1C1-46D3-A94D-03CBC190E2E2}">
 									<Language>SFX</Language>
-									<AudioFile>EnterWater.wav</AudioFile>
+									<AudioFile>WaterSplash.wav</AudioFile>
 									<MediaIDList>
-										<MediaID ID="760824902"/>
+										<MediaID ID="679489323"/>
 									</MediaIDList>
 								</AudioFileSource>
 							</ChildrenList>
 							<ObjectLists/>
 							<ActiveSourceList>
-								<ActiveSource Name="EnterWater" ID="{59500088-1110-48CB-A205-ED3D82A6BF18}" Platform="Linked"/>
+								<ActiveSource Name="WaterSplash" ID="{79839936-E1C1-46D3-A94D-03CBC190E2E2}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
@@ -1046,28 +1048,6 @@
 						</Sound>
 						<Folder Name="Attack" ID="{DFF02C9B-7EBD-4B43-859C-A93841383131}" ShortID="784811449">
 							<ChildrenList>
-								<Sound Name="Preparing" ID="{72B3F3A0-1FCA-43C4-969D-CB92E04582BB}" ShortID="865917728">
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
-										</Reference>
-									</ReferenceList>
-									<ObjectLists/>
-								</Sound>
-								<Sound Name="Charging" ID="{D73A73E6-8CD2-421E-B9D5-C44A8453E533}" ShortID="176564218">
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
-										</Reference>
-									</ReferenceList>
-									<ObjectLists/>
-								</Sound>
 								<Sound Name="Recharging" ID="{8ADBDE08-2296-4B60-B352-8B8DB8FD624F}" ShortID="946773719">
 									<ReferenceList>
 										<Reference Name="Conversion">
@@ -1078,6 +1058,66 @@
 										</Reference>
 									</ReferenceList>
 									<ObjectLists/>
+								</Sound>
+								<Sound Name="Charge" ID="{DB20CE82-A9E9-4ECC-B257-6DB8E70033E0}" ShortID="50329975">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-6</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Charge" ID="{B3E0ABD3-8123-47B2-B466-0FAF4469B8DA}">
+											<Language>SFX</Language>
+											<AudioFile>Charge.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="551042684"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Charge" ID="{B3E0ABD3-8123-47B2-B466-0FAF4469B8DA}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Prepare" ID="{6FBB339E-1637-4038-BCC3-E65043FCA0A7}" ShortID="845509613">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-6</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Prepare" ID="{C635408D-5A26-4806-A0E0-52FD7600A6ED}">
+											<Language>SFX</Language>
+											<AudioFile>Prepare.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="1058461914"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Prepare" ID="{C635408D-5A26-4806-A0E0-52FD7600A6ED}" Platform="Linked"/>
+									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
 						</Folder>
