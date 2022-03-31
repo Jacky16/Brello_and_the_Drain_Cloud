@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class InputManager : MonoBehaviour
 {
@@ -37,6 +38,13 @@ public class InputManager : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
     private void OnJump(InputAction.CallbackContext ctx)
