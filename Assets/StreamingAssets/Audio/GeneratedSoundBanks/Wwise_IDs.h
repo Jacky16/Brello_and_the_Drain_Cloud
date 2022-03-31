@@ -37,6 +37,7 @@ namespace AK
         static const AkUniqueID MAINMENUSTOP = 2223599963U;
         static const AkUniqueID OPEN_BRELLO = 692676672U;
         static const AkUniqueID PREPARING_CHARGE_STEAMLING = 1765157707U;
+        static const AkUniqueID PUZZLEPILLAR = 1659764341U;
         static const AkUniqueID RAIN_LEVEL1 = 1526266773U;
         static const AkUniqueID RECOVERING_STEAMLING = 2867905824U;
         static const AkUniqueID RESTART_ATTACK_COMBO_BRELLO = 1804471233U;

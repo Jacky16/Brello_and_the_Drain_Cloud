@@ -71,5 +71,6 @@ public class TilesPuzzle : MonoBehaviour
     {
         pillar.DOMove(moveTo.position, timeToArrive).SetEase(Ease.InOutSine);
         //Sonido de puzzle completado
+        AkSoundEngine.PostEvent("PuzzlePillar", WwiseManager.instance.gameObject);
     }
 }
