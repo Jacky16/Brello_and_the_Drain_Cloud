@@ -30,6 +30,8 @@ public class MenuManager : MonoBehaviour
     [SerializeField] const string sensXTag = "SensX";
     [SerializeField] const string sensYTag = "SensY";
 
+    [SerializeField] GameObject stopMusic;
+
     public void SetInvertedXCamera()
     {
         invertedX = !invertedX;
@@ -48,6 +50,7 @@ public class MenuManager : MonoBehaviour
     }
     public void StartGame()
     {
+        AkSoundEngine.PostEvent("MainMenuStop", gameObject);
         SceneManager.LoadScene(1);
     }
     public void QuitGame()

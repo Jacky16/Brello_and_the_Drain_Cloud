@@ -100,7 +100,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: b7fee57a9b67c343a46eab594f457684
     GuidInternal: 
-    m_lastTime: -8585528484460133605
+    m_lastTime: -8585528462451029479
     List:
     - name: General
       guid: 9ac68b89cd0b2543aa435561f078908b
@@ -128,7 +128,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 1a1dad3e5c7a724abc36cb5e26e00782
     GuidInternal: 
-    m_lastTime: -8585528484478382786
+    m_lastTime: -8585528462451229145
     List:
     - name: Attack_Combo_Brello
       guid: 002aa748b1bcd6438e803e80ac434cfc
@@ -367,6 +367,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+    - name: Dropply
+      guid: 6f299e0022d567408f90a6fd00c36c96
+      id: 274987955
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Dropply
+        ObjectType: 3
+        guid: 6f299e0022d567408f90a6fd00c36c96
+      Path: Events\Default Work Unit\Dropply
+      maxAttenuation: 0
+      maxDuration: 0.926054
+      minDuration: 0.926054
     - name: Environment
       guid: bc19f43cbe6aea478d686b59f8728304
       id: 1229948536
@@ -667,6 +684,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+    - name: MainMenu
+      guid: ae36b2ea07ec30418a2b2138dd20e150
+      id: 3604647259
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: MainMenu
+        ObjectType: 3
+        guid: ae36b2ea07ec30418a2b2138dd20e150
+      Path: Events\Default Work Unit\MainMenu
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Open_Brello
       guid: 4c97a0bc55fba4418d9366164c5c9141
       id: 692676672
@@ -1299,7 +1333,7 @@ MonoBehaviour:
     m_lastTime: -8585528742077617628
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 
+  ExpandedWaapiItemIds: 0500000006000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0

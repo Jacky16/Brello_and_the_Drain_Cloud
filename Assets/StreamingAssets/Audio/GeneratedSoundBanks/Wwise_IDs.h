@@ -34,6 +34,7 @@ namespace AK
         static const AkUniqueID JUMP_BRELLO = 2093704360U;
         static const AkUniqueID LAND_BRELLO = 658189305U;
         static const AkUniqueID MAINMENU = 3604647259U;
+        static const AkUniqueID MAINMENUSTOP = 2223599963U;
         static const AkUniqueID OPEN_BRELLO = 692676672U;
         static const AkUniqueID PREPARING_CHARGE_STEAMLING = 1765157707U;
         static const AkUniqueID RAIN_LEVEL1 = 1526266773U;
