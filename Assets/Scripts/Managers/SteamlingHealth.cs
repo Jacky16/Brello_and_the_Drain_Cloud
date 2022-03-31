@@ -27,6 +27,8 @@ public sealed class SteamlingHealth : Health
         }
         rendererSteamling.material.SetColor("_MainColor", Color.red);
         StartCoroutine(ResetColor());
+
+        AkSoundEngine.PostEvent("Hurt_Steamling", WwiseManager.instance.gameObject);
     }
 
     private IEnumerator ResetColor()
