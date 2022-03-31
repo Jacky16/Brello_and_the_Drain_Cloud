@@ -18,10 +18,14 @@ namespace AK
         static const AkUniqueID CHARGING_STEAMLING = 137424561U;
         static const AkUniqueID CLOSE_BRELLO = 3567626122U;
         static const AkUniqueID DEATH_BRELLO = 1700730432U;
+        static const AkUniqueID DEATH_PYRA = 1095581318U;
         static const AkUniqueID DEATH_STEAMLING = 4094738360U;
+        static const AkUniqueID FIRE_PYRA = 1030925518U;
         static const AkUniqueID FOOTSTEP_BRELLO = 2749921882U;
+        static const AkUniqueID FOOTSTEP_PYRA = 1517232512U;
         static const AkUniqueID GRASS_SHAKE_LEVEL1 = 393977686U;
         static const AkUniqueID HUM_BRELLO = 2606205324U;
+        static const AkUniqueID HUM_PYRA = 357557170U;
         static const AkUniqueID HURT_BRELLO = 1416911989U;
         static const AkUniqueID HURT_STEAMLING = 3566808571U;
         static const AkUniqueID IDLE_STEAMLING = 1024608158U;
@@ -30,6 +34,7 @@ namespace AK
         static const AkUniqueID LAND_BRELLO = 658189305U;
         static const AkUniqueID OPEN_BRELLO = 692676672U;
         static const AkUniqueID PREPARING_CHARGE_STEAMLING = 1765157707U;
+        static const AkUniqueID RAIN_LEVEL1 = 1526266773U;
         static const AkUniqueID RECOVERING_STEAMLING = 2867905824U;
         static const AkUniqueID RESTART_ATTACK_COMBO_BRELLO = 1804471233U;
         static const AkUniqueID RIVER_LEVEL1 = 1341948043U;
@@ -62,6 +67,12 @@ namespace AK
 
     } // namespace SWITCHES
 
+    namespace GAME_PARAMETERS
+    {
+        static const AkUniqueID MUSIC_VOLUME = 1006694123U;
+        static const AkUniqueID SFX_VOLUME = 1564184899U;
+    } // namespace GAME_PARAMETERS
+
     namespace BANKS
     {
         static const AkUniqueID INIT = 1355168291U;
@@ -71,6 +82,8 @@ namespace AK
     namespace BUSSES
     {
         static const AkUniqueID MASTER_AUDIO_BUS = 3803692087U;
+        static const AkUniqueID MUSIC = 3991942870U;
+        static const AkUniqueID SFX = 393239870U;
     } // namespace BUSSES
 
     namespace AUDIO_DEVICES

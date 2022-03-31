@@ -25,6 +25,8 @@ public class Vines : Interactable
         gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
         fire.gameObject.SetActive(true);
 
+        AkSoundEngine.PostEvent("Fire_Pyra", WwiseManager.instance.gameObject);
+
         yield return new WaitForSeconds(timeToDestroy);
 
         pyra.isInteracting = false;

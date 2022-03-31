@@ -130,9 +130,29 @@
 				<Folder Name="Pyra" ID="{24AECE68-12B8-4B14-87B1-7574FC85910E}" ShortID="546410347">
 					<ChildrenList>
 						<Event Name="Footstep_Pyra" ID="{0E3499CE-FD72-4A27-8C35-633812A88227}"/>
-						<Event Name="Fire_Pyra" ID="{47AF6503-F0E4-418F-AE4D-6A83290704C7}"/>
+						<Event Name="Fire_Pyra" ID="{47AF6503-F0E4-418F-AE4D-6A83290704C7}">
+							<ChildrenList>
+								<Action Name="" ID="{DB130DCC-93CE-4CB1-961B-0A6E4898392A}" ShortID="336034539">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Ignite" ID="{C8E0E9DE-DA96-4630-982A-37869D1F0346}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 						<Event Name="Hum_Pyra" ID="{17974CAB-0C98-4500-91DA-0941EFE6A3F9}"/>
-						<Event Name="Death_Pyra" ID="{ADA962FD-E5C0-4BB0-BF8E-A669D9A3C8A1}"/>
+						<Event Name="Death_Pyra" ID="{ADA962FD-E5C0-4BB0-BF8E-A669D9A3C8A1}">
+							<ChildrenList>
+								<Action Name="" ID="{9C860489-B10E-4C7E-92CC-FEACFE8CB19D}" ShortID="13169416">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Pyra_Death" ID="{4A9E003F-242A-4184-9AEB-B7B5E8603579}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Steamling" ID="{53633B2B-B236-460E-A66C-B4C082A9F854}" ShortID="914197324">
@@ -183,10 +203,10 @@
 								</Event>
 								<Event Name="River_Level1" ID="{B590FDA4-DA24-450F-8CD1-34E0A17C1B5E}">
 									<ChildrenList>
-										<Action Name="" ID="{7FF10F20-984B-4D3F-B893-82FAC0F0DC56}" ShortID="763964014">
+										<Action Name="" ID="{734D89F4-D378-4987-B296-9278E03D5857}" ShortID="1064630682">
 											<ReferenceList>
 												<Reference Name="Target">
-													<ObjectRef Name="River" ID="{ED49E6F9-45E1-4C4B-A582-40279FDFC0D2}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+													<ObjectRef Name="River" ID="{2BC65BA2-26A4-4704-BC59-362779A4CCC8}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>
@@ -198,6 +218,17 @@
 								<Event Name="VillageAmbience_Level1" ID="{BE17809C-226E-4A91-84F1-5CE39AD931FA}"/>
 								<Event Name="ShopMusic_Level1" ID="{893900E8-C22D-419B-A1AF-BC259F09F50F}"/>
 								<Event Name="Grass_Shake_Level1" ID="{BA54214E-1678-48A3-B88E-012DA5D0426E}"/>
+								<Event Name="Rain_Level1" ID="{9C052129-54FA-4FA8-8A5E-AA24039C837F}">
+									<ChildrenList>
+										<Action Name="" ID="{A4A8FDA7-8B0C-4E44-BE89-B0935EC3940D}" ShortID="112117287">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Rain" ID="{8FB6CDEB-39DD-4745-8B3F-A1C520F0B006}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
 						</Folder>
 					</ChildrenList>
