@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="133642231" Language="SFX" Hash="2473319715">
+		<SoundBank Id="133642231" Language="SFX" Hash="836822941">
 			<ObjectPath>\SoundBanks\Default Work Unit\General</ObjectPath>
 			<ShortName>General</ShortName>
 			<Path>General.bnk</Path>
@@ -50,11 +50,19 @@
 					<IncludedMemoryFiles>
 						<File Id="62054443" Language="SFX">
 							<ShortName>Pyra_Death.wav</ShortName>
-							<Path>SFX\Pyra_Death_F6F8F076.wem</Path>
+							<Path>SFX\Pyra_Death_200A176C.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
 				<Event Id="4094738360" Name="Death_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Death_Steamling" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
+				<Event Id="274987955" Name="Dropply" ObjectPath="\Events\Default Work Unit\Dropply" DurationType="OneShot" DurationMin="0.926054" DurationMax="0.926054">
+					<IncludedMemoryFiles>
+						<File Id="785924796" Language="SFX">
+							<ShortName>Dropply.wav</ShortName>
+							<Path>SFX\Dropply_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="1030925518" Name="Fire_Pyra" ObjectPath="\Events\Default Work Unit\Pyra\Fire_Pyra" DurationType="OneShot" DurationMin="3.152281" DurationMax="3.152281">
 					<IncludedMemoryFiles>
 						<File Id="745549549" Language="SFX">
@@ -135,6 +143,14 @@
 				<Event Id="983408950" Name="Impact_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Impact_Steamling" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="2093704360" Name="Jump_Brello" ObjectPath="\Events\Default Work Unit\Brello\Jump_Brello" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="658189305" Name="Land_Brello" ObjectPath="\Events\Default Work Unit\Brello\Land_Brello" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
+				<Event Id="3604647259" Name="MainMenu" ObjectPath="\Events\Default Work Unit\MainMenu" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="232279621" Language="SFX">
+							<ShortName>MainMenu.wav</ShortName>
+							<Path>SFX\MainMenu_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="692676672" Name="Open_Brello" ObjectPath="\Events\Default Work Unit\Brello\Open_Brello" DurationType="OneShot" DurationMin="0.306009" DurationMax="0.306009">
 					<IncludedMemoryFiles>
 						<File Id="961183922" Language="SFX">
@@ -186,6 +202,10 @@
 				</Event>
 				<Event Id="1810065121" Name="Wind_Level1" ObjectPath="\Events\Default Work Unit\Environment\Grasslands\Wind_Level1" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 			</IncludedEvents>
+			<GameParameters>
+				<GameParameter Id="1006694123" Name="Music_Volume" ObjectPath="\Game Parameters\Default Work Unit\Volume\Music_Volume"/>
+				<GameParameter Id="1564184899" Name="SFX_Volume" ObjectPath="\Game Parameters\Default Work Unit\Volume\SFX_Volume"/>
+			</GameParameters>
 			<SwitchGroups>
 				<SwitchGroup Id="3876928364" Name="FootstepSurfaceType" ObjectPath="\Switches\Default Work Unit\FootstepSurfaceType">
 					<Switches>

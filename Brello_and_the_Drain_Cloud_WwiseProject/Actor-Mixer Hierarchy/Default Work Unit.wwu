@@ -1160,6 +1160,67 @@
 				<Folder Name="Boiler" ID="{46C00BB9-5B4A-446F-964F-7AC16B692D38}" ShortID="708146527"/>
 				<Folder Name="UI" ID="{16954179-633D-4083-83DD-137D49FEC878}" ShortID="744035602"/>
 				<Folder Name="PSTom" ID="{0A309636-F182-45C3-A25B-7314D567934A}" ShortID="241110547"/>
+				<Sound Name="Dropply" ID="{FF429018-7337-4599-AD78-D945575E2D04}" ShortID="838454584">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-18</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="SFX" ID="{D619241B-7D66-4DBD-81E1-49FF50DB2719}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Dropply" ID="{47857188-269B-42A1-B29F-3C8A3EDC5A1B}">
+							<Language>SFX</Language>
+							<AudioFile>Dropply.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="785924796"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ObjectLists/>
+					<ActiveSourceList>
+						<ActiveSource Name="Dropply" ID="{47857188-269B-42A1-B29F-3C8A3EDC5A1B}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="MainMenu" ID="{3D130A04-9A51-4248-B40F-6A5AE8A4E1C6}" ShortID="986330827">
+					<PropertyList>
+						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-12</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Music" ID="{FF677782-1B11-48DB-92B1-E627213C1F6C}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="MainMenu" ID="{1B2B153D-15EF-4191-94A4-122F22017E8A}">
+							<Language>SFX</Language>
+							<AudioFile>MainMenu.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="232279621"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ObjectLists/>
+					<ActiveSourceList>
+						<ActiveSource Name="MainMenu" ID="{1B2B153D-15EF-4191-94A4-122F22017E8A}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

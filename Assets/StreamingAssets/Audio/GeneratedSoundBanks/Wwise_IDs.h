@@ -20,6 +20,7 @@ namespace AK
         static const AkUniqueID DEATH_BRELLO = 1700730432U;
         static const AkUniqueID DEATH_PYRA = 1095581318U;
         static const AkUniqueID DEATH_STEAMLING = 4094738360U;
+        static const AkUniqueID DROPPLY = 274987955U;
         static const AkUniqueID FIRE_PYRA = 1030925518U;
         static const AkUniqueID FOOTSTEP_BRELLO = 2749921882U;
         static const AkUniqueID FOOTSTEP_PYRA = 1517232512U;
@@ -32,6 +33,7 @@ namespace AK
         static const AkUniqueID IMPACT_STEAMLING = 983408950U;
         static const AkUniqueID JUMP_BRELLO = 2093704360U;
         static const AkUniqueID LAND_BRELLO = 658189305U;
+        static const AkUniqueID MAINMENU = 3604647259U;
         static const AkUniqueID OPEN_BRELLO = 692676672U;
         static const AkUniqueID PREPARING_CHARGE_STEAMLING = 1765157707U;
         static const AkUniqueID RAIN_LEVEL1 = 1526266773U;

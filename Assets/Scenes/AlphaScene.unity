@@ -503,6 +503,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a434fdb74ba1d7458242fbbf8151577, type: 3}
+--- !u!1 &172162846 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1532318127295455509, guid: 5a434fdb74ba1d7458242fbbf8151577, type: 3}
+  m_PrefabInstance: {fileID: 172162845}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &172162847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172162846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9af0f2cef74464845b8c07cb615cd332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!64 &187757326
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1386,7 +1406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae6a877a925c4944b44fb3e36218182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windVectors: {fileID: 2800000, guid: 6c795dd1d1d319e479e68164001557e8, type: 3}
+  windVectors: {fileID: 0}
   visualizeVectors: 0
   listenToWindZone: 0
   windZone: {fileID: 0}
