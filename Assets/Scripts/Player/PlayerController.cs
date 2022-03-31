@@ -431,10 +431,11 @@ public class PlayerController : MonoBehaviour
         if (isSwimming && isJumPressed && !isJumping)
         {
             tweenSwiming.Kill();
-
-             Jump();
-            //TODO: Setear lo de Pyra
-            //if (!WaterPlatformManager.singletone.IsPyraInPlatform() && !characterController.isGrounded)
+        
+            if (!WaterPlatformManager.singletone.IsPyraInPlatform() && !characterController.isGrounded)
+            {
+                Jump();
+            }
         }
         else if (isSwimming)
         {
