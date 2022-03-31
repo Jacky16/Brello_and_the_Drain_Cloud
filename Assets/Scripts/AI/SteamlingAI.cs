@@ -19,11 +19,13 @@ public class SteamlingAI : EnemyAI
     [SerializeField] private int impulseForce;
     private float initSpeed;
     float initYPos;
+    Animator animator;
 
     Vector3 attackPos;
     protected override void Start()
     {
         base.Start();
+        animator = transform.GetChild(0).GetComponent<Animator>();
         initSpeed = agent.speed;
         currentDamage = normalDamage;
         initYPos = transform.position.y;
@@ -39,6 +41,7 @@ public class SteamlingAI : EnemyAI
         {
             currentDamage = normalDamage;
             agent.speed = initSpeed;
+            animator.SetBool("Charge", false);
         }
     }
 
@@ -50,9 +53,13 @@ public class SteamlingAI : EnemyAI
     private IEnumerator Assault()
     {
         agent.speed = 0f;
-        agent.destination = transform.position;  
+        agent.destination = transform.position;
+
+        animator.SetTrigger("Attack");
 
         yield return new WaitForSeconds(timeBeforeAttacking);
+
+        animator.SetBool("Charge", true);
 
         currentDamage = dashDamage;
 
