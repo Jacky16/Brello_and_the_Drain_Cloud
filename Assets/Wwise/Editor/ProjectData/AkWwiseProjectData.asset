@@ -66,7 +66,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: b7fee57a9b67c343a46eab594f457684
     GuidInternal: 
-    m_lastTime: -8585533700796270351
+    m_lastTime: -8585533083816248179
     List:
     - name: General
       guid: 9ac68b89cd0b2543aa435561f078908b
@@ -114,8 +114,8 @@ MonoBehaviour:
         guid: 002aa748b1bcd6438e803e80ac434cfc
       Path: Events\Default Work Unit\Brello\Attack_Combo_Brello
       maxAttenuation: 0
-      maxDuration: 0.325832
-      minDuration: 0.210777
+      maxDuration: -1
+      minDuration: -1
     - name: Awake_Boiler
       guid: 4843fbbcffd37c4a9720f274f72658c5
       id: 183731594
@@ -368,8 +368,8 @@ MonoBehaviour:
         guid: 525ee8d23a89a348b73df0708b7984fb
       Path: Events\Default Work Unit\Brello\Footstep_Brello
       maxAttenuation: 0
-      maxDuration: 0.541334
-      minDuration: 0
+      maxDuration: 1
+      minDuration: 0.326086
     - name: Footstep_Pyra
       guid: ce99340e72fd274a8c35633812a88227
       id: 1517232512
@@ -651,8 +651,8 @@ MonoBehaviour:
         guid: 4c97a0bc55fba4418d9366164c5c9141
       Path: Events\Default Work Unit\Brello\Open_Brello
       maxAttenuation: 0
-      maxDuration: 0.806848
-      minDuration: 0.806848
+      maxDuration: -1
+      minDuration: -1
     - name: Preparing_Charge_Steamling
       guid: a3e3ac6b981a3342b22552d32a9aa563
       id: 1765157707

@@ -50,9 +50,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float fallMultiplier = 2;
 
     private float gravity = -9.8f;
-
+    
     [Header("Glade Settings")]
-    [SerializeField] private float gladeForce = 4; 
+    [SerializeField] private float divideGravityGlade = 4; 
 
     [SerializeField] private float velocityToGlade = 0;
 
@@ -123,6 +123,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 CanMoveManager()
     {
         Vector3 currDir = Vector3.zero;
+        bool canGlade = currentGravity.y < velocityToGlade;
+
         if (canMove)
         {
             currDir = camDir * currentSpeed;
@@ -133,6 +135,10 @@ public class PlayerController : MonoBehaviour
             currDir.z = 0;
         }
         currDir.y = currentGravity.y;
+        if (isUmbrellaOpen && canGlade)
+        {
+            //currDir.y = currentGravity.y / divideGravityGlade;
+        }
         return currDir;
     }
 
@@ -141,17 +147,22 @@ public class PlayerController : MonoBehaviour
         //Acceleration
         if (isMovementPressed)
         {
-            //Planeando
-            if (isUmbrellaOpen && !characterController.isGrounded)
-                currentSpeed = Mathf.Lerp(currentSpeed, gladingSpeed, acceleration * Time.deltaTime);
-
             //Paraguas abierto
-            else if (isUmbrellaOpen)
+            if (isUmbrellaOpen && currentGravity.y > 0)
+            {
                 currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, acceleration * Time.deltaTime);
-
+            }
+            //Planeando
+            else if (isUmbrellaOpen && currentGravity.y < velocityToGlade)
+            {
+                currentSpeed = Mathf.Lerp(currentSpeed, gladingSpeed, acceleration * Time.deltaTime);
+            }
             //Correr
-            else
+            else if(!isUmbrellaOpen)
+            {
                 currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, acceleration * Time.deltaTime);
+            }
+
         }
         else
             currentSpeed = Mathf.Lerp(currentSpeed, 0, acceleration * Time.deltaTime);
@@ -219,7 +230,7 @@ public class PlayerController : MonoBehaviour
         else if (canGlade && isUmbrellaOpen && !characterController.isGrounded)
         {
             float previousYVelocity = currentGravity.y;
-            float newYVelocity = currentGravity.y + (gravity / gladeForce * Time.deltaTime);
+            float newYVelocity = currentGravity.y + (divideGravityGlade * Time.deltaTime);
             float nextYVelocity = (previousYVelocity + newYVelocity) * .5f;
             currentGravity.y = nextYVelocity;
 
@@ -269,6 +280,7 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
+        if (!canMove) return;
         animator.SetBool(isJumpingHash, true);
 
         isSwimming = false;
@@ -305,7 +317,7 @@ public class PlayerController : MonoBehaviour
 
     public void HandleAttack()
     {
-        if (Time.time >= nextAttack)
+        if (Time.time >= nextAttack && !isSwimming)
         {
             nextAttack = Time.time + timeBtwAttacks;
             DoAttackAnimation();
@@ -385,7 +397,7 @@ public class PlayerController : MonoBehaviour
         {
             tweenSwiming.Kill();
 
-            if (!WaterPlatformManager.singletone.IsPyraInPlatform())
+            if (!WaterPlatformManager.singletone.IsPyraInPlatform() && !characterController.isGrounded)
                 Jump();
         }
         else if (isSwimming)
