@@ -24,6 +24,7 @@ public class SteamlingAI : EnemyAI
     protected override void Start()
     {
         base.Start();
+        agent.autoTraverseOffMeshLink = false;
         animator = transform.GetChild(0).GetComponent<Animator>();
         initSpeed = agent.speed;
         currentDamage = normalDamage;

@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Vines : Interactable
 {
     [SerializeField] float timeToDestroy;
+    [SerializeField] GameObject smokeParticles;
     ParticleSystem fire;
+    Color initColor;
+
 
     protected override void Start()
     {
         base.Start();
-        gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-        fire = GetComponentInChildren<ParticleSystem>();
+        fire = transform.GetChild(0).GetComponent<ParticleSystem>();
         fire.gameObject.SetActive(false);
     }
 
@@ -22,12 +25,18 @@ public class Vines : Interactable
 
     private IEnumerator Burn()
     {
-        gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
         fire.gameObject.SetActive(true);
+
+        initColor = transform.GetChild(1).GetComponent<MeshRenderer>().material.color;
+        transform.GetChild(1).GetComponent<MeshRenderer>().material.DOColor(Color.black, timeToDestroy);
 
         yield return new WaitForSeconds(timeToDestroy);
 
+        Instantiate(smokeParticles, transform.position, Quaternion.identity);
+
         pyra.isInteracting = false;
+
+        transform.GetChild(1).GetComponent<MeshRenderer>().material.color = initColor;
         Destroy(gameObject);
     }
 

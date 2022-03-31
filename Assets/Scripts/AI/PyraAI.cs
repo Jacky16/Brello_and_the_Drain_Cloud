@@ -359,26 +359,6 @@ public sealed class PyraAI : MonoBehaviour
         return p1.priority.CompareTo(p2.priority);
     }
 
-    ////private void OnTriggerEnter(Collider other)
-    //{
-    //    OnInteractuableCollision(other);
-    //}
-
-    ////private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.TryGetComponent(out Interactable inter))
-    //    {
-    //        detectedObjects.Remove(inter);
-
-    //        if (detectedObjects.Count != 0)
-    //        {
-    //            detectedObjects.Sort(SortByPriority);
-
-    //            //Como la lista esta ordenad, asignamos el indice 0 al 'CurrentInteractuable'
-    //            currentInteractuable = detectedObjects[0];
-    //        }
-    //    }
-    //}
 
     private void OnDrawGizmosSelected()
     {
