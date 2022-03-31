@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+
+    // El orden en el que deben ser pisados
     [SerializeField] int order;
 
+    // Tiempo que duran en rojo al fallar
     [SerializeField] float errorTime;
 
+    // Manager del puzzle
     private TilesPuzzle puzzleManager;
 
+    // Booleano para ignorar colisiones y que se pueda resetear más facilmente
+    // y además que el jugador pueda volver por casillas ya verdes
     [HideInInspector]
     public bool isActive = true;
 
@@ -23,6 +29,9 @@ public class Tile : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && isActive)
         {
+
+            // CompareOrder es una función del manager y devuelve true si se sigue el orden correcto
+            // Analize result es una función para ordenar el codigo
             AnalizeResult(puzzleManager.CompareOrder(order));
         }
     }
@@ -32,6 +41,7 @@ public class Tile : MonoBehaviour
     {
         if (result)
         {
+            // Se pone la casilla verde y ya no se puede volver a pisar para facilitar las cosas
             gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
             isActive = false;
         }
