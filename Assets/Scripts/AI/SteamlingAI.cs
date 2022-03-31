@@ -16,7 +16,6 @@ public class SteamlingAI : EnemyAI
     private int currentDamage;
     [SerializeField] private int normalDamage;
     [SerializeField] private int dashDamage;
-    [SerializeField] private int impulseForce;
     private float initSpeed;
     float initYPos;
     Animator animator;
@@ -29,7 +28,7 @@ public class SteamlingAI : EnemyAI
         initSpeed = agent.speed;
         currentDamage = normalDamage;
         initYPos = transform.position.y;
-        attackPos = new Vector3(0, 0, 0);
+        attackPos = Vector3.zero;
     }
 
     protected override void Update()

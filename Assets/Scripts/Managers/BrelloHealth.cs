@@ -10,6 +10,7 @@ public sealed class BrelloHealth : Health
     [SerializeField] Sprite[] healthImages;
     [SerializeField] Image currentImage;
     [SerializeField] float timeInHUD;
+    [SerializeField] GameObject damageParticles;
     Animator imageAnimator;
     float lastLifeChange;
     bool lifeChanged;
@@ -45,6 +46,7 @@ public sealed class BrelloHealth : Health
         Camera.main.GetComponent<CinemachineImpulseSource>().GenerateImpulse();
         lifeChanged = true;
         //imageAnimator.SetTrigger("Appear");
+        Instantiate(damageParticles, transform.position, Quaternion.identity);
         lastLifeChange = 0f;
         currentImage.sprite = healthImages[currLife];
     }
