@@ -26,6 +26,7 @@ public class Vines : Interactable
     private IEnumerator Burn()
     {
         fire.gameObject.SetActive(true);
+        AkSoundEngine.PostEvent("Fire_Pyra", WwiseManager.instance.gameObject);
 
         initColor = transform.GetChild(1).GetComponent<MeshRenderer>().material.color;
         transform.GetChild(1).GetComponent<MeshRenderer>().material.DOColor(Color.black, timeToDestroy);
