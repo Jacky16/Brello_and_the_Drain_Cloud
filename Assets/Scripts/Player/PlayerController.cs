@@ -82,8 +82,11 @@ public class PlayerController : MonoBehaviour
     float nextResetAttack = 0;
 
     //Swiming variables
-
+    [Header("Tween Settings")]
+    [SerializeField] float offsetTweenY;
+    [SerializeField] float time = 1;
     private Tween tweenSwiming;
+ 
 
     //Air movement variables
 
@@ -398,7 +401,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isSwiming", true);
 
             Transform pivotWater = other.transform.GetChild(0).transform;
-            tweenSwiming = transform.DOMoveY(pivotWater.position.y, 2).SetEase(Ease.OutElastic);
+            tweenSwiming = transform.DOLocalMoveY(pivotWater.position.y, 2).SetEase(Ease.OutElastic);
 
             AkSoundEngine.PostEvent("WaterSplash_Brello", WwiseManager.instance.gameObject);
         }
@@ -425,8 +428,9 @@ public class PlayerController : MonoBehaviour
         {
             tweenSwiming.Kill();
 
-            if (!WaterPlatformManager.singletone.IsPyraInPlatform() && !characterController.isGrounded)
-                Jump();
+             Jump();
+            //TODO: Setear lo de Pyra
+            //if (!WaterPlatformManager.singletone.IsPyraInPlatform() && !characterController.isGrounded)
         }
         else if (isSwimming)
         {
