@@ -24,7 +24,7 @@ MonoBehaviour:
     ParentPath: Virtual Acoustics\Default Work Unit
     guid: 166bb2b7fc13db45b69f5a19518cf21f
     GuidInternal: 
-    m_lastTime: -8585528742077587637
+    m_lastTime: -8585533700796270351
     List: []
   AuxBusWwu:
   - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
@@ -100,7 +100,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: b7fee57a9b67c343a46eab594f457684
     GuidInternal: 
-    m_lastTime: -8585528453522891709
+    m_lastTime: -8585528450034909549
     List:
     - name: General
       guid: 9ac68b89cd0b2543aa435561f078908b
@@ -128,7 +128,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 1a1dad3e5c7a724abc36cb5e26e00782
     GuidInternal: 
-    m_lastTime: -8585528453523071532
+    m_lastTime: -8585528415532271646
     List:
     - name: Attack_Combo_Brello
       guid: 002aa748b1bcd6438e803e80ac434cfc
@@ -265,8 +265,8 @@ MonoBehaviour:
         guid: e315ea326779524db1e8a061ac9f3184
       Path: Events\Default Work Unit\Steamling\Charging_Steamling
       maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
+      maxDuration: 1.079728
+      minDuration: 1.079728
     - name: Close_Brello
       guid: faff318fef18404ea8ad91ce610eb926
       id: 3567626122
@@ -756,8 +756,8 @@ MonoBehaviour:
         guid: a3e3ac6b981a3342b22552d32a9aa563
       Path: Events\Default Work Unit\Steamling\Preparing_Charge_Steamling
       maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
+      maxDuration: 1.4
+      minDuration: 1.4
     - name: PSTom
       guid: 4b4905bcdf2d1f4d9c71acc6e552739f
       id: 3759751106
@@ -1122,8 +1122,8 @@ MonoBehaviour:
         guid: 1542d97628950b40aab78e527fa5fb0a
       Path: Events\Default Work Unit\Brello\WaterSplash_Brello
       maxAttenuation: 0
-      maxDuration: 2.953163
-      minDuration: 2.953163
+      maxDuration: 1.657667
+      minDuration: 1.657667
     - name: Wind_Level1
       guid: 6531f9a70933e54d8bc5dd80dad04192
       id: 1810065121
@@ -1221,7 +1221,7 @@ MonoBehaviour:
     ParentPath: States\Default Work Unit
     guid: 13117027c1e0a84b83ede94da2174f6f
     GuidInternal: 
-    m_lastTime: -8585528742077647597
+    m_lastTime: -8585533700796270351
     List: []
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
@@ -1347,10 +1347,10 @@ MonoBehaviour:
     ParentPath: Triggers\Default Work Unit
     guid: c350db81a104204da106bd1f7e8437ba
     GuidInternal: 
-    m_lastTime: -8585528742077617628
+    m_lastTime: -8585533700796270351
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 0100000005000000060000000700000008000000090000000b0000000f00000010000000
+  ExpandedWaapiItemIds: 
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0
