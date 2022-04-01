@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - NPC
+  - DialogueManager
+  - Water
+  - Pyra
+  - FxTemporaire
+  - Air
+  - InteractablePyra
+  - PlayerEyes
+  - Environment
   layers:
   - Default
   - TransparentFX
@@ -11,13 +20,13 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Characters/Player
+  - Dialogue
+  - Characters/Enemy
+  - PlayerPlatform
+  - Characters/Pyra
+  - Interactable
+  - Rain
   - 
   - 
   - 

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c0f6d31ee7a2704492cef1f82aa821b, type: 3}
+  m_Name: Testing
+  m_EditorClassIdentifier: 
+  conversationBlock:
+  - "<speed=15>\xA1Hola!<pause=0.1>\xA1Me llamo Pyra!"
+  - "Sabes que pasa<speed=5>... <pause=0.2><size=150%><speed=50><color=\"red\"><b>\xA1UN
+    BURRO POR TU CASA!</b>"
+  - '<speed=15><size=100%><color="black">No me mires asi<speed=5>...
+
+    <size=50%><speed=15>Ahora
+    me siento mal :('
+  - <speed=15><size=100%><color="black">PERO TAMPOCO HACE FALTA QUE ME GRITES!
