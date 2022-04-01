@@ -12,16 +12,1402 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c3a6e15b87dafc4fbb6f39cf7d46204, type: 3}
   m_Name: AkWwiseProjectData
   m_EditorClassIdentifier: 
-  AcousticTextureWwu: []
-  AuxBusWwu: []
-  BankWwu: []
-  EventWwu: []
-  RtpcWwu: []
-  StateWwu: []
-  SwitchWwu: []
-  TriggerWwu: []
+  AcousticTextureWwu:
+  - PhysicalPath: Virtual Acoustics\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Virtual Acoustics
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: Default Work Unit
+      ObjectType: 12
+      guid: 166bb2b7fc13db45b69f5a19518cf21f
+    ParentPath: Virtual Acoustics\Default Work Unit
+    guid: 166bb2b7fc13db45b69f5a19518cf21f
+    GuidInternal: 
+    m_lastTime: -8585528742077587637
+    List: []
+  AuxBusWwu:
+  - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Master-Mixer Hierarchy
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: Default Work Unit
+      ObjectType: 12
+      guid: b11d140495a5214693f79f09da626fbf
+    ParentPath: Master-Mixer Hierarchy\Default Work Unit
+    guid: b11d140495a5214693f79f09da626fbf
+    GuidInternal: 
+    m_lastTime: -8585528484471580511
+    List:
+    - name: Master Audio Bus
+      guid: d8a41415a61d2a41a17e75ca0c2149f3
+      id: 3803692087
+      PathAndIcons:
+      - ElementName: Master-Mixer Hierarchy
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: b11d140495a5214693f79f09da626fbf
+      - ElementName: Master Audio Bus
+        ObjectType: 2
+        guid: d8a41415a61d2a41a17e75ca0c2149f3
+      Path: Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus
+    - name: Music
+      guid: 827767ff111bdb4892b1e627213c1f6c
+      id: 3991942870
+      PathAndIcons:
+      - ElementName: Master-Mixer Hierarchy
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: b11d140495a5214693f79f09da626fbf
+      - ElementName: Master Audio Bus
+        ObjectType: 2
+        guid: d8a41415a61d2a41a17e75ca0c2149f3
+      - ElementName: Music
+        ObjectType: 2
+        guid: 827767ff111bdb4892b1e627213c1f6c
+      Path: Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\Music
+    - name: SFX
+      guid: 1b2419d6667dbd4d81e149ff50db2719
+      id: 393239870
+      PathAndIcons:
+      - ElementName: Master-Mixer Hierarchy
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: b11d140495a5214693f79f09da626fbf
+      - ElementName: Master Audio Bus
+        ObjectType: 2
+        guid: d8a41415a61d2a41a17e75ca0c2149f3
+      - ElementName: SFX
+        ObjectType: 2
+        guid: 1b2419d6667dbd4d81e149ff50db2719
+      Path: Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\SFX
+  BankWwu:
+  - PhysicalPath: SoundBanks\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: SoundBanks
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: Default Work Unit
+      ObjectType: 12
+      guid: b7fee57a9b67c343a46eab594f457684
+    ParentPath: SoundBanks\Default Work Unit
+    guid: b7fee57a9b67c343a46eab594f457684
+    GuidInternal: 
+    m_lastTime: -8585528297273574740
+    List:
+    - name: General
+      guid: 9ac68b89cd0b2543aa435561f078908b
+      id: 133642231
+      PathAndIcons:
+      - ElementName: SoundBanks
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: b7fee57a9b67c343a46eab594f457684
+      - ElementName: General
+        ObjectType: 7
+        guid: 9ac68b89cd0b2543aa435561f078908b
+      Path: SoundBanks\Default Work Unit\General
+  EventWwu:
+  - PhysicalPath: Events\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Events
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: Default Work Unit
+      ObjectType: 12
+      guid: 1a1dad3e5c7a724abc36cb5e26e00782
+    ParentPath: Events\Default Work Unit
+    guid: 1a1dad3e5c7a724abc36cb5e26e00782
+    GuidInternal: 
+    m_lastTime: -8585528297273764554
+    List:
+    - name: Attack_Combo_Brello
+      guid: 002aa748b1bcd6438e803e80ac434cfc
+      id: 211679341
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Brello
+        ObjectType: 4
+        guid: 57c2bd93ba34ae4790c1aeb835adc319
+      - ElementName: Attack_Combo_Brello
+        ObjectType: 3
+        guid: 002aa748b1bcd6438e803e80ac434cfc
+      Path: Events\Default Work Unit\Brello\Attack_Combo_Brello
+      maxAttenuation: 0
+      maxDuration: 0.077716
+      minDuration: 0.041168
+    - name: Awake_Boiler
+      guid: 4843fbbcffd37c4a9720f274f72658c5
+      id: 183731594
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Boiler
+        ObjectType: 4
+        guid: c36ca0379bc8184fa50ff65f3e1b8117
+      - ElementName: Awake_Boiler
+        ObjectType: 3
+        guid: 4843fbbcffd37c4a9720f274f72658c5
+      Path: Events\Default Work Unit\Boiler\Awake_Boiler
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: BackgroundMusic_Level1
+      guid: d1036f8e53ea1b47ab82209494d2a706
+      id: 205544994
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Environment
+        ObjectType: 4
+        guid: bc19f43cbe6aea478d686b59f8728304
+      - ElementName: Grasslands
+        ObjectType: 4
+        guid: 9d78abd37e2c6c44b3f1e01b14015c75
+      - ElementName: BackgroundMusic_Level1
+        ObjectType: 3
+        guid: d1036f8e53ea1b47ab82209494d2a706
+      Path: Events\Default Work Unit\Environment\Grasslands\BackgroundMusic_Level1
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Boiler
+      guid: c36ca0379bc8184fa50ff65f3e1b8117
+      id: 260303802
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Boiler
+        ObjectType: 4
+        guid: c36ca0379bc8184fa50ff65f3e1b8117
+      Path: Events\Default Work Unit\Boiler
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Brello
+      guid: 57c2bd93ba34ae4790c1aeb835adc319
+      id: 1492444001
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Brello
+        ObjectType: 4
+        guid: 57c2bd93ba34ae4790c1aeb835adc319
+      Path: Events\Default Work Unit\Brello
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Charge_Boiler
+      guid: b1acdc3993aed74086988eeb53b60407
+      id: 3683476531
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Boiler
+        ObjectType: 4
+        guid: c36ca0379bc8184fa50ff65f3e1b8117
+      - ElementName: Charge_Boiler
+        ObjectType: 3
+        guid: b1acdc3993aed74086988eeb53b60407
+      Path: Events\Default Work Unit\Boiler\Charge_Boiler
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Charging_Steamling
+      guid: e315ea326779524db1e8a061ac9f3184
+      id: 137424561
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Steamling
+        ObjectType: 4
+        guid: 2b3b635336b20e46a66cb4c082a9f854
+      - ElementName: Charging_Steamling
+        ObjectType: 3
+        guid: e315ea326779524db1e8a061ac9f3184
+      Path: Events\Default Work Unit\Steamling\Charging_Steamling
+      maxAttenuation: 0
+      maxDuration: 1.079728
+      minDuration: 1.079728
+    - name: Close_Brello
+      guid: faff318fef18404ea8ad91ce610eb926
+      id: 3567626122
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Brello
+        ObjectType: 4
+        guid: 57c2bd93ba34ae4790c1aeb835adc319
+      - ElementName: Close_Brello
+        ObjectType: 3
+        guid: faff318fef18404ea8ad91ce610eb926
+      Path: Events\Default Work Unit\Brello\Close_Brello
+      maxAttenuation: 0
+      maxDuration: 0.306009
+      minDuration: 0.306009
+    - name: Cool_Boiler
+      guid: 04e0326037dd734a95d6afb6f07c2be8
+      id: 1721372914
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Boiler
+        ObjectType: 4
+        guid: c36ca0379bc8184fa50ff65f3e1b8117
+      - ElementName: Cool_Boiler
+        ObjectType: 3
+        guid: 04e0326037dd734a95d6afb6f07c2be8
+      Path: Events\Default Work Unit\Boiler\Cool_Boiler
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Death_Brello
+      guid: 162bb216ec8f674984f4d2876228d87e
+      id: 1700730432
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Brello
+        ObjectType: 4
+        guid: 57c2bd93ba34ae4790c1aeb835adc319
+      - ElementName: Death_Brello
+        ObjectType: 3
+        guid: 162bb216ec8f674984f4d2876228d87e
+      Path: Events\Default Work Unit\Brello\Death_Brello
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: Death_Pyra
+      guid: fd62a9adc0e5b04bbf8ea669d9a3c8a1
+      id: 1095581318
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Pyra
+        ObjectType: 4
+        guid: 68ceae24b812144b87b17574fc85910e
+      - ElementName: Death_Pyra
+        ObjectType: 3
+        guid: fd62a9adc0e5b04bbf8ea669d9a3c8a1
+      Path: Events\Default Work Unit\Pyra\Death_Pyra
+      maxAttenuation: 0
+      maxDuration: 0.809819
+      minDuration: 0.809819
+    - name: Death_Steamling
+      guid: 67edcafcb0beb44f96247cf2143a91c2
+      id: 4094738360
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Steamling
+        ObjectType: 4
+        guid: 2b3b635336b20e46a66cb4c082a9f854
+      - ElementName: Death_Steamling
+        ObjectType: 3
+        guid: 67edcafcb0beb44f96247cf2143a91c2
+      Path: Events\Default Work Unit\Steamling\Death_Steamling
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: Dropply
+      guid: 6f299e0022d567408f90a6fd00c36c96
+      id: 274987955
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Dropply
+        ObjectType: 3
+        guid: 6f299e0022d567408f90a6fd00c36c96
+      Path: Events\Default Work Unit\Dropply
+      maxAttenuation: 0
+      maxDuration: 0.926054
+      minDuration: 0.926054
+    - name: Environment
+      guid: bc19f43cbe6aea478d686b59f8728304
+      id: 1229948536
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Environment
+        ObjectType: 4
+        guid: bc19f43cbe6aea478d686b59f8728304
+      Path: Events\Default Work Unit\Environment
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Fire_Pyra
+      guid: 0365af47e4f08f41ae4d6a83290704c7
+      id: 1030925518
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Pyra
+        ObjectType: 4
+        guid: 68ceae24b812144b87b17574fc85910e
+      - ElementName: Fire_Pyra
+        ObjectType: 3
+        guid: 0365af47e4f08f41ae4d6a83290704c7
+      Path: Events\Default Work Unit\Pyra\Fire_Pyra
+      maxAttenuation: 0
+      maxDuration: 3.152281
+      minDuration: 3.152281
+    - name: Footstep_Brello
+      guid: 525ee8d23a89a348b73df0708b7984fb
+      id: 2749921882
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Brello
+        ObjectType: 4
+        guid: 57c2bd93ba34ae4790c1aeb835adc319
+      - ElementName: Footstep_Brello
+        ObjectType: 3
+        guid: 525ee8d23a89a348b73df0708b7984fb
+      Path: Events\Default Work Unit\Brello\Footstep_Brello
+      maxAttenuation: 0
+      maxDuration: 1.122462
+      minDuration: 0.12338
+    - name: Footstep_Pyra
+      guid: ce99340e72fd274a8c35633812a88227
+      id: 1517232512
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Pyra
+        ObjectType: 4
+        guid: 68ceae24b812144b87b17574fc85910e
+      - ElementName: Footstep_Pyra
+        ObjectType: 3
+        guid: ce99340e72fd274a8c35633812a88227
+      Path: Events\Default Work Unit\Pyra\Footstep_Pyra
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: Grass_Shake_Level1
+      guid: 4e2154ba7816a348b88e012da5d0426e
+      id: 393977686
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Environment
+        ObjectType: 4
+        guid: bc19f43cbe6aea478d686b59f8728304
+      - ElementName: Grasslands
+        ObjectType: 4
+        guid: 9d78abd37e2c6c44b3f1e01b14015c75
+      - ElementName: Grass_Shake_Level1
+        ObjectType: 3
+        guid: 4e2154ba7816a348b88e012da5d0426e
+      Path: Events\Default Work Unit\Environment\Grasslands\Grass_Shake_Level1
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: Grasslands
+      guid: 9d78abd37e2c6c44b3f1e01b14015c75
+      id: 1458143973
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Environment
+        ObjectType: 4
+        guid: bc19f43cbe6aea478d686b59f8728304
+      - ElementName: Grasslands
+        ObjectType: 4
+        guid: 9d78abd37e2c6c44b3f1e01b14015c75
+      Path: Events\Default Work Unit\Environment\Grasslands
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Hum_Brello
+      guid: 72c2c0b05c752d4faa870d1d5a1db8d4
+      id: 2606205324
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Brello
+        ObjectType: 4
+        guid: 57c2bd93ba34ae4790c1aeb835adc319
+      - ElementName: Hum_Brello
+        ObjectType: 3
+        guid: 72c2c0b05c752d4faa870d1d5a1db8d4
+      Path: Events\Default Work Unit\Brello\Hum_Brello
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: Hum_Pyra
+      guid: ab4c9717980c004591da0941efe6a3f9
+      id: 357557170
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Pyra
+        ObjectType: 4
+        guid: 68ceae24b812144b87b17574fc85910e
+      - ElementName: Hum_Pyra
+        ObjectType: 3
+        guid: ab4c9717980c004591da0941efe6a3f9
+      Path: Events\Default Work Unit\Pyra\Hum_Pyra
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: Hurt_Brello
+      guid: bbead347ce916a4a94110c4412ec1286
+      id: 1416911989
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Brello
+        ObjectType: 4
+        guid: 57c2bd93ba34ae4790c1aeb835adc319
+      - ElementName: Hurt_Brello
+        ObjectType: 3
+        guid: bbead347ce916a4a94110c4412ec1286
+      Path: Events\Default Work Unit\Brello\Hurt_Brello
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: Hurt_Steamling
+      guid: 3205300a25b6a64d9e2d38283f30abcb
+      id: 3566808571
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Steamling
+        ObjectType: 4
+        guid: 2b3b635336b20e46a66cb4c082a9f854
+      - ElementName: Hurt_Steamling
+        ObjectType: 3
+        guid: 3205300a25b6a64d9e2d38283f30abcb
+      Path: Events\Default Work Unit\Steamling\Hurt_Steamling
+      maxAttenuation: 0
+      maxDuration: 0.441586
+      minDuration: 0.312249
+    - name: Idle_Boiler
+      guid: 8995939f6fafeb44b2f53d7c49347e06
+      id: 1335820033
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Boiler
+        ObjectType: 4
+        guid: c36ca0379bc8184fa50ff65f3e1b8117
+      - ElementName: Idle_Boiler
+        ObjectType: 3
+        guid: 8995939f6fafeb44b2f53d7c49347e06
+      Path: Events\Default Work Unit\Boiler\Idle_Boiler
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Idle_Steamling
+      guid: 8b68a9c7d8d91842a0363c599abcb513
+      id: 1024608158
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Steamling
+        ObjectType: 4
+        guid: 2b3b635336b20e46a66cb4c082a9f854
+      - ElementName: Idle_Steamling
+        ObjectType: 3
+        guid: 8b68a9c7d8d91842a0363c599abcb513
+      Path: Events\Default Work Unit\Steamling\Idle_Steamling
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: Impact_Steamling
+      guid: 735e9bb7c30d824c8d365b239baef5c6
+      id: 983408950
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Steamling
+        ObjectType: 4
+        guid: 2b3b635336b20e46a66cb4c082a9f854
+      - ElementName: Impact_Steamling
+        ObjectType: 3
+        guid: 735e9bb7c30d824c8d365b239baef5c6
+      Path: Events\Default Work Unit\Steamling\Impact_Steamling
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: Jump_Brello
+      guid: 978610f81f0e614e96d14ae3ed3b6e50
+      id: 2093704360
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Brello
+        ObjectType: 4
+        guid: 57c2bd93ba34ae4790c1aeb835adc319
+      - ElementName: Jump_Brello
+        ObjectType: 3
+        guid: 978610f81f0e614e96d14ae3ed3b6e50
+      Path: Events\Default Work Unit\Brello\Jump_Brello
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: Land_Brello
+      guid: 560c080dcc9c1b47ae344b9d167f6a46
+      id: 658189305
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Brello
+        ObjectType: 4
+        guid: 57c2bd93ba34ae4790c1aeb835adc319
+      - ElementName: Land_Brello
+        ObjectType: 3
+        guid: 560c080dcc9c1b47ae344b9d167f6a46
+      Path: Events\Default Work Unit\Brello\Land_Brello
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: MainMenu
+      guid: ae36b2ea07ec30418a2b2138dd20e150
+      id: 3604647259
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: MainMenu
+        ObjectType: 3
+        guid: ae36b2ea07ec30418a2b2138dd20e150
+      Path: Events\Default Work Unit\MainMenu
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: MainMenuStop
+      guid: 464a153b4cce034cbd7a6f9db7c24f8d
+      id: 2223599963
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: MainMenuStop
+        ObjectType: 3
+        guid: 464a153b4cce034cbd7a6f9db7c24f8d
+      Path: Events\Default Work Unit\MainMenuStop
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: Open_Brello
+      guid: 4c97a0bc55fba4418d9366164c5c9141
+      id: 692676672
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Brello
+        ObjectType: 4
+        guid: 57c2bd93ba34ae4790c1aeb835adc319
+      - ElementName: Open_Brello
+        ObjectType: 3
+        guid: 4c97a0bc55fba4418d9366164c5c9141
+      Path: Events\Default Work Unit\Brello\Open_Brello
+      maxAttenuation: 0
+      maxDuration: 0.306009
+      minDuration: 0.306009
+    - name: Preparing_Charge_Steamling
+      guid: a3e3ac6b981a3342b22552d32a9aa563
+      id: 1765157707
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Steamling
+        ObjectType: 4
+        guid: 2b3b635336b20e46a66cb4c082a9f854
+      - ElementName: Preparing_Charge_Steamling
+        ObjectType: 3
+        guid: a3e3ac6b981a3342b22552d32a9aa563
+      Path: Events\Default Work Unit\Steamling\Preparing_Charge_Steamling
+      maxAttenuation: 0
+      maxDuration: 1.4
+      minDuration: 1.4
+    - name: PSTom
+      guid: 4b4905bcdf2d1f4d9c71acc6e552739f
+      id: 3759751106
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: PSTom
+        ObjectType: 4
+        guid: 4b4905bcdf2d1f4d9c71acc6e552739f
+      Path: Events\Default Work Unit\PSTom
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: PuzzlePillar
+      guid: 44a9a4ef403ea14ea61a8d8fbd9111ab
+      id: 1659764341
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: PuzzlePillar
+        ObjectType: 3
+        guid: 44a9a4ef403ea14ea61a8d8fbd9111ab
+      Path: Events\Default Work Unit\PuzzlePillar
+      maxAttenuation: 0
+      maxDuration: 3.006979
+      minDuration: 3.006979
+    - name: Pyra
+      guid: 68ceae24b812144b87b17574fc85910e
+      id: 1874856123
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Pyra
+        ObjectType: 4
+        guid: 68ceae24b812144b87b17574fc85910e
+      Path: Events\Default Work Unit\Pyra
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Rain_Level1
+      guid: 2921059cfa54a84f8a5eaa24039c837f
+      id: 1526266773
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Environment
+        ObjectType: 4
+        guid: bc19f43cbe6aea478d686b59f8728304
+      - ElementName: Grasslands
+        ObjectType: 4
+        guid: 9d78abd37e2c6c44b3f1e01b14015c75
+      - ElementName: Rain_Level1
+        ObjectType: 3
+        guid: 2921059cfa54a84f8a5eaa24039c837f
+      Path: Events\Default Work Unit\Environment\Grasslands\Rain_Level1
+      maxAttenuation: 100
+      maxDuration: -1
+      minDuration: -1
+    - name: Recovering_Steamling
+      guid: ca02544bf6d6ee40abdffa7dcbb3a8dc
+      id: 2867905824
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Steamling
+        ObjectType: 4
+        guid: 2b3b635336b20e46a66cb4c082a9f854
+      - ElementName: Recovering_Steamling
+        ObjectType: 3
+        guid: ca02544bf6d6ee40abdffa7dcbb3a8dc
+      Path: Events\Default Work Unit\Steamling\Recovering_Steamling
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: Restart_Attack_Combo_Brello
+      guid: 5c51b1a83730da4ab3a820ef6a3f50d8
+      id: 1804471233
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Brello
+        ObjectType: 4
+        guid: 57c2bd93ba34ae4790c1aeb835adc319
+      - ElementName: Restart_Attack_Combo_Brello
+        ObjectType: 3
+        guid: 5c51b1a83730da4ab3a820ef6a3f50d8
+      Path: Events\Default Work Unit\Brello\Restart_Attack_Combo_Brello
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: River_Level1
+      guid: a4fd90b524da0f458cd134e0a17c1b5e
+      id: 1341948043
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Environment
+        ObjectType: 4
+        guid: bc19f43cbe6aea478d686b59f8728304
+      - ElementName: Grasslands
+        ObjectType: 4
+        guid: 9d78abd37e2c6c44b3f1e01b14015c75
+      - ElementName: River_Level1
+        ObjectType: 3
+        guid: a4fd90b524da0f458cd134e0a17c1b5e
+      Path: Events\Default Work Unit\Environment\Grasslands\River_Level1
+      maxAttenuation: 50
+      maxDuration: -1
+      minDuration: -1
+    - name: Shoot_Boiler
+      guid: 6766325350a3b042b61d086a64a39a4a
+      id: 3667284842
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Boiler
+        ObjectType: 4
+        guid: c36ca0379bc8184fa50ff65f3e1b8117
+      - ElementName: Shoot_Boiler
+        ObjectType: 3
+        guid: 6766325350a3b042b61d086a64a39a4a
+      Path: Events\Default Work Unit\Boiler\Shoot_Boiler
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: ShopMusic_Level1
+      guid: e80039892dc29b41a1afbc259f09f50f
+      id: 2541270178
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Environment
+        ObjectType: 4
+        guid: bc19f43cbe6aea478d686b59f8728304
+      - ElementName: Grasslands
+        ObjectType: 4
+        guid: 9d78abd37e2c6c44b3f1e01b14015c75
+      - ElementName: ShopMusic_Level1
+        ObjectType: 3
+        guid: e80039892dc29b41a1afbc259f09f50f
+      Path: Events\Default Work Unit\Environment\Grasslands\ShopMusic_Level1
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: Sleep_Boiler
+      guid: f963891d2d84b24d88a07b563e716176
+      id: 4013748194
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Boiler
+        ObjectType: 4
+        guid: c36ca0379bc8184fa50ff65f3e1b8117
+      - ElementName: Sleep_Boiler
+        ObjectType: 3
+        guid: f963891d2d84b24d88a07b563e716176
+      Path: Events\Default Work Unit\Boiler\Sleep_Boiler
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Start_Glide_Brello
+      guid: 34b39946bd80374396a869ad2991c377
+      id: 3020521956
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Brello
+        ObjectType: 4
+        guid: 57c2bd93ba34ae4790c1aeb835adc319
+      - ElementName: Start_Glide_Brello
+        ObjectType: 3
+        guid: 34b39946bd80374396a869ad2991c377
+      Path: Events\Default Work Unit\Brello\Start_Glide_Brello
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Steamling
+      guid: 2b3b635336b20e46a66cb4c082a9f854
+      id: 339681471
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Steamling
+        ObjectType: 4
+        guid: 2b3b635336b20e46a66cb4c082a9f854
+      Path: Events\Default Work Unit\Steamling
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Stop_Glide_Brello
+      guid: dd8cc52a4e1de9468838d39ca40e3446
+      id: 1228236750
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Brello
+        ObjectType: 4
+        guid: 57c2bd93ba34ae4790c1aeb835adc319
+      - ElementName: Stop_Glide_Brello
+        ObjectType: 3
+        guid: dd8cc52a4e1de9468838d39ca40e3446
+      Path: Events\Default Work Unit\Brello\Stop_Glide_Brello
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: StopAll
+      guid: 97e120aded763d488ac2883cee8d7b12
+      id: 3086540886
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: StopAll
+        ObjectType: 3
+        guid: 97e120aded763d488ac2883cee8d7b12
+      Path: Events\Default Work Unit\StopAll
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: StopBackgroundMusic_Level1
+      guid: 685d250159651249a53c1c4f7503187c
+      id: 4153140954
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Environment
+        ObjectType: 4
+        guid: bc19f43cbe6aea478d686b59f8728304
+      - ElementName: Grasslands
+        ObjectType: 4
+        guid: 9d78abd37e2c6c44b3f1e01b14015c75
+      - ElementName: StopBackgroundMusic_Level1
+        ObjectType: 3
+        guid: 685d250159651249a53c1c4f7503187c
+      Path: Events\Default Work Unit\Environment\Grasslands\StopBackgroundMusic_Level1
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: Swimming_Brello
+      guid: f12fc90ca0292248bb002c5c932f9bcc
+      id: 2196322537
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Brello
+        ObjectType: 4
+        guid: 57c2bd93ba34ae4790c1aeb835adc319
+      - ElementName: Swimming_Brello
+        ObjectType: 3
+        guid: f12fc90ca0292248bb002c5c932f9bcc
+      Path: Events\Default Work Unit\Brello\Swimming_Brello
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: UI
+      guid: d4cf38c93c559445b09ff15ddf581ccc
+      id: 1551306167
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: UI
+        ObjectType: 4
+        guid: d4cf38c93c559445b09ff15ddf581ccc
+      Path: Events\Default Work Unit\UI
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: VillageAmbience_Level1
+      guid: 9c8017be6e22914a84f15ce39ad931fa
+      id: 916769465
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Environment
+        ObjectType: 4
+        guid: bc19f43cbe6aea478d686b59f8728304
+      - ElementName: Grasslands
+        ObjectType: 4
+        guid: 9d78abd37e2c6c44b3f1e01b14015c75
+      - ElementName: VillageAmbience_Level1
+        ObjectType: 3
+        guid: 9c8017be6e22914a84f15ce39ad931fa
+      Path: Events\Default Work Unit\Environment\Grasslands\VillageAmbience_Level1
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: VillageMusic_Level1
+      guid: d974143d09106e45ba49beac6b019254
+      id: 3399754180
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Environment
+        ObjectType: 4
+        guid: bc19f43cbe6aea478d686b59f8728304
+      - ElementName: Grasslands
+        ObjectType: 4
+        guid: 9d78abd37e2c6c44b3f1e01b14015c75
+      - ElementName: VillageMusic_Level1
+        ObjectType: 3
+        guid: d974143d09106e45ba49beac6b019254
+      Path: Events\Default Work Unit\Environment\Grasslands\VillageMusic_Level1
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: Waterfall_Level1
+      guid: 3f652804c12d01489d7ba57def738fe2
+      id: 752800099
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Environment
+        ObjectType: 4
+        guid: bc19f43cbe6aea478d686b59f8728304
+      - ElementName: Grasslands
+        ObjectType: 4
+        guid: 9d78abd37e2c6c44b3f1e01b14015c75
+      - ElementName: Waterfall_Level1
+        ObjectType: 3
+        guid: 3f652804c12d01489d7ba57def738fe2
+      Path: Events\Default Work Unit\Environment\Grasslands\Waterfall_Level1
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: WaterSplash_Brello
+      guid: 1542d97628950b40aab78e527fa5fb0a
+      id: 2503275970
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Brello
+        ObjectType: 4
+        guid: 57c2bd93ba34ae4790c1aeb835adc319
+      - ElementName: WaterSplash_Brello
+        ObjectType: 3
+        guid: 1542d97628950b40aab78e527fa5fb0a
+      Path: Events\Default Work Unit\Brello\WaterSplash_Brello
+      maxAttenuation: 0
+      maxDuration: 1.657667
+      minDuration: 1.657667
+    - name: Wind_Level1
+      guid: 6531f9a70933e54d8bc5dd80dad04192
+      id: 1810065121
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Environment
+        ObjectType: 4
+        guid: bc19f43cbe6aea478d686b59f8728304
+      - ElementName: Grasslands
+        ObjectType: 4
+        guid: 9d78abd37e2c6c44b3f1e01b14015c75
+      - ElementName: Wind_Level1
+        ObjectType: 3
+        guid: 6531f9a70933e54d8bc5dd80dad04192
+      Path: Events\Default Work Unit\Environment\Grasslands\Wind_Level1
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+  RtpcWwu:
+  - PhysicalPath: Game Parameters\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Game Parameters
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: Default Work Unit
+      ObjectType: 12
+      guid: e4f736cbb2288f459e9c3c36b3575dbc
+    ParentPath: Game Parameters\Default Work Unit
+    guid: e4f736cbb2288f459e9c3c36b3575dbc
+    GuidInternal: 
+    m_lastTime: -8585528484478372792
+    List:
+    - name: Music_Volume
+      guid: 185956dc6f9e9b48954385ab60d9871a
+      id: 1006694123
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: e4f736cbb2288f459e9c3c36b3575dbc
+      - ElementName: Volume
+        ObjectType: 4
+        guid: c82477382ebd8f4ea859dfb28ff6f55b
+      - ElementName: Music_Volume
+        ObjectType: 13
+        guid: 185956dc6f9e9b48954385ab60d9871a
+      Path: Game Parameters\Default Work Unit\Volume\Music_Volume
+    - name: SFX_Volume
+      guid: 1076820389d58e45ac27c375b3115c53
+      id: 1564184899
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: e4f736cbb2288f459e9c3c36b3575dbc
+      - ElementName: Volume
+        ObjectType: 4
+        guid: c82477382ebd8f4ea859dfb28ff6f55b
+      - ElementName: SFX_Volume
+        ObjectType: 13
+        guid: 1076820389d58e45ac27c375b3115c53
+      Path: Game Parameters\Default Work Unit\Volume\SFX_Volume
+    - name: Volume
+      guid: c82477382ebd8f4ea859dfb28ff6f55b
+      id: 2415836739
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: e4f736cbb2288f459e9c3c36b3575dbc
+      - ElementName: Volume
+        ObjectType: 4
+        guid: c82477382ebd8f4ea859dfb28ff6f55b
+      Path: Game Parameters\Default Work Unit\Volume
+  StateWwu:
+  - PhysicalPath: States\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: States
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: Default Work Unit
+      ObjectType: 12
+      guid: 13117027c1e0a84b83ede94da2174f6f
+    ParentPath: States\Default Work Unit
+    guid: 13117027c1e0a84b83ede94da2174f6f
+    GuidInternal: 
+    m_lastTime: -8585528742077647597
+    List: []
+  SwitchWwu:
+  - PhysicalPath: Switches\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Switches
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: Default Work Unit
+      ObjectType: 12
+      guid: 3652c387ca18794085902b6748b43d1c
+    ParentPath: Switches\Default Work Unit
+    guid: 3652c387ca18794085902b6748b43d1c
+    GuidInternal: 
+    m_lastTime: -8585528723879743147
+    List:
+    - name: FootstepSurfaceType
+      guid: 5370e81ddde85840a97b77e23f265148
+      id: 3876928364
+      PathAndIcons:
+      - ElementName: Switches
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 3652c387ca18794085902b6748b43d1c
+      - ElementName: FootstepSurfaceType
+        ObjectType: 11
+        guid: 5370e81ddde85840a97b77e23f265148
+      Path: Switches\Default Work Unit\FootstepSurfaceType
+      values:
+      - name: Default
+        guid: edb867e9c54dfa44bc7e29fdf9e393ee
+        id: 782826392
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 3652c387ca18794085902b6748b43d1c
+        - ElementName: FootstepSurfaceType
+          ObjectType: 11
+          guid: 5370e81ddde85840a97b77e23f265148
+        - ElementName: Default
+          ObjectType: 10
+          guid: edb867e9c54dfa44bc7e29fdf9e393ee
+      - name: Grass
+        guid: 565450ede459af49826e71f202cf2658
+        id: 4248645337
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 3652c387ca18794085902b6748b43d1c
+        - ElementName: FootstepSurfaceType
+          ObjectType: 11
+          guid: 5370e81ddde85840a97b77e23f265148
+        - ElementName: Grass
+          ObjectType: 10
+          guid: 565450ede459af49826e71f202cf2658
+      - name: Rock
+        guid: 03dbf29e4f777047a77339835f8091ee
+        id: 2144363834
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 3652c387ca18794085902b6748b43d1c
+        - ElementName: FootstepSurfaceType
+          ObjectType: 11
+          guid: 5370e81ddde85840a97b77e23f265148
+        - ElementName: Rock
+          ObjectType: 10
+          guid: 03dbf29e4f777047a77339835f8091ee
+      - name: Sand
+        guid: bd8e9e119b198c468f534c89cac86760
+        id: 803837735
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 3652c387ca18794085902b6748b43d1c
+        - ElementName: FootstepSurfaceType
+          ObjectType: 11
+          guid: 5370e81ddde85840a97b77e23f265148
+        - ElementName: Sand
+          ObjectType: 10
+          guid: bd8e9e119b198c468f534c89cac86760
+      - name: Water
+        guid: 7accafa12cab444dba6cdeafa2c72acd
+        id: 2654748154
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 3652c387ca18794085902b6748b43d1c
+        - ElementName: FootstepSurfaceType
+          ObjectType: 11
+          guid: 5370e81ddde85840a97b77e23f265148
+        - ElementName: Water
+          ObjectType: 10
+          guid: 7accafa12cab444dba6cdeafa2c72acd
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
+  TriggerWwu:
+  - PhysicalPath: Triggers\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Triggers
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: Default Work Unit
+      ObjectType: 12
+      guid: c350db81a104204da106bd1f7e8437ba
+    ParentPath: Triggers\Default Work Unit
+    guid: c350db81a104204da106bd1f7e8437ba
+    GuidInternal: 
+    m_lastTime: -8585528742077617628
+    List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 
+  ExpandedWaapiItemIds: 06000000070000000b00000036000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0
