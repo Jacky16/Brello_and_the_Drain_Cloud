@@ -8,6 +8,7 @@ public class PlayerAudio : MonoBehaviour
 
     string actualTerrainType = "Default";
 
+
     public void PlayFootstep()
     {
         actualTerrainType = "Default";

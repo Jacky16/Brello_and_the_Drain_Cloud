@@ -45,6 +45,7 @@ namespace AK
         static const AkUniqueID SHOPMUSIC_LEVEL1 = 2541270178U;
         static const AkUniqueID START_GLIDE_BRELLO = 3020521956U;
         static const AkUniqueID STOP_GLIDE_BRELLO = 1228236750U;
+        static const AkUniqueID STOPBACKGROUNDMUSIC_LEVEL1 = 4153140954U;
         static const AkUniqueID SWIMMING_BRELLO = 2196322537U;
         static const AkUniqueID VILLAGEAMBIENCE_LEVEL1 = 916769465U;
         static const AkUniqueID VILLAGEMUSIC_LEVEL1 = 3399754180U;
