@@ -249,6 +249,20 @@
 										</Action>
 									</ChildrenList>
 								</Event>
+								<Event Name="StopBackgroundMusic_Level1" ID="{01255D68-6559-4912-A53C-1C4F7503187C}">
+									<ChildrenList>
+										<Action Name="" ID="{4F466F6F-B38C-4492-A0DA-52E4FB676644}" ShortID="89151995">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="2"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="GrasslandMusic" ID="{207DF045-E198-4152-A063-09A0201AC8D6}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
 						</Folder>
 					</ChildrenList>
@@ -288,6 +302,27 @@
 									<ObjectRef Name="MainMenu" ID="{3D130A04-9A51-4248-B40F-6A5AE8A4E1C6}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
 								</Reference>
 							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PuzzlePillar" ID="{EFA4A944-3E40-4EA1-A61A-8D8FBD9111AB}">
+					<ChildrenList>
+						<Action Name="" ID="{04225F58-E154-4BDB-B129-DBE73FAE8EEF}" ShortID="188726193">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="PuzzlePillar" ID="{15CB9EDE-ED32-4337-83D5-5DE6B874B354}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="StopAll" ID="{AD20E197-76ED-483D-8AC2-883CEE8D7B12}">
+					<ChildrenList>
+						<Action Name="" ID="{317A89AB-2550-42DF-BC85-E32376B356FE}" ShortID="974123619">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="3"/>
+							</PropertyList>
+							<ReferenceList/>
 						</Action>
 					</ChildrenList>
 				</Event>

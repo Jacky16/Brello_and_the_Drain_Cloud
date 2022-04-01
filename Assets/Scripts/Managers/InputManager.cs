@@ -43,7 +43,7 @@ public class InputManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F1))
         {
-            AkSoundEngine.PostEvent("StopBackgroundMusic_Level1", gameObject);
+            AkSoundEngine.PostEvent("StopBackgroundMusic_Level1", WwiseManager.instance.gameObject);
             SceneManager.LoadScene("MainMenu");
         }
     }
