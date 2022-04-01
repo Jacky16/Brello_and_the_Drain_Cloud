@@ -72,6 +72,7 @@ public class Health : MonoBehaviour
         isInmune = false;
     }
 
+
     private IEnumerator Reappear()
     {
         yield return new WaitForSeconds(timeToReappear);
