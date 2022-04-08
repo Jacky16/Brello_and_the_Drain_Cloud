@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Checkers();
-
+        SwimingManager();
         MovementManager();
         
         HandleRotation();
@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
         {
             currentSpeed = Mathf.Lerp(currentSpeed, 0, acceleration * Time.deltaTime);
         }
-        if (isGrounded)
+        if (isGrounded || isSwimming || isGlading)
             rb.useGravity = false;
         else
             rb.useGravity = true;
@@ -122,9 +122,9 @@ public class PlayerController : MonoBehaviour
         
     }
     public void HandleJump()
-    {
-        if (isGrounded)
-            rb.AddForce(Vector3.up * jumpForce * 10, ForceMode.Impulse);
+    {  
+        if(isGrounded || isSwimming)
+        rb.AddForce(Vector3.up * jumpForce * 10, ForceMode.Impulse);
     }
     private void HandleRotation()
     {
@@ -169,13 +169,8 @@ public class PlayerController : MonoBehaviour
     {
         if (isGlading)
         {
-            rb.useGravity = false;
             rb.AddForce(Vector3.down * -Physics.gravity.y / 2, ForceMode.Force);
-        }
-        else
-        {
-            rb.useGravity = true;
-        }
+        }  
     }
 
     private Vector3 CamDirection()
@@ -243,8 +238,10 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Water") && !isSwimming)
         {
+            print("Ha entrado en el agua");
+
             isSwimming = true;
-            isJumPressed = false;
+
             animator.SetBool("isSwiming", true);
 
             Instantiate(splashParticle, transform.position, splashParticle.transform.rotation);
@@ -258,6 +255,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnOutSwiming(Collider other)
     {
+        print("Ha salido del agua");
         if (other.CompareTag("Water"))
         {
             isSwimming = false;
@@ -265,7 +263,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isSwiming", false);
 
             brelloOpenManager.SetOpen(false);
-
+      
             //Matamos a la animacion por si se sale antes, que no se quede flotando
             tweenSwiming.Kill();
         }
@@ -273,22 +271,22 @@ public class PlayerController : MonoBehaviour
 
     private void SwimingManager()
     {
-        if (isSwimming && isJumPressed)
+        if (isSwimming)
         {
-            tweenSwiming.Kill();
-        
-            if (!WaterPlatformManager.singletone.IsPyraInPlatform())
-            {
-                HandleJump();
-            }
-        }
-        else if (isSwimming)
-        {
-            currentGravity.y = 0;
+            rb.useGravity = false;
             brelloOpenManager.SetOpen(true);
         }
     }
 
+    public void HandleSwimingJump()
+    {
+        if (!WaterPlatformManager.singletone.IsPyraInPlatform() && isSwimming)
+        {
+            tweenSwiming.Kill();
+            rb.useGravity = true;
+            HandleJump();
+        }
+    }
     #endregion Swiming functions
 
     public void OpenUmbrellaManager(bool _value)
@@ -316,6 +314,7 @@ public class PlayerController : MonoBehaviour
         OnSwiming(other);
     }
 
+    
     private void OnTriggerExit(Collider other)
     {
         OnOutSwiming(other);
@@ -357,6 +356,10 @@ public class PlayerController : MonoBehaviour
     public bool IsMoving()
     {
         return isMovementPressed;
+    }
+    public bool IsGrounded()
+    {
+        return isGrounded;
     }
     #endregion Getters
 

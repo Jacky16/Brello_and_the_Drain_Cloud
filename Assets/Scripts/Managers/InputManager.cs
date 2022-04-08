@@ -49,7 +49,10 @@ public class InputManager : MonoBehaviour
 
     private void OnJump(InputAction.CallbackContext ctx)
     {
-        playerController.HandleJump();
+        if(playerController.IsGrounded())
+            playerController.HandleJump();
+
+        playerController.HandleSwimingJump();
     }
 
     private void OnMovementInput(InputAction.CallbackContext ctx)
@@ -60,7 +63,7 @@ public class InputManager : MonoBehaviour
     }
 
     private void OnDash(InputAction.CallbackContext ctx)
-    {
+    {    
         playerController.HandleDash();
     }
 
