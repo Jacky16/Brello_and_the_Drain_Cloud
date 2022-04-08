@@ -20,7 +20,6 @@ public class InputManager : MonoBehaviour
 
         //Jump
         playerInput.CharacterControls.Jump.started += OnJump;
-        playerInput.CharacterControls.Jump.canceled += OnJump;
 
         //Dash
         playerInput.CharacterControls.Dash.started += OnDash;
@@ -50,7 +49,7 @@ public class InputManager : MonoBehaviour
 
     private void OnJump(InputAction.CallbackContext ctx)
     {
-        playerController.SetJumPressed(ctx.ReadValueAsButton());
+        playerController.HandleJump();
     }
 
     private void OnMovementInput(InputAction.CallbackContext ctx)
