@@ -68,8 +68,7 @@ public class SteamlingAI : EnemyAI
         dashDistance = Vector3.Distance(transform.position, player.transform.position);
 
         agent.speed = dashDistance / dashTime;
-        agent.destination = attackPos = player.transform.position;
-        
+        agent.destination = attackPos = player.transform.position;      
     }
 
     private void OnDrawGizmos()

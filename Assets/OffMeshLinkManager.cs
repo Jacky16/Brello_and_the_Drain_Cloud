@@ -6,16 +6,11 @@ using UnityEngine.AI;
 
 public class OffMeshLinkManager : MonoBehaviour
 {
-    [SerializeField]
-    [Range(0,1)]
-    float jumpDuration;
+    private float jumpDuration;
 
     [SerializeField]
-    [Range(0, 5)]
+    [Range(0, 7)]
     float maxHeightJump;
-
-    private Animator animator;
-
 
     IEnumerator Start()
     {
@@ -26,25 +21,28 @@ public class OffMeshLinkManager : MonoBehaviour
         {
             if (agent.isOnOffMeshLink)
             {
-                yield return StartCoroutine(Jump(agent, maxHeightJump, jumpDuration));
+                yield return StartCoroutine(Jump(agent, maxHeightJump));
             }
             agent.CompleteOffMeshLink();
             yield return null;
         }
     }
 
-    IEnumerator Jump(NavMeshAgent agent, float height, float duration)
+    IEnumerator Jump(NavMeshAgent agent, float height)
     {
         OffMeshLinkData data = agent.currentOffMeshLinkData;
         Vector3 startPos = agent.transform.position;
         Vector3 endPos = data.endPos + Vector3.up * agent.baseOffset;
+
+        jumpDuration = Vector3.Distance(startPos, endPos) / (agent.speed * 1.5f);
+
         float normalizedTime = 0.0f;
 
         while (normalizedTime < 1.0f)
         {
             float yOffset = height * (normalizedTime - normalizedTime * normalizedTime);
             agent.transform.position = Vector3.Lerp(startPos, endPos, normalizedTime) + yOffset * Vector3.up;
-            normalizedTime += Time.deltaTime / duration;
+            normalizedTime += Time.deltaTime / jumpDuration;
             yield return null;
         }
     }

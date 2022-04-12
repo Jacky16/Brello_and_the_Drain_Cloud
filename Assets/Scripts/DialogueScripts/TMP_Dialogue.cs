@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
 
-public enum Emotion { happy, sad, surprised, angry };
+public enum Emotion { happy, sad, surprised, angry, doubt, idle };
 [System.Serializable] public class EmotionEvent : UnityEvent<Emotion> { }
 
 [System.Serializable] public class ActionEvent : UnityEvent<string> { }
@@ -45,7 +45,7 @@ public class TMP_Dialogue : TextMeshProUGUI
         // check to see if a tag is our own
         bool isCustomTag(string tag)
         {
-            return tag.StartsWith("speed=") || tag.StartsWith("pause=") || tag.StartsWith("emotion=") || tag.StartsWith("action=");
+            return tag.StartsWith("speed=") || tag.StartsWith("pause=") || tag.StartsWith("emotion=") || tag.StartsWith("action=") || tag.StartsWith("shop=");
         }
 
         // send that string to textmeshpro and hide all of it, then start reading

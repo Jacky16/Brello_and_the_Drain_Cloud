@@ -361,6 +361,10 @@ public class PlayerController : MonoBehaviour
     {
         return isGrounded;
     }
+    public bool IsGlading()
+    {
+        return isGlading;
+    }
     #endregion Getters
 
     #region Init functions

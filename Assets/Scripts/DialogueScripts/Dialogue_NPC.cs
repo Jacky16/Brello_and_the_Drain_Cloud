@@ -33,16 +33,33 @@ public class Dialogue_NPC : MonoBehaviour
         if (this != Dialogue_Manager.instance.currentVillager)
             return;
 
-        //animator.SetTrigger(e.ToString());
+        animator.SetTrigger(e.ToString());
+        SetAction(e.ToString());
 
-        if (e == Emotion.surprised) 
-           eyesRenderer.material.SetTextureOffset("_BaseMap", new Vector2(0.46f, -0.2f));
+        if (e == Emotion.surprised)
+        {
+            eyesRenderer.material.SetTextureOffset("_BaseMap", new Vector2(0.46f, -0.2f));
+            
+        }
+        else if (e == Emotion.angry)
+        {
+            eyesRenderer.material.SetTextureOffset("_BaseMap", new Vector2(0.46f, 0.2f));
+        }
 
-        if (e == Emotion.angry) 
-           eyesRenderer.material.SetTextureOffset("_BaseMap", new Vector2(0.46f, 0.2f));
+        else if (e == Emotion.sad)
+        {
+            eyesRenderer.material.SetTextureOffset("_BaseMap", new Vector2(0f, -0.2f));
+        }
 
-        if (e == Emotion.sad) 
-           eyesRenderer.material.SetTextureOffset("_BaseMap", new Vector2(0f, -0.2f));
+        else if (e == Emotion.idle) {
+            //poner los ojos como toquen
+        }
+
+
+        else if (e == Emotion.doubt)
+        {
+            //poner los ojos como toquen
+        }
     }
 
     public void SetAction(string action)
@@ -58,14 +75,24 @@ public class Dialogue_NPC : MonoBehaviour
         {
             PlayParticle(action);
 
-            if (action == "sparkle")
+            if (action == "surprised")
             {
                 dialogueAudio.effectSource.clip = dialogueAudio.sparkleClip;
                 dialogueAudio.effectSource.Play();
             }
-            else if (action == "rain")
+            else if (action == "sad")
             {
                 dialogueAudio.effectSource.clip = dialogueAudio.rainClip;
+                dialogueAudio.effectSource.Play();
+            }
+            else if(action == "angry")
+            {
+                dialogueAudio.effectSource.clip = dialogueAudio.angryClip;
+                dialogueAudio.effectSource.Play();
+            }
+            else if(action == "doubt")
+            {
+                dialogueAudio.effectSource.clip = dialogueAudio.angryClip;
                 dialogueAudio.effectSource.Play();
             }
         }

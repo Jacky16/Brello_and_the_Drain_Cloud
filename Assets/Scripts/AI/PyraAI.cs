@@ -32,6 +32,8 @@ public sealed class PyraAI : MonoBehaviour
     [Header("Layer de lluvia para comprobar los raycast.")]
     [SerializeField] private LayerMask rainMask;
 
+    [SerializeField] private LayerMask whatIsGround;
+
     //Variables de objetos detectados.
     [SerializeField] private List<Interactable> detectedObjects;
 
@@ -39,16 +41,22 @@ public sealed class PyraAI : MonoBehaviour
 
     //Variables de movimiento.
     public bool moveToPlatform = false, isInPlatform = false, isJumping = false;
+    private bool playerIsHighEnough, pyraIsGliding, canArriveToBrello;
+    [SerializeField] GameObject tpStartParticles;
+    [SerializeField] GameObject tpFinishParticles;
+    GameObject currentParticle;
 
     [Header("Jump settings")]
     [SerializeField] private float jumpPower;
 
+    [SerializeField] private float minDistToTP;
     [SerializeField] float walkSpeed;
     [SerializeField] float runSpeed;
     [SerializeField] private float jumpDuration;
     [SerializeField] private float distanceToJump;
     [SerializeField] private Transform platform;
     [SerializeField] private Transform platformParent;
+
 
     private Vector3 posToJump;
     bool stayUnderBrello;
@@ -62,11 +70,16 @@ public sealed class PyraAI : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
         isInteracting = false;
+        playerIsHighEnough = false;
+        pyraIsGliding = false;
         //platformParent = platform;
     }
 
     private void Update()
     {
+        canArriveToBrello = NavMesh.CalculatePath(transform.position, player.transform.position, NavMesh.AllAreas, new NavMeshPath());
+        Debug.Log(canArriveToBrello);
+
         AIManager();
         RotationManager();
         AnimationManager();
@@ -74,6 +87,10 @@ public sealed class PyraAI : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Physics.Raycast(player.transform.position, -player.transform.up, out RaycastHit hit, 1000f, whatIsGround);
+
+        playerIsHighEnough = Vector3.Distance(player.transform.position, hit.point) >= 5f ? true : false;
+
         if(Physics.CheckSphere(transform.position, detectionRadius, interactable))
         {
             Collider[] interactables = Physics.OverlapSphere(transform.position, detectionRadius, interactable);
@@ -103,7 +120,32 @@ public sealed class PyraAI : MonoBehaviour
             agent.speed = runSpeed;
         }
 
-        if (canChasePlayer && !isInteracting && !pyraProtection.GetIsInRain() && !isInPlatform && !player.IsSwimming() && !isMovingToInteractuable)
+        if(player.IsGlading() && playerIsHighEnough && !pyraIsGliding && Vector3.Distance(player.transform.position, transform.position) <= minDistToTP)
+        {
+            pyraIsGliding = true;
+            canChasePlayer = false;
+            stayUnderBrello = false;
+            isMovingToInteractuable = false;
+            isInteracting = false;
+
+            transform.DOScale(0f, 0.2f).OnComplete(() =>
+            {
+                 currentParticle = Instantiate(tpStartParticles, transform.position, Quaternion.identity);
+            });
+        }
+        else if(pyraIsGliding && player.IsGrounded())
+        {
+            pyraIsGliding = false;
+
+            Physics.Raycast(currentParticle.transform.position, -currentParticle.transform.up, out RaycastHit hit, whatIsGround);
+
+            NavMesh.SamplePosition(hit.point, out NavMeshHit navHit, 1f, NavMesh.AllAreas);
+
+            agent.Warp(navHit.position);
+            currentParticle.GetComponent<PyraBall>().posToFinish(navHit.position);  
+        }
+
+        else if (canChasePlayer && !isInteracting && !pyraProtection.GetIsInRain() && !isInPlatform && !player.IsSwimming() && !isMovingToInteractuable)
         {
             Vector3 dir = player.transform.position - transform.position;
             float rayDistance = Vector3.Distance(transform.position, player.transform.position);
@@ -181,7 +223,6 @@ public sealed class PyraAI : MonoBehaviour
             }
 
         }
-        //Se mueve a los interactuables si hay algo en la lista
         else if (isMovingToInteractuable && !stayUnderBrello && !moveToPlatform && !isInPlatform)
         {
             //Mientras haya algo a la lista sigue el actual Interactuable
@@ -217,7 +258,7 @@ public sealed class PyraAI : MonoBehaviour
         }
         else
         {
-            Vector3 rotation = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+            Vector3 rotation = new Vector3(agent.steeringTarget.x, transform.position.y, agent.steeringTarget.z);
             transform.DOLookAt(rotation, 0.5f);
         }
     }

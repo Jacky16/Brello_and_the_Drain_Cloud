@@ -19,6 +19,8 @@ public class Dialogue_AudioController : MonoBehaviour
     [Space]
     public AudioClip sparkleClip;
     public AudioClip rainClip;
+    public AudioClip angryClip;
+    public AudioClip doubtClip;
 
     // Start is called before the first frame update
     void Start()

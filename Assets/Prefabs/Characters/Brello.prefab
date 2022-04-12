@@ -215,7 +215,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!136 &2317433915332886470
@@ -264,6 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runSpeed: 10
+  walkSpeed: 3
   acceleration: 10
   rotationSpeed: 15
   posCheckerGround: {fileID: 890315782}
@@ -271,7 +272,7 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  jumpForce: 10
+  jumpForce: 15
   offsetTweenY: 0
   time: 1
   splashParticle: {fileID: 432596736388223641, guid: aef6f70a7b48aec41a9eb6f2a3705899, type: 3}
