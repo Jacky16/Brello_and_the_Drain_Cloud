@@ -32,6 +32,11 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField] GameObject stopMusic;
 
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
     public void SetInvertedXCamera()
     {
         invertedX = !invertedX;

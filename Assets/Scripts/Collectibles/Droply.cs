@@ -24,7 +24,7 @@ public class Droply : MonoBehaviour
     {
         if (other.TryGetComponent(out Brello_Collectables collectables))
         {
-            //collectables.AddDroply();
+            collectables.AddDroply();
             Instantiate(droplyParticles, transform.position, Quaternion.identity);
             Destroy(gameObject);
 

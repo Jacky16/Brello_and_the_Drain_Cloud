@@ -8,6 +8,10 @@ public class PlayerAudio : MonoBehaviour
 
     string actualTerrainType = "Default";
 
+    private void Start()
+    {
+        AkSoundEngine.PostEvent("BackgroundMusic_Level1", WwiseManager.instance.gameObject);
+    }
 
     public void PlayFootstep()
     {
