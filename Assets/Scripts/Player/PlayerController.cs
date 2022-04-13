@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private BrelloOpenManager brelloOpenManager;
     private Rigidbody rb;
     private Animator animator;
+    private Collider collider;
 
     private PlayerAudio playerAudio;
 
@@ -22,11 +23,9 @@ public class PlayerController : MonoBehaviour
     private int fallSpeedHash;
 
     private Vector2 axis;
-    private Vector3 currentGravity;
     private Vector3 camForward;
     private Vector3 camRight;
     private Vector3 camDir;
-    private Vector3 moveDirection;
 
     private bool isMovementPressed;
     private bool isJumPressed;
@@ -38,6 +37,7 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float runSpeed = 20;
     [SerializeField] private float walkSpeed = 10;
+    [SerializeField] private float gladingSpeed = 10;
     [SerializeField] private float acceleration = 1;
     [SerializeField] private float rotationSpeed = 15f;
     bool isUmbrellaOpen;
@@ -54,11 +54,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpForce = 10;
 
     //Swiming variables
-    [Header("Tween Settings")]
+    [Header("Swimimg Settings")]
     [SerializeField] float offsetTweenY;
     [SerializeField] float time = 1;
-    private Tween tweenSwiming;
     [SerializeField] GameObject splashParticle;
+    [SerializeField] PhysicMaterial noFrictionMaterial;
+    [SerializeField] PhysicMaterial frictionMaterial;
+    private Tween tweenSwiming;
  
 
     //Air movement variables
@@ -76,6 +78,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         brelloOpenManager = GetComponent<BrelloOpenManager>();
         playerAudio = GetComponent<PlayerAudio>();
+        collider = GetComponent<Collider>();
 
         SetAnimatorsHashes();
     }
@@ -101,20 +104,19 @@ public class PlayerController : MonoBehaviour
     {
         if (isMovementPressed)
         {
-            if(isUmbrellaOpen)
+            if (isGlading)
+                currentSpeed = Mathf.Lerp(currentSpeed, gladingSpeed, acceleration * Time.deltaTime);
+
+            else if (isUmbrellaOpen)
                 currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, acceleration * Time.deltaTime);
+
             else
-            currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, acceleration * Time.deltaTime);
+                currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, acceleration * Time.deltaTime);
         }
         else
         {
             currentSpeed = Mathf.Lerp(currentSpeed, 0, acceleration * Time.deltaTime);
         }
-        if (isGrounded || isGlading || isStartingToSwim || isSwimming)
-            rb.useGravity = false;
-        else
-            rb.useGravity = true;
-
     }
     private void Movement()
     {
@@ -245,6 +247,12 @@ public class PlayerController : MonoBehaviour
         {
             print("Ha entrado en el agua");
 
+            collider.material = noFrictionMaterial;
+
+            rb.useGravity = false;
+
+            isSwimming = true;
+
             animator.SetBool("isSwiming", true);
 
             isStartingToSwim = true;
@@ -268,6 +276,9 @@ public class PlayerController : MonoBehaviour
         print("Ha salido del agua");
         if (other.CompareTag("Water"))
         {
+            rb.useGravity = true;
+            collider.material = frictionMaterial;
+
             isSwimming = false;
 
             animator.SetBool("isSwiming", false);
@@ -303,6 +314,7 @@ public class PlayerController : MonoBehaviour
     {
         isUmbrellaOpen = _value;
         brelloOpenManager.SetOpen(isUmbrellaOpen);
+        rb.useGravity = !_value;
 
         //Audio de apertura de paraguas
         if (_value && !isSwimming)

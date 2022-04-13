@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 890315781}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.079, z: 0}
+  m_LocalPosition: {x: 0, y: -1.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2164036362953964463}
@@ -256,7 +256,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1532318127295455509}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 333644071fd738b4d923f8791479559d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -296,6 +296,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runSpeed: 10
   walkSpeed: 3
+  gladingSpeed: 10
   acceleration: 10
   rotationSpeed: 15
   posCheckerGround: {fileID: 890315782}
@@ -307,6 +308,8 @@ MonoBehaviour:
   offsetTweenY: 0
   time: 1
   splashParticle: {fileID: 432596736388223641, guid: aef6f70a7b48aec41a9eb6f2a3705899, type: 3}
+  noFrictionMaterial: {fileID: 13400000, guid: 333644071fd738b4d923f8791479559d, type: 2}
+  frictionMaterial: {fileID: 13400000, guid: 63fbc9a1992d9734b9060cff77308e7c, type: 2}
 --- !u!114 &7115774039413881488
 MonoBehaviour:
   m_ObjectHideFlags: 0
