@@ -145,7 +145,7 @@ public sealed class PyraAI : MonoBehaviour
             agent.Warp(navHit.position);
             currentParticle.GetComponent<PyraBall>().posToFinish(navHit.position);  
         }
-        else if(pyraIsGliding && player.IsStartingToSwim())
+        else if(pyraIsGliding && player.IsSwimming())
         {
             pyraIsGliding = false;
             isInPlatform = true;
