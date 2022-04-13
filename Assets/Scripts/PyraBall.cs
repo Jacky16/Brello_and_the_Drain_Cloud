@@ -12,6 +12,7 @@ public class PyraBall : MonoBehaviour
     bool normalMovement;
     GameObject pyra;
     PlayerController player;
+    Tween currentTween;
     private void Start()
     {
         normalMovement = true;
@@ -22,35 +23,55 @@ public class PyraBall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (normalMovement)
+        if (normalMovement && Vector3.Distance(transform.position, spotToFollow.position) >= 0f)
         {
-            transform.DOMove(spotToFollow.position, 1f);
+            currentTween = transform.DOMove(spotToFollow.position, 1f);
         }
     }
 
     public void posToFinish(Vector3 pos)
     {
-        DOTween.KillAll();
+        currentTween.Kill();
         normalMovement = false;
 
-        transform.DOMove(pos, 0.25f).OnComplete(() =>
+        transform.DOMove(pos, 0.75f).OnComplete(() =>
         {
-            transform.DOScale(0f, 0.25f).OnComplete(() =>
+            Destroy(gameObject);
+            pyra.transform.DOScale(1f, 0.25f).OnComplete(()=>
             {
-                Destroy(gameObject);
+                //Reactivar el agent para que se recoloque en la navmesh.
+                pyra.GetComponent<NavMeshAgent>().enabled = false;
+                pyra.GetComponent<NavMeshAgent>().enabled = true;
             });
-
-            pyra.transform.localScale = Vector3.one;
-
-            //Reactivar el agent para que se recoloque en la navmesh.
-            pyra.GetComponent<NavMeshAgent>().enabled = false;
-            pyra.GetComponent<NavMeshAgent>().enabled = true;
         });
     }
 
     public void FinishInWater(Vector3 pos)
     {
-        transform.DOMove(pos, 0.5f);
-        pyra.transform.localScale = Vector3.one;
+        DOTween.Kill(this);
+
+        Vector3 offsetedPos = new Vector3(pos.x, pos.y+0.005f, pos.z);
+
+        normalMovement = false;
+
+        StartCoroutine(Wait());
+
+        transform.DOLocalMove(offsetedPos, 1f).OnComplete(() =>
+        {
+            transform.DOScale(0f, 1f).OnComplete(() =>
+            {
+                Destroy(gameObject);         
+            });
+
+        }).OnUpdate(() =>
+        {
+            transform.localScale = Vector3.one;
+        });
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(0.75f);
+        pyra.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
     }
 }

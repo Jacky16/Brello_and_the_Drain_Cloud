@@ -168,7 +168,7 @@ public class PlayerController : MonoBehaviour
 
         isGrounded = Physics.CheckSphere(posCheckerGround.position, radiusCheck, groundLayerMask);
 
-        isGlading = !isGrounded && isUmbrellaOpen && rb.velocity.y < 3;
+        isGlading = !isGrounded && isUmbrellaOpen && rb.velocity.y < 3 && !isSwimming;
         
     }
 
@@ -245,7 +245,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Water") && !isSwimming)
         {
-            print("Ha entrado en el agua");
+            //print("Ha entrado en el agua");
 
             collider.material = frictionMaterial;
 
@@ -293,7 +293,7 @@ public class PlayerController : MonoBehaviour
 
     private void SwimingManager()
     {
-        if (isSwimming || isStartingToSwim)
+        if (isSwimming)
         {
             rb.useGravity = false;
             brelloOpenManager.SetOpen(true);
