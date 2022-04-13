@@ -11,10 +11,12 @@ public class PyraBall : MonoBehaviour
     Vector3 correctedPos;
     bool normalMovement;
     GameObject pyra;
+    PlayerController player;
     private void Start()
     {
         normalMovement = true;
-        spotToFollow = GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).transform;
+        spotToFollow = GameObject.FindGameObjectWithTag("Player").transform.GetChild(1).transform;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         pyra = GameObject.FindGameObjectWithTag("Pyra");
     }
     // Update is called once per frame
@@ -44,5 +46,11 @@ public class PyraBall : MonoBehaviour
             pyra.GetComponent<NavMeshAgent>().enabled = false;
             pyra.GetComponent<NavMeshAgent>().enabled = true;
         });
+    }
+
+    public void FinishInWater(Vector3 pos)
+    {
+        transform.DOMove(pos, 0.5f);
+        pyra.transform.localScale = Vector3.one;
     }
 }

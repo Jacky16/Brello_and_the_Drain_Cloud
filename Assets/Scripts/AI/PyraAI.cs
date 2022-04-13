@@ -120,7 +120,8 @@ public sealed class PyraAI : MonoBehaviour
             agent.speed = runSpeed;
         }
 
-        if(player.IsGlading() && playerIsHighEnough && !pyraIsGliding && Vector3.Distance(player.transform.position, transform.position) <= minDistToTP)
+        if(!player.IsSwimming() && player.IsGlading() && playerIsHighEnough && !pyraIsGliding 
+            && Vector3.Distance(player.transform.position, transform.position) <= minDistToTP)
         {
             pyraIsGliding = true;
             canChasePlayer = false;
@@ -143,6 +144,23 @@ public sealed class PyraAI : MonoBehaviour
 
             agent.Warp(navHit.position);
             currentParticle.GetComponent<PyraBall>().posToFinish(navHit.position);  
+        }
+        else if(pyraIsGliding && player.IsStartingToSwim())
+        {
+            pyraIsGliding = false;
+            isInPlatform = true;
+
+            agent.Warp(platform.position);
+
+            platform.SetParent(null);
+            transform.SetParent(platform);
+            platform.SetParent(platformParent);
+
+            //player.BlockMovement();
+
+            animator.SetTrigger("SitDown");
+
+            currentParticle.GetComponent<PyraBall>().FinishInWater(platform.position);
         }
 
         else if (canChasePlayer && !isInteracting && !pyraProtection.GetIsInRain() && !isInPlatform && !player.IsSwimming() && !isMovingToInteractuable)
@@ -399,7 +417,6 @@ public sealed class PyraAI : MonoBehaviour
     {
         return p1.priority.CompareTo(p2.priority);
     }
-
 
     private void OnDrawGizmosSelected()
     {

@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isMovementPressed;
     private bool isJumPressed;
+    private bool isStartingToSwim;
     private bool isSwimming;
     private bool canGlade;
     private bool isGlading;
@@ -109,21 +110,25 @@ public class PlayerController : MonoBehaviour
         {
             currentSpeed = Mathf.Lerp(currentSpeed, 0, acceleration * Time.deltaTime);
         }
-        if (isGrounded || isSwimming || isGlading)
+        if (isGrounded || isGlading || isStartingToSwim || isSwimming)
             rb.useGravity = false;
         else
             rb.useGravity = true;
+
     }
     private void Movement()
     {
-        Vector3 dir = CamDirection() * currentSpeed;
-        dir.y = rb.velocity.y;
-        rb.velocity = dir;       
+        if (canMove)
+        {
+            Vector3 dir = CamDirection() * currentSpeed;
+            dir.y = rb.velocity.y;
+            rb.velocity = dir;
+        }
         
     }
     public void HandleJump()
     {  
-        if(isGrounded || isSwimming)
+        if((isGrounded || isSwimming) && canMove)
         rb.AddForce(Vector3.up * jumpForce * 10, ForceMode.Impulse);
     }
     private void HandleRotation()
@@ -167,7 +172,7 @@ public class PlayerController : MonoBehaviour
 
     private void GladeManager()
     {
-        if (isGlading)
+        if (isGlading && !isSwimming)
         {
             rb.AddForce(Vector3.down * -Physics.gravity.y / 2, ForceMode.Force);
         }  
@@ -240,14 +245,19 @@ public class PlayerController : MonoBehaviour
         {
             print("Ha entrado en el agua");
 
-            isSwimming = true;
-
             animator.SetBool("isSwiming", true);
 
+            isStartingToSwim = true;
+            isGlading = false;
+            
             Instantiate(splashParticle, transform.position, splashParticle.transform.rotation);
 
             Transform pivotWater = other.transform.GetChild(0).transform;
-            tweenSwiming = transform.DOLocalMoveY(pivotWater.position.y, 2).SetEase(Ease.OutElastic);
+            tweenSwiming = transform.DOLocalMoveY(pivotWater.position.y, 2).SetEase(Ease.OutElastic).OnComplete(() =>
+            {
+                isSwimming = true;
+                isStartingToSwim = false;
+            });
 
             AkSoundEngine.PostEvent("WaterSplash_Brello", WwiseManager.instance.gameObject);
         }
@@ -271,7 +281,7 @@ public class PlayerController : MonoBehaviour
 
     private void SwimingManager()
     {
-        if (isSwimming)
+        if (isSwimming || isStartingToSwim)
         {
             rb.useGravity = false;
             brelloOpenManager.SetOpen(true);
@@ -295,14 +305,18 @@ public class PlayerController : MonoBehaviour
         brelloOpenManager.SetOpen(isUmbrellaOpen);
 
         //Audio de apertura de paraguas
-        if (_value)
+        if (_value && !isSwimming)
         {
             playerAudio.PlayOpen();
-
         }
-        else
+        else if(!_value && !isSwimming)
         {
             playerAudio.PlayClose();
+            isGlidePlaying = false;
+            playerAudio.StopGlide();
+        }
+        else if(isGlidePlaying && isSwimming)
+        {
             isGlidePlaying = false;
             playerAudio.StopGlide();
         }
@@ -351,6 +365,11 @@ public class PlayerController : MonoBehaviour
     public bool IsSwimming()
     {
         return isSwimming;
+    }
+
+    public bool IsStartingToSwim()
+    {
+        return isStartingToSwim;
     }
 
     public bool IsMoving()
