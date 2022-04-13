@@ -164,7 +164,7 @@ public class PlayerController : MonoBehaviour
 
         isGrounded = Physics.CheckSphere(posCheckerGround.position, radiusCheck, groundLayerMask);
 
-        isGlading = !isGrounded && isUmbrellaOpen;
+        isGlading = !isGrounded && isUmbrellaOpen && rb.velocity.y < 3;
         
     }
 
@@ -243,11 +243,13 @@ public class PlayerController : MonoBehaviour
         {
             print("Ha entrado en el agua");
 
-            collider.material = noFrictionMaterial;
+            collider.material = frictionMaterial;
 
             rb.useGravity = false;
 
             isSwimming = true;
+
+            isGlading = false;
 
             animator.SetBool("isSwiming", true);
 
@@ -266,7 +268,7 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Water"))
         {
             rb.useGravity = true;
-            collider.material = frictionMaterial;
+            collider.material = noFrictionMaterial;
 
             isSwimming = false;
 
