@@ -159,7 +159,16 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetFloat(fallSpeedHash, rb.velocity.y);
         animator.SetBool(isGroundedHash, isGrounded);
-        animator.SetFloat(speedHash, currentSpeed);
+
+        if (rb.velocity.magnitude >= 0.5f)
+        {
+            animator.SetFloat(speedHash, currentSpeed);
+        }
+        else
+        {
+            animator.SetFloat(speedHash, 0f);
+        }
+
         animator.SetBool(isGlidingHash, isGlading);
             
     }

@@ -32,11 +32,12 @@ public class Dialogue_Manager : MonoBehaviour
 
     public GameObject dialogueCam;
 
-    [Space]
-    public Volume dialogueDof;
-
     //Input Player
     private PlayerInput playerInput;
+    private PlayerController player;
+    private Dialogue_Trigger dialogueTrigger;
+
+    public bool canStartTalking;
 
     private void Awake()
     {
@@ -44,8 +45,16 @@ public class Dialogue_Manager : MonoBehaviour
         playerInput = new PlayerInput();
     }
 
+    private void Update()
+    {
+        Debug.Log(dialogueIndex);
+    }
     private void Start()
     {
+        canStartTalking = false;
+
+        dialogueTrigger = GameObject.FindGameObjectWithTag("Player").GetComponent<Dialogue_Trigger>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         animatedText.onDialogueFinish.AddListener(() => FinishDialogue());
 
         playerInput.CharacterControls.Interactuable.started += OnInteractuable;
@@ -53,20 +62,24 @@ public class Dialogue_Manager : MonoBehaviour
 
     private void OnInteractuable(InputAction.CallbackContext ctx)
     {
-        DialogueManager();
+        if(canStartTalking)
+            DialogueManager();
     }
-
     private void DialogueManager()
     {
         if (inDialogue)
         {
             if (canExit)
-            {
+            {               
                 CameraChange(false);
                 FadeUI(false, .2f, 0);
-                Sequence s = DOTween.Sequence();
-                s.AppendInterval(.8f);
-                s.AppendCallback(() => ResetState());
+
+                transform.DOScale(1f, 0.6f).OnComplete(() =>
+                 {
+                     dialogueTrigger.canStartAgain = true;
+                     canStartTalking = false;
+                     ResetState();
+                 });
             }
             else
             {
@@ -78,7 +91,6 @@ public class Dialogue_Manager : MonoBehaviour
                 else
                 {
                     animatedText.ReadText(currentVillager.dialogue.conversationBlock[dialogueIndex]);
-                    nextDialogue = false;
                 }
             }
         }
@@ -89,11 +101,13 @@ public class Dialogue_Manager : MonoBehaviour
         Sequence s = DOTween.Sequence();
         s.AppendInterval(delay);
         s.Append(canvasGroup.DOFade(show ? 1 : 0, time));
+
         if (show)
         {
             dialogueIndex = 0;
-            s.Join(canvasGroup.transform.DOScale(0, time * 2).From().SetEase(Ease.OutBack));
-            s.AppendCallback(() => animatedText.ReadText(currentVillager.dialogue.conversationBlock[0]));
+            s.Join(canvasGroup.transform.DOScale(0f, time * 2).From().SetEase(Ease.OutBack));
+            s.AppendCallback(() => animatedText.ReadText(currentVillager.dialogue.conversationBlock[dialogueIndex]));
+            s.OnComplete(() => canStartTalking = true);
         }
     }
 
@@ -108,15 +122,6 @@ public class Dialogue_Manager : MonoBehaviour
     {
         gameCam.SetActive(!dialogue);
         dialogueCam.SetActive(dialogue);
-
-        //Depth of field modifier
-        float dofWeight = dialogueCam.activeSelf ? 1 : 0;
-        DOVirtual.Float(dialogueDof.weight, dofWeight, .8f, DialogueDOF);
-    }
-
-    public void DialogueDOF(float x)
-    {
-        dialogueDof.weight = x;
     }
 
     public void ClearText()
@@ -127,23 +132,42 @@ public class Dialogue_Manager : MonoBehaviour
     public void ResetState()
     {
         currentVillager.Reset();
-        //FindObjectOfType<MovementInput>().active = true;
+        player.EnableMovement();
         inDialogue = false;
         canExit = false;
     }
 
     public void FinishDialogue()
     {
-        if (dialogueIndex < currentVillager.dialogue.conversationBlock.Count - 1)
+        if(currentVillager.dialogue.conversationBlock == null)
         {
-            dialogueIndex++;
-            nextDialogue = true;
+            Debug.Log("ConversationBlock es nulo");
         }
-        else
+        else if(currentVillager.dialogue == null)
         {
-            nextDialogue = false;
-            canExit = true;
+            Debug.Log("Dialogue es nulo");
         }
+        else if(currentVillager == null)
+        {
+            Debug.Log("Villager es nulo");
+        }
+
+        if (currentVillager)
+        {
+            if (dialogueIndex < currentVillager.dialogue.conversationBlock.Count - 1)
+            {
+                dialogueIndex++;
+                nextDialogue = true;
+                canExit = false;
+            }
+
+            else
+            {
+                nextDialogue = false;
+                canExit = true;
+            }
+        }
+
     }
 
     private void OnEnable()

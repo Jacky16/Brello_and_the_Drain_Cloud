@@ -24,10 +24,12 @@ public class TMP_Dialogue : TextMeshProUGUI
     public DialogueEvent onDialogueFinish;
     public Coroutine currentRoutine;
     string displayText;
-
+    private string currentText;
     public void ReadText(string newText)
     {
         text = string.Empty;
+        currentText = newText;
+
         // split the whole text into parts based off the <> tags 
         // even numbers in the array are text, odd numbers are tags
         string[] subTexts = newText.Split('<', '>');
@@ -41,11 +43,6 @@ public class TMP_Dialogue : TextMeshProUGUI
                 displayText += subTexts[i];
             else if (!isCustomTag(subTexts[i].Replace(" ", "")))
                 displayText += $"<{subTexts[i]}>";
-        }
-        // check to see if a tag is our own
-        bool isCustomTag(string tag)
-        {
-            return tag.StartsWith("speed=") || tag.StartsWith("pause=") || tag.StartsWith("emotion=") || tag.StartsWith("action=") || tag.StartsWith("shop=");
         }
 
         // send that string to textmeshpro and hide all of it, then start reading
@@ -105,9 +102,24 @@ public class TMP_Dialogue : TextMeshProUGUI
             onDialogueFinish.Invoke();
         }
     }
+    bool isCustomTag(string tag)
+    {
+        return tag.StartsWith("speed=") || tag.StartsWith("pause=") || tag.StartsWith("emotion=") || tag.StartsWith("action=") || tag.StartsWith("shop=");
+    }
 
     public void DisplayCurrentDialogue()
     {
+        string[] subTexts = currentText.Split('<', '>');
+
+        displayText = "";
+        for (int i = 0; i < subTexts.Length; i++)
+        {
+            if (i % 2 == 0)
+                displayText += subTexts[i];
+            else if (!isCustomTag(subTexts[i].Replace(" ", "")))
+                displayText += $"<{subTexts[i]}>";
+        }
+
         maxVisibleCharacters = displayText.Length;
         StopAllCoroutines();
     }

@@ -20,6 +20,7 @@ public class Dialogue_Trigger : MonoBehaviour
     //Input player
     private PlayerInput playerInput;
 
+    public bool canStartAgain = true;
     private void Awake()
     {
         playerInput = new PlayerInput();
@@ -35,20 +36,22 @@ public class Dialogue_Trigger : MonoBehaviour
 
     private void OnInteractuable(InputAction.CallbackContext ctx)
     {
-        DialogueTrigger();
+        if (canStartAgain)
+            DialogueTrigger();
     }
 
     private void DialogueTrigger()
     {
         if (!ui.inDialogue && currentVillager != null)
         {
+            canStartAgain = false;
             targetGroup.m_Targets[1].target = currentVillager.transform;
-            //movement.active = false;
+            GetComponent<PlayerController>().BlockMovement();
             ui.SetCharNameAndColor();
             ui.inDialogue = true;
             ui.CameraChange(true);
             ui.ClearText();
-            ui.FadeUI(true, .2f, .65f);
+            ui.FadeUI(true, .2f, .6f);     
             currentVillager.TurnToPlayer(transform.position);
         }
     }
