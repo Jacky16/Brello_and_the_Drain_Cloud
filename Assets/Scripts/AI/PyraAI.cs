@@ -81,13 +81,6 @@ public sealed class PyraAI : MonoBehaviour
     {
         canArriveToBrello = NavMesh.CalculatePath(transform.position, player.transform.position, NavMesh.AllAreas, new NavMeshPath());
 
-        Debug.Log("CanChasePlayer: "+canChasePlayer);
-        Debug.Log("!isInteracting: " + isInteracting);
-        Debug.Log("!pyraIsInRain: " + pyraProtection.GetIsInRain());
-        Debug.Log("!isInPlatform: " + isInPlatform);
-        Debug.Log("!isMovingToInteractable: " + isMovingToInteractuable);
-        Debug.Log("moveToPlatform: " + moveToPlatform);
-
         //Si en algun momento pyra no está en la navmesh, la tpeamos al punto mas cercano en ella.
         if (!agent.isOnNavMesh && !isInPlatform)
         {
@@ -183,14 +176,11 @@ public sealed class PyraAI : MonoBehaviour
         {
             Vector3 dir = player.transform.position - transform.position;
             float rayDistance = Vector3.Distance(transform.position, player.transform.position);
-            Debug.Log("Entro1");
             if (!Physics.Raycast(transform.position, dir, rayDistance, rainMask))
             {
                 Vector3 relativeDistance = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
-                Debug.Log("Entro2");
                 if (!(Vector3.Distance(transform.position, relativeDistance) <= agent.stoppingDistance)) {
 
-                    Debug.Log("Entro3");
                     //NavMesh.SamplePosition(player.transform.position, out NavMeshHit navHit, agent.height * 2, NavMesh.AllAreas);
 
                     //Debug.Log(navHit.position);

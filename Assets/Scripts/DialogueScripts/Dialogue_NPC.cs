@@ -7,7 +7,7 @@ using Cinemachine;
 
 public class Dialogue_NPC : MonoBehaviour
 {
-    public NPCData data;
+    public DialogueObjectData data;
     public DialogueData dialogue;
 
     public bool villagerIsTalking;

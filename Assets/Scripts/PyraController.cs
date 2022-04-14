@@ -91,7 +91,6 @@ public class PyraController : MonoBehaviour
         {
             Vector3 dir = CamDirection() * speed;
             dir.y = rb.velocity.y;
-            Debug.Log(dir);
             rb.AddForce(speed * CamDirection(),ForceMode.Acceleration);
         }
     }

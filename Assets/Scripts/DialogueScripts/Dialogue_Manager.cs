@@ -45,10 +45,6 @@ public class Dialogue_Manager : MonoBehaviour
         playerInput = new PlayerInput();
     }
 
-    private void Update()
-    {
-        Debug.Log(dialogueIndex);
-    }
     private void Start()
     {
         canStartTalking = false;
@@ -114,8 +110,8 @@ public class Dialogue_Manager : MonoBehaviour
     public void SetCharNameAndColor()
     {
         nameTMP.text = currentVillager.data.NPCName;
-        nameTMP.color = currentVillager.data.NPCNameColor;
-        nameBubble.color = currentVillager.data.NPCColor;
+        //nameTMP.color = currentVillager.data.NPCNameColor;
+        //nameBubble.color = currentVillager.data.NPCColor;
     }
 
     public void CameraChange(bool dialogue)
