@@ -8,6 +8,7 @@ public class Health : MonoBehaviour
     [SerializeField] protected int maxLife;
     [SerializeField] protected float inmunityTime;
     [SerializeField] protected float timeToReappear;
+    protected CombatManager combatManager;
     protected bool isInmune;
     protected Animator animator;
 
@@ -17,6 +18,7 @@ public class Health : MonoBehaviour
         currLife = maxLife;
         animator = GetComponent<Animator>();
         isInmune = false;
+        combatManager = GameObject.FindGameObjectWithTag("Player").GetComponent<CombatManager>();
     }
 
     public void DoDamage(int amount)

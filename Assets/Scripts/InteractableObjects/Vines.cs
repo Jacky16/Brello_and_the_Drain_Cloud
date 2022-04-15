@@ -36,7 +36,7 @@ public class Vines : Interactable
         Instantiate(smokeParticles, transform.position, Quaternion.identity);
 
         pyra.isInteracting = false;
-
+        pyra.RefreshDetectedObject();
         transform.GetChild(1).GetComponent<MeshRenderer>().material.color = initColor;
         Destroy(gameObject);
     }
@@ -49,7 +49,7 @@ public class Vines : Interactable
 
     protected override void ResetAll()
     {
-        gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+        transform.GetChild(1).GetComponent<MeshRenderer>().material.color = initColor;
         pyra.isInteracting = false;
         fire.gameObject.SetActive(false);
     }

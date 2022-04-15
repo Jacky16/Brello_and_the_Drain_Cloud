@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Testing
   m_EditorClassIdentifier: 
   conversationBlock:
-  - "\xA1Hola! \xA1Me llamo Pyra!"
-  - "Sabes que pasa... \xA1UN BURRO POR TU CASA!"
+  - "\xA1Hola!<b> \xA1Me llamo Pyra! </b>"
+  - "Sabes <emotion=angry>que pasa<speed=0.1>...<pause=0.5> <speed=0.01>\xA1UN BURRO
+    POR TU CASA!"
   - 'No me mires asi...
 
-    Ahora me siento mal :('
+    <shop>Ahora me siento mal :('
   - PERO TAMPOCO HACE FALTA QUE ME GRITES!

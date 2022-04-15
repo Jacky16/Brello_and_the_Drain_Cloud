@@ -16,6 +16,7 @@ public sealed class PyraAI : MonoBehaviour
     private PyraProtection pyraProtection;
     private PyraHealth pyraHealth;
     private Animator animator;
+    CombatManager combatManager;
 
     //Variables de detección de objetos interactuables.
     public bool canChasePlayer = true;
@@ -57,13 +58,11 @@ public sealed class PyraAI : MonoBehaviour
     [SerializeField] private Transform platform;
     [SerializeField] private Transform platformParent;
 
-    NavMeshPath closestPathToBrello;
-
     private Vector3 posToJump;
     bool stayUnderBrello;
-    private void Awake()
+    private void Start()
     {
-        closestPathToBrello = new NavMeshPath();
+        combatManager = GameObject.FindGameObjectWithTag("Player").GetComponent<CombatManager>();
         pyraProtection = GameObject.FindGameObjectWithTag("Player").GetComponent<PyraProtection>();
         pyraHealth = GetComponent<PyraHealth>();
         agent = GetComponent<NavMeshAgent>();
@@ -74,13 +73,10 @@ public sealed class PyraAI : MonoBehaviour
         isInteracting = false;
         playerIsHighEnough = false;
         pyraIsGliding = false;
-        //platformParent = platform;
     }
-
     private void Update()
     {
-        canArriveToBrello = NavMesh.CalculatePath(transform.position, player.transform.position, NavMesh.AllAreas, new NavMeshPath());
-
+        Debug.Log("Ahora no estoy en combate!!!");
         //Si en algun momento pyra no está en la navmesh, la tpeamos al punto mas cercano en ella.
         if (!agent.isOnNavMesh && !isInPlatform)
         {
@@ -129,6 +125,15 @@ public sealed class PyraAI : MonoBehaviour
             agent.speed = runSpeed;
         }
 
+        if (combatManager.GetIsInCombat())
+        {
+            Debug.Log("Estoy en combate!!");
+        }
+        else
+        {
+            Debug.Log("No estoy en combate!!");
+        }
+
         if(!player.IsSwimming() && player.IsGlading() && playerIsHighEnough && !pyraIsGliding 
             && Vector3.Distance(player.transform.position, transform.position) <= minDistToTP)
         {
@@ -136,7 +141,11 @@ public sealed class PyraAI : MonoBehaviour
             canChasePlayer = false;
             stayUnderBrello = false;
             isMovingToInteractuable = false;
-            isInteracting = false;
+
+            if (isInteracting)
+            {
+                currentInteractuable.ResetInter();
+            }
 
             transform.DOScale(0f, 0.2f).OnComplete(() =>
             {
@@ -171,28 +180,26 @@ public sealed class PyraAI : MonoBehaviour
 
             currentParticle.GetComponent<PyraBall>().FinishInWater(platform.localPosition);
         }
-
-        else if (canChasePlayer && !isInteracting && !pyraProtection.GetIsInRain() && !isInPlatform && !isMovingToInteractuable && !moveToPlatform)
+        else if(canChasePlayer && !isInteracting && !pyraProtection.GetIsInRain() && !isInPlatform && !isMovingToInteractuable && !moveToPlatform)
         {
             Vector3 dir = player.transform.position - transform.position;
             float rayDistance = Vector3.Distance(transform.position, player.transform.position);
             if (!Physics.Raycast(transform.position, dir, rayDistance, rainMask))
             {
                 Vector3 relativeDistance = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
-                if (!(Vector3.Distance(transform.position, relativeDistance) <= agent.stoppingDistance)) {
-
-                    //NavMesh.SamplePosition(player.transform.position, out NavMeshHit navHit, agent.height * 2, NavMesh.AllAreas);
-
-                    //Debug.Log(navHit.position);
+                if (!(Vector3.Distance(transform.position, relativeDistance) <= agent.stoppingDistance))
+                {
                     agent.destination = player.transform.position;
                 }
                 else
                 {
+                    agent.velocity = Vector3.zero;
                     agent.SetDestination(transform.position);
                 }             
             }
             else
             {
+                agent.velocity = Vector3.zero;
                 agent.SetDestination(transform.position);
             }
         }
@@ -200,7 +207,7 @@ public sealed class PyraAI : MonoBehaviour
         {
             agent.SetDestination(transform.position);
         }
-        else if (moveToPlatform)
+        else if(moveToPlatform)
         {
             if (!isJumping)
             {
@@ -239,7 +246,7 @@ public sealed class PyraAI : MonoBehaviour
                 }
             }
         }
-        else if (stayUnderBrello && (!pyraProtection.GetIsInRain() || pyraHealth.GetIsProtected()) && !player.IsSwimming())
+        else if(stayUnderBrello && (!pyraProtection.GetIsInRain() || pyraHealth.GetIsProtected()) && !player.IsSwimming())
         {
             agent.SetDestination(player.transform.GetChild(0).position);
 
@@ -252,17 +259,19 @@ public sealed class PyraAI : MonoBehaviour
             }
 
         }
-        else if (isMovingToInteractuable && !stayUnderBrello && !moveToPlatform && !isInPlatform)
+        else if(isMovingToInteractuable && !stayUnderBrello && !moveToPlatform && !isInPlatform && !isInteracting)
         {
             //Mientras haya algo a la lista sigue el actual Interactuable
             agent.SetDestination(currentInteractuable.transform.position);
+            Debug.Log("Estoy yendo a por " + currentInteractuable + " de prioridad " + currentInteractuable.priority);
 
             //Cuando estas cerca del interactuable ve a por el siguiente
-            if (Vector3.Distance(transform.position, currentInteractuable.transform.position) <= agent.stoppingDistance + 4)
+            Vector3 correctedPos = new Vector3(currentInteractuable.transform.position.x, transform.position.y, currentInteractuable.transform.position.z);
+            if (Vector3.Distance(transform.position, correctedPos) <= agent.stoppingDistance)
             {
+                Debug.Log("He empezado a interactuar con " + currentInteractuable);
                 currentInteractuable.Interact();
                 isInteracting = true;
-                RefreshDetectedObject();
             }
         }
     }
@@ -283,6 +292,11 @@ public sealed class PyraAI : MonoBehaviour
         else if((isMovingToInteractuable || isInteracting || isInteracting && player.IsSwimming()) && !moveToPlatform)
         {
             Vector3 rotation = new Vector3(currentInteractuable.transform.position.x, transform.position.y, currentInteractuable.transform.position.z);
+            transform.DOLookAt(rotation, 0.5f);
+        }
+        else if(!player.IsMoving())
+        {
+            Vector3 rotation = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
             transform.DOLookAt(rotation, 0.5f);
         }
         else
@@ -381,7 +395,7 @@ public sealed class PyraAI : MonoBehaviour
         posToJump = _posToJump; 
     }
 
-    private void RefreshDetectedObject()
+    public void RefreshDetectedObject()
     {
         //Elimina de la lista al que estaba siguiendo
         detectedObjects.Remove(currentInteractuable);

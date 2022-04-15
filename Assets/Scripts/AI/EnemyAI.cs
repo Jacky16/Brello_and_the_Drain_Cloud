@@ -14,6 +14,7 @@ public class EnemyAI : MonoBehaviour
     [Header("Player detection variables")]
     [SerializeField] protected LayerMask playerMask;
     protected GameObject player;
+    CombatManager combatManager;
 
     [Header("AI Variables")]
     [SerializeField] protected float attackRadius;
@@ -25,6 +26,7 @@ public class EnemyAI : MonoBehaviour
     protected virtual void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        combatManager = player.GetComponent<CombatManager>();
         agent = GetComponent<NavMeshAgent>();
         canAttack = true;
         rb = GetComponent<Rigidbody>();
@@ -35,11 +37,21 @@ public class EnemyAI : MonoBehaviour
     {
         if (!playerInSightRange)
         {
+            if (combatManager.enemyList.Contains(gameObject))
+            {
+                combatManager.enemyList.Remove(gameObject);
+            }
+
             Idle();
         }
 
         if (playerInSightRange)
         {
+            if (!combatManager.enemyList.Contains(gameObject))
+            {
+                combatManager.enemyList.Add(gameObject);
+            }
+
             transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
         }
 
