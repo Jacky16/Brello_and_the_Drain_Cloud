@@ -5,24 +5,36 @@ using TMPro;
 using UnityEngine.InputSystem;
 using DG.Tweening;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class DialogueObject : MonoBehaviour
 {
+    //Variables del canvas del dialogo
     CanvasGroup dialogueGroup;
     TextMeshProUGUI dialogueText;
     TextMeshProUGUI dialogueName;
     Image dialogueNameBackColor;
+
+    [Header("Variables del dialogo")]
     [SerializeField] DialogueObjectData dialogueObject;
+
+    [Range(0.01f,0.1f)]
     [SerializeField] float speed;
-    PlayerController player;
     private int index;
 
+    //Booleanos para controlar cuando se puede pulsar la E
     private bool inDialogue;
     private bool loadingDialogue;
     private bool reloadDialogue;
     private bool reloadingDialogue;
 
+    //Variables del player
+    PlayerController player;
     private PlayerInput playerInput;
+
+    //Cámaras
+    [SerializeField] GameObject playerCam;
+    [SerializeField] GameObject dialogueCam;
 
     private void Awake()
     {
@@ -114,7 +126,8 @@ public class DialogueObject : MonoBehaviour
 
     private void CameraHandler(bool playerCamera)
     {
-
+        playerCam.SetActive(playerCamera);
+        dialogueCam.SetActive(!playerCamera);
     }
 
     private void DialogueCanvasHandler(bool showCanvas)
