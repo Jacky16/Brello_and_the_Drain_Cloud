@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
@@ -7,6 +8,7 @@ using DG.Tweening;
 using UnityEngine.UI;
 using Cinemachine;
 
+public enum Emotion { happy, sad, surprised, angry, doubt, idle };
 public class DialogueObject : MonoBehaviour
 {
     //Variables del canvas del dialogo
@@ -17,6 +19,8 @@ public class DialogueObject : MonoBehaviour
 
     [Header("Variables del dialogo")]
     [SerializeField] DialogueObjectData dialogueObject;
+    private string[] dialogueInParts;
+    private string displayText;
 
     [Range(0.01f,0.1f)]
     [SerializeField] float speed;
@@ -61,7 +65,7 @@ public class DialogueObject : MonoBehaviour
             reloadDialogue = false;
             reloadingDialogue = true;
             StartCoroutine(ReloadDialogue());
-        }
+        }       
     }
     private void OnInteractuable(InputAction.CallbackContext ctx)
     {
@@ -73,46 +77,123 @@ public class DialogueObject : MonoBehaviour
                 CameraHandler(false);
                 DialogueCanvasHandler(true);
             }
-            else if (dialogueText.text == dialogueObject.dialogue.conversationBlock[index] && !reloadingDialogue && inDialogue && !loadingDialogue)
+            else if (dialogueText.maxVisibleCharacters == displayText.Length && !reloadingDialogue && inDialogue && !loadingDialogue)
             {
                 NextDialogue();
             }
             else if(!loadingDialogue && !reloadingDialogue && inDialogue)
             {
                 StopAllCoroutines();
-                dialogueText.text = dialogueObject.dialogue.conversationBlock[index];
+
+                for(int i = 0; i< dialogueInParts.Length; i++)
+                {
+                    dialogueText.maxVisibleCharacters = displayText.Length;
+                }
             }
         }
     }
-        
+
+    #region CoreFunctions
     void StartDialogue()
     {
         index = 0;
+
+        ReadCurrentDialogue();
+
         StartCoroutine(TypeDialogue());
     }
-
-    IEnumerator ReloadDialogue()
+    void ReadCurrentDialogue()
     {
-        yield return new WaitForSeconds(1.25f);
-        inDialogue = false;
-        reloadingDialogue = false;
-    }
+        //IMPORTANTE PARA ENTENDER ESTE CODIGO:
+        //Al separar por tags, lo de fuera de un tag siempre estará en una posicion par en el array
+        //y lo de dentro de un tag siempre estará en una posicion impar.
+        //Es por esta razon por la que se verá como compruebo si el número es par o impar en varias ocasiones.
 
+        //Ponemos a 0 el numero de caracteres visibles para cargar el texto en 2o plano.
+        dialogueText.maxVisibleCharacters = 0;
+
+        //Dividimos el texto actual separandolo cuando encuentre un tag
+        dialogueInParts = dialogueObject.dialogue.conversationBlock[index].Split('<', '>');
+
+        displayText = string.Empty;
+        for (int i = 0; i < dialogueInParts.Length; i++)
+        {
+            //Añadimos el texto tal cual
+            if (i % 2 == 0)
+                displayText += dialogueInParts[i];
+            //Si no es un tag hecho por nosotros, lo ponemos para que TMP haga lo suyo.
+            else if (!isCustomTag(dialogueInParts[i].Replace(" ", "")))
+                displayText += $"<{dialogueInParts[i]}>";
+        }
+
+        dialogueText.text = displayText;
+    }
     IEnumerator TypeDialogue()
     {
-        foreach(char letter in dialogueObject.dialogue.conversationBlock[index].ToCharArray())
-        {
-            dialogueText.text += letter;
-            yield return new WaitForSeconds(speed);
-        }
-    }
+        int subCounter = 0;
+        int visibleCounter = 0;
 
+        while (subCounter < dialogueInParts.Length)
+        {
+            if (subCounter % 2 == 1)
+            {
+                yield return EvaluateTag(dialogueInParts[subCounter].Replace(" ", ""));
+            }
+            else
+            {
+                while (visibleCounter < dialogueInParts[subCounter].Length)
+                {
+                    visibleCounter++;
+                    dialogueText.maxVisibleCharacters++;
+                    yield return new WaitForSeconds(speed);
+                }
+                visibleCounter = 0;
+            }
+            subCounter++;
+        }
+        yield return null;
+
+        WaitForSeconds EvaluateTag(string tag)
+        {
+            if (tag.Length > 0)
+            {
+                if (tag.StartsWith("speed="))
+                {
+                    speed = float.Parse(tag.Split('=')[1], CultureInfo.InvariantCulture);
+                }
+                else if (tag.StartsWith("pause="))
+                {
+                    return new WaitForSeconds(float.Parse(tag.Split('=')[1], CultureInfo.InvariantCulture));
+                }
+                else if (tag.StartsWith("emotion="))
+                {
+                    EmotionHandler((Emotion)System.Enum.Parse(typeof(Emotion), tag.Split('=')[1]));
+                }
+                else if (tag.StartsWith("action="))
+                {
+                    ActionHandler(tag.Split('=')[1]);
+                }
+                else if (tag.StartsWith("shop"))
+                {
+                    ShopHandler();
+                }
+            }
+            return null;
+        }
+
+        //foreach (char letter in dialogueObject.dialogue.conversationBlock[index].ToCharArray())
+        //{
+        //    dialogueText.text += letter;
+        //    yield return new WaitForSeconds(speed);
+        //}
+    }
     void NextDialogue()
     {
-        if(index < dialogueObject.dialogue.conversationBlock.Count - 1)
+        if (index < dialogueObject.dialogue.conversationBlock.Count - 1)
         {
             index++;
-            dialogueText.text = string.Empty;
+
+            ReadCurrentDialogue();
             StartCoroutine(TypeDialogue());
         }
         else
@@ -121,8 +202,25 @@ public class DialogueObject : MonoBehaviour
             DialogueCanvasHandler(false);
         }
     }
+    IEnumerator ReloadDialogue()
+    {
+        yield return new WaitForSeconds(1.25f);
+        inDialogue = false;
+        reloadingDialogue = false;
+        speed = 0.05f;
+    }
+    #endregion
 
-    #region DialogueFunctions
+    #region DialogueAnalyzers
+
+    bool isCustomTag(string tag)
+    {
+        return tag.StartsWith("speed=") || tag.StartsWith("pause=") || tag.StartsWith("emotion=") || tag.StartsWith("action=") || tag.StartsWith("shop");
+    }
+
+    #endregion
+
+    #region DialogueHandlers
 
     private void CameraHandler(bool playerCamera)
     {
@@ -163,6 +261,7 @@ public class DialogueObject : MonoBehaviour
     }
 
     #endregion
+
     #region CollisionCheckers
     private void OnTriggerEnter(Collider other)
     {
@@ -179,6 +278,25 @@ public class DialogueObject : MonoBehaviour
             player = null;
         }
     }
+    #endregion
+
+    #region CustomTagHandlers
+
+    private void EmotionHandler(Emotion emotion)
+    {
+        Debug.Log("He recibido la emocion: " + emotion.ToString());
+    }
+
+    private void ActionHandler(string action)
+    {
+        Debug.Log("He recibido la acción: " + action);
+    }
+
+    private void ShopHandler()
+    {
+        Debug.Log("Abrir la tienda");
+    }
+
     #endregion
 
     #region InputFunctions
