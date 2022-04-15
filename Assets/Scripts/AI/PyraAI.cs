@@ -32,6 +32,8 @@ public sealed class PyraAI : MonoBehaviour
     [Header("Layer de lluvia para comprobar los raycast.")]
     [SerializeField] private LayerMask rainMask;
 
+    [SerializeField] private LayerMask whatIsGround;
+
     //Variables de objetos detectados.
     [SerializeField] private List<Interactable> detectedObjects;
 
@@ -39,10 +41,15 @@ public sealed class PyraAI : MonoBehaviour
 
     //Variables de movimiento.
     public bool moveToPlatform = false, isInPlatform = false, isJumping = false;
+    private bool playerIsHighEnough, pyraIsGliding, canArriveToBrello;
+    [SerializeField] GameObject tpStartParticles;
+    [SerializeField] GameObject tpFinishParticles;
+    GameObject currentParticle;
 
     [Header("Jump settings")]
     [SerializeField] private float jumpPower;
 
+    [SerializeField] private float minDistToTP;
     [SerializeField] float walkSpeed;
     [SerializeField] float runSpeed;
     [SerializeField] private float jumpDuration;
@@ -50,10 +57,13 @@ public sealed class PyraAI : MonoBehaviour
     [SerializeField] private Transform platform;
     [SerializeField] private Transform platformParent;
 
+    NavMeshPath closestPathToBrello;
+
     private Vector3 posToJump;
     bool stayUnderBrello;
     private void Awake()
     {
+        closestPathToBrello = new NavMeshPath();
         pyraProtection = GameObject.FindGameObjectWithTag("Player").GetComponent<PyraProtection>();
         pyraHealth = GetComponent<PyraHealth>();
         agent = GetComponent<NavMeshAgent>();
@@ -62,11 +72,23 @@ public sealed class PyraAI : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
         isInteracting = false;
+        playerIsHighEnough = false;
+        pyraIsGliding = false;
         //platformParent = platform;
     }
 
     private void Update()
     {
+        canArriveToBrello = NavMesh.CalculatePath(transform.position, player.transform.position, NavMesh.AllAreas, new NavMeshPath());
+
+        //Si en algun momento pyra no está en la navmesh, la tpeamos al punto mas cercano en ella.
+        if (!agent.isOnNavMesh && !isInPlatform)
+        {
+            NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 10f, NavMesh.AllAreas);
+
+            agent.Warp(hit.position);
+        }
+
         AIManager();
         RotationManager();
         AnimationManager();
@@ -74,6 +96,10 @@ public sealed class PyraAI : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Physics.Raycast(player.transform.position, -player.transform.up, out RaycastHit hit, 1000f, whatIsGround);
+
+        playerIsHighEnough = Vector3.Distance(player.transform.position, hit.point) >= 5f ? true : false;
+
         if(Physics.CheckSphere(transform.position, detectionRadius, interactable))
         {
             Collider[] interactables = Physics.OverlapSphere(transform.position, detectionRadius, interactable);
@@ -87,7 +113,7 @@ public sealed class PyraAI : MonoBehaviour
 
     private void AIManager()
     {
-        if (player.GetComponent<BrelloOpenManager>().GetIsOpen())
+        if (player.GetComponent<BrelloOpenManager>().GetIsOpen() && !player.IsSwimming())
         {
             stayUnderBrello = true;
             canChasePlayer = false;
@@ -103,17 +129,62 @@ public sealed class PyraAI : MonoBehaviour
             agent.speed = runSpeed;
         }
 
-        if (canChasePlayer && !isInteracting && !pyraProtection.GetIsInRain() && !isInPlatform && !player.IsSwimming() && !isMovingToInteractuable)
+        if(!player.IsSwimming() && player.IsGlading() && playerIsHighEnough && !pyraIsGliding 
+            && Vector3.Distance(player.transform.position, transform.position) <= minDistToTP)
+        {
+            pyraIsGliding = true;
+            canChasePlayer = false;
+            stayUnderBrello = false;
+            isMovingToInteractuable = false;
+            isInteracting = false;
+
+            transform.DOScale(0f, 0.2f).OnComplete(() =>
+            {
+                 currentParticle = Instantiate(tpStartParticles, transform.position, Quaternion.identity);
+            });
+        }
+        else if(pyraIsGliding && player.IsGrounded())
+        {
+            pyraIsGliding = false;
+
+            Physics.Raycast(player.transform.GetChild(0).position, Vector3.down, out RaycastHit hit, 100f, whatIsGround);
+
+            NavMesh.SamplePosition(hit.point, out NavMeshHit navHit, 1f, NavMesh.AllAreas);
+
+            agent.Warp(navHit.position);
+            currentParticle.GetComponent<PyraBall>().posToFinish(navHit.position);  
+        }
+        else if(pyraIsGliding && player.IsSwimming())
+        {
+            pyraIsGliding = false;
+            isInPlatform = true;
+
+            agent.Warp(platform.position);
+
+            platform.SetParent(null);
+            transform.SetParent(platform);
+            platform.SetParent(platformParent);
+
+            animator.SetTrigger("SitDown");
+
+            currentParticle.transform.SetParent(platformParent);
+
+            currentParticle.GetComponent<PyraBall>().FinishInWater(platform.localPosition);
+        }
+
+        else if (canChasePlayer && !isInteracting && !pyraProtection.GetIsInRain() && !isInPlatform && !isMovingToInteractuable && !moveToPlatform)
         {
             Vector3 dir = player.transform.position - transform.position;
             float rayDistance = Vector3.Distance(transform.position, player.transform.position);
-
             if (!Physics.Raycast(transform.position, dir, rayDistance, rainMask))
             {
                 Vector3 relativeDistance = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
-
                 if (!(Vector3.Distance(transform.position, relativeDistance) <= agent.stoppingDistance)) {
-                    agent.SetDestination(player.transform.position);
+
+                    //NavMesh.SamplePosition(player.transform.position, out NavMeshHit navHit, agent.height * 2, NavMesh.AllAreas);
+
+                    //Debug.Log(navHit.position);
+                    agent.destination = player.transform.position;
                 }
                 else
                 {
@@ -181,7 +252,6 @@ public sealed class PyraAI : MonoBehaviour
             }
 
         }
-        //Se mueve a los interactuables si hay algo en la lista
         else if (isMovingToInteractuable && !stayUnderBrello && !moveToPlatform && !isInPlatform)
         {
             //Mientras haya algo a la lista sigue el actual Interactuable
@@ -217,7 +287,7 @@ public sealed class PyraAI : MonoBehaviour
         }
         else
         {
-            Vector3 rotation = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+            Vector3 rotation = new Vector3(agent.steeringTarget.x, transform.position.y, agent.steeringTarget.z);
             transform.DOLookAt(rotation, 0.5f);
         }
     }
@@ -358,7 +428,6 @@ public sealed class PyraAI : MonoBehaviour
     {
         return p1.priority.CompareTo(p2.priority);
     }
-
 
     private void OnDrawGizmosSelected()
     {

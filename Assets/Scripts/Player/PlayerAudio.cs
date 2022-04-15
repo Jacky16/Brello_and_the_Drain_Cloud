@@ -25,7 +25,7 @@ public class PlayerAudio : MonoBehaviour
                 if (hit.collider.transform.gameObject.TryGetComponent(out Terrain terrain))
                 {
                     actualTerrainType = terrain.GetTerrainType();
-                    Debug.Log(actualTerrainType);
+                    //Debug.Log(actualTerrainType);
                 }
             }
         }
