@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class TilesPuzzle : MonoBehaviour
 {
     // Los 9 tiles del puzzle
@@ -10,6 +10,7 @@ public class TilesPuzzle : MonoBehaviour
     //Variables para el resultado del puzzle
     [SerializeField] Transform pillar;
     [SerializeField] Transform moveTo;
+    [SerializeField] float timeToArrive;
 
     //Variable para hacer los cálculos de si se sigue el orden correcto
     int lastTile = 0;
@@ -68,6 +69,8 @@ public class TilesPuzzle : MonoBehaviour
     // Funcion para hacer la conclusión y resultado del puzzle
     private void Completed()
     {
-
+        pillar.DOMove(moveTo.position, timeToArrive).SetEase(Ease.InOutSine);
+        //Sonido de puzzle completado
+        AkSoundEngine.PostEvent("PuzzlePillar", WwiseManager.instance.gameObject);
     }
 }

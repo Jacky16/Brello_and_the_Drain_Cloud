@@ -20,6 +20,7 @@ namespace AK
         static const AkUniqueID DEATH_BRELLO = 1700730432U;
         static const AkUniqueID DEATH_PYRA = 1095581318U;
         static const AkUniqueID DEATH_STEAMLING = 4094738360U;
+        static const AkUniqueID DROPPLY = 274987955U;
         static const AkUniqueID FIRE_PYRA = 1030925518U;
         static const AkUniqueID FOOTSTEP_BRELLO = 2749921882U;
         static const AkUniqueID FOOTSTEP_PYRA = 1517232512U;
@@ -32,8 +33,11 @@ namespace AK
         static const AkUniqueID IMPACT_STEAMLING = 983408950U;
         static const AkUniqueID JUMP_BRELLO = 2093704360U;
         static const AkUniqueID LAND_BRELLO = 658189305U;
+        static const AkUniqueID MAINMENU = 3604647259U;
+        static const AkUniqueID MAINMENUSTOP = 2223599963U;
         static const AkUniqueID OPEN_BRELLO = 692676672U;
         static const AkUniqueID PREPARING_CHARGE_STEAMLING = 1765157707U;
+        static const AkUniqueID PUZZLEPILLAR = 1659764341U;
         static const AkUniqueID RAIN_LEVEL1 = 1526266773U;
         static const AkUniqueID RECOVERING_STEAMLING = 2867905824U;
         static const AkUniqueID RESTART_ATTACK_COMBO_BRELLO = 1804471233U;
@@ -41,6 +45,7 @@ namespace AK
         static const AkUniqueID SHOPMUSIC_LEVEL1 = 2541270178U;
         static const AkUniqueID START_GLIDE_BRELLO = 3020521956U;
         static const AkUniqueID STOP_GLIDE_BRELLO = 1228236750U;
+        static const AkUniqueID STOPBACKGROUNDMUSIC_LEVEL1 = 4153140954U;
         static const AkUniqueID SWIMMING_BRELLO = 2196322537U;
         static const AkUniqueID VILLAGEAMBIENCE_LEVEL1 = 916769465U;
         static const AkUniqueID VILLAGEMUSIC_LEVEL1 = 3399754180U;

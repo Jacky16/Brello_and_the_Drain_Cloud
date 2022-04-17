@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
 public class Health : MonoBehaviour
 {
     [SerializeField] protected int currLife;
@@ -72,6 +71,7 @@ public class Health : MonoBehaviour
         currLife = maxLife;
         isInmune = false;
     }
+
 
     private IEnumerator Reappear()
     {

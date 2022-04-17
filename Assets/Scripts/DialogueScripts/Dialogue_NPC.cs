@@ -81,12 +81,12 @@ public class Dialogue_NPC : MonoBehaviour
     public void Reset()
     {
         //animator.SetTrigger("normal");
-        eyesRenderer.material.SetTextureOffset("_BaseMap", new Vector2(0f, 0.2f));
+        //eyesRenderer.material.SetTextureOffset("_BaseMap", new Vector2(0f, 0.2f));
     }
 
     public void TurnToPlayer(Vector3 playerPos)
     {
-        transform.DOLookAt(new Vector3(playerPos.x, transform.position.y, playerPos.z), Vector3.Distance(transform.position, playerPos) / 5);
+        //transform.DOLookAt(new Vector3(playerPos.x, transform.position.y, playerPos.z), Vector3.Distance(transform.position, playerPos) / 5);
         //string turnMotion = isRightSide(transform.forward, playerPos, Vector3.up) ? "rturn" : "lturn";
         //animator.SetTrigger(turnMotion);
     }
