@@ -4,13 +4,15 @@ using UnityEngine;
 
 public sealed class SteamlingHealth : Health
 {
-    private GameObject cloudMask;
+    [SerializeField] private GameObject cloudMask;
+    [SerializeField] GameObject starParticles;
+    [SerializeField] GameObject cloudParticles;
+    [SerializeField] Transform posToSpawnParticles;
     private MeshRenderer rendererSteamling;
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        //cloudMask = transform.GetChild(0).gameObject;
         rendererSteamling = GetComponentInChildren<MeshRenderer>();
     }
 
@@ -21,12 +23,14 @@ public sealed class SteamlingHealth : Health
         {
             //Si tiene animacion de daño
             //animator.SetTrigger("Damage");
-            //Poner particulas si se quiere o sonido
-            //cloudMask.SetActive(false);
+            Instantiate(cloudParticles, posToSpawnParticles.position, Quaternion.identity);
+            cloudMask.SetActive(false);
             
         }
         rendererSteamling.material.SetColor("_MainColor", Color.red);
         StartCoroutine(ResetColor());
+
+        //AkSoundEngine.PostEvent("Hurt_Steamling", WwiseManager.instance.gameObject);
     }
 
     private IEnumerator ResetColor()
@@ -36,6 +40,7 @@ public sealed class SteamlingHealth : Health
     }
     protected override void onDeath()
     {
+        Instantiate(starParticles, posToSpawnParticles.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }

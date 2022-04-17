@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine;
+using UnityEngine.AI;
 
 public sealed class BrelloHealth : Health
 {
@@ -10,6 +11,9 @@ public sealed class BrelloHealth : Health
     [SerializeField] Sprite[] healthImages;
     [SerializeField] Image currentImage;
     [SerializeField] float timeInHUD;
+    [SerializeField] GameObject damageParticles;
+    [SerializeField] Transform spawnPoint;
+
     Animator imageAnimator;
     float lastLifeChange;
     bool lifeChanged;
@@ -17,7 +21,7 @@ public sealed class BrelloHealth : Health
     protected override void Start()
     {
         base.Start();
-        imageAnimator = currentImage.GetComponent<Animator>();
+        //imageAnimator = currentImage.GetComponent<Animator>();
         lastLifeChange = 0f;
         lifeChanged = false;
     }
@@ -34,7 +38,7 @@ public sealed class BrelloHealth : Health
                     
                     lastLifeChange = 0f;
                     lifeChanged = false;
-                    imageAnimator.SetTrigger("Disappear");
+                    //imageAnimator.SetTrigger("Disappear");
                 }
             }
         }
@@ -44,7 +48,8 @@ public sealed class BrelloHealth : Health
     {
         Camera.main.GetComponent<CinemachineImpulseSource>().GenerateImpulse();
         lifeChanged = true;
-        imageAnimator.SetTrigger("Appear");
+        //imageAnimator.SetTrigger("Appear");
+        Instantiate(damageParticles, transform.position, Quaternion.identity);
         lastLifeChange = 0f;
         currentImage.sprite = healthImages[currLife];
     }
@@ -53,8 +58,26 @@ public sealed class BrelloHealth : Health
     {
 
         lifeChanged = true;
-        imageAnimator.SetTrigger("Appear");
+        //imageAnimator.SetTrigger("Appear");
         lastLifeChange = 0f;
         currentImage.sprite = healthImages[currLife];
+    }
+
+    protected override void onDeath()
+    {
+        animator.SetTrigger("Death");
+    }
+
+    protected override void ResetStats()
+    {
+        base.ResetStats();
+        currentImage.sprite = healthImages[currLife];
+        GetComponent<CharacterController>().enabled = false;
+        transform.position = spawnPoint.position;
+        GetComponent<CharacterController>().enabled = true;
+
+        GameObject.FindGameObjectWithTag("Pyra").GetComponent<NavMeshAgent>().enabled = false;
+        GameObject.FindGameObjectWithTag("Pyra").transform.position = spawnPoint.position;
+        GameObject.FindGameObjectWithTag("Pyra").GetComponent<NavMeshAgent>().enabled = true;
     }
 }

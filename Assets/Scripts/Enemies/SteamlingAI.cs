@@ -16,18 +16,20 @@ public class SteamlingAI : EnemyAI
     private int currentDamage;
     [SerializeField] private int normalDamage;
     [SerializeField] private int dashDamage;
-    [SerializeField] private int impulseForce;
     private float initSpeed;
     float initYPos;
+    Animator animator;
 
     Vector3 attackPos;
     protected override void Start()
     {
         base.Start();
+        agent.autoTraverseOffMeshLink = false;
+        animator = transform.GetChild(0).GetComponent<Animator>();
         initSpeed = agent.speed;
         currentDamage = normalDamage;
         initYPos = transform.position.y;
-        attackPos = new Vector3(0, 0, 0);
+        attackPos = Vector3.zero;
     }
 
     protected override void Update()
@@ -39,6 +41,7 @@ public class SteamlingAI : EnemyAI
         {
             currentDamage = normalDamage;
             agent.speed = initSpeed;
+            animator.SetBool("Charge", false);
         }
     }
 
@@ -50,9 +53,15 @@ public class SteamlingAI : EnemyAI
     private IEnumerator Assault()
     {
         agent.speed = 0f;
-        agent.destination = transform.position;  
+        agent.destination = transform.position;
+
+        animator.SetTrigger("Attack");
+        AkSoundEngine.PostEvent("Preparing_Charge_Steamling", WwiseManager.instance.gameObject);
 
         yield return new WaitForSeconds(timeBeforeAttacking);
+
+        animator.SetBool("Charge", true);
+        AkSoundEngine.PostEvent("Charging_Steamling", WwiseManager.instance.gameObject); 
 
         currentDamage = dashDamage;
 

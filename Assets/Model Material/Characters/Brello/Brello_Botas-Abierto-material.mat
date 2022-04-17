@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Brello_Botas-Abierto-material
-  m_Shader: {fileID: -6465566751694194690, guid: d41d52f095190274f91012c3101bbdf3, type: 3}
+  m_Shader: {fileID: 4800000, guid: 766736548846cdf459a9766614dcccab, type: 3}
   m_ShaderKeywords: _ _EMISSIVE_SIMPLE _IS_ANGELRING_OFF _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO
     _OUTLINE_NML
   m_LightmapFlags: 4
@@ -30,6 +30,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap:
     IgnoreProjection: False
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -279,7 +280,7 @@ Material:
     - _OutlineDepthSensitivity: 0.25
     - _OutlineNormalsSensitivity: 1
     - _OutlineThickness: 8
-    - _Outline_Width: 0.31
+    - _Outline_Width: 0.25
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
