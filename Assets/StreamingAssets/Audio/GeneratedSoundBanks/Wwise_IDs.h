@@ -74,6 +74,7 @@ namespace AK
 
     namespace GAME_PARAMETERS
     {
+        static const AkUniqueID ISREVERBON = 3573063826U;
         static const AkUniqueID MUSIC_VOLUME = 1006694123U;
         static const AkUniqueID SFX_VOLUME = 1564184899U;
     } // namespace GAME_PARAMETERS

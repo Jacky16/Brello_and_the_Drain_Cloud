@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Mac" BasePlatform="Mac" SchemaVersion="12" SoundbankVersion="140">
 	<RootPaths>
-		<ProjectRoot>D:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\</ProjectRoot>
-		<SourceFilesRoot>D:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Mac\</SourceFilesRoot>
-		<SoundBanksRoot>D:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\GeneratedSoundBanks\Mac\</SoundBanksRoot>
+		<ProjectRoot>F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\</ProjectRoot>
+		<SourceFilesRoot>F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Mac\</SourceFilesRoot>
+		<SoundBanksRoot>F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\GeneratedSoundBanks\Mac\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>D:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\GeneratedSoundBanks\Mac</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\GeneratedSoundBanks\Mac</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="133642231" Language="SFX" Hash="432692412">
+		<SoundBank Id="133642231" Language="SFX" Hash="2512119066">
 			<ObjectPath>\SoundBanks\Default Work Unit\General</ObjectPath>
 			<ShortName>General</ShortName>
 			<Path>General.bnk</Path>
@@ -28,7 +28,22 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="137424561" Name="Charging_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Charging_Steamling" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="205544994" Name="BackgroundMusic_Level1" ObjectPath="\Events\Default Work Unit\Environment\Grasslands\BackgroundMusic_Level1" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="1022260136" Language="SFX">
+							<ShortName>GrasslandMusic.wav</ShortName>
+							<Path>SFX\GrasslandMusic_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="137424561" Name="Charging_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Charging_Steamling" DurationType="OneShot" DurationMin="1.079728" DurationMax="1.079728">
+					<IncludedMemoryFiles>
+						<File Id="551042684" Language="SFX">
+							<ShortName>Charge.wav</ShortName>
+							<Path>SFX\Charge_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="3567626122" Name="Close_Brello" ObjectPath="\Events\Default Work Unit\Brello\Close_Brello" DurationType="OneShot" DurationMin="0.306009" DurationMax="0.306009">
 					<IncludedMemoryFiles>
 						<File Id="399388110" Language="SFX">
@@ -38,8 +53,32 @@
 					</IncludedMemoryFiles>
 				</Event>
 				<Event Id="1700730432" Name="Death_Brello" ObjectPath="\Events\Default Work Unit\Brello\Death_Brello" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="1095581318" Name="Death_Pyra" ObjectPath="\Events\Default Work Unit\Pyra\Death_Pyra" DurationType="OneShot" DurationMin="0.809819" DurationMax="0.809819">
+					<IncludedMemoryFiles>
+						<File Id="62054443" Language="SFX">
+							<ShortName>Pyra_Death.wav</ShortName>
+							<Path>SFX\Pyra_Death_200A176C.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="4094738360" Name="Death_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Death_Steamling" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="2749921882" Name="Footstep_Brello" ObjectPath="\Events\Default Work Unit\Brello\Footstep_Brello" DurationType="OneShot" DurationMin="0.326086" DurationMax="1.">
+				<Event Id="274987955" Name="Dropply" ObjectPath="\Events\Default Work Unit\Dropply" DurationType="OneShot" DurationMin="0.926054" DurationMax="0.926054">
+					<IncludedMemoryFiles>
+						<File Id="785924796" Language="SFX">
+							<ShortName>Dropply.wav</ShortName>
+							<Path>SFX\Dropply_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1030925518" Name="Fire_Pyra" ObjectPath="\Events\Default Work Unit\Pyra\Fire_Pyra" DurationType="OneShot" DurationMin="3.152281" DurationMax="3.152281">
+					<IncludedMemoryFiles>
+						<File Id="745549549" Language="SFX">
+							<ShortName>Ignite.wav</ShortName>
+							<Path>SFX\Ignite_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2749921882" Name="Footstep_Brello" ObjectPath="\Events\Default Work Unit\Brello\Footstep_Brello" DurationType="OneShot" DurationMin="0.12338" DurationMax="1.122462">
 					<IncludedMemoryFiles>
 						<File Id="88877710" Language="SFX">
 							<ShortName>Footstep_Grass\Brello_Footstep_Grass (8).wav</ShortName>
@@ -49,6 +88,18 @@
 							<ShortName>Footstep_Grass\Brello_Footstep_Grass (5).wav</ShortName>
 							<Path>SFX\Footstep_Grass\Brello_Footstep_Grass (5)_10C4C929.wem</Path>
 						</File>
+						<File Id="328021357" Language="SFX">
+							<ShortName>Footstep3.wav</ShortName>
+							<Path>SFX\Footstep3_10C4C929.wem</Path>
+						</File>
+						<File Id="379970055" Language="SFX">
+							<ShortName>Footstep2.wav</ShortName>
+							<Path>SFX\Footstep2_10C4C929.wem</Path>
+						</File>
+						<File Id="404740134" Language="SFX">
+							<ShortName>Footstep4.wav</ShortName>
+							<Path>SFX\Footstep4_10C4C929.wem</Path>
+						</File>
 						<File Id="576936516" Language="SFX">
 							<ShortName>Footstep_Grass\Brello_Footstep_Grass (4).wav</ShortName>
 							<Path>SFX\Footstep_Grass\Brello_Footstep_Grass (4)_10C4C929.wem</Path>
@@ -57,9 +108,21 @@
 							<ShortName>Footstep_Grass\Brello_Footstep_Grass (6).wav</ShortName>
 							<Path>SFX\Footstep_Grass\Brello_Footstep_Grass (6)_10C4C929.wem</Path>
 						</File>
+						<File Id="1025502488" Language="SFX">
+							<ShortName>Footstep1.wav</ShortName>
+							<Path>SFX\Footstep1_10C4C929.wem</Path>
+						</File>
 					</IncludedMemoryFiles>
 					<DefaultSwitchValue>{E967B8ED-4DC5-44FA-BC7E-29FDF9E393EE}</DefaultSwitchValue>
 					<SwitchContainers>
+						<SwitchContainer SwitchValue="{9EF2DB03-774F-4770-A773-39835F8091EE}">
+							<Media>
+								<File Id="328021357"/>
+								<File Id="379970055"/>
+								<File Id="404740134"/>
+								<File Id="1025502488"/>
+							</Media>
+						</SwitchContainer>
 						<SwitchContainer SwitchValue="{ED505456-59E4-49AF-826E-71F202CF2658}">
 							<Media>
 								<File Id="88877710"/>
@@ -70,7 +133,10 @@
 						</SwitchContainer>
 					</SwitchContainers>
 				</Event>
+				<Event Id="1517232512" Name="Footstep_Pyra" ObjectPath="\Events\Default Work Unit\Pyra\Footstep_Pyra" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="393977686" Name="Grass_Shake_Level1" ObjectPath="\Events\Default Work Unit\Environment\Grasslands\Grass_Shake_Level1" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="2606205324" Name="Hum_Brello" ObjectPath="\Events\Default Work Unit\Brello\Hum_Brello" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="357557170" Name="Hum_Pyra" ObjectPath="\Events\Default Work Unit\Pyra\Hum_Pyra" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="1416911989" Name="Hurt_Brello" ObjectPath="\Events\Default Work Unit\Brello\Hurt_Brello" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="3566808571" Name="Hurt_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Hurt_Steamling" DurationType="OneShot" DurationMin="0.312249" DurationMax="0.441586">
 					<IncludedMemoryFiles>
@@ -84,6 +150,15 @@
 				<Event Id="983408950" Name="Impact_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Impact_Steamling" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="2093704360" Name="Jump_Brello" ObjectPath="\Events\Default Work Unit\Brello\Jump_Brello" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="658189305" Name="Land_Brello" ObjectPath="\Events\Default Work Unit\Brello\Land_Brello" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="3604647259" Name="MainMenu" ObjectPath="\Events\Default Work Unit\MainMenu" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="232279621" Language="SFX">
+							<ShortName>MainMenu.wav</ShortName>
+							<Path>SFX\MainMenu_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2223599963" Name="MainMenuStop" ObjectPath="\Events\Default Work Unit\MainMenuStop" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="692676672" Name="Open_Brello" ObjectPath="\Events\Default Work Unit\Brello\Open_Brello" DurationType="OneShot" DurationMin="0.306009" DurationMax="0.306009">
 					<IncludedMemoryFiles>
 						<File Id="961183922" Language="SFX">
@@ -92,9 +167,41 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1765157707" Name="Preparing_Charge_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Preparing_Charge_Steamling" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="1765157707" Name="Preparing_Charge_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Preparing_Charge_Steamling" DurationType="OneShot" DurationMin="1.4" DurationMax="1.4">
+					<IncludedMemoryFiles>
+						<File Id="1058461914" Language="SFX">
+							<ShortName>Prepare.wav</ShortName>
+							<Path>SFX\Prepare_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1659764341" Name="PuzzlePillar" ObjectPath="\Events\Default Work Unit\PuzzlePillar" DurationType="OneShot" DurationMin="3.006979" DurationMax="3.006979">
+					<IncludedMemoryFiles>
+						<File Id="532670166" Language="SFX">
+							<ShortName>PuzzlePillar.wav</ShortName>
+							<Path>SFX\PuzzlePillar_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1526266773" Name="Rain_Level1" ObjectPath="\Events\Default Work Unit\Environment\Grasslands\Rain_Level1" MaxAttenuation="100." DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="450979061" Language="SFX">
+							<ShortName>Rain.wav</ShortName>
+							<Path>SFX\Rain_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="2867905824" Name="Recovering_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Recovering_Steamling" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="1804471233" Name="Restart_Attack_Combo_Brello" ObjectPath="\Events\Default Work Unit\Brello\Restart_Attack_Combo_Brello" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="1341948043" Name="River_Level1" ObjectPath="\Events\Default Work Unit\Environment\Grasslands\River_Level1" MaxAttenuation="50." DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="712343684" Language="SFX">
+							<ShortName>River.wav</ShortName>
+							<Path>SFX\River_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2541270178" Name="ShopMusic_Level1" ObjectPath="\Events\Default Work Unit\Environment\Grasslands\ShopMusic_Level1" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="3020521956" Name="Start_Glide_Brello" ObjectPath="\Events\Default Work Unit\Brello\Start_Glide_Brello" DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="213251508" Language="SFX">
@@ -104,8 +211,26 @@
 					</IncludedMemoryFiles>
 				</Event>
 				<Event Id="1228236750" Name="Stop_Glide_Brello" ObjectPath="\Events\Default Work Unit\Brello\Stop_Glide_Brello" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="4153140954" Name="StopBackgroundMusic_Level1" ObjectPath="\Events\Default Work Unit\Environment\Grasslands\StopBackgroundMusic_Level1" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="2196322537" Name="Swimming_Brello" ObjectPath="\Events\Default Work Unit\Brello\Swimming_Brello" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="916769465" Name="VillageAmbience_Level1" ObjectPath="\Events\Default Work Unit\Environment\Grasslands\VillageAmbience_Level1" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="3399754180" Name="VillageMusic_Level1" ObjectPath="\Events\Default Work Unit\Environment\Grasslands\VillageMusic_Level1" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="752800099" Name="Waterfall_Level1" ObjectPath="\Events\Default Work Unit\Environment\Grasslands\Waterfall_Level1" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="2503275970" Name="WaterSplash_Brello" ObjectPath="\Events\Default Work Unit\Brello\WaterSplash_Brello" DurationType="OneShot" DurationMin="1.657667" DurationMax="1.657667">
+					<IncludedMemoryFiles>
+						<File Id="679489323" Language="SFX">
+							<ShortName>WaterSplash.wav</ShortName>
+							<Path>SFX\WaterSplash_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1810065121" Name="Wind_Level1" ObjectPath="\Events\Default Work Unit\Environment\Grasslands\Wind_Level1" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 			</IncludedEvents>
+			<GameParameters>
+				<GameParameter Id="1006694123" Name="Music_Volume" ObjectPath="\Game Parameters\Default Work Unit\Volume\Music_Volume"/>
+				<GameParameter Id="1564184899" Name="SFX_Volume" ObjectPath="\Game Parameters\Default Work Unit\Volume\SFX_Volume"/>
+				<GameParameter Id="3573063826" Name="IsReverbOn" ObjectPath="\Game Parameters\Default Work Unit\IsReverbOn"/>
+			</GameParameters>
 			<SwitchGroups>
 				<SwitchGroup Id="3876928364" Name="FootstepSurfaceType" ObjectPath="\Switches\Default Work Unit\FootstepSurfaceType" GUID="{1DE87053-E8DD-4058-A97B-77E23F265148}">
 					<Switches>
@@ -118,10 +243,14 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="2820053812">
+		<SoundBank Id="1355168291" Language="SFX" Hash="2388640553">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
+			<GameParameters>
+				<GameParameter Id="1006694123" Name="Music_Volume" ObjectPath="\Game Parameters\Default Work Unit\Volume\Music_Volume"/>
+				<GameParameter Id="1564184899" Name="SFX_Volume" ObjectPath="\Game Parameters\Default Work Unit\Volume\SFX_Volume"/>
+			</GameParameters>
 		</SoundBank>
 	</SoundBanks>
 </SoundBanksInfo>
