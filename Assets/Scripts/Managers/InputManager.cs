@@ -91,11 +91,6 @@ public class InputManager : MonoBehaviour
         //Abrir en el suelo
         playerController.OpenUmbrellaManager(ctx.ReadValueAsButton());
     }
-
-    private void OnMouseMovement(InputAction.CallbackContext ctx)
-    {
-        Vector2 mouseAxis = ctx.ReadValue<Vector2>();
-    }
     private void OnEnable()
     {
         playerInput.Enable();

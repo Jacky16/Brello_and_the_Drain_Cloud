@@ -60,10 +60,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] PhysicMaterial noFrictionMaterial;
     [SerializeField] PhysicMaterial frictionMaterial;
     private Tween tweenSwiming;
- 
 
+    [Header("Attack Settings")]
+    [SerializeField] Transform pivotAttack;
+    [SerializeField] Vector3 sizeCubeAttack;
+    [SerializeField] int damage;
     //Air movement variables
-
     private bool isAirMoving;
     private Tween tweenAirMovement;
 
@@ -210,7 +212,7 @@ public class PlayerController : MonoBehaviour
 
     public void HandleAttack()
     {
-        
+        Attack();
     }
 
     private void DoAttackAnimation()
@@ -220,17 +222,17 @@ public class PlayerController : MonoBehaviour
 
     private void Attack()
     {
-        //Collider[] colliders = Physics.OverlapBox(pivotAttack.position, sizeCubeAttack, Quaternion.identity);
-        //foreach (Collider collider in colliders)
-        //{
-        //    if (collider.TryGetComponent(out Health _health))
-        //    {
-        //        if (!collider.CompareTag("Player") && !collider.CompareTag("Pyra"))
-        //        {
-        //            _health.DoDamage(damage);
-        //        }
-        //    }
-        //}
+        Collider[] colliders = Physics.OverlapBox(pivotAttack.position, sizeCubeAttack, Quaternion.identity);
+        foreach (Collider collider in colliders)
+        {
+            if (collider.TryGetComponent(out Health _health))
+            {
+                if (!collider.CompareTag("Player") && !collider.CompareTag("Pyra"))
+                {
+                    _health.DoDamage(damage);
+                }
+            }
+        }
     }
 
     #endregion Attack functions
@@ -264,7 +266,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnOutSwiming(Collider other)
     {
-        print("Ha salido del agua");
+        
         if (other.CompareTag("Water"))
         {
             rb.useGravity = true;
@@ -342,6 +344,8 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.red;
         if (isGrounded) Gizmos.color = Color.green;
         Gizmos.DrawSphere(posCheckerGround.position, radiusCheck);
+
+        Gizmos.DrawWireCube(pivotAttack.position, sizeCubeAttack);
 
     }
 
