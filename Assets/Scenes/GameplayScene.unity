@@ -3055,7 +3055,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194638435}
-  m_LocalRotation: {x: 0.043972816, y: 0.000000017190617, z: -7.566066e-10, w: 0.99903274}
+  m_LocalRotation: {x: 0.043972816, y: -0.000000017190615, z: 7.5657414e-10, w: 0.99903274}
   m_LocalPosition: {x: -18.22, y: 5.356, z: -33.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3436,7 +3436,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445621722}
-  m_LocalRotation: {x: 0.00000002479798, y: 0.99903274, z: -0.04397282, w: 0.00000056339337}
+  m_LocalRotation: {x: 0.00000002631121, y: 0.99903274, z: -0.04397282, w: 0.00000059777284}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5663,6 +5663,31 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2044767900268927030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044767900268927024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e854df13766cfd6448cef3fc309e4b90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  throwTrashPower: 0
+  timeToThrowTrash: 0
+  trashPrefab: {fileID: 0}
+  trashSpawn: {fileID: 0}
+  speedAssault: 0
+  accelerationAssault: 0
+  timeStuned: 0
+  jumpReturnPower: 0
+  jumpReturnDuration: 0
+  jumpAttackPower: 0
+  jumpAttackDuration: 0
+  impulseForceOnPlayer: 150
+  boilers: []
 --- !u!1 &2123826217940250443
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,8 +24,7 @@ public class PsTom : MonoBehaviour
     [SerializeField] float throwTrashPower;
     [SerializeField] float timeToThrowTrash;
     [SerializeField] GameObject trashPrefab;
-    [SerializeField] Transform trashSpawn_1;
-    [SerializeField] Transform trashSpawn_2;
+    [SerializeField] Transform trashSpawn;
     float counterTrash = 0;
     
 
@@ -54,6 +53,8 @@ public class PsTom : MonoBehaviour
 
     enum Phases {PHASE_1,PHASE_2,PHASE_3,PHASE_4,PHASE_5,PHASE_6 }
     Phases currentPhase = Phases.PHASE_1;
+
+    PsTomHealth bossHealth;
     
     private void Awake()
     {
@@ -69,8 +70,7 @@ public class PsTom : MonoBehaviour
     }
     private void Update()
     {
-        //Trash();
-        JumpAttack();
+       
     }
 
     void BossManager()
@@ -103,14 +103,11 @@ public class PsTom : MonoBehaviour
         if(counterTrash >= timeToThrowTrash)
         {
             counterTrash = 0;
-            GameObject go1 = Instantiate(trashPrefab, trashSpawn_1.position, Quaternion.identity);
-            GameObject go2 = Instantiate(trashPrefab, trashSpawn_2.position, Quaternion.identity);
+            GameObject go1 = Instantiate(trashPrefab, trashSpawn.position, Quaternion.identity);
 
             Vector3 playerDir_1 = (player.transform.position - go1.transform.position).normalized;
-            Vector3 playerDir_2 = (player.transform.position - go2.transform.position).normalized;
-
+            
             go1.GetComponent<Rigidbody>().AddForce(playerDir_1 * throwTrashPower, ForceMode.Impulse);
-            go2.GetComponent<Rigidbody>().AddForce(playerDir_2 * throwTrashPower, ForceMode.Impulse);
 
         }
     }
@@ -181,6 +178,7 @@ public class PsTom : MonoBehaviour
             JumpReturn();
         }
     }
+    
     #endregion
 
 
@@ -206,11 +204,22 @@ public class PsTom : MonoBehaviour
         });
         return sequence;
     }
-    void ChangePhase(Phases _phase)
+    public void ChangePhase(float _lifeBoss)
     {
-        currentPhase = _phase;
-    }
+        if (_lifeBoss > 66)
+        {
+            currentPhase = Phases.PHASE_1;
+        }
+        if (_lifeBoss <= 66)
+        {
+            currentPhase = Phases.PHASE_2;
+        }
+        else if (_lifeBoss <= 33)
+        {
+            currentPhase = Phases.PHASE_3;
+        }
 
+    }
     void AddImpulseToPlayer()
     {
         if (CheckIfPlayerInside())

@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PsTomHealth : MonoBehaviour
+public class PsTomHealth : Health
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    PsTom psTom;
 
-    // Update is called once per frame
-    void Update()
+    protected override void Start()
     {
-        
+        base.Start();
+        psTom = GetComponent<PsTom>();
+
+    }
+    protected override void onDamage()
+    {
+        base.onDamage();
+        psTom.ChangePhase(currLife);
     }
 }

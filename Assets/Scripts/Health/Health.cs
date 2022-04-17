@@ -71,8 +71,10 @@ public class Health : MonoBehaviour
         currLife = maxLife;
         isInmune = false;
     }
-
-
+    public int GetCurrentLife()
+    {
+        return currLife;
+    }
     private IEnumerator Reappear()
     {
         yield return new WaitForSeconds(timeToReappear);
