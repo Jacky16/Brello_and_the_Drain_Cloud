@@ -25,7 +25,7 @@ public class SteamlingAI : EnemyAI
     {
         base.Start();
         agent.autoTraverseOffMeshLink = false;
-        animator = transform.GetChild(0).GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         initSpeed = agent.speed;
         currentDamage = normalDamage;
         initYPos = transform.position.y;

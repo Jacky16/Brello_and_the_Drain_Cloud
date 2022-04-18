@@ -15,6 +15,8 @@ public class PsTomHealth : Health
     protected override void onDamage()
     {
         base.onDamage();
+        Debug.ClearDeveloperConsole();
+        print("Vida actual de Pstom:" + currLife);
         psTom.ChangePhase(currLife);
     }
 }

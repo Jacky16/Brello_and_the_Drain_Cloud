@@ -33,12 +33,9 @@ public class PsTom : MonoBehaviour
     [Header("Settings Trash Settings")]
     [SerializeField] float timeTrashAattack;
     [SerializeField] float throwTrashPower;
-    [SerializeField] float timeToThrowTrash;
     [SerializeField] GameObject trashPrefab;
     [SerializeField] Transform trashSpawn;
-    float counterTrash = 0;
-    int trahsThrowed = 0;
-    int maxTrashThrowed = 2;
+
 
 
     [Header("Settins Assault Attack")]
@@ -109,7 +106,7 @@ public class PsTom : MonoBehaviour
         }
         else if (currentPhase == Phases.PHASE_4)
         {
-
+            Phase4();
         }
         else if (currentPhase == Phases.PHASE_5)
         {
@@ -118,13 +115,12 @@ public class PsTom : MonoBehaviour
         {
         }
     }
-
     #region Phases
-    private void Phase3()
-    {
-        ChasingAttack();
-    }
-
+    private void Phase1()
+    {    
+        ChasingAttack();     
+    }    
+    
     private void Phase2()
     {
         if (!isInPhase2)
@@ -134,43 +130,48 @@ public class PsTom : MonoBehaviour
         }
     }
     IEnumerator Phase2Coroutine()
-    {     
+    {
+        anim.SetTrigger("Triggered");
+        yield return new WaitForSeconds(2);
         JumpReturn();
-        yield return new WaitForSeconds(jumpReturnDuration);
+        yield return new WaitForSeconds(jumpReturnDuration + 0.5f);
         AttackPunch();
         yield return new WaitForSeconds(timeTrashAattack);
-        ThrowTrash();
+        AttackTrowTrash();
+        yield return new WaitForSeconds(timeTrashAattack);
+        AttackTrowTrash();
+        
+        //Pasar a la fase 3
+        yield return new WaitForSeconds(timeTrashAattack);
+        anim.SetTrigger("Triggered");
+        yield return new WaitForSeconds(2);
+        currentPhase = Phases.PHASE_3;
+
     }
 
-    private void Phase1()
-    {    
-        ChasingAttack();     
+    private void Phase3()
+    {
+        ChasingAttack();
+    }
+
+    private void Phase4()
+    {
+        ChasingAttack();
     }
 
     #endregion
 
     #region Main Attacks
+    void AttackTrowTrash()
+    {
+        anim.SetTrigger("AttackThrowTrash");
+    }
+    //Se ejecuta en la animacion de trow trash
     void ThrowTrash()
     {
-        counterTrash += Time.deltaTime;
-        if (counterTrash >= timeToThrowTrash && trahsThrowed < maxTrashThrowed)
-        {
-            counterTrash = 0;
-            trahsThrowed++;
-
-            GameObject trash = Instantiate(trashPrefab, trashSpawn.position, Quaternion.identity);
-         
-            Vector3 playerDir_1 = (player.transform.position - trash.transform.position).normalized;
-
-            trash.GetComponent<Rigidbody>().AddForce(playerDir_1 * throwTrashPower, ForceMode.Impulse);
-        }
-        
-        //Si sobrepasa el numero de basuras, comprueba la fase y la cambia
-        if (trahsThrowed >= maxTrashThrowed)
-        {
-            currentPhase = Phases.PHASE_3;
-        }
-
+        GameObject trash = Instantiate(trashPrefab, trashSpawn.position, Quaternion.identity);
+        Vector3 playerDir_1 = (player.transform.position - trash.transform.position).normalized;
+        trash.GetComponent<Rigidbody>().AddForce(playerDir_1 * throwTrashPower, ForceMode.Impulse);
     }
     void InvokeBoiler()
     {
@@ -273,8 +274,9 @@ public class PsTom : MonoBehaviour
     Sequence JumpReturn()
     {
         navMeshAgent.enabled = false;
+
         Sequence sequence = DOTween.Sequence();
-        sequence.AppendInterval(timeStuned);
+        //sequence.AppendInterval(timeStuned);
         sequence.AppendCallback(() => anim.SetTrigger("JumpReturn"));
 
         sequence.Append(transform.DOJump(startPosition, jumpReturnPower, 1, jumpReturnDuration));
@@ -286,12 +288,11 @@ public class PsTom : MonoBehaviour
             anim.SetBool("IsFalling", true);
         });
         sequence.OnComplete(() =>
-        {
-            navMeshAgent.enabled = true;
-            isAssaltingPlayer = false;
-            canAssaultPlayer = true;
-        
+        {         
             anim.SetBool("IsFalling", false);
+            navMeshAgent.enabled = true;
+            //isAssaltingPlayer = false;
+            //canAssaultPlayer = true;
         });
         return sequence;
     }
@@ -304,6 +305,7 @@ public class PsTom : MonoBehaviour
         {
             currentPhase = Phases.PHASE_1;
         }
+        
         if (_lifeBoss <= 66)
         {
             currentPhase = Phases.PHASE_2;
@@ -357,9 +359,7 @@ public class PsTom : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(pivotCubeAttack.position, sizeCubePunchAttack);
-     
-        //Gizmos.DrawLine(wallDetect.position, wallDetect.position + transform.forward * distanceWallDetect);
-        //Wire Sphere on walDetect
+
         Gizmos.DrawWireSphere(wallDetect.position, distanceWallDetect);
     }
 }

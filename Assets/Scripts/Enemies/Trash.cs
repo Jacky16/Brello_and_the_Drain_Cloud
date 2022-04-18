@@ -8,8 +8,13 @@ public class Trash : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Instantiate(steamLinkPrefab, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        //compare tag wall
+        if (collision.gameObject.tag == "Wall")
+        {
+            //instantiate steam link
+            Instantiate(steamLinkPrefab, transform.position, Quaternion.identity);
+            //destroy gameobject
+            Destroy(gameObject);
+        }        
     }
-    
 }
