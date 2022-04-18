@@ -51,7 +51,6 @@ public class EnemyAI : MonoBehaviour
             {
                 combatManager.enemyList.Add(gameObject);
             }
-
             transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
         }
 
@@ -102,6 +101,7 @@ public class EnemyAI : MonoBehaviour
 
     private IEnumerator ResetAttack()
     {
+        Debug.LogError("El problema está en el resetAttack");
         yield return new WaitForSeconds(timeBetweenAttacks);
         canAttack = true;
     }
