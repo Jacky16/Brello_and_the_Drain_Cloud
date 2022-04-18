@@ -44,7 +44,9 @@ public class PsTom : MonoBehaviour
     [Header("Settins Assault Attack")]
     [SerializeField] float speedAssault;
     [SerializeField] float accelerationAssault;
-    
+    float counterAssault = 0;
+    float timeToAssault = 2;
+
 
     [Header("Stune Settings")]
     [SerializeField] float timeStuned;
@@ -68,7 +70,10 @@ public class PsTom : MonoBehaviour
     int maxBoilers;
     int currentBoilersActive = 0;
 
-
+    [Header("Wall Detect Settings")]
+    [SerializeField] Transform wallDetect;
+    [SerializeField] LayerMask layerMaskWallDetect;
+    [SerializeField] float distanceWallDetect = 5;
     enum Phases {PHASE_1,PHASE_2,PHASE_3,PHASE_4,PHASE_5,PHASE_6 }
     Phases currentPhase = Phases.PHASE_1;
 
@@ -114,6 +119,7 @@ public class PsTom : MonoBehaviour
         }
     }
 
+    #region Phases
     private void Phase3()
     {
         ChasingAttack();
@@ -138,10 +144,10 @@ public class PsTom : MonoBehaviour
 
     private void Phase1()
     {    
-        
-        ChasingAttack();
-        
+        ChasingAttack();     
     }
+
+    #endregion
 
     #region Main Attacks
     void ThrowTrash()
@@ -228,42 +234,42 @@ public class PsTom : MonoBehaviour
     }
     void ChasingAttack()
     {
-        Vector3 currentPosPlayer = player.transform.position;
-        
         if (!isAssaltingPlayer && canAssaultPlayer)
         {
+            anim.SetTrigger("AttackAssault");
             anim.SetBool("IsChasing", true);
-            anim.SetTrigger("AttackChase");
+            
             canAssaultPlayer = false;
             isAssaltingPlayer = true;
 
-            navMeshAgent.SetDestination(currentPosPlayer);
+            navMeshAgent.SetDestination(player.transform.position);
 
             navMeshAgent.speed = speedAssault;
             navMeshAgent.acceleration = accelerationAssault;
         }
 
-        float distance = Vector3.Distance(transform.position, navMeshAgent.destination);
-        if(distance <= navMeshAgent.stoppingDistance && isAssaltingPlayer)
+        //Comprobacion por distancia y por tag
+        bool isDistance = Vector3.Distance(transform.position, navMeshAgent.destination) <= navMeshAgent.stoppingDistance;
+        
+        if (isAssaltingPlayer && (CheckCollision("Player") || isDistance))
         {
-            //TODO: Ejecutar animacion de Stop
             anim.SetBool("IsChasing", false);
             
-            isAssaltingPlayer = false;
+            navMeshAgent.ResetPath();
             navMeshAgent.velocity = Vector3.zero;
-
-            Invoke("ResumeCanAssaultPlayer", 2f);
+            
+            isAssaltingPlayer = false;
+            
+            StartCoroutine(ResumeCanAssaultPlayer());
         }
     }
 
-    void ResumeCanAssaultPlayer()
+   
+    IEnumerator ResumeCanAssaultPlayer()
     {
+        yield return new WaitForSeconds(timeStuned);
         canAssaultPlayer = true;
     }
-    
-    #endregion
-
-
     Sequence JumpReturn()
     {
         navMeshAgent.enabled = false;
@@ -289,6 +295,9 @@ public class PsTom : MonoBehaviour
         });
         return sequence;
     }
+    
+    #endregion
+
     public void ChangePhase(float _lifeBoss)
     {
         if (_lifeBoss > 66)
@@ -328,34 +337,29 @@ public class PsTom : MonoBehaviour
         return false;
     }
 
-
-    private void OnTriggerEnter(Collider other)
+    Collider CheckCollision(string _tag)
     {
-        if (other.CompareTag("Player"))
-        {
-            isAssaltingPlayer = false;
-            Invoke("ResumeCanAssaultPlayer", 1.5f);
-        }
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.CompareTag("Player") && isAssaltingPlayer)
-        {
-            isAssaltingPlayer = false;
-            Invoke("ResumeCanAssaultPlayer", 1.5f);
-        }
-        if (collision.collider.CompareTag("Wall") && isAssaltingPlayer)
-        {
-            anim.SetTrigger("Collision");
-            isAssaltingPlayer = false;
-            Invoke("ResumeCanAssaultPlayer", 1.5f);
+        //Raycast forward from wallDetect 
+        //OverlapSphere on wallDetect
 
-            //JumpReturn();
+        Collider[] colliders = Physics.OverlapSphere(wallDetect.position, navMeshAgent.stoppingDistance, layerMaskWallDetect);
+        foreach (Collider col in colliders)
+        {
+            if (col.CompareTag(_tag))
+            {
+                return col;
+            }
+            Debug.Log(col.tag);
         }
+        return null;
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(pivotCubeAttack.position, sizeCubePunchAttack);
+     
+        //Gizmos.DrawLine(wallDetect.position, wallDetect.position + transform.forward * distanceWallDetect);
+        //Wire Sphere on walDetect
+        Gizmos.DrawWireSphere(wallDetect.position, distanceWallDetect);
     }
 }
