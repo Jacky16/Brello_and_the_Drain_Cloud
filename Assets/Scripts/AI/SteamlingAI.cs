@@ -44,6 +44,7 @@ public class SteamlingAI : EnemyAI
 
         if(isDashing && agent.remainingDistance <= agent.stoppingDistance + 0.25f)
         {
+            isAttacking = false;
             isDashing = false;
             currentDamage = normalDamage;
             agent.speed = initSpeed;

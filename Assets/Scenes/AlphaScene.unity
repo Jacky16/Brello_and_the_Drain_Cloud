@@ -1298,13 +1298,13 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.27450606, g: 0.6121879, b: 0.8980392, a: 1}
-  deepColor: {r: 0.17100927, g: 0.36627337, b: 0.5943396, a: 1}
+  shallowColor: {r: 0.27450544, g: 0.6121879, b: 0.8980392, a: 1}
+  deepColor: {r: 0.17100868, g: 0.36627275, b: 0.5943396, a: 1}
   colorDepth: 2.2
   horizonColor: {r: 0.48940885, g: 0.5984121, b: 0.8867924, a: 1}
   horizonDistance: 19.7
   shoreFade: 0.001
-  shoreColor: {r: 0.003921571, g: 0.07975858, b: 0.8980392, a: 0}
+  shoreColor: {r: 0.003921571, g: 0.07975807, b: 0.8980392, a: 0}
   shoreStrength: 0
   shoreBlend: 0.008
   shoreDepth: 0
@@ -1395,30 +1395,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 740326646450868016, guid: 736951f90fc086149851297b3df95dd2, type: 3}
-      propertyPath: dashSpeed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 740326646450868016, guid: 736951f90fc086149851297b3df95dd2, type: 3}
-      propertyPath: normalDamage
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 740326646450868017, guid: 736951f90fc086149851297b3df95dd2, type: 3}
-      propertyPath: m_Speed
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 740326646450868017, guid: 736951f90fc086149851297b3df95dd2, type: 3}
-      propertyPath: m_Height
-      value: 1.39
-      objectReference: {fileID: 0}
-    - target: {fileID: 740326646450868017, guid: 736951f90fc086149851297b3df95dd2, type: 3}
-      propertyPath: m_Radius
-      value: 0.51
-      objectReference: {fileID: 0}
-    - target: {fileID: 740326646450868017, guid: 736951f90fc086149851297b3df95dd2, type: 3}
-      propertyPath: m_ObstacleAvoidanceType
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 740326646450868019, guid: 736951f90fc086149851297b3df95dd2, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -1466,10 +1442,6 @@ PrefabInstance:
     - target: {fileID: 740326646450868021, guid: 736951f90fc086149851297b3df95dd2, type: 3}
       propertyPath: m_Name
       value: Steamling (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 740326646450868022, guid: 736951f90fc086149851297b3df95dd2, type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 736951f90fc086149851297b3df95dd2, type: 3}
@@ -5625,10 +5597,10 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.2631204, g: 0.3801598, b: 0.6886792, a: 1}
-  deepColor: {r: 0.20390022, g: 0.5019608, b: 0.7254902, a: 1}
+  shallowColor: {r: 0.2631198, g: 0.38015917, b: 0.6886792, a: 1}
+  deepColor: {r: 0.20389962, g: 0.5019608, b: 0.7254902, a: 1}
   colorDepth: 2.2
-  horizonColor: {r: 0.30658126, g: 0.44349393, b: 1, a: 1}
+  horizonColor: {r: 0.30658063, g: 0.4434933, b: 1, a: 1}
   horizonDistance: 19.7
   shoreFade: 0.001
   shoreColor: {r: 0, g: 0.030701637, b: 1, a: 0}
@@ -5636,7 +5608,7 @@ MonoBehaviour:
   shoreBlend: 0.008
   shoreDepth: 0
   waveColor: {r: 0, g: 0, b: 0, a: 0}
-  underwaterColor: {r: 0.34097964, g: 0.4745261, b: 0.745283, a: 0}
+  underwaterColor: {r: 0.340979, g: 0.4745261, b: 0.745283, a: 0}
   underwaterColorStrength: 0
   underwaterRefractionStrength: 0.099
   surfaceFoamTexture: {fileID: 2800000, guid: d3b0d77dfe711a04c8ff18ecc260aa66, type: 3}
@@ -6533,8 +6505,8 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.27450642, g: 0.6117647, b: 0.8980392, a: 1}
-  deepColor: {r: 0.17254576, g: 0.36470246, b: 0.5960784, a: 1}
+  shallowColor: {r: 0.27450576, g: 0.6117647, b: 0.8980392, a: 1}
+  deepColor: {r: 0.17254516, g: 0.36470184, b: 0.5960784, a: 1}
   colorDepth: 2.2
   horizonColor: {r: 0.48940885, g: 0.5984121, b: 0.8867924, a: 1}
   horizonDistance: 19.7
@@ -7111,36 +7083,6 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 8
---- !u!1 &1056443944
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1056443945}
-  m_Layer: 0
-  m_Name: PosToDash
-  m_TagString: Untagged
-  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1056443945
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1056443944}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 14.11}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1963158731}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1067346115
 GameObject:
   m_ObjectHideFlags: 0
@@ -8257,15 +8199,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1965614444412884699, guid: e71b0e46d3b3aa14a9e4aa1381f2e46c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.38268343
+      value: 0.38268346
       objectReference: {fileID: 0}
     - target: {fileID: 1965614444412884699, guid: e71b0e46d3b3aa14a9e4aa1381f2e46c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0000000059145844
+      value: 0.00000002248125
       objectReference: {fileID: 0}
     - target: {fileID: 1965614444412884699, guid: e71b0e46d3b3aa14a9e4aa1381f2e46c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000002449901
+      value: -0.000000009312039
       objectReference: {fileID: 0}
     - target: {fileID: 1965614444529052220, guid: e71b0e46d3b3aa14a9e4aa1381f2e46c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8289,11 +8231,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1965614444529052220, guid: e71b0e46d3b3aa14a9e4aa1381f2e46c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.030059673
+      value: 0.030059645
       objectReference: {fileID: 0}
     - target: {fileID: 1965614444529052220, guid: e71b0e46d3b3aa14a9e4aa1381f2e46c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.011815229
+      value: -0.011815218
       objectReference: {fileID: 0}
     - target: {fileID: 1965614444597337618, guid: e71b0e46d3b3aa14a9e4aa1381f2e46c, type: 3}
       propertyPath: m_FollowOffset.y
@@ -10379,7 +10321,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1545678004}
-  m_LocalRotation: {x: 0.36562434, y: 0.030059675, z: -0.011815226, w: 0.930202}
+  m_LocalRotation: {x: 0.36562434, y: 0.03005965, z: -0.0118152145, w: 0.930202}
   m_LocalPosition: {x: -180.21002, y: 78.16619, z: -118.63491}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -13326,11 +13268,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 7950286161819133941, guid: f8e4fdb2b83f80c42bff2f2a33022aa1, type: 3}
---- !u!4 &1963158731 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 740326646450868019, guid: 736951f90fc086149851297b3df95dd2, type: 3}
-  m_PrefabInstance: {fileID: 185043550}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1967480709
 GameObject:
   m_ObjectHideFlags: 0

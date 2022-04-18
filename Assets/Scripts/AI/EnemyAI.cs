@@ -20,11 +20,12 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] protected float attackRadius;
     [SerializeField] protected float detectionRadius;
     [SerializeField] protected float timeBetweenAttacks;
-    protected bool playerInSightRange, playerInAttackRange, canAttack;
+    protected bool playerInSightRange, playerInAttackRange, canAttack, isAttacking;
 
     Rigidbody rb;
     protected virtual void Start()
     {
+        isAttacking = false;
         player = GameObject.FindGameObjectWithTag("Player");
         combatManager = player.GetComponent<CombatManager>();
         agent = GetComponent<NavMeshAgent>();
@@ -54,7 +55,7 @@ public class EnemyAI : MonoBehaviour
             transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
         }
 
-        if (playerInSightRange && !playerInAttackRange)
+        if (playerInSightRange && !playerInAttackRange && !isAttacking)
         {
             ChasePlayer();
         }
@@ -88,6 +89,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (canAttack)
         {
+            isAttacking = true;
             AttackAction();
             canAttack = false;
             StartCoroutine(ResetAttack());
