@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject splashParticle;
     [SerializeField] PhysicMaterial noFrictionMaterial;
     [SerializeField] PhysicMaterial frictionMaterial;
+    Vector3 currentTorrentDirection;
     private Tween tweenSwiming;
  
 
@@ -255,6 +256,7 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Water") && !isSwimming)
         {
             //print("Ha entrado en el agua");
+            currentTorrentDirection = other.GetComponent<WaterTorrent>().GetTorrentDir();
 
             collider.material = frictionMaterial;
 
@@ -285,6 +287,8 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Water"))
         {
+            currentTorrentDirection = Vector3.zero;
+
             rb.useGravity = true;
             collider.material = noFrictionMaterial;
 
@@ -305,6 +309,9 @@ public class PlayerController : MonoBehaviour
         {
             rb.useGravity = false;
             brelloOpenManager.SetOpen(true);
+            if (canMove) {
+                rb.AddForce(currentTorrentDirection, ForceMode.Force);
+            }
         }
     }
 

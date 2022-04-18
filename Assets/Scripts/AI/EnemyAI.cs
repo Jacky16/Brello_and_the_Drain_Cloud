@@ -14,17 +14,20 @@ public class EnemyAI : MonoBehaviour
     [Header("Player detection variables")]
     [SerializeField] protected LayerMask playerMask;
     protected GameObject player;
+    CombatManager combatManager;
 
     [Header("AI Variables")]
     [SerializeField] protected float attackRadius;
     [SerializeField] protected float detectionRadius;
     [SerializeField] protected float timeBetweenAttacks;
-    protected bool playerInSightRange, playerInAttackRange, canAttack;
+    protected bool playerInSightRange, playerInAttackRange, canAttack, isAttacking;
 
     Rigidbody rb;
     protected virtual void Start()
     {
+        isAttacking = false;
         player = GameObject.FindGameObjectWithTag("Player");
+        combatManager = player.GetComponent<CombatManager>();
         agent = GetComponent<NavMeshAgent>();
         canAttack = true;
         rb = GetComponent<Rigidbody>();
@@ -35,15 +38,24 @@ public class EnemyAI : MonoBehaviour
     {
         if (!playerInSightRange)
         {
+            if (combatManager.enemyList.Contains(gameObject))
+            {
+                combatManager.enemyList.Remove(gameObject);
+            }
+
             Idle();
         }
 
         if (playerInSightRange)
         {
+            if (!combatManager.enemyList.Contains(gameObject))
+            {
+                combatManager.enemyList.Add(gameObject);
+            }
             transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
         }
 
-        if (playerInSightRange && !playerInAttackRange)
+        if (playerInSightRange && !playerInAttackRange && !isAttacking)
         {
             ChasePlayer();
         }
@@ -77,6 +89,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (canAttack)
         {
+            isAttacking = true;
             AttackAction();
             canAttack = false;
             StartCoroutine(ResetAttack());
@@ -90,6 +103,7 @@ public class EnemyAI : MonoBehaviour
 
     private IEnumerator ResetAttack()
     {
+        Debug.LogError("El problema está en el resetAttack");
         yield return new WaitForSeconds(timeBetweenAttacks);
         canAttack = true;
     }
