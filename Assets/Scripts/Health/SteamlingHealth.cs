@@ -40,6 +40,10 @@ public sealed class SteamlingHealth : Health
     }
     protected override void onDeath()
     {
+        if (combatManager.enemyList.Contains(gameObject))
+        {
+            combatManager.enemyList.Remove(gameObject);
+        }
         Instantiate(starParticles, posToSpawnParticles.position, Quaternion.identity);
         Destroy(gameObject);
     }

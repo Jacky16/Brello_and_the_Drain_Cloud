@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1056443944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1056443945}
+  m_Layer: 0
+  m_Name: PosToDash
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1056443945
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056443944}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 14.11}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 740326646450868019}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &740326646294139582
 GameObject:
   m_ObjectHideFlags: 0
@@ -24,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 740326646294139582}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.215, z: 0}
+  m_LocalPosition: {x: 0, y: 0.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 740326646450868019}
@@ -64,6 +94,7 @@ Transform:
   m_Children:
   - {fileID: 994330510082341951}
   - {fileID: 740326646294139583}
+  - {fileID: 1056443945}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -79,7 +110,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.74
-  m_Center: {x: 0, y: 0.87, z: 0}
+  m_Center: {x: 0, y: 0.71, z: 0}
 --- !u!195 &740326646450868017
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -89,8 +120,8 @@ NavMeshAgent:
   m_GameObject: {fileID: 740326646450868021}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1.06
-  m_Speed: 3
+  m_Radius: 0.51
+  m_Speed: 6
   m_Acceleration: 600.85
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -98,8 +129,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2.19
-  m_BaseOffset: 0.49
+  m_Height: 1.39
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &740326646450868016
@@ -122,9 +153,9 @@ MonoBehaviour:
   attackRadius: 9
   detectionRadius: 22
   timeBetweenAttacks: 5
-  dashTime: 0.51
+  dashSpeed: 30
   timeBeforeAttacking: 1
-  normalDamage: 1
+  normalDamage: 2
   dashDamage: 2
 --- !u!114 &740326646450868023
 MonoBehaviour:
@@ -158,7 +189,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
@@ -261,7 +292,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d222fde08efa4e6498807cd27a163928, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.2649994
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d222fde08efa4e6498807cd27a163928, type: 3}
       propertyPath: m_LocalPosition.z

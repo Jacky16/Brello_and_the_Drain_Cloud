@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isMovementPressed;
     private bool isJumPressed;
+    private bool isStartingToSwim;
     private bool isSwimming;
     private bool canGlade;
     private bool isGlading;
@@ -59,6 +60,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject splashParticle;
     [SerializeField] PhysicMaterial noFrictionMaterial;
     [SerializeField] PhysicMaterial frictionMaterial;
+    Vector3 currentTorrentDirection;
     private Tween tweenSwiming;
 
     [Header("Attack Settings")]
@@ -130,7 +132,7 @@ public class PlayerController : MonoBehaviour
     }
     public void HandleJump()
     {  
-        if(isGrounded || isSwimming)
+        if((isGrounded || isSwimming) && canMove)
         rb.AddForce(Vector3.up * jumpForce * 10, ForceMode.Impulse);
     }
     private void HandleRotation()
@@ -159,7 +161,16 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetFloat(fallSpeedHash, rb.velocity.y);
         animator.SetBool(isGroundedHash, isGrounded);
-        animator.SetFloat(speedHash, currentSpeed);
+
+        if (rb.velocity.magnitude >= 0.5f)
+        {
+            animator.SetFloat(speedHash, currentSpeed);
+        }
+        else
+        {
+            animator.SetFloat(speedHash, 0f);
+        }
+
         animator.SetBool(isGlidingHash, isGlading);
             
     }
@@ -168,14 +179,14 @@ public class PlayerController : MonoBehaviour
 
         isGrounded = Physics.CheckSphere(posCheckerGround.position, radiusCheck, groundLayerMask);
 
-        isGlading = !isGrounded && isUmbrellaOpen && rb.velocity.y < 3;
+        isGlading = !isGrounded && isUmbrellaOpen && rb.velocity.y < 3 && !isSwimming;
         
     }
 
     private void GladeManager()
     {
-        if (isGlading)
-        {        
+        if (isGlading && !isSwimming)
+        {
             rb.AddForce(Vector3.down * -Physics.gravity.y / 2, ForceMode.Force);
         }  
     }
@@ -246,7 +257,8 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Water") && !isSwimming)
         {
-            print("Ha entrado en el agua");
+            //print("Ha entrado en el agua");
+            currentTorrentDirection = other.GetComponent<WaterTorrent>().GetTorrentDir();
 
             collider.material = frictionMaterial;
 
@@ -258,10 +270,16 @@ public class PlayerController : MonoBehaviour
 
             animator.SetBool("isSwiming", true);
 
+            isStartingToSwim = true;
+            isGlading = false;
+            
             Instantiate(splashParticle, transform.position, splashParticle.transform.rotation);
 
             Transform pivotWater = other.transform.GetChild(0).transform;
-            tweenSwiming = transform.DOLocalMoveY(pivotWater.position.y, 2).SetEase(Ease.OutElastic);
+            tweenSwiming = transform.DOLocalMoveY(pivotWater.position.y, 2).SetEase(Ease.OutElastic).OnComplete(() =>
+            {
+                isStartingToSwim = false;
+            });
 
             AkSoundEngine.PostEvent("WaterSplash_Brello", WwiseManager.instance.gameObject);
         }
@@ -269,9 +287,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnOutSwiming(Collider other)
     {
-        
+        print("Ha salido del agua");
         if (other.CompareTag("Water"))
         {
+            currentTorrentDirection = Vector3.zero;
+
             rb.useGravity = true;
             collider.material = noFrictionMaterial;
 
@@ -292,6 +312,9 @@ public class PlayerController : MonoBehaviour
         {
             rb.useGravity = false;
             brelloOpenManager.SetOpen(true);
+            if (canMove) {
+                rb.AddForce(currentTorrentDirection, ForceMode.Force);
+            }
         }
     }
 
@@ -313,14 +336,18 @@ public class PlayerController : MonoBehaviour
         rb.useGravity = !_value;
 
         //Audio de apertura de paraguas
-        if (_value)
+        if (_value && !isSwimming)
         {
             playerAudio.PlayOpen();
-
         }
-        else
+        else if(!_value && !isSwimming)
         {
             playerAudio.PlayClose();
+            isGlidePlaying = false;
+            playerAudio.StopGlide();
+        }
+        else if(isGlidePlaying && isSwimming)
+        {
             isGlidePlaying = false;
             playerAudio.StopGlide();
         }
@@ -373,6 +400,11 @@ public class PlayerController : MonoBehaviour
         return isSwimming;
     }
 
+    public bool IsStartingToSwim()
+    {
+        return isStartingToSwim;
+    }
+
     public bool IsMoving()
     {
         return isMovementPressed;
@@ -380,6 +412,10 @@ public class PlayerController : MonoBehaviour
     public bool IsGrounded()
     {
         return isGrounded;
+    }
+    public bool IsGlading()
+    {
+        return isGlading;
     }
     #endregion Getters
 
