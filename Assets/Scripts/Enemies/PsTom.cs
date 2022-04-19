@@ -18,12 +18,12 @@ public class PsTom : MonoBehaviour
     bool canAssaultPlayer = true;
     bool isAssaltingPlayer;
     bool isJumpingAttack;
+    bool canDoJumpAttack;
 
     //Bools Phases
     bool isInPhase2;
     bool isInPhase4;
-    bool isInPhase5;
-    bool canDoJumpAttack;
+   
 
     Vector3 startPosition;
 
@@ -33,13 +33,9 @@ public class PsTom : MonoBehaviour
     [SerializeField] GameObject trashPrefab;
     [SerializeField] Transform trashSpawn;
 
-
-
     [Header("Settins Assault Attack")]
     [SerializeField] float speedAssault;
     [SerializeField] float accelerationAssault;
-    float counterAssault = 0;
-    float timeToAssault = 2;
 
 
     [Header("Stune Settings")]
@@ -86,29 +82,9 @@ public class PsTom : MonoBehaviour
     }
     private void Update()
     {
-        if (currentPhase == Phases.PHASE_1)
-        {
-            Phase1();
-        }
-        else if (currentPhase == Phases.PHASE_2)
-        {
-            Phase2();
-        }
-        else if (currentPhase == Phases.PHASE_3)
-        {
-            Phase3();
-        }
-        else if (currentPhase == Phases.PHASE_4)
-        {
-            Phase4();
-        }
-        else if (currentPhase == Phases.PHASE_5)
-        {
-            Phase5();
-        }
-       
+        PhasesManager();
     }
-    
+
     #region Phases
     private void Phase1()
     {    
@@ -191,14 +167,16 @@ public class PsTom : MonoBehaviour
         {
             ChasingAttack();
         }
-
     }
 
     #endregion
 
     #region Main Attacks
+    
+    #region Throw Trash Attack
     void AttackTrowTrash()
     {
+        transform.DOLocalRotate(Vector3.zero, 0.5f);
         anim.SetTrigger("AttackThrowTrash");
     }
     //Se ejecuta en la animacion de trow trash
@@ -208,6 +186,7 @@ public class PsTom : MonoBehaviour
         Vector3 playerDir_1 = (player.transform.position - trash.transform.position).normalized;
         trash.GetComponent<Rigidbody>().AddForce(playerDir_1 * throwTrashPower, ForceMode.Impulse);
     }
+    #endregion
     
     void InvokeBoiler()
     {
@@ -217,11 +196,13 @@ public class PsTom : MonoBehaviour
             currentBoilersActive++;
         }
     }
+
+    #region Attack Punch Attack
     void AttackPunch()
     {
         anim.SetTrigger("AttackPunch");
     }
-    //Se ejecuta en la animacion de punch 
+        //Se ejecuta en la animacion de punch 
     void AttackPunchCheck()
     {
         Collider[] colliders = Physics.OverlapBox(pivotCubeAttack.position, sizeCubePunchAttack, Quaternion.identity);
@@ -232,9 +213,12 @@ public class PsTom : MonoBehaviour
                 _bh.DoDamage(1);
                 Debug.Log("Ataque al player por el puño");
             }
-        }
-       
+        }       
     }
+
+    #endregion
+
+    #region Jump attack
     void JumpAttack()
     {
         Vector3 currentPosPlayer = player.transform.position;
@@ -259,8 +243,14 @@ public class PsTom : MonoBehaviour
             sequence.AppendCallback(() =>
             {
                 AddImpulseToPlayer();
+                          
+            });
+            sequence.AppendInterval(.3f);
+            
+            sequence.AppendCallback(() =>
+            {
                 collider.isTrigger = false;
-                navMeshAgent.enabled = true;               
+                navMeshAgent.enabled = true;
             });
 
             sequence.AppendInterval(timeStuned);
@@ -271,6 +261,28 @@ public class PsTom : MonoBehaviour
             });
         }
     }
+    bool CheckIfPlayerInside()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 3,layerMaskWallDetect);
+        foreach (Collider col in colliders)
+        {
+            if (col.TryGetComponent(out PlayerController _pc))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    void AddImpulseToPlayer()
+    {
+        anim.SetBool("IsFalling", false);
+        if (CheckIfPlayerInside())
+            player.GetComponent<Rigidbody>().AddForce(player.transform.right.normalized * impulseForceOnPlayer, ForceMode.VelocityChange);
+    }
+
+    #endregion
+
+    #region Chasing Attack
     void ChasingAttack()
     {
         if (!isAssaltingPlayer && canAssaultPlayer)
@@ -302,17 +314,18 @@ public class PsTom : MonoBehaviour
             StartCoroutine(ResumeCanAssaultPlayer());
         }
     }
-
     IEnumerator ResumeCanAssaultPlayer()
     {
         yield return new WaitForSeconds(timeStuned);
         canAssaultPlayer = true;
-        
+
         if (currentPhase == Phases.PHASE_5)
         {
             canDoJumpAttack = true;
         }
     }
+    #endregion
+
     Sequence JumpReturn()
     {
         navMeshAgent.enabled = false;
@@ -341,46 +354,46 @@ public class PsTom : MonoBehaviour
     
     #endregion
 
+    private void PhasesManager()
+    {
+        if (currentPhase == Phases.PHASE_1)
+        {
+            Phase1();
+        }
+        else if (currentPhase == Phases.PHASE_2)
+        {
+            Phase2();
+        }
+        else if (currentPhase == Phases.PHASE_3)
+        {
+            Phase3();
+        }
+        else if (currentPhase == Phases.PHASE_4)
+        {
+            Phase4();
+        }
+        else if (currentPhase == Phases.PHASE_5)
+        {
+            Phase5();
+        }
+    }
     public void ChangePhase(float _lifeBoss)
     {
         if (_lifeBoss > 66)
         {
             currentPhase = Phases.PHASE_1;
         }
-        
-        if (_lifeBoss <= 66)
+
+        if (_lifeBoss <= 66 && _lifeBoss > 33)
         {
             currentPhase = Phases.PHASE_2;
-        }
-        else if (_lifeBoss <= 33)
+        }     
+        else if (_lifeBoss <= 33 && currentPhase != Phases.PHASE_5 )
         {
             currentPhase = Phases.PHASE_4;
         }
 
     }
-    void AddImpulseToPlayer()
-    {
-        anim.SetBool("IsFalling", false);
-        if (CheckIfPlayerInside())
-        {
-            Vector3 dir = player.transform.position - transform.position;
-            player.GetComponent<AddForceCharacterController>().AddImpact(dir, 150);
-                
-            //player.GetComponent<PlayerController>().HandleAddForce(dir, 20);
-        }
-    }
-    bool CheckIfPlayerInside()
-    {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 2);
-        foreach (Collider col in colliders)
-        {
-            if (col.TryGetComponent(out PlayerController _pc)){
-                return true;
-            }
-        }
-        return false;
-    }
-
     Collider CheckCollision(string _tag)
     {
         //Raycast forward from wallDetect 

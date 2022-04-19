@@ -123,8 +123,10 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 dir = CamDirection() * currentSpeed;
         dir.y = rb.velocity.y;
-        rb.velocity = dir;       
-        
+        //rb.velocity = dir;
+
+        rb.AddForce(dir * 10, ForceMode.Acceleration);
+
     }
     public void HandleJump()
     {  
