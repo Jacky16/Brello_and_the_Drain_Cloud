@@ -11,7 +11,6 @@ public class PsTom : MonoBehaviour
     //References/Components
     Animator anim;
     NavMeshAgent navMeshAgent;
-    PsTomHealth psTomHealth;
     GameObject player;
     Collider collider;
 
@@ -21,12 +20,10 @@ public class PsTom : MonoBehaviour
     bool isJumpingAttack;
 
     //Bools Phases
-    bool isInPhase1;
     bool isInPhase2;
-    bool isInPhase3;
     bool isInPhase4;
     bool isInPhase5;
-    bool isInPhase6;
+    bool canDoJumpAttack;
 
     Vector3 startPosition;
 
@@ -71,19 +68,16 @@ public class PsTom : MonoBehaviour
     [SerializeField] Transform wallDetect;
     [SerializeField] LayerMask layerMaskWallDetect;
     [SerializeField] float distanceWallDetect = 5;
-    enum Phases {PHASE_1,PHASE_2,PHASE_3,PHASE_4,PHASE_5,PHASE_6 }
-    Phases currentPhase = Phases.PHASE_1;
-
-    PsTomHealth bossHealth;
+    
+    [SerializeField]enum Phases {PHASE_1,PHASE_2,PHASE_3,PHASE_4,PHASE_5}
+    [SerializeField] Phases currentPhase = Phases.PHASE_1;    
     
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        psTomHealth = GetComponent<PsTomHealth>();
         player = GameObject.FindGameObjectWithTag("Player");
         collider = GetComponent<Collider>();
         anim = GetComponent<Animator>();
-        bossHealth = GetComponent<PsTomHealth>();
     }
     private void Start()
     {
@@ -110,11 +104,11 @@ public class PsTom : MonoBehaviour
         }
         else if (currentPhase == Phases.PHASE_5)
         {
+            Phase5();
         }
-        else if (currentPhase == Phases.PHASE_6)
-        {
-        }
+       
     }
+    
     #region Phases
     private void Phase1()
     {    
@@ -136,11 +130,12 @@ public class PsTom : MonoBehaviour
         JumpReturn();
         yield return new WaitForSeconds(jumpReturnDuration + 0.5f);
         AttackPunch();
-        yield return new WaitForSeconds(timeTrashAattack);
-        AttackTrowTrash();
-        yield return new WaitForSeconds(timeTrashAattack);
-        AttackTrowTrash();
-        
+        for (int i = 0; i < 2; i++)
+        {
+            AttackTrowTrash();
+            yield return new WaitForSeconds(timeTrashAattack);
+        }
+      
         //Pasar a la fase 3
         yield return new WaitForSeconds(timeTrashAattack);
         anim.SetTrigger("Triggered");
@@ -148,7 +143,6 @@ public class PsTom : MonoBehaviour
         currentPhase = Phases.PHASE_3;
 
     }
-
     private void Phase3()
     {
         ChasingAttack();
@@ -156,7 +150,48 @@ public class PsTom : MonoBehaviour
 
     private void Phase4()
     {
-        ChasingAttack();
+        if (!isInPhase4)
+        {
+            isInPhase4 = true;
+            StartCoroutine(Phase4Coroutine());
+        }
+    }
+    IEnumerator Phase4Coroutine()
+    {
+        anim.SetTrigger("Triggered");
+        yield return new WaitForSeconds(2);
+        JumpReturn();
+        
+        for (int i = 0; i < 4; i++)
+        {
+            AttackTrowTrash();
+            yield return new WaitForSeconds(timeTrashAattack);
+        }
+        
+        AttackPunch();
+        yield return new WaitForSeconds(punchAttackTime);
+
+        InvokeBoiler();
+
+        //Pasar a la fase 5
+        yield return new WaitForSeconds(timeTrashAattack);
+        anim.SetTrigger("Triggered");
+        yield return new WaitForSeconds(2);
+        currentPhase = Phases.PHASE_5;
+
+    }
+    
+    private void Phase5()
+    {
+        if (canDoJumpAttack)
+        {
+            JumpAttack();
+        }
+        else
+        {
+            ChasingAttack();
+        }
+
     }
 
     #endregion
@@ -173,6 +208,7 @@ public class PsTom : MonoBehaviour
         Vector3 playerDir_1 = (player.transform.position - trash.transform.position).normalized;
         trash.GetComponent<Rigidbody>().AddForce(playerDir_1 * throwTrashPower, ForceMode.Impulse);
     }
+    
     void InvokeBoiler()
     {
         if (currentBoilersActive < maxBoilers)
@@ -216,21 +252,23 @@ public class PsTom : MonoBehaviour
             sequence.AppendCallback(() => collider.isTrigger = true);
 
             //Jump Attack
-            sequence.AppendCallback(() => anim.SetTrigger("JumpAttack"));
-            sequence.Append(transform.DOJump(currentPosPlayer + new Vector3(0.5f,.5f,0.5f), jumpAttackPower, 1, jumpAttackDuration));
+            sequence.AppendCallback(() => anim.SetTrigger("AttackJump"));
+            sequence.Append(transform.DOJump(currentPosPlayer , jumpAttackPower, 1, jumpAttackDuration));
                 
             //On complete
-            sequence.AppendCallback(() => AddImpulseToPlayer());
-
-            sequence.AppendInterval(.5f);
-
-            sequence.AppendCallback(() => collider.isTrigger = false);
+            sequence.AppendCallback(() =>
+            {
+                AddImpulseToPlayer();
+                collider.isTrigger = false;
+                navMeshAgent.enabled = true;               
+            });
 
             sequence.AppendInterval(timeStuned);
 
-            //Jump return
-            sequence.Append(transform.DOJump(startPosition, jumpReturnPower, 1, jumpReturnDuration));
-            sequence.OnComplete(() => isJumpingAttack = false);
+            sequence.AppendCallback(() => { 
+                canDoJumpAttack = false; 
+                isJumpingAttack = false; 
+            });
         }
     }
     void ChasingAttack()
@@ -265,11 +303,15 @@ public class PsTom : MonoBehaviour
         }
     }
 
-   
     IEnumerator ResumeCanAssaultPlayer()
     {
         yield return new WaitForSeconds(timeStuned);
         canAssaultPlayer = true;
+        
+        if (currentPhase == Phases.PHASE_5)
+        {
+            canDoJumpAttack = true;
+        }
     }
     Sequence JumpReturn()
     {
