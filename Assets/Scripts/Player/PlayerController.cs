@@ -276,7 +276,7 @@ public class PlayerController : MonoBehaviour
             Transform pivotWater = other.transform.GetChild(0).transform;
             tweenSwiming = transform.DOLocalMoveY(pivotWater.position.y, 2).SetEase(Ease.OutElastic).OnComplete(() =>
             {
-                rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
+                rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
                 isStartingToSwim = false;
             });
 
