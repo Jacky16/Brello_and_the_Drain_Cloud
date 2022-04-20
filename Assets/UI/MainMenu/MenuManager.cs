@@ -14,14 +14,16 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField] Slider musicSlider;
     [SerializeField] Slider soundSlider;
-    [SerializeField] Slider sensitivityXSlider;
-    [SerializeField] Slider sensitivityYSlider;
-    [SerializeField] AudioMixer soundMixer;
-    [SerializeField] AudioMixer musicMixer;
     [SerializeField] TMP_InputField soundInput;
     [SerializeField] TMP_InputField musicInput;
+
+    [SerializeField] Slider sensitivityXSlider;
+    [SerializeField] Slider sensitivityYSlider;
     [SerializeField] TMP_InputField sensitivityXInput;
     [SerializeField] TMP_InputField sensitivityYInput;
+
+    [SerializeField] AudioMixer soundMixer;
+    [SerializeField] AudioMixer musicMixer;
 
     [SerializeField] const string soundTag = "SoundVol";
     [SerializeField] const string musicTag = "MusicVol";
@@ -85,6 +87,7 @@ public class MenuManager : MonoBehaviour
                 sensitivityXInput.text = "100";
             }
 
+            sensitivityXSlider.value = sensitivityValue;
             PlayerPrefs.SetFloat(sensXTag, sensitivityValue);
         }
     }
@@ -108,6 +111,7 @@ public class MenuManager : MonoBehaviour
                 sensitivityYInput.text = "0.7";
             }
 
+            sensitivityYSlider.value = sensitivityValue;
             PlayerPrefs.SetFloat(sensYTag, sensitivityValue);
         }
     }
@@ -126,7 +130,7 @@ public class MenuManager : MonoBehaviour
                 soundInput.text = "0";
             }
 
-            soundMixer.SetFloat(soundTag, Mathf.Log10(soundVolume) * 20);
+            //soundMixer.SetFloat(soundTag, Mathf.Log10(soundVolume) * 20);
             PlayerPrefs.SetFloat(soundTag, soundVolume);
             soundSlider.value = soundVolume;
         }
@@ -146,20 +150,20 @@ public class MenuManager : MonoBehaviour
                 musicInput.text = "0";
             }
 
-            musicMixer.SetFloat(musicTag, Mathf.Log10(musicVolume) * 20);
+            //musicMixer.SetFloat(musicTag, Mathf.Log10(musicVolume) * 20);
             PlayerPrefs.SetFloat(musicTag, musicVolume);
             musicSlider.value = musicVolume;
         }
     }
     public void ChangeSoundVolumeSlider()
     {
-        soundMixer.SetFloat(soundTag, Mathf.Log10(soundSlider.value) * 20);
+        //soundMixer.SetFloat(soundTag, Mathf.Log10(soundSlider.value) * 20);
         PlayerPrefs.SetFloat(soundTag, soundSlider.value);
         soundInput.text = soundSlider.value.ToString();
     }
     public void ChangeMusicVolumeSlider()
     {
-        musicMixer.SetFloat(musicTag, Mathf.Log10(musicSlider.value) * 20);
+        //musicMixer.SetFloat(musicTag, Mathf.Log10(musicSlider.value) * 20);
         PlayerPrefs.SetFloat(musicTag, musicSlider.value);
         musicInput.text = musicSlider.value.ToString();
     }
