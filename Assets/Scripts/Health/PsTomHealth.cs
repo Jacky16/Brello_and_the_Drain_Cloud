@@ -5,18 +5,24 @@ using UnityEngine;
 public class PsTomHealth : Health
 {
     PsTom psTom;
+    Animator anim;
 
-    protected override void Start()
+    private void Awake()
     {
-        base.Start();
+        anim = GetComponent<Animator>();
         psTom = GetComponent<PsTom>();
-
     }
+    
     protected override void onDamage()
     {
         base.onDamage();
         Debug.ClearDeveloperConsole();
         print("Vida actual de Pstom:" + currLife);
         psTom.ChangePhase(currLife);
+    }
+    protected override void onDeath()
+    {
+        base.onDeath();
+        anim.SetBool("IsDeath", true);
     }
 }

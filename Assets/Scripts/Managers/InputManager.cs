@@ -44,12 +44,6 @@ public class InputManager : MonoBehaviour
         playerInput.CharacterControls.CameraMovement.performed += OnMouseMovement;
         playerInput.CharacterControls.CameraMovement.canceled += OnMouseMovement;
     }
-
-    private void OnMouseMovement(InputAction.CallbackContext ctx)
-    {
-        Vector2 mouseAxis = ctx.ReadValue<Vector2>();
-        
-    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F1))

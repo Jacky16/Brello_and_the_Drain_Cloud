@@ -19,6 +19,7 @@ public class PsTom : MonoBehaviour
     bool isAssaltingPlayer;
     bool isJumpingAttack;
     bool canDoJumpAttack;
+    bool isStuned;
 
     //Bools Phases
     bool isInPhase2;
@@ -36,6 +37,9 @@ public class PsTom : MonoBehaviour
     [Header("Settins Assault Attack")]
     [SerializeField] float speedAssault;
     [SerializeField] float accelerationAssault;
+    [SerializeField] LayerMask layerMakAttackAssault;
+    Vector3 posToGo;
+    bool isDistanceToGo;
 
 
     [Header("Stune Settings")]
@@ -90,7 +94,6 @@ public class PsTom : MonoBehaviour
     {    
         ChasingAttack();     
     }    
-    
     private void Phase2()
     {
         if (!isInPhase2)
@@ -243,6 +246,7 @@ public class PsTom : MonoBehaviour
             sequence.AppendCallback(() =>
             {
                 AddImpulseToPlayer();
+                Stune(true);
                           
             });
             sequence.AppendInterval(.3f);
@@ -251,13 +255,15 @@ public class PsTom : MonoBehaviour
             {
                 collider.isTrigger = false;
                 navMeshAgent.enabled = true;
+
             });
 
             sequence.AppendInterval(timeStuned);
 
             sequence.AppendCallback(() => { 
                 canDoJumpAttack = false; 
-                isJumpingAttack = false; 
+                isJumpingAttack = false;
+                Stune(false);
             });
         }
     }
@@ -277,7 +283,10 @@ public class PsTom : MonoBehaviour
     {
         anim.SetBool("IsFalling", false);
         if (CheckIfPlayerInside())
-            player.GetComponent<Rigidbody>().AddForce(player.transform.right.normalized * impulseForceOnPlayer, ForceMode.VelocityChange);
+            player.GetComponent<Rigidbody>().AddForce(player.transform.right.normalized * impulseForceOnPlayer, ForceMode.Impulse);
+            
+        //Do Explosion force in player
+
     }
 
     #endregion
@@ -285,43 +294,73 @@ public class PsTom : MonoBehaviour
     #region Chasing Attack
     void ChasingAttack()
     {
-        if (!isAssaltingPlayer && canAssaultPlayer)
+        if (!isAssaltingPlayer && canAssaultPlayer && !isStuned)
         {
+            posToGo = GetPosToAssult();
+            
             anim.SetTrigger("AttackAssault");
             anim.SetBool("IsChasing", true);
             
             canAssaultPlayer = false;
             isAssaltingPlayer = true;
 
-            navMeshAgent.SetDestination(player.transform.position);
+            //Look at player
+            Vector3 lookAt = player.transform.position;
+            transform.DOLookAt(lookAt, .5f);
 
+            //Move to player
+            navMeshAgent.SetDestination(posToGo);
+            
             navMeshAgent.speed = speedAssault;
             navMeshAgent.acceleration = accelerationAssault;
         }
 
         //Comprobacion por distancia y por tag
-        bool isDistance = Vector3.Distance(transform.position, navMeshAgent.destination) <= navMeshAgent.stoppingDistance;
+         isDistanceToGo = Vector3.Distance(transform.position, posToGo) <= navMeshAgent.stoppingDistance;
         
-        if (isAssaltingPlayer && (CheckCollision("Player") || isDistance))
+        print(Vector3.Distance(transform.position, posToGo));
+        if (isAssaltingPlayer && CheckCollision("Player"))
         {
-            anim.SetBool("IsChasing", false);
-            
-            navMeshAgent.ResetPath();
-            navMeshAgent.velocity = Vector3.zero;
-            
+            AddImpulseToPlayer();
+        }
+        if (isDistanceToGo && isAssaltingPlayer)
+        {          
             isAssaltingPlayer = false;
-            
+            posToGo = Vector3.zero;
+            navMeshAgent.velocity = Vector3.zero;
+            navMeshAgent.ResetPath();
             StartCoroutine(ResumeCanAssaultPlayer());
         }
     }
     IEnumerator ResumeCanAssaultPlayer()
     {
+        Stune(true);
+        anim.SetTrigger("Stuned");
+        
+        anim.SetBool("IsChasing", false);
+
         yield return new WaitForSeconds(timeStuned);
+        Stune(false);
         canAssaultPlayer = true;
+        
 
         if (currentPhase == Phases.PHASE_5)
-        {
             canDoJumpAttack = true;
+    }
+
+    Vector3 GetPosToAssult()
+    {
+        //Raycast forward
+        RaycastHit hit;
+        Debug.DrawRay(transform.position, transform.forward * Mathf.Infinity, Color.red);
+        
+        if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, layerMakAttackAssault))
+        {
+            return hit.point;
+        }
+        else
+        {
+            return player.transform.position;
         }
     }
     #endregion
@@ -410,11 +449,22 @@ public class PsTom : MonoBehaviour
         }
         return null;
     }
+    void Stune(bool _isStuned)
+    {
+        isStuned = _isStuned;
+        if (_isStuned)
+        {
+        }
+
+        anim.SetBool("IsStuned", isStuned);
+    }
 
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(pivotCubeAttack.position, sizeCubePunchAttack);
 
         Gizmos.DrawWireSphere(wallDetect.position, distanceWallDetect);
+   
+        Gizmos.DrawLine(transform.position, transform.position + transform.forward * 10);
     }
 }

@@ -1819,13 +1819,15 @@ MonoBehaviour:
   punchAttackTime: 3
   sizeCubePunchAttack: {x: 2.48, y: 3.99, z: 2.37}
   pivotCubeAttack: {fileID: 1206995846}
-  boilers: []
+  boilers:
+  - {fileID: 0}
+  - {fileID: 0}
   wallDetect: {fileID: 8361240875737795191}
   layerMaskWallDetect:
     serializedVersion: 2
     m_Bits: 72
   distanceWallDetect: 2.37
-  currentPhase: 4
+  currentPhase: 0
 --- !u!114 &2044767900268927031
 MonoBehaviour:
   m_ObjectHideFlags: 0
