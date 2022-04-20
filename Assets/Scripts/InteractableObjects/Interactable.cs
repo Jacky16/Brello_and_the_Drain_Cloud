@@ -17,4 +17,13 @@ public class Interactable : MonoBehaviour
         pyra = GameObject.FindGameObjectWithTag("Pyra").GetComponent<PyraAI>();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Pyra"))
+        {
+            Interact();
+            pyra.isInteracting = true;
+            pyra.agent.SetDestination(pyra.transform.position);
+        }
+    }
 }

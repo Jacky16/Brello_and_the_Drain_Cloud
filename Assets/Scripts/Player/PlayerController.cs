@@ -276,6 +276,7 @@ public class PlayerController : MonoBehaviour
             Transform pivotWater = other.transform.GetChild(0).transform;
             tweenSwiming = transform.DOLocalMoveY(pivotWater.position.y, 2).SetEase(Ease.OutElastic).OnComplete(() =>
             {
+                rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
                 isStartingToSwim = false;
             });
 
@@ -320,6 +321,8 @@ public class PlayerController : MonoBehaviour
         if (!WaterPlatformManager.singletone.IsPyraInPlatform() && isSwimming)
         {
             tweenSwiming.Kill();
+
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
             rb.useGravity = true;
             HandleJump();
         }

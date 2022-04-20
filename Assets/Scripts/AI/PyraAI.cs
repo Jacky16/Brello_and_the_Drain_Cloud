@@ -9,7 +9,7 @@ using DG.Tweening;
 public sealed class PyraAI : MonoBehaviour
 {
     //Variables de Pyra.
-    private NavMeshAgent agent;
+    public NavMeshAgent agent;
 
     private PlayerController player;
     private Rigidbody rb;
@@ -261,18 +261,7 @@ public sealed class PyraAI : MonoBehaviour
         }
         else if(isMovingToInteractuable && !stayUnderBrello && !moveToPlatform && !isInPlatform && !isInteracting)
         {
-            //Mientras haya algo a la lista sigue el actual Interactuable
             agent.SetDestination(currentInteractuable.transform.position);
-            Debug.Log("Estoy yendo a por " + currentInteractuable + " de prioridad " + currentInteractuable.priority);
-
-            //Cuando estas cerca del interactuable ve a por el siguiente
-            Vector3 correctedPos = new Vector3(currentInteractuable.transform.position.x, transform.position.y, currentInteractuable.transform.position.z);
-            if (Vector3.Distance(transform.position, correctedPos) <= agent.stoppingDistance)
-            {
-                Debug.Log("He empezado a interactuar con " + currentInteractuable);
-                currentInteractuable.Interact();
-                isInteracting = true;
-            }
         }
     }
 
