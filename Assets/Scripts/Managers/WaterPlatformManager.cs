@@ -51,7 +51,7 @@ public class WaterPlatformManager : MonoBehaviour
 
     private void Update()
     {
-        ImageSelector();
+        //ImageSelector();
     }
 
     private void ImageSelector()

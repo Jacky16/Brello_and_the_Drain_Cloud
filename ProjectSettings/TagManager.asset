@@ -13,11 +13,15 @@ TagManager:
   - InteractablePyra
   - PlayerEyes
   - Environment
+  - InputManager
+  - DialogueGroup
+  - PlayerCam
+  - DialogueCam
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - Characters/Player

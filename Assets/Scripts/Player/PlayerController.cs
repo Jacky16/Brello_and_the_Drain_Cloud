@@ -7,11 +7,13 @@ public class PlayerController : MonoBehaviour
     //References/Components
 
     private BrelloOpenManager brelloOpenManager;
-    private CharacterController characterController;
+    private Rigidbody rb;
     private Animator animator;
+    private Collider collider;
+
+    private PlayerAudio playerAudio;
 
     //Variables para almacenar los ID's de las animaciones
-
     private int isJumpingHash;
     private int attackHash;
     private int isGlidingHash;
@@ -21,165 +23,117 @@ public class PlayerController : MonoBehaviour
     private int fallSpeedHash;
 
     private Vector2 axis;
-    private Vector3 currentGravity;
     private Vector3 camForward;
     private Vector3 camRight;
     private Vector3 camDir;
 
     private bool isMovementPressed;
     private bool isJumPressed;
+    private bool isStartingToSwim;
     private bool isSwimming;
+    private bool canGlade;
+    private bool isGlading;
 
-    [Header("Speed Settings")]
     [Header("Movement Settings")]
-    [SerializeField] private float runSpeed = 10;
+    [SerializeField] private float runSpeed = 20;
     [SerializeField] private float walkSpeed = 10;
-    [SerializeField] private float gladingSpeed = 20;
-    [SerializeField] private float dashSpeed = 5;
-    [Space]
+    [SerializeField] private float gladingSpeed = 10;
     [SerializeField] private float acceleration = 1;
     [SerializeField] private float rotationSpeed = 15f;
     bool isUmbrellaOpen;
     private float currentSpeed = 0;
-    private float dashTime = 0.25f;
     private bool canMove = true;
 
-    [Header("Gravity Settings")]
-    [SerializeField] private float groundGravity = .05f;
-
-    [SerializeField] private float fallMultiplier = 2;
-
-    private float gravity = -9.8f;
-    
-    [Header("Glade Settings")]
-    [SerializeField] private float divideGravityGlade = 4; 
-
-    [SerializeField] private float velocityToGlade = 0;
+    [Header("Ground Checker settings")]
+    [SerializeField] Transform posCheckerGround;
+    [SerializeField] float radiusCheck = .25f;
+    [SerializeField] LayerMask groundLayerMask;
+    bool isGrounded;
 
     [Header("Jump Settings")]
-    [SerializeField] private float maxJumpHeight = 1.0f;
-
-    [SerializeField] private float maxJumpTime = 0.5f;
-    private float initialJumpVelocity;
-    private bool isJumping;
-    private bool isJumpAnimating;
-
-    //Attack variables
-    [Header("Attack Settings")]
-
-    [SerializeField] private int damage = 1;
-    [SerializeField] private float timeBtwAttacks = 0.25f;
-    [SerializeField] float timeResetComboAttack = 1;
-    [SerializeField] private Vector3 sizeCubeAttack;
-    [SerializeField] private Transform pivotAttack;
-    private int currentAttack = 0;
-    private int numAttacks = 2;
-    float nextAttack = 0;
-    float nextResetAttack = 0;
+    [SerializeField] float jumpForce = 10;
 
     //Swiming variables
-
+    [Header("Swimimg Settings")]
+    [SerializeField] float offsetTweenY;
+    [SerializeField] float time = 1;
+    [SerializeField] GameObject splashParticle;
+    [SerializeField] PhysicMaterial noFrictionMaterial;
+    [SerializeField] PhysicMaterial frictionMaterial;
+    Vector3 currentTorrentDirection;
     private Tween tweenSwiming;
+ 
 
     //Air movement variables
 
     private bool isAirMoving;
     private Tween tweenAirMovement;
 
+
+    //Audio variables
+    private bool isGlidePlaying = false;
+
     private void Awake()
     {
-        characterController = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         brelloOpenManager = GetComponent<BrelloOpenManager>();
+        playerAudio = GetComponent<PlayerAudio>();
+        collider = GetComponent<Collider>();
 
         SetAnimatorsHashes();
-        SetUpJumpvariables();
     }
 
     private void Update()
     {
-        CamDirection();
+        Checkers();
+        SwimingManager();
+        MovementManager();
+        
         HandleRotation();
         HandleAnimation();
-
-        MovementManager();
-        HandleGravity();
-        HandleJump();
-        SwimingManager();
-        AirMovementManager();
+    }
+    private void FixedUpdate()
+    {
+        Movement();
+        GladeManager();
     }
 
     #region Main movement functions
 
     private void MovementManager()
     {
-        Movement();
-
-        Vector3 currDir = CanMoveManager();
-
-        characterController.Move(currDir * Time.deltaTime);
-    }
-
-    private Vector3 CanMoveManager()
-    {
-        Vector3 currDir = Vector3.zero;
-        bool canGlade = currentGravity.y < velocityToGlade;
-
-        if (canMove)
-        {
-            currDir = camDir * currentSpeed;
-        }
-        else
-        {
-            currDir.x = 0;
-            currDir.z = 0;
-        }
-        currDir.y = currentGravity.y;
-        if (isUmbrellaOpen && canGlade)
-        {
-            //currDir.y = currentGravity.y / divideGravityGlade;
-        }
-        return currDir;
-    }
-
-    private void Movement()
-    {
-        //Acceleration
         if (isMovementPressed)
         {
-            //Paraguas abierto
-            if (isUmbrellaOpen && currentGravity.y > 0)
-            {
-                currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, acceleration * Time.deltaTime);
-            }
-            //Planeando
-            else if (isUmbrellaOpen && currentGravity.y < velocityToGlade)
-            {
+            if (isGlading)
                 currentSpeed = Mathf.Lerp(currentSpeed, gladingSpeed, acceleration * Time.deltaTime);
-            }
-            //Correr
-            else if(!isUmbrellaOpen)
-            {
-                currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, acceleration * Time.deltaTime);
-            }
 
+            else if (isUmbrellaOpen)
+                currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, acceleration * Time.deltaTime);
+
+            else
+                currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, acceleration * Time.deltaTime);
         }
         else
+        {
             currentSpeed = Mathf.Lerp(currentSpeed, 0, acceleration * Time.deltaTime);
+        }
     }
-
-    private void HandleJump()
+    private void Movement()
     {
-        if (characterController.isGrounded && !isJumping && isJumPressed)
+        if (canMove)
         {
-            Jump();
+            Vector3 dir = CamDirection() * currentSpeed;
+            dir.y = rb.velocity.y;
+            rb.velocity = dir;
         }
-        else if (characterController.isGrounded && isJumping && !isJumPressed)
-        {
-            isJumping = false;
-        }
+        
     }
-
+    public void HandleJump()
+    {  
+        if((isGrounded || isSwimming) && canMove)
+        rb.AddForce(Vector3.up * jumpForce * 10, ForceMode.Impulse);
+    }
     private void HandleRotation()
     {
         if (canMove)
@@ -197,75 +151,52 @@ public class PlayerController : MonoBehaviour
             {
                 //Hacemos una interpolaci�n en la rotacion que va a girar cuando el player se mueve
                 Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
-                transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
+                rb.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
             }
+           
         }
     }
-
-    private void HandleGravity()
-    {
-        bool canGlade = currentGravity.y < velocityToGlade;
-        bool isFalling = currentGravity.y < 0 || !isJumPressed && !characterController.isGrounded;
-
-        //Fall speed animator
-        animator.SetFloat(fallSpeedHash, currentGravity.y);
-
-        //Grounded animator
-        animator.SetBool(isGroundedHash, characterController.isGrounded);
-
-        //Glading animator
-        animator.SetBool(isGlidingHash, canGlade && isUmbrellaOpen && !characterController.isGrounded);
-
-        //Grounded
-        if (characterController.isGrounded)
-        {
-            if (isJumpAnimating)
-            {
-                animator.SetBool(isJumpingHash, false);
-                isJumpAnimating = false;
-            }
-            currentGravity.y = groundGravity;
-        }
-        //Glading
-        else if (canGlade && isUmbrellaOpen && !characterController.isGrounded)
-        {
-            float previousYVelocity = currentGravity.y;
-            float newYVelocity = currentGravity.y + (divideGravityGlade * Time.deltaTime);
-            float nextYVelocity = (previousYVelocity + newYVelocity) * .5f;
-            currentGravity.y = nextYVelocity;
-
-            brelloOpenManager.SetOpen(true);
-        }
-        //Falling
-        else if (isFalling && !characterController.isGrounded && !isSwimming)
-        {
-            float previousYVelocity = currentGravity.y;
-            float newYVelocity = currentGravity.y + (gravity * fallMultiplier * Time.deltaTime);
-            float nextYVelocity = (previousYVelocity + newYVelocity) * .5f;
-            currentGravity.y = nextYVelocity;
-        }
-        //Normal Gravity
-        else
-        {
-            if (isSwimming) return;
-            float previousYVelocity = currentGravity.y;
-            float newYVelocity = currentGravity.y + (gravity * Time.deltaTime);
-            float nextYVelocity = (previousYVelocity + newYVelocity) * .5f;
-            currentGravity.y = nextYVelocity;
-        }
-    }
-
     private void HandleAnimation()
     {
-        animator.SetFloat(speedHash, currentSpeed);
+        animator.SetFloat(fallSpeedHash, rb.velocity.y);
+        animator.SetBool(isGroundedHash, isGrounded);
+
+        if (rb.velocity.magnitude >= 0.5f)
+        {
+            animator.SetFloat(speedHash, currentSpeed);
+        }
+        else
+        {
+            animator.SetFloat(speedHash, 0f);
+        }
+
+        animator.SetBool(isGlidingHash, isGlading);
+            
+    }
+    private void Checkers()
+    {
+
+        isGrounded = Physics.CheckSphere(posCheckerGround.position, radiusCheck, groundLayerMask);
+
+        isGlading = !isGrounded && isUmbrellaOpen && rb.velocity.y < 3 && !isSwimming;
+        
     }
 
-    private void CamDirection()
+    private void GladeManager()
+    {
+        if (isGlading && !isSwimming)
+        {
+            rb.AddForce(Vector3.down * -Physics.gravity.y / 2, ForceMode.Force);
+        }  
+    }
+
+    private Vector3 CamDirection()
     {
         camForward = Camera.main.transform.forward.normalized;
         camRight = Camera.main.transform.right.normalized;
         camDir = (axis.x * camRight + axis.y * camForward);
         camDir.y = 0;
+        return camDir;
     }
 
     public void BlockMovement()
@@ -278,37 +209,13 @@ public class PlayerController : MonoBehaviour
         canMove = true;
     }
 
-    private void Jump()
-    {
-        if (!canMove) return;
-        animator.SetBool(isJumpingHash, true);
-
-        isSwimming = false;
-        isJumping = true;
-        isJumpAnimating = true;
-
-        currentGravity.y = initialJumpVelocity;
-    }
-
     #endregion Main movement functions
 
     #region Dash functions
 
     public void HandleDash()
     {
-        if (!isSwimming)
-            StartCoroutine(Dash());
-    }
-
-    private IEnumerator Dash()
-    {
-        float startTime = Time.time;
-        while (Time.time < startTime + dashTime)
-        {
-            characterController.Move(camDir * dashSpeed * Time.deltaTime);
-
-            yield return null;
-        }
+        
     }
 
     #endregion Dash functions
@@ -317,45 +224,27 @@ public class PlayerController : MonoBehaviour
 
     public void HandleAttack()
     {
-        if (Time.time >= nextAttack && !isSwimming)
-        {
-            nextAttack = Time.time + timeBtwAttacks;
-            DoAttackAnimation();
-        }
+        
     }
 
     private void DoAttackAnimation()
     {
-        animator.SetTrigger(attackHash);
-
-        if (Time.time >= nextResetAttack)
-        {
-           
-            nextResetAttack = Time.time + timeResetComboAttack;
-            currentAttack = 0;
-        }
-        if (currentAttack == numAttacks)
-        {
-            currentAttack = 0;
-        }
-
-        animator.SetInteger(numAttackHash, currentAttack);
-        currentAttack++;
+        animator.SetTrigger(attackHash); 
     }
 
     private void Attack()
     {
-        Collider[] colliders = Physics.OverlapBox(pivotAttack.position, sizeCubeAttack, Quaternion.identity);
-        foreach (Collider collider in colliders)
-        {
-            if (collider.TryGetComponent(out Health _health))
-            {
-                if (!collider.CompareTag("Player") && !collider.CompareTag("Pyra"))
-                {
-                    _health.DoDamage(damage);
-                }
-            }
-        }
+        //Collider[] colliders = Physics.OverlapBox(pivotAttack.position, sizeCubeAttack, Quaternion.identity);
+        //foreach (Collider collider in colliders)
+        //{
+        //    if (collider.TryGetComponent(out Health _health))
+        //    {
+        //        if (!collider.CompareTag("Player") && !collider.CompareTag("Pyra"))
+        //        {
+        //            _health.DoDamage(damage);
+        //        }
+        //    }
+        //}
     }
 
     #endregion Attack functions
@@ -366,13 +255,31 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Water") && !isSwimming)
         {
+            //print("Ha entrado en el agua");
+            currentTorrentDirection = other.GetComponent<WaterTorrent>().GetTorrentDir();
+
+            collider.material = frictionMaterial;
+
+            rb.useGravity = false;
+
             isSwimming = true;
-            isJumping = false;
-            isJumPressed = false;
+
+            isGlading = false;
+
             animator.SetBool("isSwiming", true);
 
+            isStartingToSwim = true;
+            isGlading = false;
+            
+            Instantiate(splashParticle, transform.position, splashParticle.transform.rotation);
+
             Transform pivotWater = other.transform.GetChild(0).transform;
-            tweenSwiming = transform.DOMoveY(pivotWater.position.y, 2).SetEase(Ease.OutElastic);
+            tweenSwiming = transform.DOLocalMoveY(pivotWater.position.y, 2).SetEase(Ease.OutElastic).OnComplete(() =>
+            {
+                isStartingToSwim = false;
+            });
+
+            AkSoundEngine.PostEvent("WaterSplash_Brello", WwiseManager.instance.gameObject);
         }
     }
 
@@ -380,12 +287,17 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Water"))
         {
+            currentTorrentDirection = Vector3.zero;
+
+            rb.useGravity = true;
+            collider.material = noFrictionMaterial;
+
             isSwimming = false;
 
             animator.SetBool("isSwiming", false);
 
             brelloOpenManager.SetOpen(false);
-
+      
             //Matamos a la animacion por si se sale antes, que no se quede flotando
             tweenSwiming.Kill();
         }
@@ -393,85 +305,76 @@ public class PlayerController : MonoBehaviour
 
     private void SwimingManager()
     {
-        if (isSwimming && isJumPressed && !isJumping)
+        if (isSwimming)
+        {
+            rb.useGravity = false;
+            brelloOpenManager.SetOpen(true);
+            if (canMove) {
+                rb.AddForce(currentTorrentDirection, ForceMode.Force);
+            }
+        }
+    }
+
+    public void HandleSwimingJump()
+    {
+        if (!WaterPlatformManager.singletone.IsPyraInPlatform() && isSwimming)
         {
             tweenSwiming.Kill();
-
-            if (!WaterPlatformManager.singletone.IsPyraInPlatform() && !characterController.isGrounded)
-                Jump();
-        }
-        else if (isSwimming)
-        {
-            currentGravity.y = 0;
-            brelloOpenManager.SetOpen(true);
+            rb.useGravity = true;
+            HandleJump();
         }
     }
-
     #endregion Swiming functions
-
-    #region Air Movement Functions
-
-    //Funcion que se ejecuta en el update, y bloquea la gravedad a 0
-    private void AirMovementManager()
-    {
-        if (isAirMoving)
-            currentGravity.y = 0;
-    }
-
-    //Funcion que se llama cuando entra en contacto con la zona de aire
-    private void OnAirMovement(Collider other)
-    {
-        if (other.CompareTag("Air") && !isAirMoving)
-        {
-            isAirMoving = true;
-            Transform pivotAir = other.transform.GetChild(0).transform;
-
-            tweenAirMovement = transform.DOMoveY(pivotAir.position.y, 1).SetEase(Ease.Linear);
-        }
-    }
-
-    //Funcion que se llama cuando se va de la zona de aire
-    private void OutMovementAir(Collider other)
-    {
-        if (other.CompareTag("Air"))
-        {
-            isAirMoving = false;
-            tweenAirMovement.Kill();
-        }
-    }
-
-    #endregion Air Movement Functions
 
     public void OpenUmbrellaManager(bool _value)
     {
         isUmbrellaOpen = _value;
         brelloOpenManager.SetOpen(isUmbrellaOpen);
+        rb.useGravity = !_value;
+
+        //Audio de apertura de paraguas
+        if (_value && !isSwimming)
+        {
+            playerAudio.PlayOpen();
+        }
+        else if(!_value && !isSwimming)
+        {
+            playerAudio.PlayClose();
+            isGlidePlaying = false;
+            playerAudio.StopGlide();
+        }
+        else if(isGlidePlaying && isSwimming)
+        {
+            isGlidePlaying = false;
+            playerAudio.StopGlide();
+        }
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
         OnSwiming(other);
-        OnAirMovement(other);
     }
 
+    
     private void OnTriggerExit(Collider other)
     {
         OnOutSwiming(other);
-        OutMovementAir(other);
+
     }
 
     private void OnDrawGizmosSelected()
     {
+    }
+    private void OnDrawGizmos()
+    {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(pivotAttack.position, sizeCubeAttack);
+        if (isGrounded) Gizmos.color = Color.green;
+        Gizmos.DrawSphere(posCheckerGround.position, radiusCheck);
+
     }
 
     #region Inputs setters
-
-    public void SetJumPressed(bool _value)
-    {
-        isJumPressed = _value;
-    }
 
     public void SetAxis(Vector2 _value)
     {
@@ -492,21 +395,26 @@ public class PlayerController : MonoBehaviour
         return isSwimming;
     }
 
+    public bool IsStartingToSwim()
+    {
+        return isStartingToSwim;
+    }
+
     public bool IsMoving()
     {
         return isMovementPressed;
     }
+    public bool IsGrounded()
+    {
+        return isGrounded;
+    }
+    public bool IsGlading()
+    {
+        return isGlading;
+    }
     #endregion Getters
 
     #region Init functions
-
-    private void SetUpJumpvariables()
-    {
-        float timeToApex = maxJumpTime / 2;
-
-        gravity = (-2 * maxJumpHeight) / Mathf.Pow(timeToApex, 2);
-        initialJumpVelocity = (2 * maxJumpHeight) / timeToApex;
-    }
 
     private void SetAnimatorsHashes()
     {
@@ -520,4 +428,10 @@ public class PlayerController : MonoBehaviour
     }
 
     #endregion Init functions
+
+    #region Audio
+
+
+
+    #endregion
 }

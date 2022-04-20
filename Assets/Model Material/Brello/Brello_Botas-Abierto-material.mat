@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Brello_Botas-Abierto-material
-  m_Shader: {fileID: -6465566751694194690, guid: d41d52f095190274f91012c3101bbdf3, type: 3}
+  m_Shader: {fileID: 4800000, guid: 766736548846cdf459a9766614dcccab, type: 3}
   m_ShaderKeywords: _ _EMISSIVE_SIMPLE _IS_ANGELRING_OFF _IS_CLIPPING_OFF _IS_OUTLINE_CLIPPING_NO
     _OUTLINE_NML
   m_LightmapFlags: 4
@@ -30,6 +30,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap:
     IgnoreProjection: False
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -194,7 +195,7 @@ Material:
     - Vector1_fc9692ddb4a34955b17f996a093a5585: 0
     - _1st2nd_Shades_Feather: 1
     - _1st_ShadeColor_Feather: 1
-    - _1st_ShadeColor_Step: 0.5
+    - _1st_ShadeColor_Step: 0.75
     - _2nd_ShadeColor_Feather: 1
     - _2nd_ShadeColor_Step: 0
     - _ARSampler_AlphaOn: 0
@@ -206,7 +207,7 @@ Material:
     - _Ap_RimLight_FeatherOff: 0
     - _Ap_RimLight_Power: 0.1
     - _AutoRenderQueue: 1
-    - _BaseColor_Step: 0.5
+    - _BaseColor_Step: 0.75
     - _BaseShade_Feather: 1
     - _Base_Speed: 0
     - _Blend: 0
@@ -279,7 +280,7 @@ Material:
     - _OutlineDepthSensitivity: 0.25
     - _OutlineNormalsSensitivity: 1
     - _OutlineThickness: 8
-    - _Outline_Width: 0.31
+    - _Outline_Width: 0.25
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
@@ -318,7 +319,7 @@ Material:
     - _Tweak_ShadingGradeMapLevel: 0
     - _Tweak_SystemShadowsLevel: 0
     - _Tweak_transparency: 0
-    - _Unlit_Intensity: 1
+    - _Unlit_Intensity: 4
     - _Use_1stAs2nd: 0
     - _Use_BaseAs1st: 0
     - _WorkflowMode: 1
