@@ -24,7 +24,7 @@ MonoBehaviour:
     ParentPath: Virtual Acoustics\Default Work Unit
     guid: 166bb2b7fc13db45b69f5a19518cf21f
     GuidInternal: 
-    m_lastTime: -8585530185340140741
+    m_lastTime: -8585528790687800862
     List: []
   AuxBusWwu:
   - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
@@ -38,7 +38,7 @@ MonoBehaviour:
     ParentPath: Master-Mixer Hierarchy\Default Work Unit
     guid: b11d140495a5214693f79f09da626fbf
     GuidInternal: 
-    m_lastTime: -8585530185341203201
+    m_lastTime: -8585528790688508959
     List:
     - name: Master Audio Bus
       guid: d8a41415a61d2a41a17e75ca0c2149f3
@@ -66,7 +66,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: b7fee57a9b67c343a46eab594f457684
     GuidInternal: 
-    m_lastTime: -8585530185340210549
+    m_lastTime: -8585528790403641293
     List:
     - name: General
       guid: 9ac68b89cd0b2543aa435561f078908b
@@ -94,7 +94,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 1a1dad3e5c7a724abc36cb5e26e00782
     GuidInternal: 
-    m_lastTime: -8585530185341731425
+    m_lastTime: -8585528790403711104
     List:
     - name: Attack_Combo_Brello
       guid: 002aa748b1bcd6438e803e80ac434cfc
@@ -368,8 +368,8 @@ MonoBehaviour:
         guid: 525ee8d23a89a348b73df0708b7984fb
       Path: Events\Default Work Unit\Brello\Footstep_Brello
       maxAttenuation: 0
-      maxDuration: 1
-      minDuration: 0.326086
+      maxDuration: -1
+      minDuration: -1
     - name: Footstep_Pyra
       guid: ce99340e72fd274a8c35633812a88227
       id: 1517232512
@@ -991,7 +991,7 @@ MonoBehaviour:
     ParentPath: Game Parameters\Default Work Unit
     guid: e4f736cbb2288f459e9c3c36b3575dbc
     GuidInternal: 
-    m_lastTime: -8585530185341382351
+    m_lastTime: -8585528790688518938
     List: []
   StateWwu:
   - PhysicalPath: States\Default Work Unit.wwu
@@ -1005,7 +1005,7 @@ MonoBehaviour:
     ParentPath: States\Default Work Unit
     guid: 13117027c1e0a84b83ede94da2174f6f
     GuidInternal: 
-    m_lastTime: -8585530185340190606
+    m_lastTime: -8585528790688449131
     List: []
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
@@ -1019,7 +1019,7 @@ MonoBehaviour:
     ParentPath: Switches\Default Work Unit
     guid: 3652c387ca18794085902b6748b43d1c
     GuidInternal: 
-    m_lastTime: -8585530185340200579
+    m_lastTime: -8585528790403641293
     List:
     - name: FootstepTerrainType
       guid: 5370e81ddde85840a97b77e23f265148
@@ -1131,7 +1131,7 @@ MonoBehaviour:
     ParentPath: Triggers\Default Work Unit
     guid: c350db81a104204da106bd1f7e8437ba
     GuidInternal: 
-    m_lastTime: -8585530185340200579
+    m_lastTime: -8585528790688459099
     List: []
   ExpandedFileSystemItemIds: 
   ExpandedWaapiItemIds: 
