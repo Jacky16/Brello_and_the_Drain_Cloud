@@ -91,8 +91,8 @@ public class PsTom : MonoBehaviour
 
     #region Phases
     private void Phase1()
-    {    
-        ChasingAttack();     
+    {
+        HandleChasingAttack();     
     }    
     private void Phase2()
     {
@@ -124,7 +124,7 @@ public class PsTom : MonoBehaviour
     }
     private void Phase3()
     {
-        ChasingAttack();
+        HandleChasingAttack();
     }
 
     private void Phase4()
@@ -168,7 +168,7 @@ public class PsTom : MonoBehaviour
         }
         else
         {
-            ChasingAttack();
+            HandleChasingAttack();
         }
     }
 
@@ -282,70 +282,84 @@ public class PsTom : MonoBehaviour
     void AddImpulseToPlayer()
     {
         anim.SetBool("IsFalling", false);
+        
         if (CheckIfPlayerInside())
             player.GetComponent<Rigidbody>().AddForce(player.transform.right.normalized * impulseForceOnPlayer, ForceMode.Impulse);
             
-        //Do Explosion force in player
-
     }
 
     #endregion
 
     #region Chasing Attack
+    //Se ejecuta en la animacion de la carrerilla
     void ChasingAttack()
     {
-        if (!isAssaltingPlayer && canAssaultPlayer && !isStuned)
+        if (!isAssaltingPlayer && !isStuned)
         {
-            posToGo = GetPosToAssult();
-            
-            anim.SetTrigger("AttackAssault");
-            anim.SetBool("IsChasing", true);
-            
-            canAssaultPlayer = false;
             isAssaltingPlayer = true;
+            anim.SetBool("IsChasing", isAssaltingPlayer);
 
-            //Look at player
-            Vector3 lookAt = player.transform.position;
-            transform.DOLookAt(lookAt, .5f);
-
+            //Asignar donde va a ir el Boss
+            posToGo = GetPosToAssult();
+           
             //Move to player
             navMeshAgent.SetDestination(posToGo);
             
+            //Aplicar velocidad y aceleración
             navMeshAgent.speed = speedAssault;
             navMeshAgent.acceleration = accelerationAssault;
         }
 
-        //Comprobacion por distancia y por tag
-         isDistanceToGo = Vector3.Distance(transform.position, posToGo) <= navMeshAgent.stoppingDistance;
-        
-        print(Vector3.Distance(transform.position, posToGo));
-        if (isAssaltingPlayer && CheckCollision("Player"))
-        {
-            AddImpulseToPlayer();
-        }
-        if (isDistanceToGo && isAssaltingPlayer)
-        {          
-            isAssaltingPlayer = false;
-            posToGo = Vector3.zero;
-            navMeshAgent.velocity = Vector3.zero;
-            navMeshAgent.ResetPath();
-            StartCoroutine(ResumeCanAssaultPlayer());
-        }
+       
     }
     IEnumerator ResumeCanAssaultPlayer()
     {
-        Stune(true);
-        anim.SetTrigger("Stuned");
+        Stune(true);      
         
         anim.SetBool("IsChasing", false);
 
         yield return new WaitForSeconds(timeStuned);
+        
         Stune(false);
         canAssaultPlayer = true;
         
-
         if (currentPhase == Phases.PHASE_5)
             canDoJumpAttack = true;
+    }
+    
+    void HandleChasingAttack()
+    {
+        if (canAssaultPlayer)
+        {
+            canAssaultPlayer = false;
+            anim.SetTrigger("AttackAssault");
+            
+            //Look at player
+            Vector3 lookAt = player.transform.position;
+            transform.DOLookAt(lookAt, .5f);            
+        }
+        
+        //Comprobacion por distancia y por tag
+        isDistanceToGo = Vector3.Distance(transform.position, posToGo) <= navMeshAgent.stoppingDistance || CheckCollision("Wall");
+
+        print(Vector3.Distance(transform.position, posToGo));
+        
+        
+        if (isAssaltingPlayer && CheckCollision("Player"))
+        {
+            AddImpulseToPlayer();
+        }
+        else if (isDistanceToGo && isAssaltingPlayer)
+        {
+            isAssaltingPlayer = false;
+            
+            //Parar en seco y quitar la ruta del navmesh
+            navMeshAgent.velocity = Vector3.zero;
+            navMeshAgent.ResetPath();
+            
+            //Sistema de Stune
+            StartCoroutine(ResumeCanAssaultPlayer());
+        }
     }
 
     Vector3 GetPosToAssult()
@@ -453,8 +467,8 @@ public class PsTom : MonoBehaviour
     {
         isStuned = _isStuned;
         if (_isStuned)
-        {
-        }
+            anim.SetTrigger("Stuned");
+        
 
         anim.SetBool("IsStuned", isStuned);
     }
