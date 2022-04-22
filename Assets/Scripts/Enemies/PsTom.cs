@@ -117,7 +117,6 @@ public class PsTom : MonoBehaviour
       
         //Pasar a la fase 3
         yield return new WaitForSeconds(timeTrashAattack);
-        anim.SetTrigger("Triggered");
         yield return new WaitForSeconds(2);
         currentPhase = Phases.PHASE_3;
 
@@ -154,7 +153,6 @@ public class PsTom : MonoBehaviour
 
         //Pasar a la fase 5
         yield return new WaitForSeconds(timeTrashAattack);
-        anim.SetTrigger("Triggered");
         yield return new WaitForSeconds(2);
         currentPhase = Phases.PHASE_5;
 
@@ -340,7 +338,8 @@ public class PsTom : MonoBehaviour
         }
         
         //Comprobacion por distancia y por tag
-        isDistanceToGo = Vector3.Distance(transform.position, posToGo) <= navMeshAgent.stoppingDistance || CheckCollision("Wall");
+        if(!isStuned)
+            isDistanceToGo = Vector3.Distance(transform.position, posToGo) <= navMeshAgent.stoppingDistance || CheckCollision("Wall");
 
         print(Vector3.Distance(transform.position, posToGo));
         
