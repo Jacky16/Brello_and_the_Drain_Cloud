@@ -38,7 +38,7 @@ public sealed class PyraAI : MonoBehaviour
     //Variables de objetos detectados.
     [SerializeField] private List<Interactable> detectedObjects;
 
-    private Interactable currentInteractuable;
+    public Interactable currentInteractuable;
 
     //Variables de movimiento.
     public bool moveToPlatform = false, isInPlatform = false, isJumping = false;
@@ -60,6 +60,7 @@ public sealed class PyraAI : MonoBehaviour
 
     private Vector3 posToJump;
     bool stayUnderBrello;
+
     private void Start()
     {
         combatManager = GameObject.FindGameObjectWithTag("Player").GetComponent<CombatManager>();

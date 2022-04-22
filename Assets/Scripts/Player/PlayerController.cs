@@ -258,7 +258,7 @@ public class PlayerController : MonoBehaviour
             //print("Ha entrado en el agua");
             currentTorrentDirection = other.GetComponent<WaterTorrent>().GetTorrentDir();
 
-            collider.material = frictionMaterial;
+            //collider.material = frictionMaterial;
 
             rb.useGravity = false;
 
@@ -273,10 +273,11 @@ public class PlayerController : MonoBehaviour
             
             Instantiate(splashParticle, transform.position, splashParticle.transform.rotation);
 
+            rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
+
             Transform pivotWater = other.transform.GetChild(0).transform;
             tweenSwiming = transform.DOLocalMoveY(pivotWater.position.y, 2).SetEase(Ease.OutElastic).OnComplete(() =>
             {
-                rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
                 isStartingToSwim = false;
             });
 

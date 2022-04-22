@@ -21,9 +21,12 @@ public class Interactable : MonoBehaviour
     {
         if (other.CompareTag("Pyra"))
         {
-            Interact();
-            pyra.isInteracting = true;
-            pyra.agent.SetDestination(pyra.transform.position);
+            if (pyra.currentInteractuable == this)
+            {
+                Interact();
+                pyra.isInteracting = true;
+                pyra.agent.SetDestination(pyra.transform.position);
+            }
         }
     }
 }
