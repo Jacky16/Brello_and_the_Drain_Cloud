@@ -281,8 +281,9 @@ public class PsTom : MonoBehaviour
         anim.SetBool("IsFalling", false);
         
         if (CheckIfPlayerInside())
-            player.GetComponent<Rigidbody>().AddForce(player.transform.right.normalized * impulseForceOnPlayer, ForceMode.Impulse);
-            
+        {
+            player.GetComponent<Rigidbody>().AddForce(transform.right.normalized * impulseForceOnPlayer, ForceMode.Impulse);
+        }
     }
 
     #endregion
