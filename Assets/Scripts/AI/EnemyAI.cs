@@ -14,7 +14,7 @@ public class EnemyAI : MonoBehaviour
     [Header("Player detection variables")]
     [SerializeField] protected LayerMask playerMask;
     protected GameObject player;
-    CombatManager combatManager;
+    protected CombatManager combatManager;
 
     [Header("AI Variables")]
     [SerializeField] protected float attackRadius;
@@ -85,7 +85,7 @@ public class EnemyAI : MonoBehaviour
     }
 
     protected virtual void ExtraFunctionality() { }
-    protected void AttackPlayer()
+    protected virtual void AttackPlayer()
     {
         if (canAttack)
         {
@@ -96,14 +96,13 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    protected virtual void AttackAction()
+    public virtual void AttackAction()
     {
 
     }
 
-    private IEnumerator ResetAttack()
+    protected IEnumerator ResetAttack()
     {
-        Debug.LogError("El problema está en el resetAttack");
         yield return new WaitForSeconds(timeBetweenAttacks);
         canAttack = true;
     }

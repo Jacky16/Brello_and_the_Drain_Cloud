@@ -52,7 +52,7 @@ public class SteamlingAI : EnemyAI
         }
     }
 
-    protected override void AttackAction()
+    public override void AttackAction()
     {
         StartCoroutine(Assault());
     }
