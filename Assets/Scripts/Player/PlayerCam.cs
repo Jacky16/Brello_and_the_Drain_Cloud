@@ -28,7 +28,7 @@ public class PlayerCam : MonoBehaviour
     private Vector2 _rotationXMinMax = new Vector2(-40, 40);
 
  
-    void LateUpdate()
+    void Update()
     {
         
         float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity;

@@ -1202,6 +1202,10 @@ PrefabInstance:
       value: -0.0000015844126
       objectReference: {fileID: 0}
     - target: {fileID: 7810750941276814486, guid: 5a434fdb74ba1d7458242fbbf8151577, type: 3}
+      propertyPath: runSpeed
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7810750941276814486, guid: 5a434fdb74ba1d7458242fbbf8151577, type: 3}
       propertyPath: jumpForce
       value: 20
       objectReference: {fileID: 0}
@@ -1219,7 +1223,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7915186975532956534, guid: 5a434fdb74ba1d7458242fbbf8151577, type: 3}
       propertyPath: m_Drag
-      value: 5
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7915186975532956534, guid: 5a434fdb74ba1d7458242fbbf8151577, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7915186975532956537, guid: 5a434fdb74ba1d7458242fbbf8151577, type: 3}
       propertyPath: targetGroup
@@ -1387,13 +1395,13 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.2744889, g: 0.6121879, b: 0.8980392, a: 1}
-  deepColor: {r: 0.170993, g: 0.3662562, b: 0.5943396, a: 1}
+  shallowColor: {r: 0.27448717, g: 0.6121879, b: 0.8980392, a: 1}
+  deepColor: {r: 0.17099136, g: 0.36625448, b: 0.5943396, a: 1}
   colorDepth: 2.2
   horizonColor: {r: 0.48940885, g: 0.5984121, b: 0.8867924, a: 1}
   horizonDistance: 19.7
   shoreFade: 0.001
-  shoreColor: {r: 0.003921571, g: 0.07974484, b: 0.8980392, a: 0}
+  shoreColor: {r: 0.003921571, g: 0.07974342, b: 0.8980392, a: 0}
   shoreStrength: 0
   shoreBlend: 0.008
   shoreDepth: 0
@@ -5961,10 +5969,10 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.26310632, g: 0.38014567, b: 0.6886792, a: 1}
-  deepColor: {r: 0.20388684, g: 0.5019608, b: 0.7254902, a: 1}
+  shallowColor: {r: 0.26310456, g: 0.38014394, b: 0.6886792, a: 1}
+  deepColor: {r: 0.2038852, g: 0.5019608, b: 0.7254902, a: 1}
   colorDepth: 2.2
-  horizonColor: {r: 0.30656716, g: 0.44347984, b: 1, a: 1}
+  horizonColor: {r: 0.30656543, g: 0.4434781, b: 1, a: 1}
   horizonDistance: 19.7
   shoreFade: 0.001
   shoreColor: {r: 0, g: 0.030701637, b: 1, a: 0}
@@ -5972,7 +5980,7 @@ MonoBehaviour:
   shoreBlend: 0.008
   shoreDepth: 0
   waveColor: {r: 0, g: 0, b: 0, a: 0}
-  underwaterColor: {r: 0.3409655, g: 0.4745261, b: 0.745283, a: 0}
+  underwaterColor: {r: 0.34096378, g: 0.4745261, b: 0.745283, a: 0}
   underwaterColorStrength: 0
   underwaterRefractionStrength: 0.099
   surfaceFoamTexture: {fileID: 2800000, guid: d3b0d77dfe711a04c8ff18ecc260aa66, type: 3}
@@ -6879,8 +6887,8 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.27449232, g: 0.6117647, b: 0.8980392, a: 1}
-  deepColor: {r: 0.17253241, g: 0.36468837, b: 0.5960784, a: 1}
+  shallowColor: {r: 0.2744906, g: 0.6117647, b: 0.8980392, a: 1}
+  deepColor: {r: 0.17253077, g: 0.36468664, b: 0.5960784, a: 1}
   colorDepth: 2.2
   horizonColor: {r: 0.48940885, g: 0.5984121, b: 0.8867924, a: 1}
   horizonDistance: 19.7
@@ -10577,7 +10585,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1545678004}
   m_LocalRotation: {x: -0.030837081, y: 0.9514652, z: -0.28900158, w: -0.1011991}
-  m_LocalPosition: {x: -217.31422, y: 48.445152, z: 16.466343}
+  m_LocalPosition: {x: -217.39273, y: 49.001957, z: 16.102058}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1355685829}
@@ -13424,6 +13432,26 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3780504884279584410, guid: f8e4fdb2b83f80c42bff2f2a33022aa1, type: 3}
+--- !u!1 &1927867391 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3106432433275755538, guid: e71b0e46d3b3aa14a9e4aa1381f2e46c, type: 3}
+  m_PrefabInstance: {fileID: 3106432433578428372}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1927867395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927867391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44d70cc20219cd84593f67d248eafe36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Offset: {x: 0, y: 0.67, z: 0}
+  m_ApplyAfter: 1
+  m_PreserveComposition: 0
 --- !u!1001 &1927929429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21581,6 +21609,10 @@ PrefabInstance:
       propertyPath: _smoothTime
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 3106432433275755548, guid: e71b0e46d3b3aa14a9e4aa1381f2e46c, type: 3}
+      propertyPath: _rotationXMinMax.y
+      value: 85
+      objectReference: {fileID: 0}
     - target: {fileID: 3106432433275755549, guid: e71b0e46d3b3aa14a9e4aa1381f2e46c, type: 3}
       propertyPath: m_Follow
       value: 
@@ -21598,8 +21630,32 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3106432433275755550, guid: e71b0e46d3b3aa14a9e4aa1381f2e46c, type: 3}
+      propertyPath: m_Damping
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106432433275755550, guid: e71b0e46d3b3aa14a9e4aa1381f2e46c, type: 3}
+      propertyPath: m_IgnoreTag
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106432433275755550, guid: e71b0e46d3b3aa14a9e4aa1381f2e46c, type: 3}
+      propertyPath: m_CameraRadius
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106432433275755550, guid: e71b0e46d3b3aa14a9e4aa1381f2e46c, type: 3}
+      propertyPath: m_SmoothingTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106432433275755550, guid: e71b0e46d3b3aa14a9e4aa1381f2e46c, type: 3}
+      propertyPath: m_MinimumOcclusionTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106432433275755550, guid: e71b0e46d3b3aa14a9e4aa1381f2e46c, type: 3}
       propertyPath: m_TransparentLayers.m_Bits
       value: 1344
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106432433275755550, guid: e71b0e46d3b3aa14a9e4aa1381f2e46c, type: 3}
+      propertyPath: m_MinimumDistanceFromTarget
+      value: 0.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e71b0e46d3b3aa14a9e4aa1381f2e46c, type: 3}
