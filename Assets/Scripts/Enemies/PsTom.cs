@@ -196,9 +196,10 @@ public class PsTom : MonoBehaviour
         }
     }
 
-    #region Attack Punch Attack
+    #region Punch Attack
     void AttackPunch()
     {
+        RotateToPlayer();
         anim.SetTrigger("AttackPunch");
     }
         //Se ejecuta en la animacion de punch 
@@ -280,8 +281,9 @@ public class PsTom : MonoBehaviour
         anim.SetBool("IsFalling", false);
         
         if (CheckIfPlayerInside())
-            player.GetComponent<Rigidbody>().AddForce(player.transform.right.normalized * impulseForceOnPlayer, ForceMode.Impulse);
-            
+        {
+            player.GetComponent<Rigidbody>().AddForce(transform.right.normalized * impulseForceOnPlayer, ForceMode.Impulse);
+        }
     }
 
     #endregion
@@ -304,9 +306,7 @@ public class PsTom : MonoBehaviour
             //Aplicar velocidad y aceleración
             navMeshAgent.speed = speedAssault;
             navMeshAgent.acceleration = accelerationAssault;
-        }
-
-       
+        }       
     }
     IEnumerator ResumeCanAssaultPlayer()
     {
@@ -329,10 +329,9 @@ public class PsTom : MonoBehaviour
         {
             canAssaultPlayer = false;
             anim.SetTrigger("AttackAssault");
-            
+
             //Look at player
-            Vector3 lookAt = player.transform.position;
-            transform.DOLookAt(lookAt, .5f);            
+            RotateToPlayer();
         }
         
         //Comprobacion por distancia y por tag
@@ -465,6 +464,12 @@ public class PsTom : MonoBehaviour
         
 
         anim.SetBool("IsStuned", isStuned);
+    }
+
+    void RotateToPlayer(float _duration = 0.5f)
+    {
+        Vector3 lookAt = player.transform.position;
+        transform.DOLookAt(lookAt, _duration);
     }
 
     private void OnDrawGizmos()
