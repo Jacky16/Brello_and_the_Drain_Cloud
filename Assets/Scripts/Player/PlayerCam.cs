@@ -27,10 +27,7 @@ public class PlayerCam : MonoBehaviour
     [SerializeField]
     private Vector2 _rotationXMinMax = new Vector2(-40, 40);
 
-    private void Awake()
-    {
-        cam = GetComponent<CinemachineVirtualCamera>();        
-    }
+ 
     void LateUpdate()
     {
         
