@@ -14,12 +14,10 @@ public class PlayerController : MonoBehaviour
     private PlayerAudio playerAudio;
 
     //Variables para almacenar los ID's de las animaciones
-    private int isJumpingHash;
     private int attackHash;
     private int isGlidingHash;
     private int isGroundedHash;
     private int speedHash;
-    private int numAttackHash;
     private int fallSpeedHash;
 
     private Vector2 axis;
@@ -39,6 +37,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float gladingSpeed = 10;
     [SerializeField] private float acceleration = 1;
     [SerializeField] private float rotationSpeed = 15f;
+    [SerializeField] private float gladingGravity;
     bool isUmbrellaOpen;
     private float currentSpeed = 0;
     private bool canMove = true;
@@ -121,7 +120,7 @@ public class PlayerController : MonoBehaviour
     private void Movement()
     {
         Vector3 dir = CamDirection() * currentSpeed;
-        dir.y = rb.velocity.y;
+        dir.y = 0;
         //rb.velocity = dir;
 
         rb.AddForce(dir * 10, ForceMode.Acceleration);
@@ -180,7 +179,7 @@ public class PlayerController : MonoBehaviour
         isGlading = !isGrounded && isUmbrellaOpen && rb.velocity.y < 3 && !isSwimming;
         
         if (isGrounded)
-        {
+        {         
             isJumping = false;
         }
         
@@ -189,7 +188,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isGlading && !isSwimming)
         {
-            rb.AddForce(Vector3.down * -Physics.gravity.y / 2, ForceMode.Force);
+            rb.AddForce(Vector3.down * gladingGravity, ForceMode.Force);
         }  
     }
     private Vector3 CamDirection()
@@ -418,12 +417,10 @@ public class PlayerController : MonoBehaviour
 
     private void SetAnimatorsHashes()
     {
-        isJumpingHash = Animator.StringToHash("isJumping");
         isGlidingHash = Animator.StringToHash("isGliding");
         isGroundedHash = Animator.StringToHash("isGrounded");
         speedHash = Animator.StringToHash("speed");
         attackHash = Animator.StringToHash("attack");
-        numAttackHash = Animator.StringToHash("numAttack");
         fallSpeedHash = Animator.StringToHash("fallSpeed");
     }
 
