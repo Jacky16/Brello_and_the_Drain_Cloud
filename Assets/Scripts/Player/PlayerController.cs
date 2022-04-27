@@ -60,8 +60,11 @@ public class PlayerController : MonoBehaviour
     Transform pivotSwiming;
     Vector3 currentTorrentDirection;
     private Tween tweenSwiming;
- 
 
+    [Header("Attack Settings")]
+    [SerializeField] Transform pivotAttack;
+    [SerializeField] Vector3 sizeCubeAttack;
+    [SerializeField] int damage;
     //Air movement variables
     private bool isAirMoving;
     private Tween tweenAirMovement;
@@ -117,13 +120,12 @@ public class PlayerController : MonoBehaviour
     }
     private void Movement()
     {
-        if (canMove)
-        {
-            Vector3 dir = CamDirection() * currentSpeed;
-            dir.y = rb.velocity.y;
-            rb.velocity = dir;
-        }
-        
+        Vector3 dir = CamDirection() * currentSpeed;
+        dir.y = rb.velocity.y;
+        //rb.velocity = dir;
+
+        rb.AddForce(dir * 10, ForceMode.Acceleration);
+
     }
     public void HandleJump()
     {  
@@ -222,7 +224,7 @@ public class PlayerController : MonoBehaviour
 
     public void HandleAttack()
     {
-        
+        Attack();
     }
 
     private void DoAttackAnimation()
@@ -232,17 +234,18 @@ public class PlayerController : MonoBehaviour
 
     private void Attack()
     {
-        //Collider[] colliders = Physics.OverlapBox(pivotAttack.position, sizeCubeAttack, Quaternion.identity);
-        //foreach (Collider collider in colliders)
-        //{
-        //    if (collider.TryGetComponent(out Health _health))
-        //    {
-        //        if (!collider.CompareTag("Player") && !collider.CompareTag("Pyra"))
-        //        {
-        //            _health.DoDamage(damage);
-        //        }
-        //    }
-        //}
+        Collider[] colliders = Physics.OverlapBox(pivotAttack.position, sizeCubeAttack, Quaternion.identity);
+        foreach (Collider collider in colliders)
+        {
+            if (collider.TryGetComponent(out Health _health))
+            {
+                if (!collider.CompareTag("Player") && !collider.CompareTag("Pyra"))
+                {
+                    _health.DoDamage(damage);
+                }
+                print(collider.tag);
+            }
+        }
     }
 
     #endregion Attack functions
@@ -281,6 +284,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnOutSwiming(Collider other)
     {
+        print("Ha salido del agua");
         if (other.CompareTag("Water"))
         {
             currentTorrentDirection = Vector3.zero;
@@ -365,6 +369,8 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.red;
         if (isGrounded) Gizmos.color = Color.green;
         Gizmos.DrawSphere(posCheckerGround.position, radiusCheck);
+
+        Gizmos.DrawWireCube(pivotAttack.position, sizeCubeAttack);
 
     }
 
