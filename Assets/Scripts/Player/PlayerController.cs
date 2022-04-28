@@ -5,13 +5,11 @@ using DG.Tweening;
 public class PlayerController : MonoBehaviour
 {
     //References/Components
-
     private BrelloOpenManager brelloOpenManager;
     private Rigidbody rb;
     private Animator animator;
-    private Collider collider;
-
     private PlayerAudio playerAudio;
+
 
     //Variables para almacenar los ID's de las animaciones
     private int attackHash;
@@ -20,11 +18,13 @@ public class PlayerController : MonoBehaviour
     private int speedHash;
     private int fallSpeedHash;
 
+    //Vector variables
     private Vector2 axis;
     private Vector3 camForward;
     private Vector3 camRight;
     private Vector3 camDir;
 
+    //Variables bools
     private bool isMovementPressed;
     private bool isStartingToSwim;
     private bool isSwimming;
@@ -34,13 +34,17 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float runSpeed = 20;
     [SerializeField] private float walkSpeed = 10;
-    [SerializeField] private float gladingSpeed = 10;
     [SerializeField] private float acceleration = 1;
     [SerializeField] private float rotationSpeed = 15f;
-    [SerializeField] private float gladingGravity;
+    [SerializeField] private bool isMovementRelativeToCam;
     bool isUmbrellaOpen;
     private float currentSpeed = 0;
     private bool canMove = true;
+    
+    [Header("Glading Settings")]
+    [SerializeField] private float gladingSpeed = 10;
+    [SerializeField] private float gladingGravity = 100;
+
 
     [Header("Ground Checker settings")]
     [SerializeField] Transform posCheckerGround;
@@ -64,10 +68,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform pivotAttack;
     [SerializeField] Vector3 sizeCubeAttack;
     [SerializeField] int damage;
-    //Air movement variables
-    private bool isAirMoving;
-    private Tween tweenAirMovement;
-
+  
     //Audio variables
     private bool isGlidePlaying = false;
 
@@ -77,7 +78,6 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         brelloOpenManager = GetComponent<BrelloOpenManager>();
         playerAudio = GetComponent<PlayerAudio>();
-        collider = GetComponent<Collider>();
 
         SetAnimatorsHashes();
     }
@@ -120,11 +120,9 @@ public class PlayerController : MonoBehaviour
     private void Movement()
     {
         Vector3 dir = CamDirection() * currentSpeed;
-        dir.y = 0;
-        //rb.velocity = dir;
-
-        rb.AddForce(dir * 10, ForceMode.Acceleration);
-
+        dir.y = rb.velocity.y;
+        rb.velocity = dir;
+        //rb.AddForce(dir * 10, ForceMode.Acceleration);
     }
     public void HandleJump()
     {  
@@ -138,6 +136,7 @@ public class PlayerController : MonoBehaviour
     {
         if (canMove)
         {
+            
             Vector3 positionToLookAt = (axis.x * camRight + axis.y * camForward);
 
             //Setear la rotacion en la cual va a girar
@@ -197,7 +196,7 @@ public class PlayerController : MonoBehaviour
         camRight = Camera.main.transform.right.normalized;
         camDir = (axis.x * camRight + axis.y * camForward);
         camDir.y = 0;
-        return camDir;
+        return camDir.normalized;
     }
     public void BlockMovement()
     {
