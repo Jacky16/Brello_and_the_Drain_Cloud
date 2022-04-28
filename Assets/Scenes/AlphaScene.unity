@@ -1395,13 +1395,13 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.27448717, g: 0.6121879, b: 0.8980392, a: 1}
-  deepColor: {r: 0.17099136, g: 0.36625448, b: 0.5943396, a: 1}
+  shallowColor: {r: 0.27450013, g: 0.6121879, b: 0.8980392, a: 1}
+  deepColor: {r: 0.17100364, g: 0.3662674, b: 0.5943396, a: 1}
   colorDepth: 2.2
   horizonColor: {r: 0.48940885, g: 0.5984121, b: 0.8867924, a: 1}
   horizonDistance: 19.7
   shoreFade: 0.001
-  shoreColor: {r: 0.003921571, g: 0.07974342, b: 0.8980392, a: 0}
+  shoreColor: {r: 0.003921571, g: 0.079753794, b: 0.8980392, a: 0}
   shoreStrength: 0
   shoreBlend: 0.008
   shoreDepth: 0
@@ -1492,6 +1492,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 740326646450868016, guid: 736951f90fc086149851297b3df95dd2, type: 3}
+      propertyPath: dashSpeed
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 740326646450868019, guid: 736951f90fc086149851297b3df95dd2, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -5969,10 +5973,10 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.26310456, g: 0.38014394, b: 0.6886792, a: 1}
-  deepColor: {r: 0.2038852, g: 0.5019608, b: 0.7254902, a: 1}
+  shallowColor: {r: 0.26311448, g: 0.38015386, b: 0.6886792, a: 1}
+  deepColor: {r: 0.20389459, g: 0.5019608, b: 0.7254902, a: 1}
   colorDepth: 2.2
-  horizonColor: {r: 0.30656543, g: 0.4434781, b: 1, a: 1}
+  horizonColor: {r: 0.30657533, g: 0.443488, b: 1, a: 1}
   horizonDistance: 19.7
   shoreFade: 0.001
   shoreColor: {r: 0, g: 0.030701637, b: 1, a: 0}
@@ -5980,7 +5984,7 @@ MonoBehaviour:
   shoreBlend: 0.008
   shoreDepth: 0
   waveColor: {r: 0, g: 0, b: 0, a: 0}
-  underwaterColor: {r: 0.34096378, g: 0.4745261, b: 0.745283, a: 0}
+  underwaterColor: {r: 0.3409737, g: 0.4745261, b: 0.745283, a: 0}
   underwaterColorStrength: 0
   underwaterRefractionStrength: 0.099
   surfaceFoamTexture: {fileID: 2800000, guid: d3b0d77dfe711a04c8ff18ecc260aa66, type: 3}
@@ -6887,8 +6891,8 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.2744906, g: 0.6117647, b: 0.8980392, a: 1}
-  deepColor: {r: 0.17253077, g: 0.36468664, b: 0.5960784, a: 1}
+  shallowColor: {r: 0.27450046, g: 0.6117647, b: 0.8980392, a: 1}
+  deepColor: {r: 0.17254013, g: 0.3646965, b: 0.5960784, a: 1}
   colorDepth: 2.2
   horizonColor: {r: 0.48940885, g: 0.5984121, b: 0.8867924, a: 1}
   horizonDistance: 19.7
