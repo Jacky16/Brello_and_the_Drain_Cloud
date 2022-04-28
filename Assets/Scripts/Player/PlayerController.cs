@@ -36,7 +36,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float walkSpeed = 10;
     [SerializeField] private float acceleration = 1;
     [SerializeField] private float rotationSpeed = 15f;
-    [SerializeField] private bool isMovementRelativeToCam;
+    [SerializeField] private enum MovementMode { ADD_FORCE,VELOCITY}
+    [SerializeField] private MovementMode movementMode = MovementMode.VELOCITY;
+    
     bool isUmbrellaOpen;
     private float currentSpeed = 0;
     private bool canMove = true;
@@ -44,6 +46,7 @@ public class PlayerController : MonoBehaviour
     [Header("Glading Settings")]
     [SerializeField] private float gladingSpeed = 10;
     [SerializeField] private float gladingGravity = 100;
+    [SerializeField] private float velocityToGlade = 3;
 
 
     [Header("Ground Checker settings")]
@@ -94,6 +97,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Movement();
+        ForceTorrent();
         GladeManager();
     }
 
@@ -119,14 +123,30 @@ public class PlayerController : MonoBehaviour
     }
     private void Movement()
     {
-        Vector3 dir = CamDirection() * currentSpeed;
-        dir.y = rb.velocity.y;
-        rb.velocity = dir;
-        //rb.AddForce(dir * 10, ForceMode.Acceleration);
+        Vector3 dir;
+        dir = CamDirection() * currentSpeed;
+        if (movementMode == MovementMode.VELOCITY)
+        {
+            dir.y = rb.velocity.y;
+            rb.velocity = dir;
+        }
+        else
+        {
+            dir.y = 0;
+            rb.AddForce(dir * 10, ForceMode.Acceleration);
+        }
+    }
+    void ForceTorrent()
+    {
+        if (isSwimming && canMove)
+        {
+            currentTorrentDirection.y = 0;
+            rb.AddForce(currentTorrentDirection, ForceMode.Force);
+        }
     }
     public void HandleJump()
     {  
-        if((isGrounded || isSwimming) && canMove)
+        if((isGrounded || isSwimming) && canMove && !isUmbrellaOpen)
         {
             isJumping = true;
             rb.AddForce(Vector3.up * jumpForce * 10, ForceMode.Impulse);
@@ -174,9 +194,8 @@ public class PlayerController : MonoBehaviour
     }
     private void Checkers()
     {
-        isGrounded = Physics.CheckSphere(posCheckerGround.position, radiusCheck, groundLayerMask);
-        isGlading = !isGrounded && isUmbrellaOpen && rb.velocity.y < 3 && !isSwimming;
-        
+        isGrounded = Physics.CheckSphere(posCheckerGround.position, radiusCheck, groundLayerMask) && !isSwimming;
+        isGlading = rb.velocity.y < velocityToGlade && !isSwimming && isUmbrellaOpen && !isGrounded;        
         if (isGrounded)
         {         
             isJumping = false;
@@ -262,7 +281,8 @@ public class PlayerController : MonoBehaviour
             isSwimming = true;
             isGlading = false;
             isStartingToSwim = true;
-            
+
+            movementMode = MovementMode.ADD_FORCE;
 
             animator.SetBool("isSwiming", true);
             
@@ -294,6 +314,8 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isSwiming", false);
 
             brelloOpenManager.SetOpen(false);
+
+            movementMode = MovementMode.VELOCITY;
       
             //Matamos a la animacion por si se sale antes, que no se quede flotando
             tweenSwiming.Kill();
@@ -306,9 +328,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.useGravity = false;
             brelloOpenManager.SetOpen(true);
-            if (canMove) {
-                rb.AddForce(currentTorrentDirection, ForceMode.Force);
-            }
+           
             //Aplicar anclaje en el pivote del agua
             if(!isJumping)
                 rb.position = new Vector3(rb.position.x, pivotSwiming.position.y, rb.position.z);
@@ -332,6 +352,7 @@ public class PlayerController : MonoBehaviour
     {
         isUmbrellaOpen = _value;
         brelloOpenManager.SetOpen(isUmbrellaOpen);
+
         rb.useGravity = !_value;
 
         //Audio de apertura de paraguas
