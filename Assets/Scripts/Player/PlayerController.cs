@@ -96,8 +96,8 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Movement();
         ForceTorrent();
+        Movement();
         GladeManager();
     }
 
@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour
         if (isSwimming && canMove)
         {
             currentTorrentDirection.y = 0;
-            rb.AddForce(currentTorrentDirection, ForceMode.Force);
+            rb.AddForce(currentTorrentDirection, ForceMode.Acceleration);
         }
     }
     public void HandleJump()
@@ -180,14 +180,7 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat(fallSpeedHash, rb.velocity.y);
         animator.SetBool(isGroundedHash, isGrounded);
 
-        if (rb.velocity.magnitude >= 0.5f)
-        {
-            animator.SetFloat(speedHash, currentSpeed);
-        }
-        else
-        {
-            animator.SetFloat(speedHash, 0f);
-        }
+        animator.SetFloat(speedHash, currentSpeed);
 
         animator.SetBool(isGlidingHash, isGlading);
             

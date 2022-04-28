@@ -18,4 +18,15 @@ public class WaterTorrent : MonoBehaviour
     {
         return torrentDir.normalized * torrentForce;
     }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(initPoint.position, endPoint.position);
+        
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(initPoint.position, 1);
+        
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(endPoint.position, 1);
+    }
 }

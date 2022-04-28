@@ -1184,7 +1184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b591fd4bca973542822735cc5d9dd10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  torrentForce: 250
+  torrentForce: 70
   initPoint: {fileID: 1259076057}
   endPoint: {fileID: 37655259}
 --- !u!23 &183622337 stripped
@@ -1274,13 +1274,13 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.27447656, g: 0.6121879, b: 0.8980392, a: 1}
-  deepColor: {r: 0.17098132, g: 0.36624387, b: 0.5943396, a: 1}
+  shallowColor: {r: 0.2744751, g: 0.6121879, b: 0.8980392, a: 1}
+  deepColor: {r: 0.17097992, g: 0.3662424, b: 0.5943396, a: 1}
   colorDepth: 2.2
   horizonColor: {r: 0.48940885, g: 0.5984121, b: 0.8867924, a: 1}
   horizonDistance: 19.7
   shoreFade: 0.001
-  shoreColor: {r: 0.003921571, g: 0.0797349, b: 0.8980392, a: 0}
+  shoreColor: {r: 0.003921571, g: 0.07973371, b: 0.8980392, a: 0}
   shoreStrength: 0
   shoreBlend: 0.008
   shoreDepth: 0
@@ -5848,10 +5848,10 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.26309398, g: 0.38013336, b: 0.6886792, a: 1}
-  deepColor: {r: 0.20387515, g: 0.5019608, b: 0.7254902, a: 1}
+  shallowColor: {r: 0.2630926, g: 0.38013196, b: 0.6886792, a: 1}
+  deepColor: {r: 0.20387384, g: 0.5019608, b: 0.7254902, a: 1}
   colorDepth: 2.2
-  horizonColor: {r: 0.30655482, g: 0.4434675, b: 1, a: 1}
+  horizonColor: {r: 0.30655345, g: 0.44346613, b: 1, a: 1}
   horizonDistance: 19.7
   shoreFade: 0.001
   shoreColor: {r: 0, g: 0.030701637, b: 1, a: 0}
@@ -5859,7 +5859,7 @@ MonoBehaviour:
   shoreBlend: 0.008
   shoreDepth: 0
   waveColor: {r: 0, g: 0, b: 0, a: 0}
-  underwaterColor: {r: 0.3409532, g: 0.4745261, b: 0.745283, a: 0}
+  underwaterColor: {r: 0.3409518, g: 0.4745261, b: 0.745283, a: 0}
   underwaterColorStrength: 0
   underwaterRefractionStrength: 0.099
   surfaceFoamTexture: {fileID: 2800000, guid: d3b0d77dfe711a04c8ff18ecc260aa66, type: 3}
@@ -6766,8 +6766,8 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.27448, g: 0.6117647, b: 0.8980392, a: 1}
-  deepColor: {r: 0.17252073, g: 0.36467606, b: 0.5960784, a: 1}
+  shallowColor: {r: 0.2744786, g: 0.6117647, b: 0.8980392, a: 1}
+  deepColor: {r: 0.17251942, g: 0.36467466, b: 0.5960784, a: 1}
   colorDepth: 2.2
   horizonColor: {r: 0.48940885, g: 0.5984121, b: 0.8867924, a: 1}
   horizonDistance: 19.7
@@ -8619,7 +8619,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1259076056}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 54.6, y: 0, z: 190.7}
+  m_LocalPosition: {x: 64.1, y: 0, z: 80.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 183622341}
@@ -10806,7 +10806,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23338
+  m_Name: pb_Mesh420584
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
