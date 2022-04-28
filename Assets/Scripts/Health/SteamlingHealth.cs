@@ -44,6 +44,7 @@ public sealed class SteamlingHealth : Health
         {
             combatManager.enemyList.Remove(gameObject);
         }
+
         Instantiate(starParticles, posToSpawnParticles.position, Quaternion.identity);
         Destroy(gameObject);
     }

@@ -96,5 +96,4 @@ public class SteamlingAI : EnemyAI
             playerHealth.DoDamage(currentDamage);
         }
     }
-
 }

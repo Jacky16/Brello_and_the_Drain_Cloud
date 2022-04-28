@@ -14,9 +14,10 @@ public sealed class PyraHealth : Health
         agent = GetComponent<NavMeshAgent>();
     }
 
-    protected override void ResetStats()
+    protected void ResetStats()
     {
-        base.ResetStats();
+        currLife = maxLife;
+        isInmune = false;
 
         //AkSoundEngine.PostEvent("Death_Pyra", WwiseManager.instance.gameObject);
 
@@ -25,7 +26,17 @@ public sealed class PyraHealth : Health
         agent.enabled = true;
 
     }
+    private IEnumerator Reappear()
+    {
+        yield return new WaitForSeconds(timeToReappear);
+        ResetStats();
+    }
 
+    protected override void onDeath()
+    {
+        animator.SetTrigger("Die");
+        StartCoroutine(Reappear());
+    }
     public void SetClosestPoint(Vector3 pos)
     {
         closestPointToRespawn = pos;

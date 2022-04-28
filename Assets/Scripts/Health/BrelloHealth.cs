@@ -66,15 +66,21 @@ public sealed class BrelloHealth : Health
     protected override void onDeath()
     {
         animator.SetTrigger("Death");
+        StartCoroutine(Reappear());
     }
 
-    protected override void ResetStats()
+    private IEnumerator Reappear()
     {
-        base.ResetStats();
+        yield return new WaitForSeconds(timeToReappear);
+        ResetStats();
+    }
+
+    protected void ResetStats()
+    {
+        currLife = maxLife;
+        isInmune = false;
         currentImage.sprite = healthImages[currLife];
-        GetComponent<CharacterController>().enabled = false;
         transform.position = spawnPoint.position;
-        GetComponent<CharacterController>().enabled = true;
 
         GameObject.FindGameObjectWithTag("Pyra").GetComponent<NavMeshAgent>().enabled = false;
         GameObject.FindGameObjectWithTag("Pyra").transform.position = spawnPoint.position;
