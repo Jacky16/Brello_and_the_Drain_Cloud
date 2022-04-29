@@ -13,6 +13,7 @@ public class PsTom : MonoBehaviour
     NavMeshAgent navMeshAgent;
     GameObject player;
     Collider collider;
+    PsTomHealth tomHealth;
 
     //Bools variables
     bool canAssaultPlayer = true;
@@ -79,6 +80,7 @@ public class PsTom : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         collider = GetComponent<Collider>();
         anim = GetComponent<Animator>();
+        tomHealth = GetComponent<PsTomHealth>();
     }
     private void Start()
     {
@@ -88,6 +90,7 @@ public class PsTom : MonoBehaviour
     }
     private void Update()
     {
+        if (!tomHealth.IsAlive()) return;
         PhasesManager();
     }
 
@@ -476,6 +479,7 @@ public class PsTom : MonoBehaviour
     void Stune(bool _isStuned)
     {
         isStuned = _isStuned;
+        tomHealth.CanDamage(_isStuned);
         if (_isStuned)
             anim.SetTrigger("Stuned");
         

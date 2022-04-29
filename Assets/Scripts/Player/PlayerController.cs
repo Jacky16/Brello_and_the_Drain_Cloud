@@ -119,6 +119,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Movement()
     {
+        if (!canMove) return;
         Vector3 dir = CamDirection() * currentSpeed;
         dir.y = 0;
         //rb.velocity = dir;
@@ -197,7 +198,7 @@ public class PlayerController : MonoBehaviour
         camRight = Camera.main.transform.right.normalized;
         camDir = (axis.x * camRight + axis.y * camForward);
         camDir.y = 0;
-        return camDir;
+        return camDir.normalized;
     }
     public void BlockMovement()
     {
@@ -242,7 +243,6 @@ public class PlayerController : MonoBehaviour
                 {
                     _health.DoDamage(damage);
                 }
-                print(collider.tag);
             }
         }
     }

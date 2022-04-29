@@ -73,4 +73,13 @@ public class Health : MonoBehaviour
         yield return new WaitForSeconds(inmunityTime);
         isInmune = false;
     }
+
+    public void CanDamage(bool _b)
+    {
+        isInmune = _b;
+    }
+    public bool IsAlive()
+    {
+        return currLife > 0;
+    }
 }
