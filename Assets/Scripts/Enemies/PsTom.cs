@@ -53,6 +53,7 @@ public class PsTom : MonoBehaviour
     [SerializeField] float jumpAttackPower;
     [SerializeField] float jumpAttackDuration;
     [SerializeField] float impulseForceOnPlayer = 150;
+    [SerializeField] Transform targeterTransform;
 
     [Header("Settings Punch Attack")]
     [SerializeField] float punchAttackTime = 1.5f;
@@ -83,6 +84,7 @@ public class PsTom : MonoBehaviour
     {
         startPosition = transform.position;
         maxBoilers = boilers.Length;
+        targeterTransform.gameObject.SetActive(false);
     }
     private void Update()
     {
@@ -221,33 +223,46 @@ public class PsTom : MonoBehaviour
     #region Jump attack
     void JumpAttack()
     {
-        Vector3 currentPosPlayer = player.transform.position;
         if (!isJumpingAttack)
         {
+            RotateToPlayer();       
+            
             isJumpingAttack = true;
 
             navMeshAgent.enabled = false;
 
             Sequence sequence = DOTween.Sequence();
+            //Delay del ataque
+            sequence.AppendInterval(.3f);
             
-            sequence.AppendInterval(2);
-
+            Vector3 currentPosPlayer = player.transform.position;
+                        
             //Start
-            sequence.AppendCallback(() => collider.isTrigger = true);
-
+            sequence.AppendCallback(() =>
+            {
+                collider.isTrigger = true;
+                targeterTransform.gameObject.SetActive(true);
+                targeterTransform.position = new Vector3(transform.position.x,0,transform.position.z);
+            });
+            
             //Jump Attack
             sequence.AppendCallback(() => anim.SetTrigger("AttackJump"));
-            sequence.Append(transform.DOJump(currentPosPlayer , jumpAttackPower, 1, jumpAttackDuration));
-                
+            sequence.Append(transform.DOJump(currentPosPlayer, jumpAttackPower, 1, jumpAttackDuration));
+            
+            //Asignar la posicion del target al player
+            Vector3 nextPosTarget = currentPosPlayer;
+            nextPosTarget.y = 0;          
+            sequence.Join(targeterTransform.DOMove(nextPosTarget, jumpAttackDuration));
+
             //On complete
             sequence.AppendCallback(() =>
             {
                 AddImpulseToPlayer();
                 Stune(true);
-                          
+                targeterTransform.gameObject.SetActive(false);
+
             });
-            sequence.AppendInterval(.3f);
-            
+                       
             sequence.AppendCallback(() =>
             {
                 collider.isTrigger = false;
@@ -320,7 +335,9 @@ public class PsTom : MonoBehaviour
         canAssaultPlayer = true;
         
         if (currentPhase == Phases.PHASE_5)
+        {
             canDoJumpAttack = true;
+        }
     }
     
     void HandleChasingAttack()
