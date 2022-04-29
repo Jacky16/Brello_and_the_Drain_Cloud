@@ -14,12 +14,10 @@ public class PlayerController : MonoBehaviour
     private PlayerAudio playerAudio;
 
     //Variables para almacenar los ID's de las animaciones
-    private int isJumpingHash;
     private int attackHash;
     private int isGlidingHash;
     private int isGroundedHash;
     private int speedHash;
-    private int numAttackHash;
     private int fallSpeedHash;
 
     private Vector2 axis;
@@ -28,10 +26,10 @@ public class PlayerController : MonoBehaviour
     private Vector3 camDir;
 
     private bool isMovementPressed;
-    private bool isJumPressed;
+    private bool isStartingToSwim;
     private bool isSwimming;
-    private bool canGlade;
     private bool isGlading;
+    private bool isJumping;
 
     [Header("Movement Settings")]
     [SerializeField] private float runSpeed = 20;
@@ -39,6 +37,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float gladingSpeed = 10;
     [SerializeField] private float acceleration = 1;
     [SerializeField] private float rotationSpeed = 15f;
+    [SerializeField] private float gladingGravity;
     bool isUmbrellaOpen;
     private float currentSpeed = 0;
     private bool canMove = true;
@@ -57,16 +56,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float offsetTweenY;
     [SerializeField] float time = 1;
     [SerializeField] GameObject splashParticle;
-    [SerializeField] PhysicMaterial noFrictionMaterial;
-    [SerializeField] PhysicMaterial frictionMaterial;
+    Transform pivotSwiming;
+    Vector3 currentTorrentDirection;
     private Tween tweenSwiming;
- 
 
+    [Header("Attack Settings")]
+    [SerializeField] Transform pivotAttack;
+    [SerializeField] Vector3 sizeCubeAttack;
+    [SerializeField] int damage;
     //Air movement variables
-
     private bool isAirMoving;
     private Tween tweenAirMovement;
-
 
     //Audio variables
     private bool isGlidePlaying = false;
@@ -120,14 +120,19 @@ public class PlayerController : MonoBehaviour
     private void Movement()
     {
         Vector3 dir = CamDirection() * currentSpeed;
-        dir.y = rb.velocity.y;
-        rb.velocity = dir;       
-        
+        dir.y = 0;
+        //rb.velocity = dir;
+
+        rb.AddForce(dir * 10, ForceMode.Acceleration);
+
     }
     public void HandleJump()
     {  
-        if(isGrounded || isSwimming)
-        rb.AddForce(Vector3.up * jumpForce * 10, ForceMode.Impulse);
+        if((isGrounded || isSwimming) && canMove)
+        {
+            isJumping = true;
+            rb.AddForce(Vector3.up * jumpForce * 10, ForceMode.Impulse);
+        }
     }
     private void HandleRotation()
     {
@@ -155,27 +160,37 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetFloat(fallSpeedHash, rb.velocity.y);
         animator.SetBool(isGroundedHash, isGrounded);
-        animator.SetFloat(speedHash, currentSpeed);
+
+        if (rb.velocity.magnitude >= 0.5f)
+        {
+            animator.SetFloat(speedHash, currentSpeed);
+        }
+        else
+        {
+            animator.SetFloat(speedHash, 0f);
+        }
+
         animator.SetBool(isGlidingHash, isGlading);
             
     }
     private void Checkers()
     {
-
         isGrounded = Physics.CheckSphere(posCheckerGround.position, radiusCheck, groundLayerMask);
-
-        isGlading = !isGrounded && isUmbrellaOpen && rb.velocity.y < 3;
+        isGlading = !isGrounded && isUmbrellaOpen && rb.velocity.y < 3 && !isSwimming;
+        
+        if (isGrounded)
+        {         
+            isJumping = false;
+        }
         
     }
-
     private void GladeManager()
     {
-        if (isGlading)
-        {        
-            rb.AddForce(Vector3.down * -Physics.gravity.y / 2, ForceMode.Force);
+        if (isGlading && !isSwimming)
+        {
+            rb.AddForce(Vector3.down * gladingGravity, ForceMode.Force);
         }  
     }
-
     private Vector3 CamDirection()
     {
         camForward = Camera.main.transform.forward.normalized;
@@ -184,12 +199,10 @@ public class PlayerController : MonoBehaviour
         camDir.y = 0;
         return camDir;
     }
-
     public void BlockMovement()
     {
         canMove = false;
     }
-
     public void EnableMovement()
     {
         canMove = true;
@@ -210,7 +223,7 @@ public class PlayerController : MonoBehaviour
 
     public void HandleAttack()
     {
-        
+        Attack();
     }
 
     private void DoAttackAnimation()
@@ -220,17 +233,18 @@ public class PlayerController : MonoBehaviour
 
     private void Attack()
     {
-        //Collider[] colliders = Physics.OverlapBox(pivotAttack.position, sizeCubeAttack, Quaternion.identity);
-        //foreach (Collider collider in colliders)
-        //{
-        //    if (collider.TryGetComponent(out Health _health))
-        //    {
-        //        if (!collider.CompareTag("Player") && !collider.CompareTag("Pyra"))
-        //        {
-        //            _health.DoDamage(damage);
-        //        }
-        //    }
-        //}
+        Collider[] colliders = Physics.OverlapBox(pivotAttack.position, sizeCubeAttack, Quaternion.identity);
+        foreach (Collider collider in colliders)
+        {
+            if (collider.TryGetComponent(out Health _health))
+            {
+                if (!collider.CompareTag("Player") && !collider.CompareTag("Pyra"))
+                {
+                    _health.DoDamage(damage);
+                }
+                print(collider.tag);
+            }
+        }
     }
 
     #endregion Attack functions
@@ -240,23 +254,28 @@ public class PlayerController : MonoBehaviour
     private void OnSwiming(Collider other)
     {
         if (other.CompareTag("Water") && !isSwimming)
-        {
-            print("Ha entrado en el agua");
-
-            collider.material = frictionMaterial;
-
+        {         
+            currentTorrentDirection = other.GetComponent<WaterTorrent>().GetTorrentDir();
+   
             rb.useGravity = false;
 
+            isJumping = false;
             isSwimming = true;
-
             isGlading = false;
+            isStartingToSwim = true;
+            
 
             animator.SetBool("isSwiming", true);
-
+            
             Instantiate(splashParticle, transform.position, splashParticle.transform.rotation);
 
-            Transform pivotWater = other.transform.GetChild(0).transform;
-            tweenSwiming = transform.DOLocalMoveY(pivotWater.position.y, 2).SetEase(Ease.OutElastic);
+            rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
+
+            pivotSwiming = other.transform.GetChild(0).transform;
+            tweenSwiming = transform.DOLocalMoveY(pivotSwiming.position.y, 2).SetEase(Ease.OutElastic).OnComplete(() =>
+            {
+                isStartingToSwim = false;
+            });
 
             AkSoundEngine.PostEvent("WaterSplash_Brello", WwiseManager.instance.gameObject);
         }
@@ -267,8 +286,9 @@ public class PlayerController : MonoBehaviour
         print("Ha salido del agua");
         if (other.CompareTag("Water"))
         {
+            currentTorrentDirection = Vector3.zero;
+
             rb.useGravity = true;
-            collider.material = noFrictionMaterial;
 
             isSwimming = false;
 
@@ -287,6 +307,12 @@ public class PlayerController : MonoBehaviour
         {
             rb.useGravity = false;
             brelloOpenManager.SetOpen(true);
+            if (canMove) {
+                rb.AddForce(currentTorrentDirection, ForceMode.Force);
+            }
+            //Aplicar anclaje en el pivote del agua
+            if(!isJumping)
+                rb.position = new Vector3(rb.position.x, pivotSwiming.position.y, rb.position.z);
         }
     }
 
@@ -295,6 +321,8 @@ public class PlayerController : MonoBehaviour
         if (!WaterPlatformManager.singletone.IsPyraInPlatform() && isSwimming)
         {
             tweenSwiming.Kill();
+
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
             rb.useGravity = true;
             HandleJump();
         }
@@ -308,14 +336,18 @@ public class PlayerController : MonoBehaviour
         rb.useGravity = !_value;
 
         //Audio de apertura de paraguas
-        if (_value)
+        if (_value && !isSwimming)
         {
             playerAudio.PlayOpen();
-
         }
-        else
+        else if(!_value && !isSwimming)
         {
             playerAudio.PlayClose();
+            isGlidePlaying = false;
+            playerAudio.StopGlide();
+        }
+        else if(isGlidePlaying && isSwimming)
+        {
             isGlidePlaying = false;
             playerAudio.StopGlide();
         }
@@ -327,21 +359,17 @@ public class PlayerController : MonoBehaviour
         OnSwiming(other);
     }
 
-    
     private void OnTriggerExit(Collider other)
     {
         OnOutSwiming(other);
-
-    }
-
-    private void OnDrawGizmosSelected()
-    {
     }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         if (isGrounded) Gizmos.color = Color.green;
         Gizmos.DrawSphere(posCheckerGround.position, radiusCheck);
+
+        Gizmos.DrawWireCube(pivotAttack.position, sizeCubeAttack);
 
     }
 
@@ -366,6 +394,11 @@ public class PlayerController : MonoBehaviour
         return isSwimming;
     }
 
+    public bool IsStartingToSwim()
+    {
+        return isStartingToSwim;
+    }
+
     public bool IsMoving()
     {
         return isMovementPressed;
@@ -374,18 +407,20 @@ public class PlayerController : MonoBehaviour
     {
         return isGrounded;
     }
+    public bool IsGlading()
+    {
+        return isGlading;
+    }
     #endregion Getters
 
     #region Init functions
 
     private void SetAnimatorsHashes()
     {
-        isJumpingHash = Animator.StringToHash("isJumping");
         isGlidingHash = Animator.StringToHash("isGliding");
         isGroundedHash = Animator.StringToHash("isGrounded");
         speedHash = Animator.StringToHash("speed");
         attackHash = Animator.StringToHash("attack");
-        numAttackHash = Animator.StringToHash("numAttack");
         fallSpeedHash = Animator.StringToHash("fallSpeed");
     }
 

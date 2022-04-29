@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -6,6 +7,7 @@ public class InputManager : MonoBehaviour
 {
     private PlayerInput playerInput;
     private PlayerController playerController;
+    private PyraController currentPyraController;
     
 
     private void Awake()
@@ -37,6 +39,10 @@ public class InputManager : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        //Input Mouse
+        playerInput.CharacterControls.CameraMovement.performed += OnMouseMovement;
+        playerInput.CharacterControls.CameraMovement.canceled += OnMouseMovement;
     }
     private void Update()
     {
@@ -58,8 +64,15 @@ public class InputManager : MonoBehaviour
     private void OnMovementInput(InputAction.CallbackContext ctx)
     {
         Vector2 axis = ctx.ReadValue<Vector2>();
+
         playerController.SetAxis(axis);
         playerController.SetMovementPressed(axis.x != 0 || axis.y != 0);
+
+        if (currentPyraController)
+        {
+            currentPyraController.SetAxis(axis);
+            currentPyraController.SetMovementPressed(axis.x != 0 || axis.y != 0);
+        }
     }
 
     private void OnDash(InputAction.CallbackContext ctx)
@@ -84,6 +97,11 @@ public class InputManager : MonoBehaviour
     private void OnMouseMovement(InputAction.CallbackContext ctx)
     {
         Vector2 mouseAxis = ctx.ReadValue<Vector2>();
+    }
+
+    public void SetCurrentPyra(PyraController pyra)
+    {
+        currentPyraController = pyra;
     }
     private void OnEnable()
     {

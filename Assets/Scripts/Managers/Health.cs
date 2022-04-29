@@ -8,6 +8,7 @@ public class Health : MonoBehaviour
     [SerializeField] protected int maxLife;
     [SerializeField] protected float inmunityTime;
     [SerializeField] protected float timeToReappear;
+    protected CombatManager combatManager;
     protected bool isInmune;
     protected Animator animator;
 
@@ -17,6 +18,7 @@ public class Health : MonoBehaviour
         currLife = maxLife;
         animator = GetComponent<Animator>();
         isInmune = false;
+        combatManager = GameObject.FindGameObjectWithTag("Player").GetComponent<CombatManager>();
     }
 
     public void DoDamage(int amount)
@@ -60,24 +62,11 @@ public class Health : MonoBehaviour
     {
         onDeath();
         isInmune = true;
-        animator.SetTrigger("Die");
-        StartCoroutine(Reappear());
     }
     protected virtual void onDamage() { }
     protected virtual void onHeal() { } 
     protected virtual void onDeath() { }     
-    protected virtual void ResetStats()
-    {
-        currLife = maxLife;
-        isInmune = false;
-    }
 
-
-    private IEnumerator Reappear()
-    {
-        yield return new WaitForSeconds(timeToReappear);
-        ResetStats();
-    }
     private IEnumerator Inmunity()
     {
         isInmune = true;
