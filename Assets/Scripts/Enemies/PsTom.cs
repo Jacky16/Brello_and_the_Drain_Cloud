@@ -154,7 +154,7 @@ public class PsTom : MonoBehaviour
         AttackPunch();
         yield return new WaitForSeconds(punchAttackTime);
 
-        InvokeBoiler();
+        InvokeBoilers();
 
         //Pasar a la fase 5
         yield return new WaitForSeconds(timeTrashAattack);
@@ -187,17 +187,18 @@ public class PsTom : MonoBehaviour
     void ThrowTrash()
     {
         GameObject trash = Instantiate(trashPrefab, trashSpawn.position, Quaternion.identity);
+        trash.GetComponent<SteamlingAI>().SetBigRadius();
+        
         Vector3 playerDir_1 = (player.transform.position - trash.transform.position).normalized;
         trash.GetComponent<Rigidbody>().AddForce(playerDir_1 * throwTrashPower, ForceMode.Impulse);
     }
     #endregion
     
-    void InvokeBoiler()
+    void InvokeBoilers()
     {
-        if (currentBoilersActive < maxBoilers)
+        for (int i = 0; i < boilers.Length; i++)
         {
-            boilers[currentBoilersActive].SetActive(true);
-            currentBoilersActive++;
+            boilers[i].SetActive(true);
         }
     }
 

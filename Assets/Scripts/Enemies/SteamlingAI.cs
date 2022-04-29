@@ -87,6 +87,10 @@ public class SteamlingAI : EnemyAI
         Gizmos.DrawRay(transform.position, transform.forward * 10);
     }
 
+    public void SetBigRadius()
+    {
+        detectionRadius = 500;
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.gameObject.TryGetComponent(out BrelloHealth playerHealth))
