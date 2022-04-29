@@ -7,6 +7,7 @@ public class BoilerAI : MonoBehaviour
     [SerializeField] float attackRadius;
     [SerializeField] LayerMask playerMask;
     [SerializeField] GameObject coalBall;
+    Animator animator;
     Vector3 positionToSpawn;
 
     [SerializeField] float timeBetweenAttacks;
@@ -17,6 +18,7 @@ public class BoilerAI : MonoBehaviour
     Transform player;
     void Start()
     {
+        animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         canAttack = true;
         positionToSpawn = transform.GetChild(0).transform.position;
@@ -35,15 +37,14 @@ public class BoilerAI : MonoBehaviour
     {
         if (canAttack)
         {
-            //Set trigger de ataque en el animator
-            ShootCoal();
             canAttack = false;
-            StartCoroutine(ResetAttack());
+            animator.SetTrigger("Attack");
         }
     }
     public void ShootCoal()
     {
         Instantiate(coalBall, positionToSpawn, Quaternion.identity);
+        StartCoroutine(ResetAttack());
     }
 
     IEnumerator ResetAttack()

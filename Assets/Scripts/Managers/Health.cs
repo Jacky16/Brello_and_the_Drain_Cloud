@@ -62,24 +62,11 @@ public class Health : MonoBehaviour
     {
         onDeath();
         isInmune = true;
-        animator.SetTrigger("Die");
-        StartCoroutine(Reappear());
     }
     protected virtual void onDamage() { }
     protected virtual void onHeal() { } 
     protected virtual void onDeath() { }     
-    protected virtual void ResetStats()
-    {
-        currLife = maxLife;
-        isInmune = false;
-    }
 
-
-    private IEnumerator Reappear()
-    {
-        yield return new WaitForSeconds(timeToReappear);
-        ResetStats();
-    }
     private IEnumerator Inmunity()
     {
         isInmune = true;
