@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class CrystalPuzzle : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] Crystal[] crystals = new Crystal[6];
+
+
+    public void Evaluate()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private void ResetCrystals()
     {
-        
+        foreach(Crystal crystal in crystals)
+        {
+            crystal.Reset();
+        }
     }
+
 }

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Crystal : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private bool isGood;
+
+    private void OnTriggerEnter(Collider other)
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Reset()
     {
         
     }
