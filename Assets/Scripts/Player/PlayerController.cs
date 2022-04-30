@@ -247,13 +247,7 @@ public class PlayerController : MonoBehaviour
 
         if (noOfClicks == 1)
             animator.SetInteger("currentAttack", 1);
-
-        //if(noOfClicks == 3)
-        //{
-        //    noOfClicks = 0;
-        //    animator.SetInteger("currentAttack", 0);
-        //    canAttack = true;
-        //}
+   
     }
     bool CheckState(string nameState)
     {
