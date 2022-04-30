@@ -4,20 +4,48 @@ using UnityEngine;
 
 public class CrystalPuzzle : MonoBehaviour
 {
-    [SerializeField] Crystal[] crystals = new Crystal[6];
+    [SerializeField] List<Crystal> crystals = new List<Crystal>();
 
+    private int crystalsToComplete = 0;
 
-    public void Evaluate()
+    private int shinyCrystals = 0;
+
+    private void Awake()
     {
-
+        
     }
 
-    private void ResetCrystals()
+    private void Start()
     {
         foreach(Crystal crystal in crystals)
         {
-            crystal.Reset();
+            if(crystal.isShiny)
+            crystalsToComplete++;
         }
+    }
+
+    public void ResetCrystals()
+    {
+        foreach (Crystal crystal in crystals)
+        {
+            StartCoroutine(crystal.ResetCrystal());
+        }
+    }
+
+    public void AddGoodOne()
+    {
+        shinyCrystals++;
+
+        if(shinyCrystals == crystalsToComplete)
+        {
+            CompletePuzzle();
+        }
+    }
+
+
+    private void CompletePuzzle()
+    {
+
     }
 
 }
