@@ -263,7 +263,7 @@ public class PlayerController : MonoBehaviour
     void CheckCombo()
     {
         canAttack = false;
-        if (CheckState(nameFirstAttack) && noOfClicks == 1)
+        if (CheckState(nameFirstAttack) && noOfClicks <= 1)
         {
             animator.SetInteger("currentAttack", 0);
             canAttack = true;
@@ -275,7 +275,7 @@ public class PlayerController : MonoBehaviour
             animator.SetInteger("currentAttack", 2);
             canAttack = true;
         }
-        else if (CheckState(nameSecondAttack) && noOfClicks == 2)
+        else if (CheckState(nameSecondAttack) && noOfClicks <= 2)
         {
             animator.SetInteger("currentAttack", 0);
             canAttack = true;
