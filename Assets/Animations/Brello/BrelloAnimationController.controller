@@ -75,9 +75,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: isGliding
     m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: isGrounded
-    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7785686948614665048}
   m_Solo: 0
@@ -243,7 +240,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -1409619833940915237, guid: 3ee48ed96dac93843b208a15ae611853, type: 3}
+  m_Motion: {fileID: 7400000, guid: 889e37e1cec821a43a75c685e56fde80, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

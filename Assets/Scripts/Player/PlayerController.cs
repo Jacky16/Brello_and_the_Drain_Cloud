@@ -188,7 +188,7 @@ public class PlayerController : MonoBehaviour
     private void Checkers()
     {
         isGrounded = Physics.CheckSphere(posCheckerGround.position, radiusCheck, groundLayerMask) && !isSwimming;
-        isGlading = rb.velocity.y < velocityToGlade && !isSwimming && isUmbrellaOpen && !isGrounded;        
+        isGlading = !isSwimming && isUmbrellaOpen && !isGrounded;        
         if (isGrounded)
         {         
             isJumping = false;
@@ -345,7 +345,7 @@ public class PlayerController : MonoBehaviour
     {
         isUmbrellaOpen = _value;
         brelloOpenManager.SetOpen(isUmbrellaOpen);
-
+      
         rb.useGravity = !_value;
 
         //Audio de apertura de paraguas
