@@ -169,6 +169,11 @@ public class DialogueTutorial : MonoBehaviour
                 {
                     ShopHandler();
                 }
+                else if (tag.StartsWith("end"))
+                {
+                    //CameraHandler(true);
+                    DialogueCanvasHandler(false);
+                }
             }
             return null;
         }
@@ -201,7 +206,7 @@ public class DialogueTutorial : MonoBehaviour
 
     bool isCustomTag(string tag)
     {
-        return tag.StartsWith("speed=") || tag.StartsWith("pause=") || tag.StartsWith("emotion=") || tag.StartsWith("action=") || tag.StartsWith("shop");
+        return tag.StartsWith("speed=") || tag.StartsWith("pause=") || tag.StartsWith("emotion=") || tag.StartsWith("action=") || tag.StartsWith("shop") || tag.StartsWith("end");
     }
 
     #endregion
