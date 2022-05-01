@@ -10,12 +10,10 @@ public class SpacePlatformMovement : MonoBehaviour
     float randomMovementSpeed;
     float randomMovementOffset;
     [SerializeField] Transform posToRespawn;
-    TutorialManager tutorialManager;
     Rigidbody rb;
     // Start is called before the first frame update
     private void Awake()
     {
-        tutorialManager = GameObject.FindGameObjectWithTag("Tutorial").GetComponent<TutorialManager>();
         rb = GetComponent<Rigidbody>();
     }
     void Start()
@@ -41,13 +39,5 @@ public class SpacePlatformMovement : MonoBehaviour
     public Vector3 GetPosToRespawn()
     {
         return posToRespawn.position;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.collider.tag == "Player")
-        {
-            tutorialManager.SetLastPlatform(this);
-        }
     }
 }
