@@ -10,7 +10,7 @@ public class PlayerAudio : MonoBehaviour
 
     private void Start()
     {
-        AkSoundEngine.PostEvent("BackgroundMusic_Level1", WwiseManager.instance.gameObject);
+        //AkSoundEngine.PostEvent("BackgroundMusic_Level1", WwiseManager.instance.gameObject);
     }
 
     public void PlayFootstep()
@@ -30,32 +30,32 @@ public class PlayerAudio : MonoBehaviour
             }
         }
     
-        AkSoundEngine.SetSwitch("FootstepSurfaceType", actualTerrainType, WwiseManager.instance.gameObject);
-        AkSoundEngine.PostEvent("Footstep_Brello", WwiseManager.instance.gameObject);
+        //AkSoundEngine.SetSwitch("FootstepSurfaceType", actualTerrainType, WwiseManager.instance.gameObject);
+        //AkSoundEngine.PostEvent("Footstep_Brello", WwiseManager.instance.gameObject);
     }
 
     public void PlayAttack()
     {
-        AkSoundEngine.PostEvent("Attack_Combo_Brello", WwiseManager.instance.gameObject);
+        //AkSoundEngine.PostEvent("Attack_Combo_Brello", WwiseManager.instance.gameObject);
     }
 
     public void PlayStartGlide()
     {
-        AkSoundEngine.PostEvent("Start_Glide_Brello", WwiseManager.instance.gameObject);
+        //AkSoundEngine.PostEvent("Start_Glide_Brello", WwiseManager.instance.gameObject);
     }
 
     public void StopGlide()
     {
-        AkSoundEngine.PostEvent("Stop_Glide_Brello", WwiseManager.instance.gameObject);
+        //AkSoundEngine.PostEvent("Stop_Glide_Brello", WwiseManager.instance.gameObject);
     }
 
     public void PlayOpen()
     {
-        AkSoundEngine.PostEvent("Open_Brello", WwiseManager.instance.gameObject);
+        //AkSoundEngine.PostEvent("Open_Brello", WwiseManager.instance.gameObject);
     }
 
     public void PlayClose()
     {
-        AkSoundEngine.PostEvent("Close_Brello", WwiseManager.instance.gameObject);
+        //AkSoundEngine.PostEvent("Close_Brello", WwiseManager.instance.gameObject);
     }
 }

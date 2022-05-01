@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -38,6 +39,10 @@ public class InputManager : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        //Input Mouse
+        playerInput.CharacterControls.CameraMovement.performed += OnMouseMovement;
+        playerInput.CharacterControls.CameraMovement.canceled += OnMouseMovement;
     }
     private void Update()
     {
