@@ -107,33 +107,40 @@ public class PlayerController : MonoBehaviour
     {
         if (isMovementPressed)
         {
-            if (isGlading)
-                currentSpeed = Mathf.Lerp(currentSpeed, gladingSpeed, acceleration * Time.deltaTime);
+            if (canMove)
+            {
+                if (isGlading)
+                    currentSpeed = Mathf.Lerp(currentSpeed, gladingSpeed, acceleration * Time.deltaTime);
 
-            else if (isUmbrellaOpen)
-                currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, acceleration * Time.deltaTime);
+                 else if (isUmbrellaOpen)
+                    currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, acceleration * Time.deltaTime);
 
-            else
-                currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, acceleration * Time.deltaTime);
+                 else
+                   currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, acceleration * Time.deltaTime);
+            }
         }
         else
         {
             currentSpeed = Mathf.Lerp(currentSpeed, 0, acceleration * Time.deltaTime);
         }
+        
     }
     private void Movement()
     {
         Vector3 dir;
         dir = CamDirection() * currentSpeed;
-        if (movementMode == MovementMode.VELOCITY)
+        if (canMove)
         {
-            dir.y = rb.velocity.y;
-            rb.velocity = dir;
-        }
-        else
-        {
-            dir.y = 0;
-            rb.AddForce(dir * 10, ForceMode.Acceleration);
+            if (movementMode == MovementMode.VELOCITY)
+            {
+                dir.y = rb.velocity.y;
+                rb.velocity = dir;
+            }
+            else
+            {
+                dir.y = 0;
+                rb.AddForce(dir * 10, ForceMode.Acceleration);
+            }
         }
     }
     void ForceTorrent()
