@@ -30,8 +30,9 @@ public class InputManager : MonoBehaviour
         playerInput.CharacterControls.Attack.started += OnAttack;
 
         //Open Umbrella
-        playerInput.CharacterControls.OpenUmbrella.started += OnUmbrella;
+        playerInput.CharacterControls.OpenUmbrella.performed += OnUmbrella;
         playerInput.CharacterControls.OpenUmbrella.canceled += OnUmbrella;
+
 
         //Input Mouse
         playerInput.CharacterControls.CameraMovement.performed += OnMouseMovement;
@@ -86,11 +87,7 @@ public class InputManager : MonoBehaviour
     }
 
     private void OnUmbrella(InputAction.CallbackContext ctx)
-    {
-        //Abrir en el aire
-        //playerController.SetGladePressed(ctx.ReadValueAsButton());
-
-        //Abrir en el suelo
+    {      
         playerController.OpenUmbrellaManager(ctx.ReadValueAsButton());
     }
 

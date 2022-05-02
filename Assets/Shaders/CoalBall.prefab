@@ -125,7 +125,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b1152d1efc9f2145b0ab93309cd625d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impulseForce: 6
-  impulseDuration: 1
+  jumpForce: 10
+  attachedDecal: {fileID: 3814750595622279557, guid: 65a3cb01c639043429d720b685ecf0c5, type: 3}
   damage: 2
-  altitudeOffset: 1.5
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 8
+  areaDamage: 1.5
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 64
