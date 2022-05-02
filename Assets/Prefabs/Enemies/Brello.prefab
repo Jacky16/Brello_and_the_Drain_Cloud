@@ -314,7 +314,7 @@ Transform:
   - {fileID: 6827921338958092043}
   m_Father: {fileID: 8541397309002126522}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.0000016008258, y: -0.0000002134434, z: 0.0000013873823}
+  m_LocalEulerAnglesHint: {x: 0.0000011807841, y: -0.00000015743785, z: 0.0000010233462}
 --- !u!1 &5983861429410014123
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,7 +417,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6163869764956446853}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 3ee48ed96dac93843b208a15ae611853, type: 3}
   m_Controller: {fileID: 9100000, guid: f99e676dc4ba09442badd78e5bdcaf9c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -459,7 +459,8 @@ MonoBehaviour:
   pivotAttack: {fileID: 6434270805536950885}
   sizeCubeAttack: {x: 1.5, y: 1.5, z: 1.5}
   damage: 1
-  forceForward: 30
+  forceForward: 1000
+  forceUp: 1000
 --- !u!114 &8928603679837819431
 MonoBehaviour:
   m_ObjectHideFlags: 0
