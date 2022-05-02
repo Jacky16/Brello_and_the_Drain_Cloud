@@ -77,7 +77,6 @@ public sealed class PyraAI : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log("Ahora no estoy en combate!!!");
         //Si en algun momento pyra no está en la navmesh, la tpeamos al punto mas cercano en ella.
         if (!agent.isOnNavMesh && !isInPlatform)
         {

@@ -20,7 +20,7 @@ public class MudBall : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody>();
 
-        Vector3 playerAdvancedPosition = player.position;
+        Vector3 playerAdvancedPosition = player.position + player.GetComponent<Rigidbody>().velocity * 4;
 
         Physics.Raycast(playerAdvancedPosition, Vector3.down, out RaycastHit raycastHit, whatIsGround);
 

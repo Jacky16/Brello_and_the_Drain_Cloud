@@ -5,13 +5,11 @@ using DG.Tweening;
 public class PlayerController : MonoBehaviour
 {
     //References/Components
-
     private BrelloOpenManager brelloOpenManager;
     private Rigidbody rb;
     private Animator animator;
-    private Collider collider;
-
     private PlayerAudio playerAudio;
+
 
     //Variables para almacenar los ID's de las animaciones
     private int attackHash;
@@ -20,11 +18,13 @@ public class PlayerController : MonoBehaviour
     private int speedHash;
     private int fallSpeedHash;
 
+    //Vector variables
     private Vector2 axis;
     private Vector3 camForward;
     private Vector3 camRight;
     private Vector3 camDir;
 
+    //Variables bools
     private bool isMovementPressed;
     private bool isStartingToSwim;
     private bool isSwimming;
@@ -34,13 +34,20 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float runSpeed = 20;
     [SerializeField] private float walkSpeed = 10;
-    [SerializeField] private float gladingSpeed = 10;
     [SerializeField] private float acceleration = 1;
     [SerializeField] private float rotationSpeed = 15f;
-    [SerializeField] private float gladingGravity;
+    [SerializeField] private enum MovementMode { ADD_FORCE,VELOCITY}
+    [SerializeField] private MovementMode movementMode = MovementMode.VELOCITY;
+    
     bool isUmbrellaOpen;
     private float currentSpeed = 0;
     private bool canMove = true;
+    
+    [Header("Glading Settings")]
+    [SerializeField] private float gladingSpeed = 10;
+    [SerializeField] private float gladingGravity = 100;
+    [SerializeField] private float velocityToGlade = 3;
+
 
     [Header("Ground Checker settings")]
     [SerializeField] Transform posCheckerGround;
@@ -64,9 +71,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform pivotAttack;
     [SerializeField] Vector3 sizeCubeAttack;
     [SerializeField] int damage;
-    //Air movement variables
-    private bool isAirMoving;
-    private Tween tweenAirMovement;
+    [SerializeField] float forceForward = 30;
+    int noOfClicks = 0;
+    const string nameFirstAttack = "Armature_Idle_head";
+    const string nameSecondAttack= "Armature_head_patada";
+    const string nameThirdAttack = "Armature_spin";
+    bool canAttack = true;
 
     //Audio variables
     private bool isGlidePlaying = false;
@@ -77,7 +87,6 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         brelloOpenManager = GetComponent<BrelloOpenManager>();
         playerAudio = GetComponent<PlayerAudio>();
-        collider = GetComponent<Collider>();
 
         SetAnimatorsHashes();
     }
@@ -93,6 +102,7 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        ForceTorrent();
         Movement();
         GladeManager();
     }
@@ -119,17 +129,30 @@ public class PlayerController : MonoBehaviour
     }
     private void Movement()
     {
-        if (!canMove) return;
-        Vector3 dir = CamDirection() * currentSpeed;
-        dir.y = 0;
-        //rb.velocity = dir;
-
-        rb.AddForce(dir * 10, ForceMode.Acceleration);
-
+        Vector3 dir;
+        dir = CamDirection() * currentSpeed;
+        if (movementMode == MovementMode.VELOCITY)
+        {
+            dir.y = rb.velocity.y;
+            rb.velocity = dir;
+        }
+        else
+        {
+            dir.y = 0;
+            rb.AddForce(dir * 10, ForceMode.Acceleration);
+        }
+    }
+    void ForceTorrent()
+    {
+        if (isSwimming && canMove)
+        {
+            currentTorrentDirection.y = 0;
+            rb.AddForce(currentTorrentDirection, ForceMode.Acceleration);
+        }
     }
     public void HandleJump()
     {  
-        if((isGrounded || isSwimming) && canMove)
+        if((isGrounded || isSwimming) && canMove && !isUmbrellaOpen)
         {
             isJumping = true;
             rb.AddForce(Vector3.up * jumpForce * 10, ForceMode.Impulse);
@@ -139,6 +162,7 @@ public class PlayerController : MonoBehaviour
     {
         if (canMove)
         {
+            
             Vector3 positionToLookAt = (axis.x * camRight + axis.y * camForward);
 
             //Setear la rotacion en la cual va a girar
@@ -162,23 +186,15 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat(fallSpeedHash, rb.velocity.y);
         animator.SetBool(isGroundedHash, isGrounded);
 
-        if (rb.velocity.magnitude >= 0.5f)
-        {
-            animator.SetFloat(speedHash, currentSpeed);
-        }
-        else
-        {
-            animator.SetFloat(speedHash, 0f);
-        }
+        animator.SetFloat(speedHash, currentSpeed);
 
         animator.SetBool(isGlidingHash, isGlading);
             
     }
     private void Checkers()
     {
-        isGrounded = Physics.CheckSphere(posCheckerGround.position, radiusCheck, groundLayerMask);
-        isGlading = !isGrounded && isUmbrellaOpen && rb.velocity.y < 3 && !isSwimming;
-        
+        isGrounded = Physics.CheckSphere(posCheckerGround.position, radiusCheck, groundLayerMask) && !isSwimming;
+        isGlading = !isSwimming && isUmbrellaOpen && !isGrounded;        
         if (isGrounded)
         {         
             isJumping = false;
@@ -224,12 +240,59 @@ public class PlayerController : MonoBehaviour
 
     public void HandleAttack()
     {
-        Attack();
+        if (canAttack)
+        {
+            noOfClicks++;
+            
+        }
+
+        if (noOfClicks == 1)
+            animator.SetInteger("currentAttack", 1);
+    }
+    
+    bool CheckState(string nameState)
+    {        
+        return animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == nameState;
     }
 
-    private void DoAttackAnimation()
+    void CheckCombo()
     {
-        animator.SetTrigger(attackHash); 
+        canAttack = false;
+        if (CheckState(nameFirstAttack) && noOfClicks <= 1)
+        {
+            animator.SetInteger("currentAttack", 0);
+            canAttack = true;
+            noOfClicks = 0;
+        }
+        //Ataque 2
+        else if (CheckState(nameFirstAttack) && noOfClicks >= 2)
+        {
+            animator.SetInteger("currentAttack", 2);
+            canAttack = true;
+        }
+        else if (CheckState(nameSecondAttack) && noOfClicks <= 2)
+        {
+            animator.SetInteger("currentAttack", 0);
+            canAttack = true;
+            noOfClicks = 0;
+        }
+        else if (CheckState(nameSecondAttack) && noOfClicks >= 3) {
+            animator.SetInteger("currentAttack", 3);
+            canAttack = true;
+        }
+        //Ataque 3
+        else if (CheckState(nameThirdAttack) && noOfClicks >= 3)
+        {
+            animator.SetInteger("currentAttack", 0);
+            canAttack = true;
+            noOfClicks = 0;
+        }
+
+    }
+
+    void AddForceForward()
+    {
+        rb.AddForce(transform.forward * forceForward, ForceMode.VelocityChange);        
     }
 
     private void Attack()
@@ -263,7 +326,8 @@ public class PlayerController : MonoBehaviour
             isSwimming = true;
             isGlading = false;
             isStartingToSwim = true;
-            
+
+            movementMode = MovementMode.ADD_FORCE;
 
             animator.SetBool("isSwiming", true);
             
@@ -295,6 +359,8 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isSwiming", false);
 
             brelloOpenManager.SetOpen(false);
+
+            movementMode = MovementMode.VELOCITY;
       
             //Matamos a la animacion por si se sale antes, que no se quede flotando
             tweenSwiming.Kill();
@@ -307,9 +373,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.useGravity = false;
             brelloOpenManager.SetOpen(true);
-            if (canMove) {
-                rb.AddForce(currentTorrentDirection, ForceMode.Force);
-            }
+           
             //Aplicar anclaje en el pivote del agua
             if(!isJumping)
                 rb.position = new Vector3(rb.position.x, pivotSwiming.position.y, rb.position.z);
@@ -318,7 +382,7 @@ public class PlayerController : MonoBehaviour
 
     public void HandleSwimingJump()
     {
-        if (!WaterPlatformManager.singletone.IsPyraInPlatform() && isSwimming)
+        if (isSwimming && !WaterPlatformManager.singletone.IsPyraInPlatform())
         {
             tweenSwiming.Kill();
 
@@ -333,6 +397,7 @@ public class PlayerController : MonoBehaviour
     {
         isUmbrellaOpen = _value;
         brelloOpenManager.SetOpen(isUmbrellaOpen);
+      
         rb.useGravity = !_value;
 
         //Audio de apertura de paraguas
