@@ -206,7 +206,12 @@ public class DialogueTutorial : MonoBehaviour
 
     bool isCustomTag(string tag)
     {
-        return tag.StartsWith("speed=") || tag.StartsWith("pause=") || tag.StartsWith("emotion=") || tag.StartsWith("action=") || tag.StartsWith("shop") || tag.StartsWith("end");
+        return tag.StartsWith("speed=")
+            || tag.StartsWith("pause=")
+            || tag.StartsWith("emotion=")
+            || tag.StartsWith("action=")
+            || tag.StartsWith("shop")
+            || tag.StartsWith("end");
     }
 
     #endregion
