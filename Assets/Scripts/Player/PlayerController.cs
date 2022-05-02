@@ -71,10 +71,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform pivotAttack;
     [SerializeField] Vector3 sizeCubeAttack;
     [SerializeField] int damage;
-    [SerializeField] int noOfClicks = 0;
-    private float nextFireTime = 0;
-    float lastClickedTime = 0;
-    float maxComboDelay = .8f;
+    [SerializeField] float forceForward = 30;
+    int noOfClicks = 0;
     const string nameFirstAttack = "Armature_Idle_head";
     const string nameSecondAttack= "Armature_head_patada";
     const string nameThirdAttack = "Armature_spin";
@@ -243,14 +241,17 @@ public class PlayerController : MonoBehaviour
     public void HandleAttack()
     {
         if (canAttack)
+        {
             noOfClicks++;
+            
+        }
 
         if (noOfClicks == 1)
             animator.SetInteger("currentAttack", 1);
-   
     }
+    
     bool CheckState(string nameState)
-    {
+    {        
         return animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == nameState;
     }
 
@@ -289,9 +290,9 @@ public class PlayerController : MonoBehaviour
 
     }
 
-
-private void DoAttackAnimation()
+    void AddForceForward()
     {
+        rb.AddForce(transform.forward * forceForward, ForceMode.VelocityChange);        
     }
 
     private void Attack()
@@ -382,7 +383,7 @@ private void DoAttackAnimation()
 
     public void HandleSwimingJump()
     {
-        if (!WaterPlatformManager.singletone.IsPyraInPlatform() && isSwimming)
+        if (isSwimming && !WaterPlatformManager.singletone.IsPyraInPlatform())
         {
             tweenSwiming.Kill();
 
