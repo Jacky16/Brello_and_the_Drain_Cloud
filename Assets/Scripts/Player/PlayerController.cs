@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     private bool isSwimming;
     private bool isGlading;
     private bool isJumping;
+    public bool canGlide;
 
     [Header("Movement Settings")]
     [SerializeField] private float runSpeed = 20;
@@ -72,19 +73,23 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Vector3 sizeCubeAttack;
     [SerializeField] int damage;
     [SerializeField] float forceForward = 1000;
-    [SerializeField] float forceUp= 1000;
+    [SerializeField] float forceUp = 1000;
+    [SerializeField] float timeToAttack = .25f;
+    float timeToAttackTimer;
 
     int noOfClicks = 0;
     const string nameFirstAttack = "Armature_Idle_head";
     const string nameSecondAttack= "Armature_head_patada";
     const string nameThirdAttack = "Armature_spin";
-    bool canAttack = true;
+    public bool canAttack;
 
     //Audio variables
     private bool isGlidePlaying = false;
 
     private void Awake()
     {
+        canGlide = true;
+        canAttack = true;
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         brelloOpenManager = GetComponent<BrelloOpenManager>();
@@ -115,33 +120,45 @@ public class PlayerController : MonoBehaviour
     {
         if (isMovementPressed)
         {
-            if (isGlading)
-                currentSpeed = Mathf.Lerp(currentSpeed, gladingSpeed, acceleration * Time.deltaTime);
+            if (canMove)
+            {
+                if (isGlading)
+                    currentSpeed = Mathf.Lerp(currentSpeed, gladingSpeed, acceleration * Time.deltaTime);
 
-            else if (isUmbrellaOpen)
-                currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, acceleration * Time.deltaTime);
+                 else if (isUmbrellaOpen)
+                    currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, acceleration * Time.deltaTime);
 
-            else
-                currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, acceleration * Time.deltaTime);
+                 else
+                   currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, acceleration * Time.deltaTime);
+            }
         }
         else
         {
             currentSpeed = Mathf.Lerp(currentSpeed, 0, acceleration * Time.deltaTime);
         }
+        
     }
     private void Movement()
     {
         Vector3 dir;
         dir = CamDirection() * currentSpeed;
-        if (movementMode == MovementMode.VELOCITY)
+        if (canMove)
         {
-            dir.y = rb.velocity.y;
-            rb.velocity = dir;
+            if (movementMode == MovementMode.VELOCITY)
+            {
+                dir.y = rb.velocity.y;
+                rb.velocity = dir;
+            }
+            else
+            {
+                dir.y = 0;
+                rb.AddForce(dir * 10, ForceMode.Acceleration);
+            }
         }
         else
         {
-            dir.y = 0;
-            rb.AddForce(dir * 10, ForceMode.Acceleration);
+            axis = Vector2.zero;
+            currentSpeed = 0;
         }
     }
     void ForceTorrent()
@@ -242,10 +259,10 @@ public class PlayerController : MonoBehaviour
 
     public void HandleAttack()
     {
-        if (canAttack)
+        if (canAttack && canMove && Time.time > timeToAttack)
         {
+            timeToAttackTimer = Time.time + timeToAttack;
             noOfClicks++;
-            
         }
 
         if (noOfClicks == 1)
@@ -339,7 +356,8 @@ public class PlayerController : MonoBehaviour
 
             animator.SetBool("isSwiming", true);
             
-            Instantiate(splashParticle, transform.position, splashParticle.transform.rotation);
+            if(splashParticle)
+                Instantiate(splashParticle, transform.position, splashParticle.transform.rotation);
 
             rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
 
@@ -403,28 +421,30 @@ public class PlayerController : MonoBehaviour
 
     public void OpenUmbrellaManager(bool _value)
     {
-        isUmbrellaOpen = _value;
-        brelloOpenManager.SetOpen(isUmbrellaOpen);
-      
-        rb.useGravity = !_value;
+        if (canGlide && canMove)
+        {
+            isUmbrellaOpen = _value;
+            brelloOpenManager.SetOpen(isUmbrellaOpen);
 
-        //Audio de apertura de paraguas
-        if (_value && !isSwimming)
-        {
-            playerAudio.PlayOpen();
-        }
-        else if(!_value && !isSwimming)
-        {
-            playerAudio.PlayClose();
-            isGlidePlaying = false;
-            playerAudio.StopGlide();
-        }
-        else if(isGlidePlaying && isSwimming)
-        {
-            isGlidePlaying = false;
-            playerAudio.StopGlide();
-        }
-        
+            rb.useGravity = !_value;
+
+            //Audio de apertura de paraguas
+            if (_value && !isSwimming)
+            {
+                playerAudio.PlayOpen();
+            }
+            else if (!_value && !isSwimming)
+            {
+                playerAudio.PlayClose();
+                isGlidePlaying = false;
+                playerAudio.StopGlide();
+            }
+            else if (isGlidePlaying && isSwimming)
+            {
+                isGlidePlaying = false;
+                playerAudio.StopGlide();
+            }
+        } 
     }
 
     private void OnTriggerEnter(Collider other)
