@@ -71,7 +71,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform pivotAttack;
     [SerializeField] Vector3 sizeCubeAttack;
     [SerializeField] int damage;
-    [SerializeField] float forceForward = 30;
+    [SerializeField] float forceForward = 1000;
+    [SerializeField] float forceUp= 1000;
+
     int noOfClicks = 0;
     const string nameFirstAttack = "Armature_Idle_head";
     const string nameSecondAttack= "Armature_head_patada";
@@ -262,6 +264,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetInteger("currentAttack", 0);
             canAttack = true;
+            movementMode = MovementMode.VELOCITY;
             noOfClicks = 0;
         }
         //Ataque 2
@@ -275,8 +278,10 @@ public class PlayerController : MonoBehaviour
             animator.SetInteger("currentAttack", 0);
             canAttack = true;
             noOfClicks = 0;
+            movementMode = MovementMode.VELOCITY;
         }
         else if (CheckState(nameSecondAttack) && noOfClicks >= 3) {
+            movementMode = MovementMode.VELOCITY;
             animator.SetInteger("currentAttack", 3);
             canAttack = true;
         }
@@ -286,13 +291,16 @@ public class PlayerController : MonoBehaviour
             animator.SetInteger("currentAttack", 0);
             canAttack = true;
             noOfClicks = 0;
+            movementMode = MovementMode.VELOCITY;
         }
-
     }
 
+    //Se ejecuta en los eventos de animacion
     void AddForceForward()
     {
-        rb.AddForce(transform.forward * forceForward, ForceMode.VelocityChange);        
+        movementMode = MovementMode.ADD_FORCE;
+        rb.AddForce(transform.forward * forceForward, ForceMode.Force);
+        rb.AddForce(Vector3.up * forceUp, ForceMode.Force);
     }
 
     private void Attack()
@@ -434,8 +442,7 @@ public class PlayerController : MonoBehaviour
         if (isGrounded) Gizmos.color = Color.green;
         Gizmos.DrawSphere(posCheckerGround.position, radiusCheck);
 
-        Gizmos.DrawWireCube(pivotAttack.position, sizeCubeAttack);
-
+        Gizmos.DrawWireCube(pivotAttack.position,sizeCubeAttack);      
     }
 
     #region Inputs setters
