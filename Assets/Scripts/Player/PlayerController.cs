@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     private bool isSwimming;
     private bool isGlading;
     private bool isJumping;
+    public bool canGlide;
 
     [Header("Movement Settings")]
     [SerializeField] private float runSpeed = 20;
@@ -71,18 +72,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform pivotAttack;
     [SerializeField] Vector3 sizeCubeAttack;
     [SerializeField] int damage;
-    [SerializeField] float forceForward = 30;
+    [SerializeField] float forceForward = 1000;
+    [SerializeField] float forceUp= 1000;
+
     int noOfClicks = 0;
     const string nameFirstAttack = "Armature_Idle_head";
     const string nameSecondAttack= "Armature_head_patada";
     const string nameThirdAttack = "Armature_spin";
-    bool canAttack = true;
+    public bool canAttack;
 
     //Audio variables
     private bool isGlidePlaying = false;
 
     private void Awake()
     {
+        canGlide = true;
+        canAttack = true;
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         brelloOpenManager = GetComponent<BrelloOpenManager>();
@@ -113,33 +118,45 @@ public class PlayerController : MonoBehaviour
     {
         if (isMovementPressed)
         {
-            if (isGlading)
-                currentSpeed = Mathf.Lerp(currentSpeed, gladingSpeed, acceleration * Time.deltaTime);
+            if (canMove)
+            {
+                if (isGlading)
+                    currentSpeed = Mathf.Lerp(currentSpeed, gladingSpeed, acceleration * Time.deltaTime);
 
-            else if (isUmbrellaOpen)
-                currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, acceleration * Time.deltaTime);
+                 else if (isUmbrellaOpen)
+                    currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, acceleration * Time.deltaTime);
 
-            else
-                currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, acceleration * Time.deltaTime);
+                 else
+                   currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, acceleration * Time.deltaTime);
+            }
         }
         else
         {
             currentSpeed = Mathf.Lerp(currentSpeed, 0, acceleration * Time.deltaTime);
         }
+        
     }
     private void Movement()
     {
         Vector3 dir;
         dir = CamDirection() * currentSpeed;
-        if (movementMode == MovementMode.VELOCITY)
+        if (canMove)
         {
-            dir.y = rb.velocity.y;
-            rb.velocity = dir;
+            if (movementMode == MovementMode.VELOCITY)
+            {
+                dir.y = rb.velocity.y;
+                rb.velocity = dir;
+            }
+            else
+            {
+                dir.y = 0;
+                rb.AddForce(dir * 10, ForceMode.Acceleration);
+            }
         }
         else
         {
-            dir.y = 0;
-            rb.AddForce(dir * 10, ForceMode.Acceleration);
+            axis = Vector2.zero;
+            currentSpeed = 0;
         }
     }
     void ForceTorrent()
@@ -240,7 +257,7 @@ public class PlayerController : MonoBehaviour
 
     public void HandleAttack()
     {
-        if (canAttack)
+        if (canAttack && canMove)
         {
             noOfClicks++;
             
@@ -262,6 +279,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetInteger("currentAttack", 0);
             canAttack = true;
+            movementMode = MovementMode.VELOCITY;
             noOfClicks = 0;
         }
         //Ataque 2
@@ -275,8 +293,10 @@ public class PlayerController : MonoBehaviour
             animator.SetInteger("currentAttack", 0);
             canAttack = true;
             noOfClicks = 0;
+            movementMode = MovementMode.VELOCITY;
         }
         else if (CheckState(nameSecondAttack) && noOfClicks >= 3) {
+            movementMode = MovementMode.VELOCITY;
             animator.SetInteger("currentAttack", 3);
             canAttack = true;
         }
@@ -286,13 +306,16 @@ public class PlayerController : MonoBehaviour
             animator.SetInteger("currentAttack", 0);
             canAttack = true;
             noOfClicks = 0;
+            movementMode = MovementMode.VELOCITY;
         }
-
     }
 
+    //Se ejecuta en los eventos de animacion
     void AddForceForward()
     {
-        rb.AddForce(transform.forward * forceForward, ForceMode.VelocityChange);        
+        movementMode = MovementMode.ADD_FORCE;
+        rb.AddForce(transform.forward * forceForward, ForceMode.Force);
+        rb.AddForce(Vector3.up * forceUp, ForceMode.Force);
     }
 
     private void Attack()
@@ -396,28 +419,30 @@ public class PlayerController : MonoBehaviour
 
     public void OpenUmbrellaManager(bool _value)
     {
-        isUmbrellaOpen = _value;
-        brelloOpenManager.SetOpen(isUmbrellaOpen);
-      
-        rb.useGravity = !_value;
+        if (canGlide && canMove)
+        {
+            isUmbrellaOpen = _value;
+            brelloOpenManager.SetOpen(isUmbrellaOpen);
 
-        //Audio de apertura de paraguas
-        if (_value && !isSwimming)
-        {
-            playerAudio.PlayOpen();
-        }
-        else if(!_value && !isSwimming)
-        {
-            playerAudio.PlayClose();
-            isGlidePlaying = false;
-            playerAudio.StopGlide();
-        }
-        else if(isGlidePlaying && isSwimming)
-        {
-            isGlidePlaying = false;
-            playerAudio.StopGlide();
-        }
-        
+            rb.useGravity = !_value;
+
+            //Audio de apertura de paraguas
+            if (_value && !isSwimming)
+            {
+                playerAudio.PlayOpen();
+            }
+            else if (!_value && !isSwimming)
+            {
+                playerAudio.PlayClose();
+                isGlidePlaying = false;
+                playerAudio.StopGlide();
+            }
+            else if (isGlidePlaying && isSwimming)
+            {
+                isGlidePlaying = false;
+                playerAudio.StopGlide();
+            }
+        } 
     }
 
     private void OnTriggerEnter(Collider other)
@@ -435,8 +460,7 @@ public class PlayerController : MonoBehaviour
         if (isGrounded) Gizmos.color = Color.green;
         Gizmos.DrawSphere(posCheckerGround.position, radiusCheck);
 
-        Gizmos.DrawWireCube(pivotAttack.position, sizeCubeAttack);
-
+        Gizmos.DrawWireCube(pivotAttack.position,sizeCubeAttack);      
     }
 
     #region Inputs setters
