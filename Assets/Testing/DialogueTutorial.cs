@@ -30,7 +30,8 @@ public class DialogueTutorial : MonoBehaviour
     private bool reloadDialogue;
     private bool reloadingDialogue;
     [SerializeField] bool unlocksGlide;
-
+    [SerializeField] bool unlocksAttack;
+    [SerializeField] GameObject particles;
     //Variables del player
     PlayerController player;
     private PlayerInput playerInput;
@@ -54,6 +55,7 @@ public class DialogueTutorial : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         player.canGlide = false;
+        player.canAttack = false;
         dialogueGroup = GameObject.FindGameObjectWithTag("DialogueGroup").GetComponent<CanvasGroup>();
         dialogueText = dialogueGroup.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         dialogueNameBackColor = dialogueGroup.transform.GetChild(1).GetComponent<Image>();
@@ -240,8 +242,9 @@ public class DialogueTutorial : MonoBehaviour
             if (character)
             {
                 character.SetTrigger("Appear");
-                character.transform.DOLookAt(player.transform.position, 0.5f, AxisConstraint.X | AxisConstraint.Z);
-                player.transform.DOLookAt(character.transform.position, 0.5f, AxisConstraint.X | AxisConstraint.Z);
+                Instantiate(particles, new Vector3(character.transform.position.x, character.transform.position.y + 2f, character.transform.position.z), Quaternion.identity);
+                character.transform.DOLookAt(player.transform.position, 0.5f, AxisConstraint.Y);
+                player.transform.DOLookAt(character.transform.position, 0.5f, AxisConstraint.Y);
             }
 
             dialogueText.text = string.Empty;
@@ -269,7 +272,7 @@ public class DialogueTutorial : MonoBehaviour
                 character.SetTrigger("Disappear");
             }
 
-            dialogueGroup.transform.DOScale(0f, 0.75f).OnComplete(() =>
+            dialogueGroup.transform.DOScale(0f, 1f).OnComplete(() =>
             {
                 dialogueText.text = string.Empty;
                 dialogueGroup.gameObject.SetActive(false);
@@ -279,6 +282,12 @@ public class DialogueTutorial : MonoBehaviour
                 {
                     player.canGlide = true;
                 }
+                else if (unlocksAttack)
+                {
+                    player.canAttack = true;
+                }
+
+                Instantiate(particles, new Vector3(character.transform.position.x, character.transform.position.y + 2f, character.transform.position.z), Quaternion.identity);
 
                 Destroy(gameObject);
             });

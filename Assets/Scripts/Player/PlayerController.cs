@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
     const string nameFirstAttack = "Armature_Idle_head";
     const string nameSecondAttack= "Armature_head_patada";
     const string nameThirdAttack = "Armature_spin";
-    bool canAttack = true;
+    public bool canAttack;
 
     //Audio variables
     private bool isGlidePlaying = false;
@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         canGlide = true;
+        canAttack = true;
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         brelloOpenManager = GetComponent<BrelloOpenManager>();
