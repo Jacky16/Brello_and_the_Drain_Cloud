@@ -16,4 +16,17 @@ public class TutorialManager : MonoBehaviour
     {
         
     }
+
+    public void SetLastPlatform(SpacePlatformMovement currentPlatform)
+    {
+        lastPlatform = currentPlatform;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            other.transform.position = lastPlatform.GetPosToRespawn();
+        }
+    }
 }
