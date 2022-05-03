@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
 
 
     //Variables para almacenar los ID's de las animaciones
-    private int attackHash;
     private int isGlidingHash;
     private int isGroundedHash;
     private int speedHash;
@@ -69,6 +68,7 @@ public class PlayerController : MonoBehaviour
     private Tween tweenSwiming;
 
     [Header("Attack Settings")]
+    [SerializeField] LayerMask attackLayerMask;
     [SerializeField] Transform pivotAttack;
     [SerializeField] Vector3 sizeCubeAttack;
     [SerializeField] int damage;
@@ -316,21 +316,18 @@ public class PlayerController : MonoBehaviour
     void AddForceForward()
     {
         movementMode = MovementMode.ADD_FORCE;
-        rb.AddForce(transform.forward * forceForward, ForceMode.Force);
+        rb.AddForce(CamDirection() * forceForward, ForceMode.Force);
         rb.AddForce(Vector3.up * forceUp, ForceMode.Force);
     }
-
+    //Se ejecuta en los eventos de animacion
     private void Attack()
     {
-        Collider[] colliders = Physics.OverlapBox(pivotAttack.position, sizeCubeAttack, Quaternion.identity);
+        Collider[] colliders = Physics.OverlapBox(pivotAttack.position, sizeCubeAttack, Quaternion.identity,attackLayerMask);
         foreach (Collider collider in colliders)
         {
             if (collider.TryGetComponent(out Health _health))
             {
-                if (!collider.CompareTag("Player") && !collider.CompareTag("Pyra"))
-                {
-                    _health.DoDamage(damage);
-                }
+                _health.DoDamage(damage);
             }
         }
     }
@@ -512,7 +509,6 @@ public class PlayerController : MonoBehaviour
         isGlidingHash = Animator.StringToHash("isGliding");
         isGroundedHash = Animator.StringToHash("isGrounded");
         speedHash = Animator.StringToHash("speed");
-        attackHash = Animator.StringToHash("attack");
         fallSpeedHash = Animator.StringToHash("fallSpeed");
     }
 

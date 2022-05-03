@@ -28,7 +28,8 @@ public class PsTom : MonoBehaviour
    
 
     Vector3 startPosition;
-
+    [Range(1,6)]
+    [SerializeField] int damage;
     [Header("Settings Trash Settings")]
     [SerializeField] float timeTrashAattack;
     [SerializeField] float throwTrashPower;
@@ -187,7 +188,6 @@ public class PsTom : MonoBehaviour
     void ThrowTrash()
     {
         GameObject trash = Instantiate(trashPrefab, trashSpawn.position, Quaternion.identity);
-        trash.GetComponent<SteamlingAI>().SetBigRadius();
         
         Vector3 playerDir_1 = (player.transform.position - trash.transform.position).normalized;
         trash.GetComponent<Rigidbody>().AddForce(playerDir_1 * throwTrashPower, ForceMode.Impulse);
@@ -290,6 +290,7 @@ public class PsTom : MonoBehaviour
         {
             if (col.TryGetComponent(out PlayerController _pc))
             {
+                player.GetComponent<BrelloHealth>().DoDamage(damage);
                 return true;
             }
         }
@@ -301,6 +302,7 @@ public class PsTom : MonoBehaviour
         
         if (CheckIfPlayerInside())
         {
+            player.GetComponent<BrelloHealth>().DoDamage(damage);
             player.GetComponent<Rigidbody>().AddForce(transform.right.normalized * impulseForceOnPlayer, ForceMode.Impulse);
         }
     }

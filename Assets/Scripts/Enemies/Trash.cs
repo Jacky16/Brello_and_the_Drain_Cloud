@@ -6,13 +6,15 @@ public class Trash : MonoBehaviour
 {
     [SerializeField] GameObject steamLinkPrefab;
 
+    
     private void OnCollisionEnter(Collision collision)
     {
         //compare tag wall
         if (collision.gameObject.tag == "Wall")
         {
             //instantiate steam link
-            Instantiate(steamLinkPrefab, transform.position, Quaternion.identity);
+            GameObject go = Instantiate(steamLinkPrefab, transform.position, Quaternion.identity);
+            go.GetComponent<SteamlingAI>().SetBigRadius();
             //destroy gameobject
             Destroy(gameObject);
         }        

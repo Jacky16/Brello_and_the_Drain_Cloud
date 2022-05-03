@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
-using UnityEngine.AI;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class PsTomHealth : Health
 {
     PsTom psTom;
     Animator anim;
     [SerializeField] PlayableDirector timeline;
+    [SerializeField] Image healthBar;
 
     private void Awake()
     {
@@ -21,7 +23,8 @@ public class PsTomHealth : Health
     protected override void onDamage()
     {
         base.onDamage();
-        Debug.ClearDeveloperConsole();
+        
+        healthBar.DOFillAmount((float)currLife / (float)maxLife, 0.5f);   
         psTom.ChangePhase(currLife);
     }
     protected override void onDeath()
