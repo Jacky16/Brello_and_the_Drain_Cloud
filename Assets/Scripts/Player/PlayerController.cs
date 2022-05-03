@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     private bool isSwimming;
     private bool isGlading;
     private bool isJumping;
+    public bool canGlide;
 
     [Header("Movement Settings")]
     [SerializeField] private float runSpeed = 20;
@@ -83,6 +84,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        canGlide = true;
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         brelloOpenManager = GetComponent<BrelloOpenManager>();
@@ -403,28 +405,30 @@ public class PlayerController : MonoBehaviour
 
     public void OpenUmbrellaManager(bool _value)
     {
-        isUmbrellaOpen = _value;
-        brelloOpenManager.SetOpen(isUmbrellaOpen);
-      
-        rb.useGravity = !_value;
+        if (canGlide)
+        {
+            isUmbrellaOpen = _value;
+            brelloOpenManager.SetOpen(isUmbrellaOpen);
 
-        //Audio de apertura de paraguas
-        if (_value && !isSwimming)
-        {
-            playerAudio.PlayOpen();
-        }
-        else if(!_value && !isSwimming)
-        {
-            playerAudio.PlayClose();
-            isGlidePlaying = false;
-            playerAudio.StopGlide();
-        }
-        else if(isGlidePlaying && isSwimming)
-        {
-            isGlidePlaying = false;
-            playerAudio.StopGlide();
-        }
-        
+            rb.useGravity = !_value;
+
+            //Audio de apertura de paraguas
+            if (_value && !isSwimming)
+            {
+                playerAudio.PlayOpen();
+            }
+            else if (!_value && !isSwimming)
+            {
+                playerAudio.PlayClose();
+                isGlidePlaying = false;
+                playerAudio.StopGlide();
+            }
+            else if (isGlidePlaying && isSwimming)
+            {
+                isGlidePlaying = false;
+                playerAudio.StopGlide();
+            }
+        } 
     }
 
     private void OnTriggerEnter(Collider other)

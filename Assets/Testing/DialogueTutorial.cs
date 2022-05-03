@@ -29,6 +29,7 @@ public class DialogueTutorial : MonoBehaviour
     private bool loadingDialogue;
     private bool reloadDialogue;
     private bool reloadingDialogue;
+    [SerializeField] bool unlocksGlide;
 
     //Variables del player
     PlayerController player;
@@ -37,6 +38,7 @@ public class DialogueTutorial : MonoBehaviour
     //Cámaras
     [SerializeField] GameObject playerCam;
     [SerializeField] GameObject dialogueCam;
+    [SerializeField] Animator character;
 
     private void Awake()
     {
@@ -50,6 +52,8 @@ public class DialogueTutorial : MonoBehaviour
     }
     private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        player.canGlide = false;
         dialogueGroup = GameObject.FindGameObjectWithTag("DialogueGroup").GetComponent<CanvasGroup>();
         dialogueText = dialogueGroup.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         dialogueNameBackColor = dialogueGroup.transform.GetChild(1).GetComponent<Image>();
@@ -174,6 +178,10 @@ public class DialogueTutorial : MonoBehaviour
                     //CameraHandler(true);
                     DialogueCanvasHandler(false);
                 }
+                else if (tag.StartsWith("continue"))
+                {
+                    NextDialogue();
+                }
             }
             return null;
         }
@@ -211,7 +219,8 @@ public class DialogueTutorial : MonoBehaviour
             || tag.StartsWith("emotion=")
             || tag.StartsWith("action=")
             || tag.StartsWith("shop")
-            || tag.StartsWith("end");
+            || tag.StartsWith("end")
+            || tag.StartsWith("continue");
     }
 
     #endregion
@@ -228,6 +237,13 @@ public class DialogueTutorial : MonoBehaviour
     {
         if (showCanvas)
         {
+            if (character)
+            {
+                character.SetTrigger("Appear");
+                character.transform.DOLookAt(player.transform.position, 0.5f, AxisConstraint.X | AxisConstraint.Z);
+                player.transform.DOLookAt(character.transform.position, 0.5f, AxisConstraint.X | AxisConstraint.Z);
+            }
+
             dialogueText.text = string.Empty;
             player.BlockMovement();
             dialogueName.text = dialogueObject.NPCName;
@@ -248,11 +264,22 @@ public class DialogueTutorial : MonoBehaviour
             reloadDialogue = true;
             dialogueGroup.DOFade(0f, 0.75f);
 
+            if (character)
+            {
+                character.SetTrigger("Disappear");
+            }
+
             dialogueGroup.transform.DOScale(0f, 0.75f).OnComplete(() =>
             {
                 dialogueText.text = string.Empty;
                 dialogueGroup.gameObject.SetActive(false);
                 player.EnableMovement();
+
+                if (unlocksGlide)
+                {
+                    player.canGlide = true;
+                }
+
                 Destroy(gameObject);
             });
         }
