@@ -8674,7 +8674,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 494816104}
   m_LocalRotation: {x: -0.030837081, y: 0.9514652, z: -0.28900158, w: -0.1011991}
-  m_LocalPosition: {x: -560.8919, y: 195.20029, z: -279.64453}
+  m_LocalPosition: {x: -518.0151, y: 200.89484, z: -204.43488}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -22464,6 +22464,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 4592806842241057584, guid: c11abcb3602085143ae8e6ff8862ee23, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5572618551199805990, guid: c11abcb3602085143ae8e6ff8862ee23, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0.0000031350569
@@ -22484,6 +22488,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Brello
       objectReference: {fileID: 0}
+    - target: {fileID: 6434270805969657492, guid: c11abcb3602085143ae8e6ff8862ee23, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 333644071fd738b4d923f8791479559d, type: 2}
+    - target: {fileID: 6434270805969657495, guid: c11abcb3602085143ae8e6ff8862ee23, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 778321759ae4d7e4a8f109af2bbb873c, type: 2}
     - target: {fileID: 6718681316727715795, guid: c11abcb3602085143ae8e6ff8862ee23, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -26.647018
@@ -22526,15 +22538,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6827921339837299263, guid: c11abcb3602085143ae8e6ff8862ee23, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -567.5782
+      value: -523.48956
       objectReference: {fileID: 0}
     - target: {fileID: 6827921339837299263, guid: c11abcb3602085143ae8e6ff8862ee23, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 197.4252
+      value: 203.0418
       objectReference: {fileID: 0}
     - target: {fileID: 6827921339837299263, guid: c11abcb3602085143ae8e6ff8862ee23, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -285.11978
+      value: -208.138
       objectReference: {fileID: 0}
     - target: {fileID: 6827921339837299263, guid: c11abcb3602085143ae8e6ff8862ee23, type: 3}
       propertyPath: m_LocalRotation.w

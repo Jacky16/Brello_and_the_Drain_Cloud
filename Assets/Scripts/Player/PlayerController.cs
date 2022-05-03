@@ -151,6 +151,11 @@ public class PlayerController : MonoBehaviour
                 rb.AddForce(dir * 10, ForceMode.Acceleration);
             }
         }
+        else
+        {
+            axis = Vector2.zero;
+            currentSpeed = 0;
+        }
     }
     void ForceTorrent()
     {
@@ -250,7 +255,7 @@ public class PlayerController : MonoBehaviour
 
     public void HandleAttack()
     {
-        if (canAttack)
+        if (canAttack && canMove)
         {
             noOfClicks++;
             
@@ -406,7 +411,7 @@ public class PlayerController : MonoBehaviour
 
     public void OpenUmbrellaManager(bool _value)
     {
-        if (canGlide)
+        if (canGlide && canMove)
         {
             isUmbrellaOpen = _value;
             brelloOpenManager.SetOpen(isUmbrellaOpen);
