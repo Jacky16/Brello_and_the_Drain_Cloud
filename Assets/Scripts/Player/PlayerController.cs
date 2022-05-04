@@ -338,7 +338,7 @@ public class PlayerController : MonoBehaviour
     //Se ejecuta en los eventos de animacion
     private void Attack()
     {
-        Collider[] colliders = Physics.OverlapBox(pivotAttack.position, sizeCubeAttack, Quaternion.identity,attackLayerMask);
+        Collider[] colliders = Physics.OverlapBox(pivotAttack.position, sizeCubeAttack, Quaternion.identity, attackLayerMask);
         foreach (Collider collider in colliders)
         {
             if (collider.TryGetComponent(out Health _health))
