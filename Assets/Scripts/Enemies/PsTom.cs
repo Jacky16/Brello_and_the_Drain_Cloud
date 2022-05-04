@@ -41,6 +41,7 @@ public class PsTom : MonoBehaviour
     [SerializeField] float accelerationAssault;
     [SerializeField] LayerMask layerMakAttackAssault;
     [SerializeField] Vector2 impulseAttackAssaultToPlayer;
+    [SerializeField] Vector3 sizeCubeAssaultChecker;
 
     Vector3 posToGo;
     bool isDistanceToGo;
@@ -480,6 +481,7 @@ public class PsTom : MonoBehaviour
     }
     public void ChangePhase(float _lifeBoss)
     {
+        
         if (_lifeBoss > 66)
         {
             currentPhase = Phases.PHASE_1;
@@ -501,7 +503,7 @@ public class PsTom : MonoBehaviour
         //Raycast forward from wallDetect 
         //OverlapSphere on wallDetect
 
-        Collider[] colliders = Physics.OverlapSphere(wallDetect.position, navMeshAgent.stoppingDistance, layerMaskWallDetect);
+        Collider[] colliders = Physics.OverlapBox(wallDetect.position, sizeCubeAssaultChecker, transform.rotation,layerMaskWallDetect);
         foreach (Collider col in colliders)
         {
             if (col.CompareTag(_tag))
@@ -531,9 +533,9 @@ public class PsTom : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(pivotCubeAttack.position, sizeCubePunchAttack);
+       
+        Gizmos.DrawWireCube(wallDetect.position, sizeCubeAssaultChecker);
 
-        Gizmos.DrawWireSphere(wallDetect.position, distanceWallDetect);
-   
         Gizmos.DrawLine(transform.position, transform.position + transform.forward * 10);
     }
 }
