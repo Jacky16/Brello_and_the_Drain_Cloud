@@ -32,11 +32,36 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField] GameObject stopMusic;
 
+
+    [Header("MAIN MENU ANIMATIONS")]
+
+    public GameObject MenuAnimManager;
+    Animator AnimManager;
+
     private void Start()
     {
+        AnimManager = MenuAnimManager.GetComponent<Animator>();
+
+        AnimManager.SetBool("isIdle", true);
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
+
+    public void ButtonClick()
+    {
+        AnimManager.SetBool("isIdle", false);
+        AnimManager.SetBool("isComeback", false);
+        AnimManager.SetBool("isSelected", true);
+    }
+
+    public void OkButtonClick()
+    {
+        AnimManager.SetBool("isIdle", false);
+        AnimManager.SetBool("isSelected", false);
+        AnimManager.SetBool("isComeback", true);
+    }
+
     public void SetInvertedXCamera()
     {
         invertedX = !invertedX;
