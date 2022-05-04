@@ -26,6 +26,7 @@ public class PsTomHealth : Health
         float percent = (float)currLife / (float)maxLife;     
         healthBar.DOFillAmount(percent, 0.5f);   
         psTom.ChangePhase(currLife);
+        anim.SetTrigger("Hit");
     }
     protected override void onDeath()
     {
@@ -33,7 +34,7 @@ public class PsTomHealth : Health
         timeline.Play();
         
         DisableAllObjects();
-        GetComponent<Animator>().SetTrigger("Death");
+        anim.SetTrigger("Death");
         
         StartCoroutine(GoToMainMenu());
     }

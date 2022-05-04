@@ -343,18 +343,22 @@ public class PsTom : MonoBehaviour
     {
         if (!isAssaltingPlayer && !isStuned)
         {
-            isAssaltingPlayer = true;
-            anim.SetBool("IsChasing", isAssaltingPlayer);
+            RotateToPlayer(0.1f).OnComplete(() =>
+            {
+                isAssaltingPlayer = true;
 
-            //Asignar donde va a ir el Boss
-            posToGo = GetPosToAssult();
-           
-            //Move to player
-            navMeshAgent.SetDestination(posToGo);
-            
-            //Aplicar velocidad y aceleración
-            navMeshAgent.speed = speedAssault;
-            navMeshAgent.acceleration = accelerationAssault;
+                anim.SetBool("IsChasing", isAssaltingPlayer);
+
+                //Asignar donde va a ir el Boss
+                posToGo = GetPosToAssult();
+
+                //Move to player
+                navMeshAgent.SetDestination(posToGo);
+
+                //Aplicar velocidad y aceleración
+                navMeshAgent.speed = speedAssault;
+                navMeshAgent.acceleration = accelerationAssault;
+            });
         }       
     }
     IEnumerator ResumeCanAssaultPlayer()
@@ -411,8 +415,7 @@ public class PsTom : MonoBehaviour
     {
         //Raycast forward
         RaycastHit hit;
-        Debug.DrawRay(transform.position, transform.forward * Mathf.Infinity, Color.red);
-        
+       
         if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, layerMakAttackAssault))
         {
             return hit.point;
@@ -519,10 +522,10 @@ public class PsTom : MonoBehaviour
         anim.SetBool("IsStuned", isStuned);
     }
 
-    void RotateToPlayer(float _duration = 0.5f)
+    Tween RotateToPlayer(float _duration = 0.5f)
     {
         Vector3 lookAt = player.transform.position;
-        transform.DOLookAt(lookAt, _duration);
+        return transform.DOLookAt(lookAt, _duration);
     }
 
     private void OnDrawGizmos()
