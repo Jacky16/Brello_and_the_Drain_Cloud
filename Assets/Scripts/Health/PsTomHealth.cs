@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class PsTomHealth : Health
 {
     PsTom psTom;
     Animator anim;
+    [SerializeField] PlayableDirector timeline;
+    [SerializeField] Image healthBar;
+    [SerializeField] GameObject[] gameObjectsToDisable;
 
     private void Awake()
     {
@@ -16,13 +23,31 @@ public class PsTomHealth : Health
     protected override void onDamage()
     {
         base.onDamage();
-        Debug.ClearDeveloperConsole();
-        print("Vida actual de Pstom:" + currLife);
+        float percent = (float)currLife / (float)maxLife;     
+        healthBar.DOFillAmount(percent, 0.5f);   
         psTom.ChangePhase(currLife);
     }
     protected override void onDeath()
     {
         base.onDeath();
-        anim.SetBool("IsDeath", true);
+        timeline.Play();
+        
+        DisableAllObjects();
+        GetComponent<Animator>().SetTrigger("Death");
+        
+        StartCoroutine(GoToMainMenu());
+    }
+
+    IEnumerator GoToMainMenu()
+    {
+        yield return new WaitForSeconds(7f);
+        SceneManager.LoadScene("MainMenu");
+    }
+    void DisableAllObjects()
+    {
+        foreach (GameObject go in gameObjectsToDisable)
+        {
+            go.SetActive(false);
+        }
     }
 }

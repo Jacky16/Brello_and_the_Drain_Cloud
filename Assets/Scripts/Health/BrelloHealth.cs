@@ -9,7 +9,7 @@ public sealed class BrelloHealth : Health
 {
     [Header("Life Sprite Variables")]
     [SerializeField] Sprite[] healthImages;
-    [SerializeField] Image currentImage;
+    [SerializeField] Image currentHealthImage;
     [SerializeField] float timeInHUD;
     [SerializeField] GameObject damageParticles;
     [SerializeField] Transform spawnPoint;
@@ -46,12 +46,15 @@ public sealed class BrelloHealth : Health
 
     protected override void onDamage()
     {
-        Camera.main.GetComponent<CinemachineImpulseSource>().GenerateImpulse();
+        //Camera.main.GetComponent<CinemachineImpulseSource>().GenerateImpulse();
         lifeChanged = true;
         //imageAnimator.SetTrigger("Appear");
-        Instantiate(damageParticles, transform.position, Quaternion.identity);
+        if (damageParticles)
+        {
+            Instantiate(damageParticles, spawnPoint.position, Quaternion.identity);
+        }
         lastLifeChange = 0f;
-        currentImage.sprite = healthImages[currLife];
+        currentHealthImage.sprite = healthImages[currLife];
     }
 
     protected override void onHeal()
@@ -60,7 +63,7 @@ public sealed class BrelloHealth : Health
         lifeChanged = true;
         //imageAnimator.SetTrigger("Appear");
         lastLifeChange = 0f;
-        currentImage.sprite = healthImages[currLife];
+        currentHealthImage.sprite = healthImages[currLife];
     }
 
     protected override void onDeath()
@@ -79,7 +82,7 @@ public sealed class BrelloHealth : Health
     {
         currLife = maxLife;
         isInmune = false;
-        currentImage.sprite = healthImages[currLife];
+        currentHealthImage.sprite = healthImages[currLife];
         transform.position = spawnPoint.position;
 
         GameObject.FindGameObjectWithTag("Pyra").GetComponent<NavMeshAgent>().enabled = false;
