@@ -61,12 +61,11 @@ public class PsTom : MonoBehaviour
     [SerializeField] float punchAttackTime = 1.5f;
     [SerializeField] Vector3 sizeCubePunchAttack;
     [SerializeField] Transform pivotCubeAttack;
+    bool isAttackingPunchAttack;
 
     [Header("Boiler Settings")]
     [SerializeField] GameObject[] boilers;
-    int maxBoilers;
-    int currentBoilersActive = 0;
-
+   
     [Header("Wall Detect Settings")]
     [SerializeField] Transform wallDetect;
     [SerializeField] LayerMask layerMaskWallDetect;
@@ -86,13 +85,17 @@ public class PsTom : MonoBehaviour
     private void Start()
     {
         startPosition = transform.position;
-        maxBoilers = boilers.Length;
         targeterTransform.gameObject.SetActive(false);
     }
     private void Update()
     {
         if (!tomHealth.IsAlive()) return;
         PhasesManager();
+
+        if (isAttackingPunchAttack)
+        {
+            AttackPunchCheck();
+        }
     }
 
     #region Phases
@@ -205,9 +208,25 @@ public class PsTom : MonoBehaviour
     #region Punch Attack
     void AttackPunch()
     {
-        RotateToPlayer();
-        anim.SetTrigger("AttackPunch");
+        if (!isAttackingPunchAttack)
+        {
+            RotateToPlayer();
+            anim.SetTrigger("AttackPunch");          
+        }
     }
+    void AttackPunchBoolean(int value)
+    {
+        if (value == 1)
+        {
+            isAttackingPunchAttack = true;
+        }
+        else if (value == 0)
+        {
+            isAttackingPunchAttack = false;
+        }
+    }
+    
+   
         //Se ejecuta en la animacion de punch 
     void AttackPunchCheck()
     {
@@ -216,7 +235,8 @@ public class PsTom : MonoBehaviour
         {
             if (col.TryGetComponent(out BrelloHealth _bh))
             {
-                _bh.DoDamage(1);
+                _bh.DoDamage(damage);
+                isAttackingPunchAttack = false;
                 Debug.Log("Ataque al player por el puño");
             }
         }       
@@ -303,7 +323,7 @@ public class PsTom : MonoBehaviour
         if (CheckIfPlayerInside())
         {
             player.GetComponent<BrelloHealth>().DoDamage(damage);
-            player.GetComponent<Rigidbody>().AddForce(transform.right.normalized * impulseForceOnPlayer, ForceMode.Impulse);
+            player.GetComponent<Rigidbody>().AddForce(transform.right.normalized * impulseForceOnPlayer, ForceMode.Force);
         }
     }
 
