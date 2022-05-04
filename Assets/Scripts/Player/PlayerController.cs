@@ -331,6 +331,7 @@ public class PlayerController : MonoBehaviour
                 {
                     _health.DoDamage(damage);
                 }
+
                 print(collider.tag);
             }
         }
