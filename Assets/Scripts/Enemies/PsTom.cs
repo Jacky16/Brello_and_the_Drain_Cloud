@@ -28,7 +28,8 @@ public class PsTom : MonoBehaviour
    
 
     Vector3 startPosition;
-
+    [Range(1,6)]
+    [SerializeField] int damage;
     [Header("Settings Trash Settings")]
     [SerializeField] float timeTrashAattack;
     [SerializeField] float throwTrashPower;
@@ -39,6 +40,8 @@ public class PsTom : MonoBehaviour
     [SerializeField] float speedAssault;
     [SerializeField] float accelerationAssault;
     [SerializeField] LayerMask layerMakAttackAssault;
+    [SerializeField] Vector2 impulseAttackAssaultToPlayer;
+
     Vector3 posToGo;
     bool isDistanceToGo;
 
@@ -53,19 +56,19 @@ public class PsTom : MonoBehaviour
     [Header("Attack Jump Settings")]
     [SerializeField] float jumpAttackPower;
     [SerializeField] float jumpAttackDuration;
-    [SerializeField] float impulseForceOnPlayer = 150;
+    [SerializeField] Vector2 impulseAttackJumpToPlayer;
     [SerializeField] Transform targeterTransform;
 
     [Header("Settings Punch Attack")]
     [SerializeField] float punchAttackTime = 1.5f;
     [SerializeField] Vector3 sizeCubePunchAttack;
     [SerializeField] Transform pivotCubeAttack;
+    [SerializeField] Vector2 impulseAttackPunchToPlayer;
+    bool isAttackingPunchAttack;
 
     [Header("Boiler Settings")]
     [SerializeField] GameObject[] boilers;
-    int maxBoilers;
-    int currentBoilersActive = 0;
-
+   
     [Header("Wall Detect Settings")]
     [SerializeField] Transform wallDetect;
     [SerializeField] LayerMask layerMaskWallDetect;
@@ -85,13 +88,17 @@ public class PsTom : MonoBehaviour
     private void Start()
     {
         startPosition = transform.position;
-        maxBoilers = boilers.Length;
         targeterTransform.gameObject.SetActive(false);
     }
     private void Update()
     {
         if (!tomHealth.IsAlive()) return;
         PhasesManager();
+
+        if (isAttackingPunchAttack)
+        {
+            AttackPunchCheck();
+        }
     }
 
     #region Phases
@@ -114,6 +121,7 @@ public class PsTom : MonoBehaviour
         JumpReturn();
         yield return new WaitForSeconds(jumpReturnDuration + 0.5f);
         AttackPunch();
+        yield return new WaitForSeconds(3);    
         for (int i = 0; i < 2; i++)
         {
             AttackTrowTrash();
@@ -122,7 +130,6 @@ public class PsTom : MonoBehaviour
       
         //Pasar a la fase 3
         yield return new WaitForSeconds(timeTrashAattack);
-        yield return new WaitForSeconds(2);
         currentPhase = Phases.PHASE_3;
 
     }
@@ -187,7 +194,6 @@ public class PsTom : MonoBehaviour
     void ThrowTrash()
     {
         GameObject trash = Instantiate(trashPrefab, trashSpawn.position, Quaternion.identity);
-        trash.GetComponent<SteamlingAI>().SetBigRadius();
         
         Vector3 playerDir_1 = (player.transform.position - trash.transform.position).normalized;
         trash.GetComponent<Rigidbody>().AddForce(playerDir_1 * throwTrashPower, ForceMode.Impulse);
@@ -205,10 +211,26 @@ public class PsTom : MonoBehaviour
     #region Punch Attack
     void AttackPunch()
     {
-        RotateToPlayer();
-        anim.SetTrigger("AttackPunch");
+        if (!isAttackingPunchAttack)
+        {
+            RotateToPlayer();
+            anim.SetTrigger("AttackPunch");          
+        }
     }
-        //Se ejecuta en la animacion de punch 
+    void AttackPunchBoolean(int value)
+    {
+        if (value == 1)
+        {
+            isAttackingPunchAttack = true;
+        }
+        else if (value == 0)
+        {
+            isAttackingPunchAttack = false;
+        }
+    }
+    
+   
+    //Se ejecuta en la animacion de punch 
     void AttackPunchCheck()
     {
         Collider[] colliders = Physics.OverlapBox(pivotCubeAttack.position, sizeCubePunchAttack, Quaternion.identity);
@@ -216,7 +238,11 @@ public class PsTom : MonoBehaviour
         {
             if (col.TryGetComponent(out BrelloHealth _bh))
             {
-                _bh.DoDamage(1);
+                _bh.DoDamage(damage);
+                isAttackingPunchAttack = false;
+                player.GetComponent<Rigidbody>().AddForce(-transform.localPosition.normalized * impulseAttackJumpToPlayer.x + Vector3.up * impulseAttackJumpToPlayer.y, ForceMode.Impulse);
+                player.GetComponent<PlayerController>().ChangeTypeofMovement(PlayerController.MovementMode.ADD_FORCE, true);
+                
                 Debug.Log("Ataque al player por el puño");
             }
         }       
@@ -261,7 +287,11 @@ public class PsTom : MonoBehaviour
             //On complete
             sequence.AppendCallback(() =>
             {
-                AddImpulseToPlayer();
+                if (CheckIfPlayerInside())
+                {
+                    AddImpulseToPlayer(impulseAttackJumpToPlayer);
+                    player.GetComponent<BrelloHealth>().DoDamage(damage);
+                }
                 Stune(true);
                 targeterTransform.gameObject.SetActive(false);
 
@@ -290,19 +320,19 @@ public class PsTom : MonoBehaviour
         {
             if (col.TryGetComponent(out PlayerController _pc))
             {
+                player.GetComponent<BrelloHealth>().DoDamage(damage);
                 return true;
             }
         }
         return false;
     }
-    void AddImpulseToPlayer()
+    void AddImpulseToPlayer( Vector2 _force)
     {
         anim.SetBool("IsFalling", false);
-        
-        if (CheckIfPlayerInside())
-        {
-            player.GetComponent<Rigidbody>().AddForce(transform.right.normalized * impulseForceOnPlayer, ForceMode.Impulse);
-        }
+               
+        player.GetComponent<PlayerController>().ChangeTypeofMovement(PlayerController.MovementMode.ADD_FORCE, true);
+
+        player.GetComponent<Rigidbody>().AddForce(transform.right.normalized * _force.x + Vector3.up * _force.y, ForceMode.Impulse);
     }
 
     #endregion
@@ -361,7 +391,8 @@ public class PsTom : MonoBehaviour
         
         if (isAssaltingPlayer && CheckCollision("Player"))
         {
-            AddImpulseToPlayer();
+            AddImpulseToPlayer(impulseAttackAssaultToPlayer);
+            player.GetComponent<BrelloHealth>().DoDamage(damage);
         }
         else if (isDistanceToGo && isAssaltingPlayer)
         {
@@ -451,10 +482,11 @@ public class PsTom : MonoBehaviour
             currentPhase = Phases.PHASE_1;
         }
 
-        if (_lifeBoss <= 66 && _lifeBoss > 33)
+        if (_lifeBoss <= 66 && _lifeBoss > 33 && !isInPhase2)
         {
             currentPhase = Phases.PHASE_2;
-        }     
+        }
+        
         else if (_lifeBoss <= 33 && currentPhase != Phases.PHASE_5 )
         {
             currentPhase = Phases.PHASE_4;
@@ -473,7 +505,6 @@ public class PsTom : MonoBehaviour
             {
                 return col;
             }
-            Debug.Log(col.tag);
         }
         return null;
     }

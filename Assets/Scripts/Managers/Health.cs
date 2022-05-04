@@ -76,7 +76,7 @@ public class Health : MonoBehaviour
 
     public void CanDamage(bool _b)
     {
-        isInmune = _b;
+        isInmune = !_b;
     }
     public bool IsAlive()
     {

@@ -3,34 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
-using UnityEngine.AI;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class PsTomHealth : Health
 {
     PsTom psTom;
     Animator anim;
     [SerializeField] PlayableDirector timeline;
+    [SerializeField] Image healthBar;
+    [SerializeField] GameObject[] gameObjectsToDisable;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
         psTom = GetComponent<PsTom>();
-        //isInmune = true;
     }
     
     protected override void onDamage()
     {
         base.onDamage();
-        Debug.ClearDeveloperConsole();
+        float percent = (float)currLife / (float)maxLife;     
+        healthBar.DOFillAmount(percent, 0.5f);   
         psTom.ChangePhase(currLife);
     }
     protected override void onDeath()
     {
         base.onDeath();
         timeline.Play();
-        //Disable game object player from find tag
-        GameObject.FindGameObjectWithTag("Player").SetActive(false);
+        
+        DisableAllObjects();
         GetComponent<Animator>().SetTrigger("Death");
+        
         StartCoroutine(GoToMainMenu());
     }
 
@@ -38,5 +42,12 @@ public class PsTomHealth : Health
     {
         yield return new WaitForSeconds(7f);
         SceneManager.LoadScene("MainMenu");
+    }
+    void DisableAllObjects()
+    {
+        foreach (GameObject go in gameObjectsToDisable)
+        {
+            go.SetActive(false);
+        }
     }
 }

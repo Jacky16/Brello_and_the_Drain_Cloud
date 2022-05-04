@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,7 +13,6 @@ public class PlayerController : MonoBehaviour
 
 
     //Variables para almacenar los ID's de las animaciones
-    private int attackHash;
     private int isGlidingHash;
     private int isGroundedHash;
     private int speedHash;
@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float walkSpeed = 10;
     [SerializeField] private float acceleration = 1;
     [SerializeField] private float rotationSpeed = 15f;
-    [SerializeField] private enum MovementMode { ADD_FORCE,VELOCITY}
+    public enum MovementMode { ADD_FORCE,VELOCITY}
     [SerializeField] private MovementMode movementMode = MovementMode.VELOCITY;
     
     bool isUmbrellaOpen;
@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float gladingSpeed = 10;
     [SerializeField] private float gladingGravity = 100;
     [SerializeField] private float velocityToGlade = 3;
+    public bool canGlide;
 
 
     [Header("Ground Checker settings")]
@@ -68,23 +69,29 @@ public class PlayerController : MonoBehaviour
     private Tween tweenSwiming;
 
     [Header("Attack Settings")]
+    [SerializeField] LayerMask attackLayerMask;
     [SerializeField] Transform pivotAttack;
     [SerializeField] Vector3 sizeCubeAttack;
     [SerializeField] int damage;
     [SerializeField] float forceForward = 1000;
-    [SerializeField] float forceUp= 1000;
+    [SerializeField] float forceUp = 1000;
+    [SerializeField] float timeToAttack = .25f;
+    float timeToAttackTimer;
+    public bool canAttack;
+
 
     int noOfClicks = 0;
     const string nameFirstAttack = "Armature_Idle_head";
     const string nameSecondAttack= "Armature_head_patada";
     const string nameThirdAttack = "Armature_spin";
-    bool canAttack = true;
 
     //Audio variables
     private bool isGlidePlaying = false;
 
     private void Awake()
     {
+        canGlide = true;
+        canAttack = true;
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         brelloOpenManager = GetComponent<BrelloOpenManager>();
@@ -115,33 +122,44 @@ public class PlayerController : MonoBehaviour
     {
         if (isMovementPressed)
         {
-            if (isGlading)
-                currentSpeed = Mathf.Lerp(currentSpeed, gladingSpeed, acceleration * Time.deltaTime);
+            if (canMove)
+            {
+                if (isGlading)
+                    currentSpeed = Mathf.Lerp(currentSpeed, gladingSpeed, acceleration * Time.deltaTime);
 
-            else if (isUmbrellaOpen)
-                currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, acceleration * Time.deltaTime);
+                 else if (isUmbrellaOpen)
+                    currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, acceleration * Time.deltaTime);
 
-            else
-                currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, acceleration * Time.deltaTime);
+                 else
+                   currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, acceleration * Time.deltaTime);
+            }
         }
         else
         {
             currentSpeed = Mathf.Lerp(currentSpeed, 0, acceleration * Time.deltaTime);
         }
+        
     }
     private void Movement()
     {
         Vector3 dir;
         dir = CamDirection() * currentSpeed;
-        if (movementMode == MovementMode.VELOCITY)
+        if (canMove)
         {
-            dir.y = rb.velocity.y;
-            rb.velocity = dir;
+            if (movementMode == MovementMode.VELOCITY)
+            {
+                dir.y = rb.velocity.y;
+                rb.velocity = dir;
+            }
+            else
+            {
+                dir.y = 0;
+                rb.AddForce(dir * 10, ForceMode.Acceleration);
+            }
         }
         else
         {
-            dir.y = 0;
-            rb.AddForce(dir * 10, ForceMode.Acceleration);
+            currentSpeed = 0;
         }
     }
     void ForceTorrent()
@@ -227,6 +245,20 @@ public class PlayerController : MonoBehaviour
         canMove = true;
     }
 
+    public void ChangeTypeofMovement(MovementMode _movementMode,                                   
+                                    bool _resetToDefault = false,
+                                    float timeToDefault = .5f)
+    {
+        movementMode = _movementMode;
+        if(_resetToDefault)
+            StartCoroutine(ChangeTypeofMovementCoroutine(timeToDefault));
+    }
+
+    IEnumerator ChangeTypeofMovementCoroutine(float timeToDefault)
+    {
+        yield return new WaitForSeconds(timeToDefault);
+        movementMode = MovementMode.VELOCITY;
+    }
     #endregion Main movement functions
 
     #region Dash functions
@@ -242,10 +274,10 @@ public class PlayerController : MonoBehaviour
 
     public void HandleAttack()
     {
-        if (canAttack)
+        if (canAttack && canMove && Time.time > timeToAttack)
         {
+            timeToAttackTimer = Time.time + timeToAttack;
             noOfClicks++;
-            
         }
 
         if (noOfClicks == 1)
@@ -299,13 +331,13 @@ public class PlayerController : MonoBehaviour
     void AddForceForward()
     {
         movementMode = MovementMode.ADD_FORCE;
-        rb.AddForce(transform.forward * forceForward, ForceMode.Force);
+        rb.AddForce(CamDirection() * forceForward, ForceMode.Force);
         rb.AddForce(Vector3.up * forceUp, ForceMode.Force);
     }
-
+    //Se ejecuta en los eventos de animacion
     private void Attack()
     {
-        Collider[] colliders = Physics.OverlapBox(pivotAttack.position, sizeCubeAttack, Quaternion.identity);
+        Collider[] colliders = Physics.OverlapBox(pivotAttack.position, sizeCubeAttack, Quaternion.identity, attackLayerMask);
         foreach (Collider collider in colliders)
         {
             if (collider.TryGetComponent(out Health _health))
@@ -314,6 +346,8 @@ public class PlayerController : MonoBehaviour
                 {
                     _health.DoDamage(damage);
                 }
+
+                print(collider.tag);
             }
         }
     }
@@ -339,7 +373,8 @@ public class PlayerController : MonoBehaviour
 
             animator.SetBool("isSwiming", true);
             
-            Instantiate(splashParticle, transform.position, splashParticle.transform.rotation);
+            if(splashParticle)
+                Instantiate(splashParticle, transform.position, splashParticle.transform.rotation);
 
             rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
 
@@ -355,7 +390,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnOutSwiming(Collider other)
     {
-        print("Ha salido del agua");
         if (other.CompareTag("Water"))
         {
             currentTorrentDirection = Vector3.zero;
@@ -403,28 +437,30 @@ public class PlayerController : MonoBehaviour
 
     public void OpenUmbrellaManager(bool _value)
     {
-        isUmbrellaOpen = _value;
-        brelloOpenManager.SetOpen(isUmbrellaOpen);
-      
-        rb.useGravity = !_value;
+        if (canGlide && canMove)
+        {
+            isUmbrellaOpen = _value;
+            brelloOpenManager.SetOpen(isUmbrellaOpen);
 
-        //Audio de apertura de paraguas
-        if (_value && !isSwimming)
-        {
-            playerAudio.PlayOpen();
-        }
-        else if(!_value && !isSwimming)
-        {
-            playerAudio.PlayClose();
-            isGlidePlaying = false;
-            playerAudio.StopGlide();
-        }
-        else if(isGlidePlaying && isSwimming)
-        {
-            isGlidePlaying = false;
-            playerAudio.StopGlide();
-        }
-        
+            rb.useGravity = !_value;
+
+            //Audio de apertura de paraguas
+            if (_value && !isSwimming)
+            {
+                playerAudio.PlayOpen();
+            }
+            else if (!_value && !isSwimming)
+            {
+                playerAudio.PlayClose();
+                isGlidePlaying = false;
+                playerAudio.StopGlide();
+            }
+            else if (isGlidePlaying && isSwimming)
+            {
+                isGlidePlaying = false;
+                playerAudio.StopGlide();
+            }
+        } 
     }
 
     private void OnTriggerEnter(Collider other)
@@ -492,7 +528,6 @@ public class PlayerController : MonoBehaviour
         isGlidingHash = Animator.StringToHash("isGliding");
         isGroundedHash = Animator.StringToHash("isGrounded");
         speedHash = Animator.StringToHash("speed");
-        attackHash = Animator.StringToHash("attack");
         fallSpeedHash = Animator.StringToHash("fallSpeed");
     }
 
