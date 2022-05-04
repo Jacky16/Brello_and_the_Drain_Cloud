@@ -40,6 +40,8 @@ public class PsTom : MonoBehaviour
     [SerializeField] float speedAssault;
     [SerializeField] float accelerationAssault;
     [SerializeField] LayerMask layerMakAttackAssault;
+    [SerializeField] Vector2 impulseAttackAssaultToPlayer;
+
     Vector3 posToGo;
     bool isDistanceToGo;
 
@@ -54,13 +56,14 @@ public class PsTom : MonoBehaviour
     [Header("Attack Jump Settings")]
     [SerializeField] float jumpAttackPower;
     [SerializeField] float jumpAttackDuration;
-    [SerializeField] Vector2 impulseForceOnPlayer;
+    [SerializeField] Vector2 impulseAttackJumpToPlayer;
     [SerializeField] Transform targeterTransform;
 
     [Header("Settings Punch Attack")]
     [SerializeField] float punchAttackTime = 1.5f;
     [SerializeField] Vector3 sizeCubePunchAttack;
     [SerializeField] Transform pivotCubeAttack;
+    [SerializeField] Vector2 impulseAttackPunchToPlayer;
     bool isAttackingPunchAttack;
 
     [Header("Boiler Settings")]
@@ -237,7 +240,9 @@ public class PsTom : MonoBehaviour
             {
                 _bh.DoDamage(damage);
                 isAttackingPunchAttack = false;
-                player.GetComponent<Rigidbody>().AddForce(transform.right.normalized * impulseForceOnPlayer.x + Vector3.up * impulseForceOnPlayer.y, ForceMode.Force);
+                player.GetComponent<Rigidbody>().AddForce(-transform.localPosition.normalized * impulseAttackJumpToPlayer.x + Vector3.up * impulseAttackJumpToPlayer.y, ForceMode.Impulse);
+                player.GetComponent<PlayerController>().ChangeTypeofMovement(PlayerController.MovementMode.ADD_FORCE, true);
+                
                 Debug.Log("Ataque al player por el puño");
             }
         }       
@@ -282,7 +287,11 @@ public class PsTom : MonoBehaviour
             //On complete
             sequence.AppendCallback(() =>
             {
-                AddImpulseToPlayer();
+                if (CheckIfPlayerInside())
+                {
+                    AddImpulseToPlayer(impulseAttackJumpToPlayer);
+                    player.GetComponent<BrelloHealth>().DoDamage(damage);
+                }
                 Stune(true);
                 targeterTransform.gameObject.SetActive(false);
 
@@ -317,18 +326,13 @@ public class PsTom : MonoBehaviour
         }
         return false;
     }
-    void AddImpulseToPlayer()
+    void AddImpulseToPlayer( Vector2 _force)
     {
         anim.SetBool("IsFalling", false);
-        
-        if (CheckIfPlayerInside())
-        {
-            player.GetComponent<BrelloHealth>().DoDamage(damage);
-            
-            player.GetComponent<PlayerController>().ChangeTypeofMovement(PlayerController.MovementMode.ADD_FORCE,true);
-            
-            player.GetComponent<Rigidbody>().AddForce(transform.right.normalized * impulseForceOnPlayer.x + Vector3.up * impulseForceOnPlayer.y, ForceMode.Force);
-        }
+               
+        player.GetComponent<PlayerController>().ChangeTypeofMovement(PlayerController.MovementMode.ADD_FORCE, true);
+
+        player.GetComponent<Rigidbody>().AddForce(transform.right.normalized * _force.x + Vector3.up * _force.y, ForceMode.Impulse);
     }
 
     #endregion
@@ -387,7 +391,8 @@ public class PsTom : MonoBehaviour
         
         if (isAssaltingPlayer && CheckCollision("Player"))
         {
-            AddImpulseToPlayer();
+            AddImpulseToPlayer(impulseAttackAssaultToPlayer);
+            player.GetComponent<BrelloHealth>().DoDamage(damage);
         }
         else if (isDistanceToGo && isAssaltingPlayer)
         {
