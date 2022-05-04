@@ -386,7 +386,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnOutSwiming(Collider other)
     {
-        print("Ha salido del agua");
         if (other.CompareTag("Water"))
         {
             currentTorrentDirection = Vector3.zero;
