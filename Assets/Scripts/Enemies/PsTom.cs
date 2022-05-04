@@ -54,7 +54,7 @@ public class PsTom : MonoBehaviour
     [Header("Attack Jump Settings")]
     [SerializeField] float jumpAttackPower;
     [SerializeField] float jumpAttackDuration;
-    [SerializeField] float impulseForceOnPlayer = 150;
+    [SerializeField] Vector2 impulseForceOnPlayer;
     [SerializeField] Transform targeterTransform;
 
     [Header("Settings Punch Attack")]
@@ -227,7 +227,7 @@ public class PsTom : MonoBehaviour
     }
     
    
-        //Se ejecuta en la animacion de punch 
+    //Se ejecuta en la animacion de punch 
     void AttackPunchCheck()
     {
         Collider[] colliders = Physics.OverlapBox(pivotCubeAttack.position, sizeCubePunchAttack, Quaternion.identity);
@@ -237,6 +237,7 @@ public class PsTom : MonoBehaviour
             {
                 _bh.DoDamage(damage);
                 isAttackingPunchAttack = false;
+                player.GetComponent<Rigidbody>().AddForce(transform.right.normalized * impulseForceOnPlayer.x + Vector3.up * impulseForceOnPlayer.y, ForceMode.Force);
                 Debug.Log("Ataque al player por el puño");
             }
         }       
@@ -323,7 +324,10 @@ public class PsTom : MonoBehaviour
         if (CheckIfPlayerInside())
         {
             player.GetComponent<BrelloHealth>().DoDamage(damage);
-            player.GetComponent<Rigidbody>().AddForce(transform.right.normalized * impulseForceOnPlayer, ForceMode.Force);
+            
+            player.GetComponent<PlayerController>().ChangeTypeofMovement(PlayerController.MovementMode.ADD_FORCE,true);
+            
+            player.GetComponent<Rigidbody>().AddForce(transform.right.normalized * impulseForceOnPlayer.x + Vector3.up * impulseForceOnPlayer.y, ForceMode.Force);
         }
     }
 

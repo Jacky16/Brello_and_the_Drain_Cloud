@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.25182378, g: 0.4457171, b: 0.42087525, a: 1}
+  m_IndirectSpecularColor: {r: 0.2590768, g: 0.45660496, b: 0.43039557, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4460,7 +4460,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 51be4a1a7a7b17c48b5b984438632d33, type: 3}
     - target: {fileID: 4582061109217783566, guid: c11abcb3602085143ae8e6ff8862ee23, type: 3}
       propertyPath: damage
-      value: 5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4582061109217783566, guid: c11abcb3602085143ae8e6ff8862ee23, type: 3}
       propertyPath: sizeCubeAttack.x
@@ -16026,15 +16026,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2044767900268927030, guid: ae2f6c40c4f0c5d43ad9bc7805a033f3, type: 3}
       propertyPath: currentPhase
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2044767900268927030, guid: ae2f6c40c4f0c5d43ad9bc7805a033f3, type: 3}
+      propertyPath: speedAssault
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2044767900268927030, guid: ae2f6c40c4f0c5d43ad9bc7805a033f3, type: 3}
       propertyPath: targeterTransform
       value: 
       objectReference: {fileID: 488696609}
     - target: {fileID: 2044767900268927030, guid: ae2f6c40c4f0c5d43ad9bc7805a033f3, type: 3}
+      propertyPath: jumpAttackDuration
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2044767900268927030, guid: ae2f6c40c4f0c5d43ad9bc7805a033f3, type: 3}
+      propertyPath: accelerationAssault
+      value: 900
+      objectReference: {fileID: 0}
+    - target: {fileID: 2044767900268927030, guid: ae2f6c40c4f0c5d43ad9bc7805a033f3, type: 3}
       propertyPath: impulseForceOnPlayer
-      value: 25
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 2044767900268927030, guid: ae2f6c40c4f0c5d43ad9bc7805a033f3, type: 3}
       propertyPath: boilers.Array.data[0]
@@ -16044,6 +16056,14 @@ PrefabInstance:
       propertyPath: boilers.Array.data[1]
       value: 
       objectReference: {fileID: 1604923130}
+    - target: {fileID: 2044767900268927030, guid: ae2f6c40c4f0c5d43ad9bc7805a033f3, type: 3}
+      propertyPath: impulseForceOnPlayer.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 2044767900268927030, guid: ae2f6c40c4f0c5d43ad9bc7805a033f3, type: 3}
+      propertyPath: impulseForceOnPlayer.y
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 2044767900268927031, guid: ae2f6c40c4f0c5d43ad9bc7805a033f3, type: 3}
       propertyPath: maxLife
       value: 100
