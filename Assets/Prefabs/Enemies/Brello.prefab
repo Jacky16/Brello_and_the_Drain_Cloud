@@ -465,7 +465,7 @@ MonoBehaviour:
   pivotAttack: {fileID: 6434270805536950885}
   sizeCubeAttack: {x: 1.5, y: 1.5, z: 1.5}
   damage: 5
-  forceForward: 1000
+  forceForward: 250
   forceUp: 1000
   timeToAttack: 0.25
   canAttack: 0
@@ -507,7 +507,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 84428bc8de8e69d47a054c78c45a01a1, type: 3}
   - {fileID: 21300000, guid: 28c6de195e5e48441ad305ee44aec1cb, type: 3}
   - {fileID: 21300000, guid: 437121af106e63f4e8ae652424e38a8f, type: 3}
-  currentImage: {fileID: 0}
+  currentHealthImage: {fileID: 0}
   timeInHUD: 10
   damageParticles: {fileID: 0}
   spawnPoint: {fileID: 0}

@@ -115,6 +115,7 @@ public class PsTom : MonoBehaviour
         JumpReturn();
         yield return new WaitForSeconds(jumpReturnDuration + 0.5f);
         AttackPunch();
+        yield return new WaitForSeconds(3);    
         for (int i = 0; i < 2; i++)
         {
             AttackTrowTrash();
@@ -123,7 +124,6 @@ public class PsTom : MonoBehaviour
       
         //Pasar a la fase 3
         yield return new WaitForSeconds(timeTrashAattack);
-        yield return new WaitForSeconds(2);
         currentPhase = Phases.PHASE_3;
 
     }
@@ -453,10 +453,11 @@ public class PsTom : MonoBehaviour
             currentPhase = Phases.PHASE_1;
         }
 
-        if (_lifeBoss <= 66 && _lifeBoss > 33)
+        if (_lifeBoss <= 66 && _lifeBoss > 33 && !isInPhase2)
         {
             currentPhase = Phases.PHASE_2;
-        }     
+        }
+        
         else if (_lifeBoss <= 33 && currentPhase != Phases.PHASE_5 )
         {
             currentPhase = Phases.PHASE_4;
