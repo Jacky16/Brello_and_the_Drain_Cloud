@@ -415,7 +415,7 @@ public class PsTom : MonoBehaviour
     {
         //Raycast forward
         RaycastHit hit;
-       
+        Vector3 pos;
         if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, layerMakAttackAssault))
         {
             return hit.point;
@@ -423,7 +423,7 @@ public class PsTom : MonoBehaviour
         else
         {
             return player.transform.position;
-        }
+        }  
     }
     #endregion
 

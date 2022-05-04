@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.11965108, g: 0.23277842, b: 0.2261951, a: 1}
+  m_IndirectSpecularColor: {r: 0.11226168, g: 0.2188395, b: 0.21250547, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 7c99d406611f6ee419292d8f88380207, type: 2}
   m_LightingSettings: {fileID: 740113167}
 --- !u!196 &4
 NavMeshSettings:
@@ -699,8 +699,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 448065210}
-  m_LocalRotation: {x: -0.059402026, y: 0.9303429, z: -0.17427087, w: -0.31711704}
-  m_LocalPosition: {x: 17.979998, y: 10.070001, z: -9.699999}
+  m_LocalRotation: {x: -0.056034118, y: 0.93506616, z: -0.17182249, w: -0.30494037}
+  m_LocalPosition: {x: 17.549778, y: 10.070001, z: -8.487165}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1634990175}
@@ -1071,7 +1071,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 635236088}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WallColliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1093,6 +1093,7 @@ Transform:
   - {fileID: 1908298120}
   - {fileID: 1437635743}
   - {fileID: 1979532766}
+  - {fileID: 1935326502}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1187,7 +1188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 702275740}
   - component: {fileID: 702275741}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WallCollider_01
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -2944,7 +2945,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1437635743}
   - component: {fileID: 1437635744}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WallCollider_03
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -5125,7 +5126,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1908298120}
   - component: {fileID: 1908298121}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WallCollider_02
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -5159,6 +5160,50 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 16.139423, z: 32.042416}
   m_Center: {x: 0, y: 7.5697117, z: 4.9234333}
+--- !u!1 &1935326501
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1935326502}
+  - component: {fileID: 1935326503}
+  m_Layer: 3
+  m_Name: WallCollider_03 (1)
+  m_TagString: Wall
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1935326502
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935326501}
+  m_LocalRotation: {x: 0.50000006, y: -0.5, z: -0.49999994, w: 0.5}
+  m_LocalPosition: {x: -293.1, y: 555.21, z: 340.25}
+  m_LocalScale: {x: 1, y: 1.7516, z: 1.1409}
+  m_Children: []
+  m_Father: {fileID: 635236088}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: -90}
+--- !u!65 &1935326503
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935326501}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 16.139423, z: 45.494114}
+  m_Center: {x: -1.24246045e-14, y: 7.5697117, z: 4.874303}
 --- !u!1 &1965701671
 GameObject:
   m_ObjectHideFlags: 0
@@ -5199,7 +5244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1979532766}
   - component: {fileID: 1979532767}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WallCollider_04
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -16235,6 +16280,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 79.710175
       objectReference: {fileID: 0}
+    - target: {fileID: 3365600342144092031, guid: ae2f6c40c4f0c5d43ad9bc7805a033f3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3369029853022063893, guid: ae2f6c40c4f0c5d43ad9bc7805a033f3, type: 3}
+      propertyPath: m_Height
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3369029853022063893, guid: ae2f6c40c4f0c5d43ad9bc7805a033f3, type: 3}
+      propertyPath: m_AutoTraverseOffMeshLink
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3802442611541293208, guid: ae2f6c40c4f0c5d43ad9bc7805a033f3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -29.866575
@@ -16501,23 +16558,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8415212583457464693, guid: ae2f6c40c4f0c5d43ad9bc7805a033f3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -25.75
+      value: -24.86
       objectReference: {fileID: 0}
     - target: {fileID: 8415212583457464693, guid: ae2f6c40c4f0c5d43ad9bc7805a033f3, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.999912
       objectReference: {fileID: 0}
     - target: {fileID: 8415212583457464693, guid: ae2f6c40c4f0c5d43ad9bc7805a033f3, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8415212583457464693, guid: ae2f6c40c4f0c5d43ad9bc7805a033f3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.013267882
       objectReference: {fileID: 0}
     - target: {fileID: 8415212583457464693, guid: ae2f6c40c4f0c5d43ad9bc7805a033f3, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8415212583457464693, guid: ae2f6c40c4f0c5d43ad9bc7805a033f3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -16525,7 +16582,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8415212583457464693, guid: ae2f6c40c4f0c5d43ad9bc7805a033f3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -1.52
       objectReference: {fileID: 0}
     - target: {fileID: 8415212583457464693, guid: ae2f6c40c4f0c5d43ad9bc7805a033f3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -16547,7 +16604,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: PsTom
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2044767900268927027, guid: ae2f6c40c4f0c5d43ad9bc7805a033f3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ae2f6c40c4f0c5d43ad9bc7805a033f3, type: 3}
 --- !u!4 &7201714267579911955
 Transform:
