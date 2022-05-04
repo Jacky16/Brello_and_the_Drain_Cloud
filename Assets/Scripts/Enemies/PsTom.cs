@@ -476,7 +476,6 @@ public class PsTom : MonoBehaviour
             {
                 return col;
             }
-            Debug.Log(col.tag);
         }
         return null;
     }
