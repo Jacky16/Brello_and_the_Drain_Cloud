@@ -31,7 +31,9 @@ public class DialogueTutorial : MonoBehaviour
     private bool reloadingDialogue;
     [SerializeField] bool unlocksGlide;
     [SerializeField] bool unlocksAttack;
+    [SerializeField] bool isCinematicDialogue;
     [SerializeField] GameObject particles;
+
     //Variables del player
     PlayerController player;
     private PlayerInput playerInput;
@@ -57,7 +59,9 @@ public class DialogueTutorial : MonoBehaviour
         player.canGlide = false;
         player.canAttack = false;
         dialogueGroup = GameObject.FindGameObjectWithTag("DialogueGroup").GetComponent<CanvasGroup>();
-        dialogueText = dialogueGroup.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        if (!isCinematicDialogue) { 
+            dialogueText = dialogueGroup.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        }
         dialogueNameBackColor = dialogueGroup.transform.GetChild(1).GetComponent<Image>();
         dialogueName = dialogueGroup.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
     }
@@ -73,7 +77,7 @@ public class DialogueTutorial : MonoBehaviour
     }
     private void OnInteractuable(InputAction.CallbackContext ctx)
     {
-        if (player)
+        if (player && !isCinematicDialogue)
         {
             if (dialogueText.maxVisibleCharacters == displayText.Length && !reloadingDialogue && inDialogue && !loadingDialogue)
             {
@@ -341,6 +345,13 @@ public class DialogueTutorial : MonoBehaviour
     private void OnEnable()
     {
         playerInput.Enable();
+
+        if (isCinematicDialogue)
+        {
+            dialogueText = GameObject.FindGameObjectWithTag("CinematicText").GetComponent<TextMeshProUGUI>();
+            inDialogue = true;
+            StartDialogue();
+        }
     }
 
     private void OnDisable()
