@@ -64,12 +64,12 @@ public class SteamlingAI : EnemyAI
         agent.destination = transform.position;
 
         animator.SetTrigger("Attack");
-        AkSoundEngine.PostEvent("Preparing_Charge_Steamling", WwiseManager.instance.gameObject);
+        //AkSoundEngine.PostEvent("Preparing_Charge_Steamling", WwiseManager.instance.gameObject);
 
         yield return new WaitForSeconds(timeBeforeAttacking);
 
         animator.SetBool("Charge", true);
-        AkSoundEngine.PostEvent("Charging_Steamling", WwiseManager.instance.gameObject);
+        //AkSoundEngine.PostEvent("Charging_Steamling", WwiseManager.instance.gameObject);
 
         currentDamage = dashDamage;
 
@@ -87,6 +87,10 @@ public class SteamlingAI : EnemyAI
         Gizmos.DrawRay(transform.position, transform.forward * 10);
     }
 
+    public void SetBigRadius()
+    {
+        detectionRadius = 500;
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.gameObject.TryGetComponent(out BrelloHealth playerHealth))
