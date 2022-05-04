@@ -13,6 +13,7 @@ public class PsTomHealth : Health
     [SerializeField] PlayableDirector timeline;
     [SerializeField] Image healthBar;
     [SerializeField] GameObject[] gameObjectsToDisable;
+    [SerializeField] Transform centerMapPosition;
 
     private void Awake()
     {
@@ -31,6 +32,8 @@ public class PsTomHealth : Health
     protected override void onDeath()
     {
         base.onDeath();
+        transform.position = new Vector3(centerMapPosition.position.x, transform.position.y, centerMapPosition.position.z);
+        transform.localRotation = Quaternion.Euler(0, 0, 0);
         timeline.Play();
         
         DisableAllObjects();
