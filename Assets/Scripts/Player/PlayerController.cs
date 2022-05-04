@@ -73,7 +73,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Vector3 sizeCubeAttack;
     [SerializeField] int damage;
     [SerializeField] float forceForward = 1000;
-    [SerializeField] float forceUp= 1000;
+    [SerializeField] float forceUp = 1000;
+    [SerializeField] float timeToAttack = .25f;
+    float timeToAttackTimer;
 
     int noOfClicks = 0;
     const string nameFirstAttack = "Armature_Idle_head";
@@ -257,10 +259,10 @@ public class PlayerController : MonoBehaviour
 
     public void HandleAttack()
     {
-        if (canAttack && canMove)
+        if (canAttack && canMove && Time.time > timeToAttack)
         {
+            timeToAttackTimer = Time.time + timeToAttack;
             noOfClicks++;
-            
         }
 
         if (noOfClicks == 1)
@@ -355,7 +357,8 @@ public class PlayerController : MonoBehaviour
 
             animator.SetBool("isSwiming", true);
             
-            Instantiate(splashParticle, transform.position, splashParticle.transform.rotation);
+            if(splashParticle)
+                Instantiate(splashParticle, transform.position, splashParticle.transform.rotation);
 
             rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
 
