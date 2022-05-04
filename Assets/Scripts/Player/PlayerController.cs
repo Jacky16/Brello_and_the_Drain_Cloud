@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,7 +13,6 @@ public class PlayerController : MonoBehaviour
 
 
     //Variables para almacenar los ID's de las animaciones
-    private int attackHash;
     private int isGlidingHash;
     private int isGroundedHash;
     private int speedHash;
@@ -30,14 +30,13 @@ public class PlayerController : MonoBehaviour
     private bool isSwimming;
     private bool isGlading;
     private bool isJumping;
-    public bool canGlide;
 
     [Header("Movement Settings")]
     [SerializeField] private float runSpeed = 20;
     [SerializeField] private float walkSpeed = 10;
     [SerializeField] private float acceleration = 1;
     [SerializeField] private float rotationSpeed = 15f;
-    [SerializeField] private enum MovementMode { ADD_FORCE,VELOCITY}
+    public enum MovementMode { ADD_FORCE,VELOCITY}
     [SerializeField] private MovementMode movementMode = MovementMode.VELOCITY;
     
     bool isUmbrellaOpen;
@@ -48,6 +47,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float gladingSpeed = 10;
     [SerializeField] private float gladingGravity = 100;
     [SerializeField] private float velocityToGlade = 3;
+    public bool canGlide;
 
 
     [Header("Ground Checker settings")]
@@ -69,6 +69,7 @@ public class PlayerController : MonoBehaviour
     private Tween tweenSwiming;
 
     [Header("Attack Settings")]
+    [SerializeField] LayerMask attackLayerMask;
     [SerializeField] Transform pivotAttack;
     [SerializeField] Vector3 sizeCubeAttack;
     [SerializeField] int damage;
@@ -76,12 +77,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float forceUp = 1000;
     [SerializeField] float timeToAttack = .25f;
     float timeToAttackTimer;
+    public bool canAttack;
+
 
     int noOfClicks = 0;
     const string nameFirstAttack = "Armature_Idle_head";
     const string nameSecondAttack= "Armature_head_patada";
     const string nameThirdAttack = "Armature_spin";
-    public bool canAttack;
 
     //Audio variables
     private bool isGlidePlaying = false;
@@ -244,6 +246,20 @@ public class PlayerController : MonoBehaviour
         canMove = true;
     }
 
+    public void ChangeTypeofMovement(MovementMode _movementMode,                                   
+                                    bool _resetToDefault = false,
+                                    float timeToDefault = .5f)
+    {
+        movementMode = _movementMode;
+        if(_resetToDefault)
+            StartCoroutine(ChangeTypeofMovementCoroutine(timeToDefault));
+    }
+
+    IEnumerator ChangeTypeofMovementCoroutine(float timeToDefault)
+    {
+        yield return new WaitForSeconds(timeToDefault);
+        movementMode = MovementMode.VELOCITY;
+    }
     #endregion Main movement functions
 
     #region Dash functions
@@ -316,13 +332,13 @@ public class PlayerController : MonoBehaviour
     void AddForceForward()
     {
         movementMode = MovementMode.ADD_FORCE;
-        rb.AddForce(transform.forward * forceForward, ForceMode.Force);
+        rb.AddForce(CamDirection() * forceForward, ForceMode.Force);
         rb.AddForce(Vector3.up * forceUp, ForceMode.Force);
     }
-
+    //Se ejecuta en los eventos de animacion
     private void Attack()
     {
-        Collider[] colliders = Physics.OverlapBox(pivotAttack.position, sizeCubeAttack, Quaternion.identity);
+        Collider[] colliders = Physics.OverlapBox(pivotAttack.position, sizeCubeAttack, Quaternion.identity,attackLayerMask);
         foreach (Collider collider in colliders)
         {
             if (collider.TryGetComponent(out Health _health))
@@ -514,7 +530,6 @@ public class PlayerController : MonoBehaviour
         isGlidingHash = Animator.StringToHash("isGliding");
         isGroundedHash = Animator.StringToHash("isGrounded");
         speedHash = Animator.StringToHash("speed");
-        attackHash = Animator.StringToHash("attack");
         fallSpeedHash = Animator.StringToHash("fallSpeed");
     }
 
