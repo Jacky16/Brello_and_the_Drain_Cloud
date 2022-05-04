@@ -159,7 +159,6 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            axis = Vector2.zero;
             currentSpeed = 0;
         }
     }

@@ -306,7 +306,7 @@ public class DialogueTutorial : MonoBehaviour
         if (other.TryGetComponent(out PlayerController playerController))
         {
             player = playerController;
-
+            playerCam.GetComponent<CinemachineVirtualCamera>().LookAt = character.transform;
             loadingDialogue = true;
            // CameraHandler(false);
             DialogueCanvasHandler(true);
