@@ -313,13 +313,6 @@ public class DialogueTutorial : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.TryGetComponent(out PlayerController playerController))
-        {
-            player = null;
-        }
-    }
     #endregion
 
     #region CustomTagHandlers
