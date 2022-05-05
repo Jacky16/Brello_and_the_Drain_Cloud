@@ -34,6 +34,7 @@ public sealed class PyraAI : MonoBehaviour
     [SerializeField] private LayerMask rainMask;
 
     [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private LayerMask whatIsWater;
 
     //Variables de objetos detectados.
     [SerializeField] private List<Interactable> detectedObjects;
@@ -96,9 +97,9 @@ public sealed class PyraAI : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Physics.Raycast(player.transform.position, -player.transform.up, out RaycastHit hit, 1000f, whatIsGround);
+        Physics.Raycast(player.transform.position, -player.transform.up, out RaycastHit hit, 1000f, whatIsGround | whatIsWater);
 
-        playerIsHighEnough = Vector3.Distance(player.transform.position, hit.point) >= 5f ? true : false;
+        playerIsHighEnough = Vector3.Distance(player.transform.position, hit.point) >= 10f ? true : false;
 
         if(Physics.CheckSphere(transform.position, detectionRadius, interactable))
         {
@@ -138,7 +139,8 @@ public sealed class PyraAI : MonoBehaviour
             Debug.Log("No estoy en combate!!");
         }
 
-        if(!player.IsSwimming() && player.IsGlading() && playerIsHighEnough && !pyraIsGliding 
+        //Cambiar el isGrounded por IsGlading si se quiere que se convierta en bolita solo cuando brello planee
+        if(!player.IsSwimming() && !player.IsGrounded() && playerIsHighEnough && !pyraIsGliding 
             && Vector3.Distance(player.transform.position, transform.position) <= minDistToTP)
         {
             pyraIsGliding = true;

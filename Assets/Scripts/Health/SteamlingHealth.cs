@@ -19,7 +19,7 @@ public sealed class SteamlingHealth : Health
     // Update is called once per frame
     protected override void onDamage()
     {   
-        if(currLife == 1)
+        if(currLife <= maxLife/2)
         {
             //Si tiene animacion de daño
             //animator.SetTrigger("Damage");

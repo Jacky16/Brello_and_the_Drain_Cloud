@@ -64,7 +64,7 @@ public class SteamlingAI : EnemyAI
         agent.destination = transform.position;
 
         animator.SetTrigger("Attack");
-        AkSoundEngine.PostEvent("Preparing_Charge_Steamling", WwiseManager.instance.gameObject);
+        //AkSoundEngine.PostEvent("Preparing_Charge_Steamling", WwiseManager.instance.gameObject);
 
         yield return new WaitForSeconds(timeBeforeAttacking);
 

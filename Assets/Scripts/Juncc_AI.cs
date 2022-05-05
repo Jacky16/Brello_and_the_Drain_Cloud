@@ -34,7 +34,6 @@ public class Juncc_AI : EnemyAI
             }
         }
 
-        Debug.LogError("canAttack: " + canAttack);
         StateChecker();
     }
 
