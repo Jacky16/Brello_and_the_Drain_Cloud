@@ -15,12 +15,17 @@ public class Crystal : MonoBehaviour
 
     private bool canBeInteracted = true;
 
-    private ParticleSystem particle;
+    [SerializeField] private ParticleSystem particleShiny;
+    [SerializeField] private ParticleSystem particleActivated;
 
     private void Awake()
     {
         playerInput = new PlayerInput();
         playerInput.CharacterControls.Interactuable.started += OnInteract;
+
+        particleShiny.Stop();
+        particleActivated.Stop();
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -32,7 +37,7 @@ public class Crystal : MonoBehaviour
         }
 
         if (other.CompareTag("Pyra") && isShiny){
-            //particle.Play();
+            particleShiny.Play();
             Debug.Log("Shine shine");
         }
 
@@ -46,7 +51,7 @@ public class Crystal : MonoBehaviour
         }
 
         if (other.CompareTag("Pyra")){
-            //particle.Stop();
+            particleShiny.Stop();
         }
     }
 
@@ -54,7 +59,9 @@ public class Crystal : MonoBehaviour
     {
         canBeInteracted = false;
 
-        yield return new WaitForSeconds(4.25f);
+        particleActivated.Stop();
+
+        yield return new WaitForSeconds(1.25f);
 
 
         canBeInteracted = true;
@@ -67,7 +74,7 @@ public class Crystal : MonoBehaviour
         {
             if (isShiny)
             {
-                Debug.Log("Interactuado");
+                particleActivated.Play();
                 manager.AddGoodOne();
             }
             else
