@@ -4,8 +4,8 @@ using DG.Tweening;
 
 public class Dialogue_AudioController : MonoBehaviour
 {
-    private Dialogue_NPC villager;
-    private TMP_Dialogue animatedText;
+    //private Dialogue_NPC villager;
+    //private TMP_Dialogue animatedText;
     public Transform mouthQuad;
 
     public AudioClip[] voices;
@@ -19,22 +19,24 @@ public class Dialogue_AudioController : MonoBehaviour
     [Space]
     public AudioClip sparkleClip;
     public AudioClip rainClip;
+    public AudioClip angryClip;
+    public AudioClip doubtClip;
 
     // Start is called before the first frame update
     void Start()
     {
-        villager = GetComponent<Dialogue_NPC>();
+        //villager = GetComponent<Dialogue_NPC>();
 
-        animatedText = Dialogue_Manager.instance.animatedText;
+        //animatedText = Dialogue_Manager.instance.animatedText;
 
-        animatedText.onTextReveal.AddListener((newChar) => ReproduceSound(newChar));
+        //animatedText.onTextReveal.AddListener((newChar) => ReproduceSound(newChar));
     }
 
     public void ReproduceSound(char c)
     {
 
-        if (villager != Dialogue_Manager.instance.currentVillager)
-            return;
+        //if (villager != Dialogue_Manager.instance.currentVillager)
+        //    return;
 
         if (char.IsPunctuation(c) && !punctuationSource.isPlaying)
         {
