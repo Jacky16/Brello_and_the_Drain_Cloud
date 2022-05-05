@@ -268,7 +268,14 @@
 					</ChildrenList>
 				</Folder>
 				<Folder Name="UI" ID="{C938CFD4-553C-4594-B09F-F15DDF581CCC}" ShortID="725400021"/>
-				<Folder Name="PSTom" ID="{BC05494B-2DDF-4D1F-9C71-ACC6E552739F}" ShortID="252902369"/>
+				<Folder Name="PSTom" ID="{BC05494B-2DDF-4D1F-9C71-ACC6E552739F}" ShortID="252902369">
+					<ChildrenList>
+						<Event Name="Hit_PSTom" ID="{D8D0BEDE-045F-4088-83A4-2AB458D06DE4}"/>
+						<Event Name="Crash_PSTom" ID="{F6B965A4-7E08-4FDB-A524-34DCE73F99E8}"/>
+						<Event Name="Angry_PSTom" ID="{70C96F46-B1D3-461A-869E-6535DD5B5E69}"/>
+						<Event Name="Punch_PSTom" ID="{55D20AF4-B56C-41F6-B0B8-B227A03D7BFA}"/>
+					</ChildrenList>
+				</Folder>
 				<Event Name="Dropply" ID="{009E296F-D522-4067-8F90-A6FD00C36C96}">
 					<ChildrenList>
 						<Action Name="" ID="{3F944DFF-C827-40DE-9FE7-5E36A9A3CB1F}" ShortID="338437706">
