@@ -9166,7 +9166,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1494519317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9341,7 +9341,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1524914857
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10444,7 +10444,7 @@ GameObject:
   - component: {fileID: 1673515653}
   - component: {fileID: 1673515652}
   m_Layer: 0
-  m_Name: MenuManager
+  m_Name: OptionsManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10470,8 +10470,6 @@ MonoBehaviour:
   sensitivityYSlider: {fileID: 1189295310}
   sensitivityXInput: {fileID: 217469600}
   sensitivityYInput: {fileID: 1671075060}
-  soundMixer: {fileID: 0}
-  musicMixer: {fileID: 0}
   stopMusic: {fileID: 0}
   MenuAnimManager: {fileID: 1106977426}
 --- !u!224 &1673515651

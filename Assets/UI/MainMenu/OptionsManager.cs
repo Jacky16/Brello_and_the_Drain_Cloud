@@ -6,11 +6,11 @@ using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class MenuManager : MonoBehaviour
+public class OptionsManager : MonoBehaviour
 {
     bool invertedX = false;
     bool invertedY = true;
-    bool fullScreen = true;
+    
 
     [SerializeField] Slider musicSlider;
     [SerializeField] Slider soundSlider;
@@ -21,9 +21,6 @@ public class MenuManager : MonoBehaviour
     [SerializeField] Slider sensitivityYSlider;
     [SerializeField] TMP_InputField sensitivityXInput;
     [SerializeField] TMP_InputField sensitivityYInput;
-
-    [SerializeField] AudioMixer soundMixer;
-    [SerializeField] AudioMixer musicMixer;
 
     [SerializeField] const string soundTag = "SoundVol";
     [SerializeField] const string musicTag = "MusicVol";
@@ -36,47 +33,26 @@ public class MenuManager : MonoBehaviour
     [Header("MAIN MENU ANIMATIONS")]
 
     public GameObject MenuAnimManager;
-    Animator AnimManager;
+    Animator animManager;
+    PlayerCam playerCam;
+    private void Awake()
+    {
+        playerCam = GameObject.FindGameObjectWithTag("CamPlayer").GetComponent<PlayerCam>();
+        if (animManager)
+        {
+            animManager = MenuAnimManager.GetComponent<Animator>();
+        }
+    }
 
     private void Start()
     {
-        AnimManager = MenuAnimManager.GetComponent<Animator>();
-
-        AnimManager.SetBool("isIdle", true);
+        if (animManager)
+        {           
+            animManager.SetBool("isIdle", true);
+        }
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-    }
-
-    public void ButtonClick()
-    {
-        AnimManager.SetBool("isIdle", false);
-        AnimManager.SetBool("isComeback", false);
-        AnimManager.SetBool("isSelected", true);
-    }
-
-    public void OkButtonClick()
-    {
-        AnimManager.SetBool("isIdle", false);
-        AnimManager.SetBool("isSelected", false);
-        AnimManager.SetBool("isComeback", true);
-    }
-
-    public void SetInvertedXCamera()
-    {
-        invertedX = !invertedX;
-    }
-    public bool GetInvertedXCamera()
-    {
-        return invertedX;
-    }
-    public void SetInvertedYCamera()
-    {
-        invertedY = !invertedY;
-    }
-    public bool GetInvertedYCamera()
-    {
-        return invertedY;
     }
     public void StartGame()
     {
@@ -87,51 +63,39 @@ public class MenuManager : MonoBehaviour
     {
         Application.Quit();
     }
-    public void SetFullScreenBool()
+    public void ButtonClick()
     {
-        fullScreen = !fullScreen;
-        SetFullScreen(fullScreen);
+        animManager.SetBool("isIdle", false);
+        animManager.SetBool("isComeback", false);
+        animManager.SetBool("isSelected", true);
     }
-    private void SetFullScreen(bool value)
+    public void OkButtonClick()
     {
-        Screen.fullScreen = !value;
+        animManager.SetBool("isIdle", false);
+        animManager.SetBool("isSelected", false);
+        animManager.SetBool("isComeback", true);
     }
-    public bool GetFullScreen()
-    {
-        return Screen.fullScreen;
-    }
-    public void ChangeSensitivityXSlider()
-    {
-        PlayerPrefs.SetInt(sensXTag, (int)sensitivityXSlider.value);
-        sensitivityXInput.text = sensitivityXSlider.value.ToString();
-    }
-    public void ChangeSensitivityXInput()
-    {
-        if (float.TryParse(sensitivityXInput.text, out float sensitivityValue))
-        {
-            if (sensitivityValue > 150)
-            {
-                sensitivityValue = 150;
-                sensitivityXInput.text = "150";
-            }
-            else if(sensitivityValue < 100)
-            {
-                sensitivityValue = 100;
-                sensitivityXInput.text = "100";
-            }
 
-            sensitivityXSlider.value = sensitivityValue;
-            PlayerPrefs.SetFloat(sensXTag, sensitivityValue);
-        }
-    }
-    public void ChangeSensitivityYSlider()
+    #region Camera options
+    public void SetInvertedXCamera(bool _value)
     {
-        PlayerPrefs.SetFloat(sensYTag, sensitivityYSlider.value);
-        sensitivityYInput.text = ((float)Mathf.Round(sensitivityYSlider.value * 100f) / 100f).ToString();
+        playerCam.ChangeInvertX(_value);
     }
-    public void ChangeSensitivityYInput()
+    public void SetInvertedYCamera(bool _value)
     {
-        if (float.TryParse(sensitivityYInput.text, out float sensitivityValue))
+        playerCam.ChangeInvertY(_value);
+    }
+
+    //Y axis
+    public void ChangeSensitivityYSlider(float _value)
+    {
+        PlayerPrefs.SetFloat(sensYTag, _value);
+        sensitivityYInput.text = ((float)Mathf.Round(_value * 100f) / 100f).ToString();
+        playerCam.ChangeVelocityY(_value);
+    }
+    public void ChangeSensitivityYInput(string _value)
+    {
+        if (float.TryParse(_value, out float sensitivityValue))
         {
             if (sensitivityValue > 1.25f)
             {
@@ -148,9 +112,50 @@ public class MenuManager : MonoBehaviour
             PlayerPrefs.SetFloat(sensYTag, sensitivityValue);
         }
     }
-    public void ChangeSoundVolumeInput()
+    
+    //X axis
+    public void ChangeSensitivityXSlider(float _value)
     {
-        if(float.TryParse(soundInput.text, out float soundVolume))
+        PlayerPrefs.SetInt(sensXTag, (int)_value);
+        sensitivityXInput.text = _value.ToString();
+        playerCam.ChangeVelocityX(_value);
+    }
+    public void ChangeSensitivityXInput(string _value)
+    {
+        if (float.TryParse(_value, out float sensitivityValue))
+        {
+            if (sensitivityValue > 150)
+            {
+                sensitivityValue = 150;
+                sensitivityXInput.text = "150";
+            }
+            else if (sensitivityValue < 100)
+            {
+                sensitivityValue = 100;
+                sensitivityXInput.text = "100";
+            }
+
+            sensitivityXSlider.value = sensitivityValue;
+            PlayerPrefs.SetFloat(sensXTag, sensitivityValue);
+        }
+    }
+
+    #endregion
+
+    #region Screen options
+
+    public void SetFullScreenBool(bool _value)
+    {
+        Screen.fullScreen = _value;
+    }
+    
+
+    #endregion
+
+    #region Audio Options
+    public void ChangeSoundVolumeInput(string _value)
+    {
+        if(float.TryParse(_value, out float soundVolume))
         {
             if (soundVolume > 100)
             {
@@ -166,11 +171,12 @@ public class MenuManager : MonoBehaviour
             //soundMixer.SetFloat(soundTag, Mathf.Log10(soundVolume) * 20);
             PlayerPrefs.SetFloat(soundTag, soundVolume);
             soundSlider.value = soundVolume;
+            print(soundVolume);
         }
     }
-    public void ChangeMusicVolumeInput()
+    public void ChangeMusicVolumeInput(string _value)
     {
-        if (float.TryParse(musicInput.text, out float musicVolume))
+        if (float.TryParse(_value, out float musicVolume))
         {
             if(musicVolume > 100)
             {
@@ -190,18 +196,38 @@ public class MenuManager : MonoBehaviour
             musicSlider.value = musicVolume;
         }
     }
-    public void ChangeSoundVolumeSlider()
+    
+    //Wise
+    public void ChangeSoundVolumeSlider(float _value)
     {
         //soundMixer.SetFloat(soundTag, Mathf.Log10(soundSlider.value) * 20);
         PlayerPrefs.SetFloat(soundTag, soundSlider.value);
-        soundInput.text = soundSlider.value.ToString();
+        soundInput.text = _value.ToString();
         AkSoundEngine.SetRTPCValue("SFX_Volume", soundSlider.value);
     }
-    public void ChangeMusicVolumeSlider()
+    public void ChangeMusicVolumeSlider(float _value)
     {
         //musicMixer.SetFloat(musicTag, Mathf.Log10(musicSlider.value) * 20);
         PlayerPrefs.SetFloat(musicTag, musicSlider.value);
-        musicInput.text = musicSlider.value.ToString();
+        musicInput.text = _value.ToString();
         AkSoundEngine.SetRTPCValue("Music_Volume", musicSlider.value);
     }
+
+    #endregion
+
+    #region Getters
+    public bool GetFullScreen()
+    {
+        return Screen.fullScreen;
+    }
+    public bool GetInvertedXCamera()
+    {
+        return invertedX;
+    }
+    public bool GetInvertedYCamera()
+    {
+        return invertedY;
+    }
+    #endregion
+
 }
