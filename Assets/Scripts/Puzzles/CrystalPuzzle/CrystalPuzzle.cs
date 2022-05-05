@@ -45,7 +45,7 @@ public class CrystalPuzzle : MonoBehaviour
 
     private void CompletePuzzle()
     {
-
+        Debug.Log("COMPLETADO");
     }
 
 }

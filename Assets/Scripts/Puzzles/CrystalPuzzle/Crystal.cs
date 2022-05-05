@@ -31,8 +31,9 @@ public class Crystal : MonoBehaviour
             
         }
 
-        if (other.CompareTag("Pyra")){
-            particle.Play();
+        if (other.CompareTag("Pyra") && isShiny){
+            //particle.Play();
+            Debug.Log("Shine shine");
         }
 
     }
@@ -45,7 +46,7 @@ public class Crystal : MonoBehaviour
         }
 
         if (other.CompareTag("Pyra")){
-            particle.Stop();
+            //particle.Stop();
         }
     }
 
@@ -64,16 +65,14 @@ public class Crystal : MonoBehaviour
     {
         if (player && canBeInteracted)
         {
-            if (PlayerIsLooking(player))
+            if (isShiny)
             {
-                if (isShiny)
-                {
-                    manager.AddGoodOne();
-                }
-                else
-                {
-                    manager.ResetCrystals();
-                }
+                Debug.Log("Interactuado");
+                manager.AddGoodOne();
+            }
+            else
+            {
+                manager.ResetCrystals();
             }
         }
     }
