@@ -60,25 +60,25 @@ public class SteamlingAI : EnemyAI
     private IEnumerator Assault()
     {
 
-        agent.speed = 0f;
-        agent.destination = transform.position;
+        //agent.speed = 0f;
+        //agent.destination = transform.position;
 
-        animator.SetTrigger("Attack");
+        //animator.SetTrigger("Attack");
         //AkSoundEngine.PostEvent("Preparing_Charge_Steamling", WwiseManager.instance.gameObject);
 
         yield return new WaitForSeconds(timeBeforeAttacking);
 
-        animator.SetBool("Charge", true);
-        //AkSoundEngine.PostEvent("Charging_Steamling", WwiseManager.instance.gameObject);
+        //animator.SetBool("Charge", true);
+        ////AkSoundEngine.PostEvent("Charging_Steamling", WwiseManager.instance.gameObject);
 
-        currentDamage = dashDamage;
+        //currentDamage = dashDamage;
 
-        dashDistance = Vector3.Distance(transform.position, player.transform.position);
+        //dashDistance = Vector3.Distance(transform.position, player.transform.position);
 
-        agent.speed = dashSpeed;
-        agent.destination = attackPos = transform.GetChild(2).position;
-        dashPath = agent.path;
-        isDashing = true;
+        //agent.speed = dashSpeed;
+        //agent.destination = attackPos = transform.GetChild(2).position;
+        //dashPath = agent.path;
+        //isDashing = true;
     }
 
     private void OnDrawGizmos()

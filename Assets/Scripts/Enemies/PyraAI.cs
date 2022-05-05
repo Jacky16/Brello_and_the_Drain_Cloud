@@ -85,6 +85,10 @@ public sealed class PyraAI : MonoBehaviour
             agent.Warp(hit.position);
         }
 
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            agent.Warp(player.transform.position);
+        }
         AIManager();
         RotationManager();
         AnimationManager();
@@ -156,12 +160,13 @@ public sealed class PyraAI : MonoBehaviour
         {
             pyraIsGliding = false;
 
-            Physics.Raycast(player.transform.GetChild(0).position, Vector3.down, out RaycastHit hit, 100f, whatIsGround);
+            //Physics.Raycast(player.transform.GetChild(0).position, Vector3.down, out RaycastHit hit, 100f, whatIsGround);
 
-            NavMesh.SamplePosition(hit.point, out NavMeshHit navHit, 1f, NavMesh.AllAreas);
+            //NavMesh.SamplePosition(player.transform.position, out NavMeshHit navHit, 0.5f, NavMesh.AllAreas);
+            //Debug.Log(navHit.position);
 
-            agent.Warp(navHit.position);
-            currentParticle.GetComponent<PyraBall>().posToFinish(navHit.position);  
+            agent.Warp(player.transform.position);
+            currentParticle.GetComponent<PyraBall>().posToFinish(player.transform.position);  
         }
         else if(pyraIsGliding && player.IsSwimming())
         {
