@@ -41,6 +41,7 @@ public class PsTom : MonoBehaviour
     [SerializeField] float accelerationAssault;
     [SerializeField] LayerMask layerMakAttackAssault;
     [SerializeField] Vector2 impulseAttackAssaultToPlayer;
+    [SerializeField] Vector3 sizeCubeAssaultChecker;
 
     Vector3 posToGo;
     bool isDistanceToGo;
@@ -343,18 +344,22 @@ public class PsTom : MonoBehaviour
     {
         if (!isAssaltingPlayer && !isStuned)
         {
-            isAssaltingPlayer = true;
-            anim.SetBool("IsChasing", isAssaltingPlayer);
+            RotateToPlayer(0.1f).OnComplete(() =>
+            {
+                isAssaltingPlayer = true;
 
-            //Asignar donde va a ir el Boss
-            posToGo = GetPosToAssult();
-           
-            //Move to player
-            navMeshAgent.SetDestination(posToGo);
-            
-            //Aplicar velocidad y aceleración
-            navMeshAgent.speed = speedAssault;
-            navMeshAgent.acceleration = accelerationAssault;
+                anim.SetBool("IsChasing", isAssaltingPlayer);
+
+                //Asignar donde va a ir el Boss
+                posToGo = GetPosToAssult();
+
+                //Move to player
+                navMeshAgent.SetDestination(posToGo);
+
+                //Aplicar velocidad y aceleración
+                navMeshAgent.speed = speedAssault;
+                navMeshAgent.acceleration = accelerationAssault;
+            });
         }       
     }
     IEnumerator ResumeCanAssaultPlayer()
@@ -401,8 +406,9 @@ public class PsTom : MonoBehaviour
             //Parar en seco y quitar la ruta del navmesh
             navMeshAgent.velocity = Vector3.zero;
             navMeshAgent.ResetPath();
-            
+
             //Sistema de Stune
+            AkSoundEngine.PostEvent("Crash_PSTom", WwiseManager.instance.gameObject);
             StartCoroutine(ResumeCanAssaultPlayer());
         }
     }
@@ -411,8 +417,7 @@ public class PsTom : MonoBehaviour
     {
         //Raycast forward
         RaycastHit hit;
-        Debug.DrawRay(transform.position, transform.forward * Mathf.Infinity, Color.red);
-        
+        Vector3 pos;
         if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, layerMakAttackAssault))
         {
             return hit.point;
@@ -420,7 +425,7 @@ public class PsTom : MonoBehaviour
         else
         {
             return player.transform.position;
-        }
+        }  
     }
     #endregion
 
@@ -444,6 +449,7 @@ public class PsTom : MonoBehaviour
         {         
             anim.SetBool("IsFalling", false);
             navMeshAgent.enabled = true;
+
             //isAssaltingPlayer = false;
             //canAssaultPlayer = true;
         });
@@ -477,6 +483,7 @@ public class PsTom : MonoBehaviour
     }
     public void ChangePhase(float _lifeBoss)
     {
+        
         if (_lifeBoss > 66)
         {
             currentPhase = Phases.PHASE_1;
@@ -498,7 +505,7 @@ public class PsTom : MonoBehaviour
         //Raycast forward from wallDetect 
         //OverlapSphere on wallDetect
 
-        Collider[] colliders = Physics.OverlapSphere(wallDetect.position, navMeshAgent.stoppingDistance, layerMaskWallDetect);
+        Collider[] colliders = Physics.OverlapBox(wallDetect.position, sizeCubeAssaultChecker, transform.rotation,layerMaskWallDetect);
         foreach (Collider col in colliders)
         {
             if (col.CompareTag(_tag))
@@ -519,18 +526,18 @@ public class PsTom : MonoBehaviour
         anim.SetBool("IsStuned", isStuned);
     }
 
-    void RotateToPlayer(float _duration = 0.5f)
+    Tween RotateToPlayer(float _duration = 0.5f)
     {
         Vector3 lookAt = player.transform.position;
-        transform.DOLookAt(lookAt, _duration);
+        return transform.DOLookAt(lookAt, _duration);
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(pivotCubeAttack.position, sizeCubePunchAttack);
+       
+        Gizmos.DrawWireCube(wallDetect.position, sizeCubeAssaultChecker);
 
-        Gizmos.DrawWireSphere(wallDetect.position, distanceWallDetect);
-   
         Gizmos.DrawLine(transform.position, transform.position + transform.forward * 10);
     }
 }

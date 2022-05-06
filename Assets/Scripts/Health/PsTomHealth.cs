@@ -13,6 +13,7 @@ public class PsTomHealth : Health
     [SerializeField] PlayableDirector timeline;
     [SerializeField] Image healthBar;
     [SerializeField] GameObject[] gameObjectsToDisable;
+    [SerializeField] Transform centerMapPosition;
 
     private void Awake()
     {
@@ -26,14 +27,18 @@ public class PsTomHealth : Health
         float percent = (float)currLife / (float)maxLife;     
         healthBar.DOFillAmount(percent, 0.5f);   
         psTom.ChangePhase(currLife);
+        anim.SetTrigger("Hit");
+        AkSoundEngine.PostEvent("Hit_PSTom", WwiseManager.instance.gameObject);
     }
     protected override void onDeath()
     {
         base.onDeath();
+        transform.position = new Vector3(centerMapPosition.position.x, transform.position.y, centerMapPosition.position.z);
+        transform.localRotation = Quaternion.Euler(0, 0, 0);
         timeline.Play();
         
         DisableAllObjects();
-        GetComponent<Animator>().SetTrigger("Death");
+        anim.SetTrigger("Death");
         
         StartCoroutine(GoToMainMenu());
     }

@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Cinemachine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public sealed class BrelloHealth : Health
 {
@@ -14,16 +15,17 @@ public sealed class BrelloHealth : Health
     [SerializeField] GameObject damageParticles;
     [SerializeField] Transform spawnPoint;
 
-    Animator imageAnimator;
+    [SerializeField] Image canvasFade;
     float lastLifeChange;
     bool lifeChanged;
     // Start is called before the first frame update
     protected override void Start()
     {
-        base.Start();
-        //imageAnimator = currentImage.GetComponent<Animator>();
+        base.Start();        
         lastLifeChange = 0f;
         lifeChanged = false;
+        //Fade canvas
+        canvasFade.DOFade(0f, 1f);
     }
 
     private void Update()
@@ -69,9 +71,23 @@ public sealed class BrelloHealth : Health
     protected override void onDeath()
     {
         animator.SetTrigger("Death");
-        StartCoroutine(Reappear());
+        if (SceneManager.GetActiveScene().name == "BossScene")
+        {
+            ReloadSceneBoss();
+        }
+        else
+        {                        
+            StartCoroutine(Reappear());
+        }
     }
 
+    void ReloadSceneBoss()
+    {
+        canvasFade.DOFade(1, 2).OnComplete(() =>
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        });
+    }
     private IEnumerator Reappear()
     {
         yield return new WaitForSeconds(timeToReappear);

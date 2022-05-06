@@ -147,6 +147,9 @@
 								<Reference Name="DefaultSwitchOrState">
 									<ObjectRef Name="Default" ID="{E967B8ED-4DC5-44FA-BC7E-29FDF9E393EE}" WorkUnitID="{87C35236-18CA-4079-8590-2B6748B43D1C}"/>
 								</Reference>
+								<Reference Name="Effect0" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+									<ObjectRef Name="Phone_Booth" ID="{180A35FE-BF4E-4BCD-8D7F-872B580E55EC}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+								</Reference>
 								<Reference Name="OutputBus">
 									<ObjectRef Name="SFX" ID="{D619241B-7D66-4DBD-81E1-49FF50DB2719}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
 								</Reference>
@@ -567,6 +570,34 @@
 						</Sound>
 						<Sound Name="Glide" ID="{1CE938D9-D17B-4EF6-AFCC-8C352F97D51A}" ShortID="1063979781">
 							<PropertyList>
+								<Property Name="BypassEffect0" Type="bool">
+									<RTPCList>
+										<RTPC Name="" ID="{42155F03-5B1E-4969-B822-BD725C8F262D}" ShortID="547344355">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="IsReverbOn" ID="{51FFA8F6-E228-4E05-985F-A92829509316}" WorkUnitID="{CB36F7E4-28B2-458F-9E9C-3C36B3575DBC}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{0E179122-57B5-4A2E-8F0F-30BD3D2EBB66}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="65537"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>1</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>1</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
 								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
@@ -577,6 +608,9 @@
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+								</Reference>
+								<Reference Name="Effect0" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+									<ObjectRef Name="Phone_Booth" ID="{180A35FE-BF4E-4BCD-8D7F-872B580E55EC}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
 								</Reference>
 								<Reference Name="OutputBus">
 									<ObjectRef Name="SFX" ID="{D619241B-7D66-4DBD-81E1-49FF50DB2719}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
@@ -598,6 +632,34 @@
 						</Sound>
 						<Sound Name="Close" ID="{F1A70A05-19EA-46D0-9AC1-35F47DFC3979}" ShortID="303816262">
 							<PropertyList>
+								<Property Name="BypassEffect0" Type="bool">
+									<RTPCList>
+										<RTPC Name="" ID="{5CBD5D71-6875-4375-BE85-A9F91F39EC0A}" ShortID="288625801">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="IsReverbOn" ID="{51FFA8F6-E228-4E05-985F-A92829509316}" WorkUnitID="{CB36F7E4-28B2-458F-9E9C-3C36B3575DBC}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{928DD04F-3B03-4898-A291-4F2B5E24CAB9}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="65537"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>1</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>1</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
 										<Value>-12</Value>
@@ -607,6 +669,9 @@
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+								</Reference>
+								<Reference Name="Effect0" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+									<ObjectRef Name="Phone_Booth" ID="{180A35FE-BF4E-4BCD-8D7F-872B580E55EC}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
 								</Reference>
 								<Reference Name="OutputBus">
 									<ObjectRef Name="SFX" ID="{D619241B-7D66-4DBD-81E1-49FF50DB2719}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
@@ -628,6 +693,34 @@
 						</Sound>
 						<Sound Name="Open" ID="{3F94981E-4D28-42FF-924C-CF547D2B43D7}" ShortID="549081580">
 							<PropertyList>
+								<Property Name="BypassEffect0" Type="bool">
+									<RTPCList>
+										<RTPC Name="" ID="{B5F9859B-D5B5-40F5-ABD9-02FCF01CEFBE}" ShortID="345128329">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="IsReverbOn" ID="{51FFA8F6-E228-4E05-985F-A92829509316}" WorkUnitID="{CB36F7E4-28B2-458F-9E9C-3C36B3575DBC}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{8183A947-CC8D-43F2-94C2-8075AE9C64A7}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="65537"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>1</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>1</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
 										<Value>-12</Value>
@@ -637,6 +730,9 @@
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+								</Reference>
+								<Reference Name="Effect0" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+									<ObjectRef Name="Phone_Booth" ID="{180A35FE-BF4E-4BCD-8D7F-872B580E55EC}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
 								</Reference>
 								<Reference Name="OutputBus">
 									<ObjectRef Name="SFX" ID="{D619241B-7D66-4DBD-81E1-49FF50DB2719}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
@@ -658,6 +754,34 @@
 						</Sound>
 						<Sound Name="WaterSplash" ID="{77ADC4AB-17FE-4B79-86EE-114C1D247DB0}" ShortID="430450038">
 							<PropertyList>
+								<Property Name="BypassEffect0" Type="bool">
+									<RTPCList>
+										<RTPC Name="" ID="{00516975-C810-4B9B-9FF2-98508ADA7A64}" ShortID="279415090">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="IsReverbOn" ID="{51FFA8F6-E228-4E05-985F-A92829509316}" WorkUnitID="{CB36F7E4-28B2-458F-9E9C-3C36B3575DBC}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{8406AFAF-AAF8-403D-A370-B63869710CCE}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="65537"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>1</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>1</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
 										<Value>-12</Value>
@@ -667,6 +791,9 @@
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+								</Reference>
+								<Reference Name="Effect0" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+									<ObjectRef Name="Phone_Booth" ID="{180A35FE-BF4E-4BCD-8D7F-872B580E55EC}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
 								</Reference>
 								<Reference Name="OutputBus">
 									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
@@ -937,6 +1064,34 @@
 								<Sound Name="GrasslandMusic" ID="{207DF045-E198-4152-A063-09A0201AC8D6}" ShortID="716921295">
 									<PropertyList>
 										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+										<Property Name="Lowpass" Type="int16">
+											<RTPCList>
+												<RTPC Name="" ID="{20A54EDC-6C9A-4997-852E-27CEFD32D7B8}" ShortID="914927393">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="IsReverbOn" ID="{51FFA8F6-E228-4E05-985F-A92829509316}" WorkUnitID="{CB36F7E4-28B2-458F-9E9C-3C36B3575DBC}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{228F01DD-0D05-4158-B084-C7E85A67A8B8}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>0</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>50</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
 												<Value>-12</Value>
@@ -968,6 +1123,34 @@
 								<Sound Name="River" ID="{2BC65BA2-26A4-4704-BC59-362779A4CCC8}" ShortID="545073906">
 									<PropertyList>
 										<Property Name="3DSpatialization" Type="int16" Value="1"/>
+										<Property Name="BypassEffect0" Type="bool">
+											<RTPCList>
+												<RTPC Name="" ID="{AE65A1F6-A495-4FBE-9606-B2444AB89B88}" ShortID="1056854077">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="IsReverbOn" ID="{51FFA8F6-E228-4E05-985F-A92829509316}" WorkUnitID="{CB36F7E4-28B2-458F-9E9C-3C36B3575DBC}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{B719AD2C-6F4D-4F24-9890-61480D2ECD5C}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>1</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>0</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
 										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
@@ -981,6 +1164,9 @@
 										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+										</Reference>
+										<Reference Name="Effect0" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+											<ObjectRef Name="Phone_Booth" ID="{180A35FE-BF4E-4BCD-8D7F-872B580E55EC}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
 										</Reference>
 										<Reference Name="OutputBus">
 											<ObjectRef Name="SFX" ID="{D619241B-7D66-4DBD-81E1-49FF50DB2719}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
@@ -1027,6 +1213,136 @@
 									<ObjectLists/>
 									<ActiveSourceList>
 										<ActiveSource Name="Rain" ID="{5653C1E8-C6AC-476F-8380-6405086024FD}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="PSTomBoss" ID="{2F8A5F7A-BB8F-4F14-B429-53CB43560FEB}" ShortID="58515716">
+							<ChildrenList>
+								<RandomSequenceContainer Name="PSTomBossMusic" ID="{AA259741-95EC-4422-A86C-944DB323298F}" ShortID="917377342">
+									<PropertyList>
+										<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+										<Property Name="RandomOrSequence" Type="int16" Value="0"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Music" ID="{FF677782-1B11-48DB-92B1-E627213C1F6C}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="InicioMusicaPSTom" ID="{B3B559C9-3D7F-40EB-9631-70BEB78D3F14}" ShortID="526263754">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="InicioMusicaPSTom" ID="{386F710E-2AD9-439B-AFD4-C6B2026D8DF8}">
+													<Language>SFX</Language>
+													<AudioFile>InicioMusicaPSTom.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="674738821"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="InicioMusicaPSTom" ID="{386F710E-2AD9-439B-AFD4-C6B2026D8DF8}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="MusicaPSTom" ID="{A8844782-9516-4389-BE7A-5AC0A312E269}" ShortID="668420385">
+											<PropertyList>
+												<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="MusicaPSTom" ID="{6EC68839-95F7-44C8-A06E-56989DB9D150}">
+													<Language>SFX</Language>
+													<AudioFile>MusicaPSTom.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="905488729"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="MusicaPSTom" ID="{6EC68839-95F7-44C8-A06E-56989DB9D150}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<ObjectLists/>
+									<Playlist>
+										<ItemRef Name="InicioMusicaPSTom" ID="{B3B559C9-3D7F-40EB-9631-70BEB78D3F14}"/>
+										<ItemRef Name="MusicaPSTom" ID="{A8844782-9516-4389-BE7A-5AC0A312E269}"/>
+									</Playlist>
+								</RandomSequenceContainer>
+								<Sound Name="TrainSound" ID="{CCE414E9-DACE-42C8-B0EF-380D318E6B77}" ShortID="420187446">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX" ID="{D619241B-7D66-4DBD-81E1-49FF50DB2719}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="TrainSound" ID="{9372607A-95EE-488E-AF99-C469FC1C7736}">
+											<Language>SFX</Language>
+											<AudioFile>TrainSound.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="3304908"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="TrainSound" ID="{9372607A-95EE-488E-AF99-C469FC1C7736}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="Tutorial" ID="{9078DFA7-0333-4514-B184-A6420A484EA4}" ShortID="764821896">
+							<ChildrenList>
+								<Sound Name="TutorialMusic" ID="{8D472735-B0FA-4678-A728-0B9EE5558A69}" ShortID="22792142">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Music" ID="{FF677782-1B11-48DB-92B1-E627213C1F6C}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="TutorialMusic" ID="{BBA8CA02-705D-4532-A784-EA4B53D7D36D}">
+											<Language>SFX</Language>
+											<AudioFile>TutorialMusic.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="1049505816"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="TutorialMusic" ID="{BBA8CA02-705D-4532-A784-EA4B53D7D36D}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
@@ -1197,9 +1513,256 @@
 						</Sound>
 					</ChildrenList>
 				</Folder>
-				<Folder Name="Boiler" ID="{46C00BB9-5B4A-446F-964F-7AC16B692D38}" ShortID="708146527"/>
+				<Folder Name="Boiler" ID="{46C00BB9-5B4A-446F-964F-7AC16B692D38}" ShortID="708146527">
+					<ChildrenList>
+						<Sound Name="VoilerShoot" ID="{88635415-5276-4DBF-841F-5F5424D44947}" ShortID="263191596">
+							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="Low_Attenuation" ID="{AF0F7070-1466-4ABC-8412-031B679D6E2A}" WorkUnitID="{D4E67D86-651B-4CCE-8108-48600BB7AC6E}"/>
+								</Reference>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX" ID="{D619241B-7D66-4DBD-81E1-49FF50DB2719}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="VoilerShoot" ID="{C8C95AB1-DF6C-479A-8508-E09D97716A4C}">
+									<Language>SFX</Language>
+									<AudioFile>VoilerShoot.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="367496635"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="VoilerShoot" ID="{C8C95AB1-DF6C-479A-8508-E09D97716A4C}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</Folder>
 				<Folder Name="UI" ID="{16954179-633D-4083-83DD-137D49FEC878}" ShortID="744035602"/>
-				<Folder Name="PSTom" ID="{0A309636-F182-45C3-A25B-7314D567934A}" ShortID="241110547"/>
+				<Folder Name="PSTom" ID="{0A309636-F182-45C3-A25B-7314D567934A}" ShortID="241110547">
+					<ChildrenList>
+						<Sound Name="PSTom_Angry" ID="{31C4BB44-1C15-4EAC-B3EF-0F70E64F3C9B}" ShortID="710189814">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-6</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="PSTom_Angry" ID="{BBADACC8-898F-4E3B-BB2F-103509F5AADA}">
+									<Language>SFX</Language>
+									<AudioFile>PSTom_Angry.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="297355710"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="PSTom_Angry" ID="{BBADACC8-898F-4E3B-BB2F-103509F5AADA}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="PSTom_Crash" ID="{14944BFA-7AA8-43E5-9004-5817DCD83AA8}" ShortID="907133473">
+							<PropertyList>
+								<Property Name="Pitch" Type="int32">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{ED4C5406-526E-4C82-800D-7E78E00D0F40}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="500"/>
+													<Property Name="Min" Type="Real64" Value="-500"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-6</Value>
+									</ValueList>
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{D2D588B4-3765-4A46-9619-9B98871F23CB}"/>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX" ID="{D619241B-7D66-4DBD-81E1-49FF50DB2719}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="PSTom_Crash" ID="{44C34E0D-E883-4164-9797-3274153BB219}">
+									<Language>SFX</Language>
+									<AudioFile>PSTom_Crash.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="901584295"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="PSTom_Crash" ID="{44C34E0D-E883-4164-9797-3274153BB219}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Hit" ID="{82881588-7833-4B64-A0FE-D2687CC984DB}" ShortID="796089235">
+							<PropertyList>
+								<Property Name="Pitch" Type="int32">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{5FD6B494-F3E3-497E-B460-DF6A5F1854B5}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="500"/>
+													<Property Name="Min" Type="Real64" Value="-500"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-12</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX" ID="{D619241B-7D66-4DBD-81E1-49FF50DB2719}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Hit" ID="{4073ABF5-1C3D-4172-AB92-9AA0F66E98BF}">
+									<Language>SFX</Language>
+									<AudioFile>Hit.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="194129353"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Hit" ID="{4073ABF5-1C3D-4172-AB92-9AA0F66E98BF}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Puñetazo" ID="{43E0BE57-5607-40CF-94B8-9CD6B32B412D}" ShortID="581444358">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-6</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX" ID="{D619241B-7D66-4DBD-81E1-49FF50DB2719}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Puñetazo" ID="{2FC459F7-A9D6-4382-9FF7-621598F90DDA}">
+									<Language>SFX</Language>
+									<AudioFile>Puñetazo.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="98788103"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Puñetazo" ID="{2FC459F7-A9D6-4382-9FF7-621598F90DDA}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="PSTom_Landing" ID="{6C454D0F-09CB-4240-94DE-269AE94201C0}" ShortID="381167275">
+							<PropertyList>
+								<Property Name="Pitch" Type="int32">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{FD052C3A-95D1-44A7-BCBF-F535B537B810}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="500"/>
+													<Property Name="Min" Type="Real64" Value="-500"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX" ID="{D619241B-7D66-4DBD-81E1-49FF50DB2719}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="PSTom_Landing" ID="{9AAED5B1-A30B-4A34-A977-850DD4A27A33}">
+									<Language>SFX</Language>
+									<AudioFile>PSTom_Landing.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="158687529"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="PSTom_Landing" ID="{9AAED5B1-A30B-4A34-A977-850DD4A27A33}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="PSTom_Crash2" ID="{EEC8A98C-BEDB-4FA3-9B6A-2783EA8ADF9A}" ShortID="483399525">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="PSTom_Crash2" ID="{6CAD41F2-AF2B-4F1C-83D7-23E4B6C9760B}">
+									<Language>SFX</Language>
+									<AudioFile>PSTom_Crash2.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="775041559"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="PSTom_Crash2" ID="{6CAD41F2-AF2B-4F1C-83D7-23E4B6C9760B}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</Folder>
 				<Sound Name="Dropply" ID="{FF429018-7337-4599-AD78-D945575E2D04}" ShortID="838454584">
 					<PropertyList>
 						<Property Name="Volume" Type="Real64">
@@ -1291,6 +1854,140 @@
 						<ActiveSource Name="PuzzlePillar" ID="{59AA2EF6-B99D-43F1-81BC-66E00A64D6FE}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
+				<Folder Name="MrT" ID="{2689E069-E5E0-47AB-89A3-761AFEAACC0E}" ShortID="481663366">
+					<ChildrenList>
+						<Sound Name="Mr_T_Poof" ID="{0644DE32-B5CD-43CC-8A44-550BA4744D60}" ShortID="53162653">
+							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX" ID="{D619241B-7D66-4DBD-81E1-49FF50DB2719}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Mr_T_Poof" ID="{7EC72E6D-5C8D-441C-949A-BB67701D35A9}">
+									<Language>SFX</Language>
+									<AudioFile>Mr_T_Poof.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="849237160"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Mr_T_Poof" ID="{7EC72E6D-5C8D-441C-949A-BB67701D35A9}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Juncc" ID="{C8F34C50-8C59-44E7-910F-013579EC320E}" ShortID="972946411">
+					<ChildrenList>
+						<Sound Name="JunccHide" ID="{9F6E9385-0473-4A1F-9630-689D687FA727}" ShortID="45873417">
+							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="Low_Attenuation" ID="{AF0F7070-1466-4ABC-8412-031B679D6E2A}" WorkUnitID="{D4E67D86-651B-4CCE-8108-48600BB7AC6E}"/>
+								</Reference>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="JunccHide" ID="{D24708B2-0D1C-429C-882C-F3F62D86FF22}">
+									<Language>SFX</Language>
+									<AudioFile>JunccHide.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="758911171"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="JunccHide" ID="{D24708B2-0D1C-429C-882C-F3F62D86FF22}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="JunccShoot" ID="{B5E289EB-C8A8-408D-A530-E2386FC695D2}" ShortID="848950825">
+							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="1"/>
+								<Property Name="Pitch" Type="int32">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{0AEED388-45FA-4945-B2CA-6658ED9C0C9D}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="500"/>
+													<Property Name="Min" Type="Real64" Value="-500"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="Low_Attenuation" ID="{AF0F7070-1466-4ABC-8412-031B679D6E2A}" WorkUnitID="{D4E67D86-651B-4CCE-8108-48600BB7AC6E}"/>
+								</Reference>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="JunccShoot" ID="{E4588FC2-4B52-466F-B46E-2D135321C8EE}">
+									<Language>SFX</Language>
+									<AudioFile>JunccShoot.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="61851379"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="JunccShoot" ID="{E4588FC2-4B52-466F-B46E-2D135321C8EE}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="JunccSpawn" ID="{8B76FFFC-3E71-4082-9571-EF467F71F9E6}" ShortID="224992192">
+							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="Low_Attenuation" ID="{AF0F7070-1466-4ABC-8412-031B679D6E2A}" WorkUnitID="{D4E67D86-651B-4CCE-8108-48600BB7AC6E}"/>
+								</Reference>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="JunccSpawn" ID="{5C1DE2BE-66D7-4A76-808E-699FEBCEC290}">
+									<Language>SFX</Language>
+									<AudioFile>JunccSpawn.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="295411272"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="JunccSpawn" ID="{5C1DE2BE-66D7-4A76-808E-699FEBCEC290}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

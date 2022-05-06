@@ -200,7 +200,17 @@
 					<ChildrenList>
 						<Event Name="Idle_Boiler" ID="{9F939589-AF6F-44EB-B2F5-3D7C49347E06}"/>
 						<Event Name="Charge_Boiler" ID="{39DCACB1-AE93-40D7-8698-8EEB53B60407}"/>
-						<Event Name="Shoot_Boiler" ID="{53326667-A350-42B0-B61D-086A64A39A4A}"/>
+						<Event Name="Shoot_Boiler" ID="{53326667-A350-42B0-B61D-086A64A39A4A}">
+							<ChildrenList>
+								<Action Name="" ID="{11CC1212-A072-4B68-9AA2-86E25C6D2ADC}" ShortID="1041124730">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="VoilerShoot" ID="{88635415-5276-4DBF-841F-5F5424D44947}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 						<Event Name="Cool_Boiler" ID="{6032E004-DD37-4A73-95D6-AFB6F07C2BE8}"/>
 						<Event Name="Sleep_Boiler" ID="{1D8963F9-842D-4DB2-88A0-7B563E716176}"/>
 						<Event Name="Awake_Boiler" ID="{BCFB4348-D3FF-4A7C-9720-F274F72658C5}"/>
@@ -265,10 +275,109 @@
 								</Event>
 							</ChildrenList>
 						</Folder>
+						<Folder Name="PSTomBoss" ID="{BB688466-8596-49EE-AD23-C46DDFFC4D74}" ShortID="781703640">
+							<ChildrenList>
+								<Event Name="PSTomBoss_BackgroundMusic_PSTomBoss" ID="{CF5415F0-A78A-43C5-AA73-0F905160E52D}">
+									<ChildrenList>
+										<Action Name="" ID="{CD3F38DA-D162-473A-B4E9-801D8CDC0749}" ShortID="578644700">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="PSTomBossMusic" ID="{AA259741-95EC-4422-A86C-944DB323298F}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="TrainAmbience_PSTomBoss" ID="{7A286902-E116-4EE0-930F-10C81822FBDA}">
+									<ChildrenList>
+										<Action Name="" ID="{B43E946C-011F-42B8-B7C2-E6B4A1F1A941}" ShortID="968627259">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="TrainSound" ID="{CCE414E9-DACE-42C8-B0EF-380D318E6B77}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="Tutorial" ID="{80CEFB11-60D8-4993-9987-DBE1165A1D40}" ShortID="199378747">
+							<ChildrenList>
+								<Event Name="BackgroundMusic_Tutorial" ID="{4895DF82-7866-42CA-BA3F-768A01F792C9}">
+									<ChildrenList>
+										<Action Name="" ID="{380297AD-8947-4D64-B005-31663E2EADBF}" ShortID="10288473">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="TutorialMusic" ID="{8D472735-B0FA-4678-A728-0B9EE5558A69}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="UI" ID="{C938CFD4-553C-4594-B09F-F15DDF581CCC}" ShortID="725400021"/>
-				<Folder Name="PSTom" ID="{BC05494B-2DDF-4D1F-9C71-ACC6E552739F}" ShortID="252902369"/>
+				<Folder Name="PSTom" ID="{BC05494B-2DDF-4D1F-9C71-ACC6E552739F}" ShortID="252902369">
+					<ChildrenList>
+						<Event Name="Hit_PSTom" ID="{D8D0BEDE-045F-4088-83A4-2AB458D06DE4}">
+							<ChildrenList>
+								<Action Name="" ID="{20036B13-D65F-47B2-AA84-8E97BF0C1257}" ShortID="238063673">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Hit" ID="{82881588-7833-4B64-A0FE-D2687CC984DB}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Crash_PSTom" ID="{F6B965A4-7E08-4FDB-A524-34DCE73F99E8}">
+							<ChildrenList>
+								<Action Name="" ID="{34840116-C27C-42D1-BCAF-1862D5FEFF5C}" ShortID="1047101862">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PSTom_Crash2" ID="{EEC8A98C-BEDB-4FA3-9B6A-2783EA8ADF9A}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Angry_PSTom" ID="{70C96F46-B1D3-461A-869E-6535DD5B5E69}">
+							<ChildrenList>
+								<Action Name="" ID="{0C125F3D-5F4B-4C57-93C4-6714F8DDED8C}" ShortID="102207675">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PSTom_Angry" ID="{31C4BB44-1C15-4EAC-B3EF-0F70E64F3C9B}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Punch_PSTom" ID="{55D20AF4-B56C-41F6-B0B8-B227A03D7BFA}">
+							<ChildrenList>
+								<Action Name="" ID="{A667EB25-3DA0-4DAC-A3A3-7CB7B7E80B9E}" ShortID="490847190">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Puñetazo" ID="{43E0BE57-5607-40CF-94B8-9CD6B32B412D}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Landing_PSTom" ID="{3E78AA73-F21D-4F88-AA53-C90606AE735F}">
+							<ChildrenList>
+								<Action Name="" ID="{030BDFC8-6631-4C29-8FED-764604EE7973}" ShortID="119661393">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PSTom_Landing" ID="{6C454D0F-09CB-4240-94DE-269AE94201C0}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
 				<Event Name="Dropply" ID="{009E296F-D522-4067-8F90-A6FD00C36C96}">
 					<ChildrenList>
 						<Action Name="" ID="{3F944DFF-C827-40DE-9FE7-5E36A9A3CB1F}" ShortID="338437706">
@@ -326,6 +435,58 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Folder Name="MrT" ID="{A77A20B2-8578-43C7-88C7-3C6EAA6F62DF}" ShortID="629014783">
+					<ChildrenList>
+						<Event Name="Poof_MrT" ID="{1E3ECA83-AE25-4526-B3A9-B027D73F5129}">
+							<ChildrenList>
+								<Action Name="" ID="{5826B1E2-18C9-4065-857F-828914FFA3A2}" ShortID="1033541119">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Mr_T_Poof" ID="{0644DE32-B5CD-43CC-8A44-550BA4744D60}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Juncc" ID="{6CC98533-22C6-4750-BD92-D577667B2A3C}" ShortID="368444667">
+					<ChildrenList>
+						<Event Name="Shoot_Juncc" ID="{6BA4D73E-F772-4121-8B60-AC944A8113B9}">
+							<ChildrenList>
+								<Action Name="" ID="{5101F81F-9502-424E-81F9-F9BB902F01E2}" ShortID="750812239">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="JunccShoot" ID="{B5E289EB-C8A8-408D-A530-E2386FC695D2}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Hide_Juncc" ID="{C412FED7-F4C0-4F69-B915-65881A16C913}">
+							<ChildrenList>
+								<Action Name="" ID="{F1115790-089C-40A0-BFF7-2F5C2C862E92}" ShortID="752798096">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="JunccHide" ID="{9F6E9385-0473-4A1F-9630-689D687FA727}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Spawn_Juncc" ID="{DA9BF17B-A83C-48C4-AA45-27209092A41E}">
+							<ChildrenList>
+								<Action Name="" ID="{F566D48C-0CFB-4FC1-A608-8E31769CB712}" ShortID="758367659">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="JunccSpawn" ID="{8B76FFFC-3E71-4082-9571-EF467F71F9E6}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
