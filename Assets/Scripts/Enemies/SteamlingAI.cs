@@ -40,7 +40,7 @@ public class SteamlingAI : EnemyAI
     protected override void Update()
     {
         base.Update();
-        transform.position = new Vector3(transform.position.x, initYPos + 0.125f * Mathf.Sin(Time.time * 3) + 0.125f, transform.position.z);
+        //transform.position = new Vector3(transform.position.x, initYPos + 0.125f * Mathf.Sin(Time.time * 3) + 0.125f, transform.position.z);
 
         if (isDashing && agent.remainingDistance <= agent.stoppingDistance + 0.25f)
         {

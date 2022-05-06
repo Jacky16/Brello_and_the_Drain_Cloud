@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 dir.y = 0;
-                rb.AddForce(dir * 10, ForceMode.Acceleration);
+                rb.AddForce(dir*6, ForceMode.Acceleration);
             }
         }
         else
@@ -384,7 +384,7 @@ public class PlayerController : MonoBehaviour
                 isStartingToSwim = false;
             });
 
-            AkSoundEngine.PostEvent("WaterSplash_Brello", WwiseManager.instance.gameObject);
+            //AkSoundEngine.PostEvent("WaterSplash_Brello", WwiseManager.instance.gameObject);
         }
     }
 

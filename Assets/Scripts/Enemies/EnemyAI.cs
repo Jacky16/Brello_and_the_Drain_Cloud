@@ -21,8 +21,6 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] protected float detectionRadius;
     [SerializeField] protected float timeBetweenAttacks;
     protected bool playerInSightRange, playerInAttackRange, canAttack, isAttacking;
-
-    Rigidbody rb;
     protected virtual void Start()
     {
         isAttacking = false;
@@ -30,7 +28,6 @@ public class EnemyAI : MonoBehaviour
         combatManager = player.GetComponent<CombatManager>();
         agent = GetComponent<NavMeshAgent>();
         canAttack = true;
-        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -70,8 +67,6 @@ public class EnemyAI : MonoBehaviour
     {
         playerInSightRange = Physics.CheckSphere(transform.position, detectionRadius, playerMask);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRadius, playerMask);
-        rb.velocity = new Vector3(0, 0, 0);
-        rb.angularVelocity = new Vector3(0, 0, 0);
     }
 
     protected virtual void Idle()
