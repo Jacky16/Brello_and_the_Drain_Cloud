@@ -28,6 +28,7 @@ public class PsTomHealth : Health
         healthBar.DOFillAmount(percent, 0.5f);   
         psTom.ChangePhase(currLife);
         anim.SetTrigger("Hit");
+        AkSoundEngine.PostEvent("Hit_PSTom", WwiseManager.instance.gameObject);
     }
     protected override void onDeath()
     {

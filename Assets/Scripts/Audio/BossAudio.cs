@@ -4,13 +4,34 @@ using UnityEngine;
 
 public class BossAudio : MonoBehaviour
 {
-    public void PSTomAngry()
+
+    private void Awake()
+    {
+        //AkSoundEngine.SetRTPCValue("SFX_Volume", "100");
+    }
+
+    public void PlayPSTomAngry()
     {
         AkSoundEngine.PostEvent("Angry_PSTom", WwiseManager.instance.gameObject);
     }
 
-    public void PSTomCrash()
+    public void PlayPSTomCrash()
     {
         AkSoundEngine.PostEvent("Crash_PSTom", WwiseManager.instance.gameObject);
+    }
+
+    public void PlayPSTomPunch()
+    {
+        AkSoundEngine.PostEvent("Punch_PSTom", WwiseManager.instance.gameObject);
+    }
+
+    public void PlayPSTomHit()
+    {
+        AkSoundEngine.PostEvent("Hit_PSTom", WwiseManager.instance.gameObject);
+    }
+
+    public void PlayPSTomLanding()
+    {
+        AkSoundEngine.PostEvent("Landing_PSTom", WwiseManager.instance.gameObject);
     }
 }

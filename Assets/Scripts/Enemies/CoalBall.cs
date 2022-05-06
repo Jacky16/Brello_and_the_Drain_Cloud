@@ -31,7 +31,7 @@ public class CoalBall : MonoBehaviour
             instantiatedDecal.transform.forward = raycastHit.normal;
         }
 
-        rb.DOJump(playerAdvancedPosition, jumpForce, 1, 0.6f).OnComplete(() =>
+        rb.DOJump(playerAdvancedPosition, jumpForce, 1, 0.9f).OnComplete(() =>
         {
             Collider[] playerCol = Physics.OverlapSphere(new Vector3(transform.position.x, player.position.y, transform.position.z), areaDamage, playerMask);
 

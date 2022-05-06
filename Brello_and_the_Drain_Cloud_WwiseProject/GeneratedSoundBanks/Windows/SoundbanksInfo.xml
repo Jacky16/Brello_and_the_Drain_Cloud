@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="133642231" Language="SFX" Hash="1103184856">
+		<SoundBank Id="133642231" Language="SFX" Hash="1284178501">
 			<ObjectPath>\SoundBanks\Default Work Unit\General</ObjectPath>
 			<ShortName>General</ShortName>
 			<Path>General.bnk</Path>
@@ -36,14 +36,6 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="137424561" Name="Charging_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Charging_Steamling" DurationType="OneShot" DurationMin="1.079728" DurationMax="1.079728">
-					<IncludedMemoryFiles>
-						<File Id="551042684" Language="SFX">
-							<ShortName>Charge.wav</ShortName>
-							<Path>SFX\Charge_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
 				<Event Id="3567626122" Name="Close_Brello" ObjectPath="\Events\Default Work Unit\Brello\Close_Brello" DurationType="OneShot" DurationMin="0.306009" DurationMax="0.306009">
 					<IncludedMemoryFiles>
 						<File Id="399388110" Language="SFX">
@@ -58,15 +50,6 @@
 						<File Id="62054443" Language="SFX">
 							<ShortName>Pyra_Death.wav</ShortName>
 							<Path>SFX\Pyra_Death_200A176C.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="4094738360" Name="Death_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Death_Steamling" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="274987955" Name="Dropply" ObjectPath="\Events\Default Work Unit\Dropply" DurationType="OneShot" DurationMin="0.926054" DurationMax="0.926054">
-					<IncludedMemoryFiles>
-						<File Id="785924796" Language="SFX">
-							<ShortName>Dropply.wav</ShortName>
-							<Path>SFX\Dropply_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -138,27 +121,8 @@
 				<Event Id="2606205324" Name="Hum_Brello" ObjectPath="\Events\Default Work Unit\Brello\Hum_Brello" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="357557170" Name="Hum_Pyra" ObjectPath="\Events\Default Work Unit\Pyra\Hum_Pyra" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="1416911989" Name="Hurt_Brello" ObjectPath="\Events\Default Work Unit\Brello\Hurt_Brello" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="3566808571" Name="Hurt_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Hurt_Steamling" DurationType="OneShot" DurationMin="0.312249" DurationMax="0.441586">
-					<IncludedMemoryFiles>
-						<File Id="728610139" Language="SFX">
-							<ShortName>Hurt.wav</ShortName>
-							<Path>SFX\Hurt_E5095AE5.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="1024608158" Name="Idle_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Idle_Steamling" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="983408950" Name="Impact_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Impact_Steamling" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="2093704360" Name="Jump_Brello" ObjectPath="\Events\Default Work Unit\Brello\Jump_Brello" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="658189305" Name="Land_Brello" ObjectPath="\Events\Default Work Unit\Brello\Land_Brello" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="3604647259" Name="MainMenu" ObjectPath="\Events\Default Work Unit\MainMenu" DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="232279621" Language="SFX">
-							<ShortName>MainMenu.wav</ShortName>
-							<Path>SFX\MainMenu_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="2223599963" Name="MainMenuStop" ObjectPath="\Events\Default Work Unit\MainMenuStop" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="692676672" Name="Open_Brello" ObjectPath="\Events\Default Work Unit\Brello\Open_Brello" DurationType="OneShot" DurationMin="0.306009" DurationMax="0.306009">
 					<IncludedMemoryFiles>
 						<File Id="961183922" Language="SFX">
@@ -167,19 +131,11 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1765157707" Name="Preparing_Charge_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Preparing_Charge_Steamling" DurationType="OneShot" DurationMin="1.4" DurationMax="1.4">
+				<Event Id="2383840419" Name="Poof_MrT" ObjectPath="\Events\Default Work Unit\MrT\Poof_MrT" DurationType="OneShot" DurationMin="0.385034" DurationMax="0.385034">
 					<IncludedMemoryFiles>
-						<File Id="1058461914" Language="SFX">
-							<ShortName>Prepare.wav</ShortName>
-							<Path>SFX\Prepare_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="1659764341" Name="PuzzlePillar" ObjectPath="\Events\Default Work Unit\PuzzlePillar" DurationType="OneShot" DurationMin="3.006979" DurationMax="3.006979">
-					<IncludedMemoryFiles>
-						<File Id="532670166" Language="SFX">
-							<ShortName>PuzzlePillar.wav</ShortName>
-							<Path>SFX\PuzzlePillar_10C4C929.wem</Path>
+						<File Id="849237160" Language="SFX">
+							<ShortName>Mr_T_Poof.wav</ShortName>
+							<Path>SFX\Mr_T_Poof_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -191,7 +147,6 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2867905824" Name="Recovering_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Recovering_Steamling" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="1804471233" Name="Restart_Attack_Combo_Brello" ObjectPath="\Events\Default Work Unit\Brello\Restart_Attack_Combo_Brello" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="1341948043" Name="River_Level1" ObjectPath="\Events\Default Work Unit\Environment\Grasslands\River_Level1" MaxAttenuation="50." DurationType="Infinite">
 					<IncludedMemoryFiles>
@@ -251,6 +206,155 @@
 				<GameParameter Id="1006694123" Name="Music_Volume" ObjectPath="\Game Parameters\Default Work Unit\Volume\Music_Volume"/>
 				<GameParameter Id="1564184899" Name="SFX_Volume" ObjectPath="\Game Parameters\Default Work Unit\Volume\SFX_Volume"/>
 			</GameParameters>
+		</SoundBank>
+		<SoundBank Id="2167216614" Language="SFX" Hash="905367861">
+			<ObjectPath>\SoundBanks\Default Work Unit\General3</ObjectPath>
+			<ShortName>General3</ShortName>
+			<Path>General3.bnk</Path>
+			<IncludedEvents>
+				<Event Id="609297450" Name="PSTomBoss_BackgroundMusic_PSTomBoss" ObjectPath="\Events\Default Work Unit\Environment\PSTomBoss\PSTomBoss_BackgroundMusic_PSTomBoss" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="674738821" Language="SFX">
+							<ShortName>InicioMusicaPSTom.wav</ShortName>
+							<Path>SFX\InicioMusicaPSTom_10C4C929.wem</Path>
+						</File>
+						<File Id="905488729" Language="SFX">
+							<ShortName>MusicaPSTom.wav</ShortName>
+							<Path>SFX\MusicaPSTom_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="823999302" Name="TrainAmbience_PSTomBoss" ObjectPath="\Events\Default Work Unit\Environment\PSTomBoss\TrainAmbience_PSTomBoss" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="3304908" Language="SFX">
+							<ShortName>TrainSound.wav</ShortName>
+							<Path>SFX\TrainSound_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+			</IncludedEvents>
+		</SoundBank>
+		<SoundBank Id="2167216615" Language="SFX" Hash="86485870">
+			<ObjectPath>\SoundBanks\Default Work Unit\General2</ObjectPath>
+			<ShortName>General2</ShortName>
+			<Path>General2.bnk</Path>
+			<IncludedEvents>
+				<Event Id="400874472" Name="Angry_PSTom" ObjectPath="\Events\Default Work Unit\PSTom\Angry_PSTom" DurationType="OneShot" DurationMin="1.118549" DurationMax="1.118549">
+					<IncludedMemoryFiles>
+						<File Id="297355710" Language="SFX">
+							<ShortName>PSTom_Angry.wav</ShortName>
+							<Path>SFX\PSTom_Angry_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="183731594" Name="Awake_Boiler" ObjectPath="\Events\Default Work Unit\Boiler\Awake_Boiler" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="3411234615" Name="BackgroundMusic_Tutorial" ObjectPath="\Events\Default Work Unit\Environment\Tutorial\BackgroundMusic_Tutorial" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="1049505816" Language="SFX">
+							<ShortName>TutorialMusic.wav</ShortName>
+							<Path>SFX\TutorialMusic_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3683476531" Name="Charge_Boiler" ObjectPath="\Events\Default Work Unit\Boiler\Charge_Boiler" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="137424561" Name="Charging_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Charging_Steamling" DurationType="OneShot" DurationMin="1.079728" DurationMax="1.079728">
+					<IncludedMemoryFiles>
+						<File Id="551042684" Language="SFX">
+							<ShortName>Charge.wav</ShortName>
+							<Path>SFX\Charge_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1721372914" Name="Cool_Boiler" ObjectPath="\Events\Default Work Unit\Boiler\Cool_Boiler" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="490892378" Name="Crash_PSTom" ObjectPath="\Events\Default Work Unit\PSTom\Crash_PSTom" DurationType="OneShot" DurationMin="0.742177" DurationMax="0.742177">
+					<IncludedMemoryFiles>
+						<File Id="775041559" Language="SFX">
+							<ShortName>PSTom_Crash2.wav</ShortName>
+							<Path>SFX\PSTom_Crash2_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4094738360" Name="Death_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Death_Steamling" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="274987955" Name="Dropply" ObjectPath="\Events\Default Work Unit\Dropply" DurationType="OneShot" DurationMin="0.926054" DurationMax="0.926054">
+					<IncludedMemoryFiles>
+						<File Id="785924796" Language="SFX">
+							<ShortName>Dropply.wav</ShortName>
+							<Path>SFX\Dropply_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4125243480" Name="Hit_PSTom" ObjectPath="\Events\Default Work Unit\PSTom\Hit_PSTom" DurationType="OneShot" DurationMin="0.62229" DurationMax="1.108795">
+					<IncludedMemoryFiles>
+						<File Id="194129353" Language="SFX">
+							<ShortName>Hit.wav</ShortName>
+							<Path>SFX\Hit_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3566808571" Name="Hurt_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Hurt_Steamling" DurationType="OneShot" DurationMin="0.312249" DurationMax="0.441586">
+					<IncludedMemoryFiles>
+						<File Id="728610139" Language="SFX">
+							<ShortName>Hurt.wav</ShortName>
+							<Path>SFX\Hurt_E5095AE5.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1335820033" Name="Idle_Boiler" ObjectPath="\Events\Default Work Unit\Boiler\Idle_Boiler" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="1024608158" Name="Idle_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Idle_Steamling" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="983408950" Name="Impact_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Impact_Steamling" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="3235282430" Name="Landing_PSTom" ObjectPath="\Events\Default Work Unit\PSTom\Landing_PSTom" DurationType="OneShot" DurationMin="0.783689" DurationMax="1.396376">
+					<IncludedMemoryFiles>
+						<File Id="158687529" Language="SFX">
+							<ShortName>PSTom_Landing.wav</ShortName>
+							<Path>SFX\PSTom_Landing_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3604647259" Name="MainMenu" ObjectPath="\Events\Default Work Unit\MainMenu" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="232279621" Language="SFX">
+							<ShortName>MainMenu.wav</ShortName>
+							<Path>SFX\MainMenu_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2223599963" Name="MainMenuStop" ObjectPath="\Events\Default Work Unit\MainMenuStop" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="1765157707" Name="Preparing_Charge_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Preparing_Charge_Steamling" DurationType="OneShot" DurationMin="1.4" DurationMax="1.4">
+					<IncludedMemoryFiles>
+						<File Id="1058461914" Language="SFX">
+							<ShortName>Prepare.wav</ShortName>
+							<Path>SFX\Prepare_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2831023503" Name="Punch_PSTom" ObjectPath="\Events\Default Work Unit\PSTom\Punch_PSTom" DurationType="OneShot" DurationMin="2.855083" DurationMax="2.855083">
+					<IncludedMemoryFiles>
+						<File Id="98788103" Language="SFX">
+							<ShortName>Puñetazo.wav</ShortName>
+							<Path>SFX\Puñetazo_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1659764341" Name="PuzzlePillar" ObjectPath="\Events\Default Work Unit\PuzzlePillar" DurationType="OneShot" DurationMin="3.006979" DurationMax="3.006979">
+					<IncludedMemoryFiles>
+						<File Id="532670166" Language="SFX">
+							<ShortName>PuzzlePillar.wav</ShortName>
+							<Path>SFX\PuzzlePillar_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2867905824" Name="Recovering_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Recovering_Steamling" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="3667284842" Name="Shoot_Boiler" ObjectPath="\Events\Default Work Unit\Boiler\Shoot_Boiler" MaxAttenuation="50." DurationType="OneShot" DurationMin="1." DurationMax="1.">
+					<IncludedMemoryFiles>
+						<File Id="367496635" Language="SFX">
+							<ShortName>VoilerShoot.wav</ShortName>
+							<Path>SFX\VoilerShoot_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4013748194" Name="Sleep_Boiler" ObjectPath="\Events\Default Work Unit\Boiler\Sleep_Boiler" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="3086540886" Name="StopAll" ObjectPath="\Events\Default Work Unit\StopAll" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+			</IncludedEvents>
 		</SoundBank>
 	</SoundBanks>
 </SoundBanksInfo>
