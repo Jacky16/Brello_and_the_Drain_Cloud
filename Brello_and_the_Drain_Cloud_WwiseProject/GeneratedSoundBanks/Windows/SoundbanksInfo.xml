@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="133642231" Language="SFX" Hash="1284178501">
+		<SoundBank Id="133642231" Language="SFX" Hash="1289178078">
 			<ObjectPath>\SoundBanks\Default Work Unit\General</ObjectPath>
 			<ShortName>General</ShortName>
 			<Path>General.bnk</Path>
@@ -207,11 +207,19 @@
 				<GameParameter Id="1564184899" Name="SFX_Volume" ObjectPath="\Game Parameters\Default Work Unit\Volume\SFX_Volume"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="2167216614" Language="SFX" Hash="905367861">
+		<SoundBank Id="2167216614" Language="SFX" Hash="4130392405">
 			<ObjectPath>\SoundBanks\Default Work Unit\General3</ObjectPath>
 			<ShortName>General3</ShortName>
 			<Path>General3.bnk</Path>
 			<IncludedEvents>
+				<Event Id="1633170905" Name="Hide_Juncc" ObjectPath="\Events\Default Work Unit\Juncc\Hide_Juncc" MaxAttenuation="50." DurationType="OneShot" DurationMin="0.633515" DurationMax="0.633515">
+					<IncludedMemoryFiles>
+						<File Id="758911171" Language="SFX">
+							<ShortName>JunccHide.wav</ShortName>
+							<Path>SFX\JunccHide_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="609297450" Name="PSTomBoss_BackgroundMusic_PSTomBoss" ObjectPath="\Events\Default Work Unit\Environment\PSTomBoss\PSTomBoss_BackgroundMusic_PSTomBoss" DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="674738821" Language="SFX">
@@ -221,6 +229,22 @@
 						<File Id="905488729" Language="SFX">
 							<ShortName>MusicaPSTom.wav</ShortName>
 							<Path>SFX\MusicaPSTom_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4188370314" Name="Shoot_Juncc" ObjectPath="\Events\Default Work Unit\Juncc\Shoot_Juncc" MaxAttenuation="50." DurationType="OneShot" DurationMin="0.100601" DurationMax="0.17925">
+					<IncludedMemoryFiles>
+						<File Id="61851379" Language="SFX">
+							<ShortName>JunccShoot.wav</ShortName>
+							<Path>SFX\JunccShoot_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2121276730" Name="Spawn_Juncc" ObjectPath="\Events\Default Work Unit\Juncc\Spawn_Juncc" MaxAttenuation="50." DurationType="OneShot" DurationMin="0.633515" DurationMax="0.633515">
+					<IncludedMemoryFiles>
+						<File Id="295411272" Language="SFX">
+							<ShortName>JunccSpawn.wav</ShortName>
+							<Path>SFX\JunccSpawn_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -234,7 +258,7 @@
 				</Event>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="2167216615" Language="SFX" Hash="86485870">
+		<SoundBank Id="2167216615" Language="SFX" Hash="3658110401">
 			<ObjectPath>\SoundBanks\Default Work Unit\General2</ObjectPath>
 			<ShortName>General2</ShortName>
 			<Path>General2.bnk</Path>

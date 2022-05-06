@@ -31,6 +31,7 @@ namespace AK
         static const AkUniqueID FOOTSTEP_BRELLO = 2749921882U;
         static const AkUniqueID FOOTSTEP_PYRA = 1517232512U;
         static const AkUniqueID GRASS_SHAKE_LEVEL1 = 393977686U;
+        static const AkUniqueID HIDE_JUNCC = 1633170905U;
         static const AkUniqueID HIT_PSTOM = 4125243480U;
         static const AkUniqueID HUM_BRELLO = 2606205324U;
         static const AkUniqueID HUM_PYRA = 357557170U;
@@ -55,8 +56,10 @@ namespace AK
         static const AkUniqueID RESTART_ATTACK_COMBO_BRELLO = 1804471233U;
         static const AkUniqueID RIVER_LEVEL1 = 1341948043U;
         static const AkUniqueID SHOOT_BOILER = 3667284842U;
+        static const AkUniqueID SHOOT_JUNCC = 4188370314U;
         static const AkUniqueID SHOPMUSIC_LEVEL1 = 2541270178U;
         static const AkUniqueID SLEEP_BOILER = 4013748194U;
+        static const AkUniqueID SPAWN_JUNCC = 2121276730U;
         static const AkUniqueID START_GLIDE_BRELLO = 3020521956U;
         static const AkUniqueID STOP_GLIDE_BRELLO = 1228236750U;
         static const AkUniqueID STOPALL = 3086540886U;
