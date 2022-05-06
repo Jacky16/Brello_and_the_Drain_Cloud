@@ -8,6 +8,9 @@ public class PauseMenuManager : MonoBehaviour
 {
     [SerializeField] GameObject PauseMenu;
     bool isPause = false;
+
+    [SerializeField] BackgroundMusic bm;
+
     private void Start()
     {
         //PauseMenu.SetActive(false);
@@ -46,12 +49,14 @@ public class PauseMenuManager : MonoBehaviour
     {
         //Reload Current Scene
         Time.timeScale = 1;
+        bm.StopMusic();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void BackToMainMenu()
     {
         Time.timeScale = 1;
+        bm.StopMusic();
         SceneManager.LoadScene("MainMenu");
     }
 }    

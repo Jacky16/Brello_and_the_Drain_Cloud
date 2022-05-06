@@ -17,6 +17,7 @@ public class CinematicDialogue : MonoBehaviour
     [SerializeField] float speed = 0.05f;
     private int index;
 
+    [SerializeField] BackgroundMusic bm;
 
     // Start is called before the first frame update
     public void StartDialogue()
@@ -123,6 +124,16 @@ public class CinematicDialogue : MonoBehaviour
 
     public void ChangeScene()
     {
+        bm.StopMusic();
         SceneManager.LoadScene("Grasslands");
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            bm.StopMusic();
+            SceneManager.LoadScene("Grasslands");
+        }
     }
 }

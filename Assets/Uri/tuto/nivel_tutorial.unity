@@ -4938,6 +4938,7 @@ GameObject:
   - component: {fileID: 269686233}
   - component: {fileID: 269686232}
   - component: {fileID: 269686231}
+  - component: {fileID: 269686236}
   m_Layer: 3
   m_Name: Platform2 (2)
   m_TagString: Untagged
@@ -5055,6 +5056,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 269686229}
   m_Mesh: {fileID: 8624506629554066266, guid: ffc191bbd3989e74f922883cd321f769, type: 3}
+--- !u!114 &269686236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269686229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02161969c066ebc43917d728aba03202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainType: Rock
 --- !u!1001 &271775262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5676,6 +5690,7 @@ GameObject:
   - component: {fileID: 294154055}
   - component: {fileID: 294154054}
   - component: {fileID: 294154053}
+  - component: {fileID: 294154058}
   m_Layer: 3
   m_Name: Platform2 (1)
   m_TagString: Untagged
@@ -5793,6 +5808,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 294154051}
   m_Mesh: {fileID: 8624506629554066266, guid: ffc191bbd3989e74f922883cd321f769, type: 3}
+--- !u!114 &294154058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294154051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02161969c066ebc43917d728aba03202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainType: Rock
 --- !u!1 &299880656
 GameObject:
   m_ObjectHideFlags: 0
@@ -9060,6 +9088,7 @@ GameObject:
   - component: {fileID: 469976637}
   - component: {fileID: 469976636}
   - component: {fileID: 469976641}
+  - component: {fileID: 469976642}
   m_Layer: 3
   m_Name: EndPlatform
   m_TagString: Untagged
@@ -9178,6 +9207,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8103293486522951341, guid: ffc191bbd3989e74f922883cd321f769, type: 3}
+--- !u!114 &469976642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 469976635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02161969c066ebc43917d728aba03202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainType: Rock
 --- !u!1 &473411671
 GameObject:
   m_ObjectHideFlags: 0
@@ -10851,6 +10893,7 @@ GameObject:
   - component: {fileID: 575775906}
   - component: {fileID: 575775905}
   - component: {fileID: 575775904}
+  - component: {fileID: 575775909}
   m_Layer: 3
   m_Name: Platform7 (1)
   m_TagString: Untagged
@@ -10989,6 +11032,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 575775902}
   m_Mesh: {fileID: -8103293486522951341, guid: ffc191bbd3989e74f922883cd321f769, type: 3}
+--- !u!114 &575775909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575775902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02161969c066ebc43917d728aba03202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainType: Rock
 --- !u!1 &579392285
 GameObject:
   m_ObjectHideFlags: 0
@@ -13992,6 +14048,132 @@ Transform:
   m_Father: {fileID: 572343976}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &747228191
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 747228195}
+  - component: {fileID: 747228193}
+  - component: {fileID: 747228192}
+  - component: {fileID: 747228196}
+  - component: {fileID: 747228194}
+  m_Layer: 0
+  m_Name: BackgroundMusic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &747228192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747228191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608f6e10a090feb41a388278d5731e0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: f7e1664c
+  useOtherObject: 0
+  actionOnEventType: 0
+  curveInterpolation: 4
+  enableActionOnEvent: 0
+  data:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: a2839d5d3293108408d82f7bc05ec58a, type: 2}
+  useCallbacks: 0
+  Callbacks: []
+  playingId: 0
+  soundEmitterObject: {fileID: 0}
+  transitionDuration: 0
+  eventIdInternal: 0
+  valueGuidInternal: 
+  m_callbackDataInternal: {fileID: 0}
+  MultiPositionType: 1
+  multiPositionTypeLabel: 0
+  attenuationSphereColor: {r: 1, g: 0, b: 0, a: 0.1}
+  LargeModePositions: []
+  multiPositionArray: []
+--- !u!114 &747228193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747228191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52fdbde77355589458a6a5a81b062545, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_listeners:
+    initialListenerList: []
+    useDefaultListeners: 1
+  isEnvironmentAware: 1
+  isStaticObject: 0
+  m_positionOffsetData:
+    KeepMe: 0
+    positionOffset: {x: 0, y: 0, z: 0}
+  m_posOffsetData: {fileID: 0}
+  listenerMask: 1
+--- !u!114 &747228194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747228191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e061682f5cccbc4580855ae91fb3e60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &747228195
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747228191}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 578.4674, y: 319.88757, z: -83.26382}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 26
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &747228196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747228191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 013e932baa03cc643ba8911862b9f4b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: ae8d9d44
+  useOtherObject: 0
+  data:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 6f066322da300e349b80a60b443ec820, type: 2}
+  decodeBank: 0
+  loadAsynchronous: 0
+  saveDecodedBank: 0
+  unloadTriggerList: 958ca0ea
+  bankNameInternal: 
+  valueGuidInternal: 
 --- !u!1001 &752071674
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16319,6 +16501,7 @@ GameObject:
   - component: {fileID: 947777065}
   - component: {fileID: 947777068}
   - component: {fileID: 947777069}
+  - component: {fileID: 947777070}
   m_Layer: 3
   m_Name: InitPlatform
   m_TagString: Untagged
@@ -16490,6 +16673,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8103293486522951341, guid: ffc191bbd3989e74f922883cd321f769, type: 3}
+--- !u!114 &947777070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 947777063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02161969c066ebc43917d728aba03202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainType: Rock
 --- !u!1 &951219468
 GameObject:
   m_ObjectHideFlags: 0
@@ -17686,6 +17882,7 @@ GameObject:
   - component: {fileID: 1067754214}
   - component: {fileID: 1067754213}
   - component: {fileID: 1067754212}
+  - component: {fileID: 1067754217}
   m_Layer: 3
   m_Name: Platform1 (2)
   m_TagString: Untagged
@@ -17804,6 +18001,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1067754210}
   m_Mesh: {fileID: -3716691842747482935, guid: ffc191bbd3989e74f922883cd321f769, type: 3}
+--- !u!114 &1067754217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067754210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02161969c066ebc43917d728aba03202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainType: Rock
 --- !u!1 &1069220114
 GameObject:
   m_ObjectHideFlags: 0
@@ -21185,6 +21395,7 @@ GameObject:
   - component: {fileID: 1256308863}
   - component: {fileID: 1256308862}
   - component: {fileID: 1256308866}
+  - component: {fileID: 1256308867}
   m_Layer: 3
   m_Name: Platform8
   m_TagString: Untagged
@@ -21341,6 +21552,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 5028743690356843600, guid: ffc191bbd3989e74f922883cd321f769, type: 3}
+--- !u!114 &1256308867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256308860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02161969c066ebc43917d728aba03202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainType: Rock
 --- !u!1 &1256749956
 GameObject:
   m_ObjectHideFlags: 0
@@ -26228,6 +26452,7 @@ MonoBehaviour:
   dialogueText: {fileID: 1120425911}
   dialogueObject: {fileID: 11400000, guid: e58a2b817ff7b174bb2a13450af1b180, type: 2}
   speed: 0.05
+  bm: {fileID: 747228194}
 --- !u!4 &1477079937
 Transform:
   m_ObjectHideFlags: 0
@@ -34295,6 +34520,7 @@ GameObject:
   - component: {fileID: 1884833742}
   - component: {fileID: 1884833745}
   - component: {fileID: 1884833746}
+  - component: {fileID: 1884833747}
   m_Layer: 3
   m_Name: Platform4
   m_TagString: Untagged
@@ -34412,6 +34638,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4444728127320036556, guid: ffc191bbd3989e74f922883cd321f769, type: 3}
+--- !u!114 &1884833747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884833740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02161969c066ebc43917d728aba03202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainType: Rock
 --- !u!4 &1885059967 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 946817088658623194, guid: 5baaa19e2bbf9ed4ca7a3cdef2353385, type: 3}
@@ -38107,6 +38346,7 @@ GameObject:
   - component: {fileID: 2116724616}
   - component: {fileID: 2116724615}
   - component: {fileID: 2116724614}
+  - component: {fileID: 2116724619}
   m_Layer: 3
   m_Name: Platform1 (1)
   m_TagString: Untagged
@@ -38225,6 +38465,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2116724612}
   m_Mesh: {fileID: -3716691842747482935, guid: ffc191bbd3989e74f922883cd321f769, type: 3}
+--- !u!114 &2116724619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116724612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02161969c066ebc43917d728aba03202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainType: Rock
 --- !u!4 &2124359609 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 946817088658623194, guid: 5baaa19e2bbf9ed4ca7a3cdef2353385, type: 3}
@@ -38862,6 +39115,7 @@ GameObject:
   - component: {fileID: 197814766892902935}
   - component: {fileID: 197814766892902936}
   - component: {fileID: 197814766892902937}
+  - component: {fileID: 197814766892902938}
   m_Layer: 3
   m_Name: Platform3
   m_TagString: Untagged
@@ -38913,6 +39167,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4444728127320036556, guid: ffc191bbd3989e74f922883cd321f769, type: 3}
+--- !u!114 &197814766892902938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197814766892902934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02161969c066ebc43917d728aba03202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainType: Rock
 --- !u!33 &232647804291554731
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -39292,6 +39559,7 @@ GameObject:
   - component: {fileID: 714042507057311737}
   - component: {fileID: 714042507057311738}
   - component: {fileID: 714042507057311739}
+  - component: {fileID: 714042507057311740}
   m_Layer: 3
   m_Name: Platform7
   m_TagString: Untagged
@@ -39343,6 +39611,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8103293486522951341, guid: ffc191bbd3989e74f922883cd321f769, type: 3}
+--- !u!114 &714042507057311740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714042507057311736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02161969c066ebc43917d728aba03202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainType: Rock
 --- !u!4 &714128781495853063
 Transform:
   m_ObjectHideFlags: 0
@@ -40643,6 +40924,14 @@ PrefabInstance:
     - target: {fileID: 2571996535211961778, guid: 8657f7b3e07a8cf478ebcb9739e28a23, type: 3}
       propertyPath: m_Name
       value: PauseManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2571996535211961779, guid: 8657f7b3e07a8cf478ebcb9739e28a23, type: 3}
+      propertyPath: bm
+      value: 
+      objectReference: {fileID: 747228194}
+    - target: {fileID: 2571996535211961779, guid: 8657f7b3e07a8cf478ebcb9739e28a23, type: 3}
+      propertyPath: tmm
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2571996535211961780, guid: 8657f7b3e07a8cf478ebcb9739e28a23, type: 3}
       propertyPath: m_RootOrder
@@ -42598,6 +42887,7 @@ GameObject:
   - component: {fileID: 5262011837316971592}
   - component: {fileID: 5262011837316971593}
   - component: {fileID: 5262011837316971594}
+  - component: {fileID: 5262011837316971595}
   m_Layer: 3
   m_Name: Platform6
   m_TagString: Untagged
@@ -42649,6 +42939,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4369181242358835851, guid: ffc191bbd3989e74f922883cd321f769, type: 3}
+--- !u!114 &5262011837316971595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5262011837316971591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02161969c066ebc43917d728aba03202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainType: Rock
 --- !u!1 &5279809509977428136
 GameObject:
   m_ObjectHideFlags: 0
@@ -42849,6 +43152,7 @@ GameObject:
   - component: {fileID: 5788518006189568359}
   - component: {fileID: 5788518006189568360}
   - component: {fileID: 5788518006189568361}
+  - component: {fileID: 5788518006189568362}
   m_Layer: 3
   m_Name: Platform2
   m_TagString: Untagged
@@ -42900,6 +43204,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8624506629554066266, guid: ffc191bbd3989e74f922883cd321f769, type: 3}
+--- !u!114 &5788518006189568362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5788518006189568358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02161969c066ebc43917d728aba03202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainType: Rock
 --- !u!4 &5790626267459995787
 Transform:
   m_ObjectHideFlags: 0
@@ -43228,6 +43545,7 @@ GameObject:
   - component: {fileID: 6302001549052569601}
   - component: {fileID: 6302001549052569602}
   - component: {fileID: 6302001549052569603}
+  - component: {fileID: 6302001549052569604}
   m_Layer: 3
   m_Name: Platform5
   m_TagString: Untagged
@@ -43279,6 +43597,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 5028743690356843600, guid: ffc191bbd3989e74f922883cd321f769, type: 3}
+--- !u!114 &6302001549052569604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6302001549052569600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02161969c066ebc43917d728aba03202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainType: Rock
 --- !u!1 &6323693289795593855
 GameObject:
   m_ObjectHideFlags: 0
@@ -44698,6 +45029,7 @@ GameObject:
   - component: {fileID: 7968560715502625779}
   - component: {fileID: 7968560715502625780}
   - component: {fileID: 7968560715502625781}
+  - component: {fileID: 7968560715502625782}
   m_Layer: 3
   m_Name: Platform1
   m_TagString: Untagged
@@ -44749,6 +45081,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3716691842747482935, guid: ffc191bbd3989e74f922883cd321f769, type: 3}
+--- !u!114 &7968560715502625782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7968560715502625778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02161969c066ebc43917d728aba03202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainType: Rock
 --- !u!23 &7984285091706533018
 MeshRenderer:
   m_ObjectHideFlags: 0

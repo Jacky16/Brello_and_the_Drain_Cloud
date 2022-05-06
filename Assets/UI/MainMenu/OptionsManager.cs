@@ -27,7 +27,7 @@ public class OptionsManager : MonoBehaviour
     [SerializeField] const string sensXTag = "SensX";
     [SerializeField] const string sensYTag = "SensY";
 
-    [SerializeField] GameObject stopMusic;
+    [SerializeField] BackgroundMusic bm;
 
 
     [Header("MAIN MENU ANIMATIONS")]
@@ -38,7 +38,7 @@ public class OptionsManager : MonoBehaviour
     private void Awake()
     {
         playerCam = GameObject.FindGameObjectWithTag("CamPlayer").GetComponent<PlayerCam>();
-        if (animManager)
+        if (!animManager)
         {
             animManager = MenuAnimManager.GetComponent<Animator>();
         }
@@ -53,7 +53,7 @@ public class OptionsManager : MonoBehaviour
     }
     public void StartGame()
     {
-        AkSoundEngine.PostEvent("MainMenuStop", gameObject);
+        bm.StopMusic();
         SceneManager.LoadScene(1);
     }
 

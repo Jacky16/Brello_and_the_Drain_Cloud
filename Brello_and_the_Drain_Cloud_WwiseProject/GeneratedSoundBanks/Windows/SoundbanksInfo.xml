@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="133642231" Language="SFX" Hash="589617988">
+		<SoundBank Id="133642231" Language="SFX" Hash="2212259875">
 			<ObjectPath>\SoundBanks\Default Work Unit\General</ObjectPath>
 			<ShortName>General</ShortName>
 			<Path>General.bnk</Path>
@@ -207,7 +207,7 @@
 				<GameParameter Id="1564184899" Name="SFX_Volume" ObjectPath="\Game Parameters\Default Work Unit\Volume\SFX_Volume"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="2167216614" Language="SFX" Hash="2729824298">
+		<SoundBank Id="2167216614" Language="SFX" Hash="295187724">
 			<ObjectPath>\SoundBanks\Default Work Unit\General3</ObjectPath>
 			<ShortName>General3</ShortName>
 			<Path>General3.bnk</Path>
@@ -222,6 +222,10 @@
 				</Event>
 				<Event Id="609297450" Name="PSTomBoss_BackgroundMusic_PSTomBoss" ObjectPath="\Events\Default Work Unit\Environment\PSTomBoss\PSTomBoss_BackgroundMusic_PSTomBoss" DurationType="Infinite">
 					<IncludedMemoryFiles>
+						<File Id="3304908" Language="SFX">
+							<ShortName>TrainSound.wav</ShortName>
+							<Path>SFX\TrainSound_D79FB2B7.wem</Path>
+						</File>
 						<File Id="674738821" Language="SFX">
 							<ShortName>InicioMusicaPSTom.wav</ShortName>
 							<Path>SFX\InicioMusicaPSTom_10C4C929.wem</Path>
@@ -248,17 +252,9 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="823999302" Name="TrainAmbience_PSTomBoss" ObjectPath="\Events\Default Work Unit\Environment\PSTomBoss\TrainAmbience_PSTomBoss" DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="3304908" Language="SFX">
-							<ShortName>TrainSound.wav</ShortName>
-							<Path>SFX\TrainSound_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="2167216615" Language="SFX" Hash="3380965717">
+		<SoundBank Id="2167216615" Language="SFX" Hash="2094053127">
 			<ObjectPath>\SoundBanks\Default Work Unit\General2</ObjectPath>
 			<ShortName>General2</ShortName>
 			<Path>General2.bnk</Path>
@@ -378,6 +374,7 @@
 				</Event>
 				<Event Id="4013748194" Name="Sleep_Boiler" ObjectPath="\Events\Default Work Unit\Boiler\Sleep_Boiler" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="3086540886" Name="StopAll" ObjectPath="\Events\Default Work Unit\StopAll" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="2393177919" Name="StopBackgroundMusic_Tutorial" ObjectPath="\Events\Default Work Unit\Environment\Tutorial\StopBackgroundMusic_Tutorial" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 			</IncludedEvents>
 		</SoundBank>
 	</SoundBanks>

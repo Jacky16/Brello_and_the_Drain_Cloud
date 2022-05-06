@@ -384,7 +384,7 @@ public class PlayerController : MonoBehaviour
                 isStartingToSwim = false;
             });
 
-            //AkSoundEngine.PostEvent("WaterSplash_Brello", WwiseManager.instance.gameObject);
+            AkSoundEngine.PostEvent("WaterSplash_Brello", WwiseManager.instance.gameObject);
         }
     }
 

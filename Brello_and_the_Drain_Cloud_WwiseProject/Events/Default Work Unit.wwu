@@ -286,11 +286,7 @@
 												</Reference>
 											</ReferenceList>
 										</Action>
-									</ChildrenList>
-								</Event>
-								<Event Name="TrainAmbience_PSTomBoss" ID="{7A286902-E116-4EE0-930F-10C81822FBDA}">
-									<ChildrenList>
-										<Action Name="" ID="{B43E946C-011F-42B8-B7C2-E6B4A1F1A941}" ShortID="968627259">
+										<Action Name="" ID="{51FA9C6D-152F-4D45-909B-998E6D218724}" ShortID="340457163">
 											<ReferenceList>
 												<Reference Name="Target">
 													<ObjectRef Name="TrainSound" ID="{CCE414E9-DACE-42C8-B0EF-380D318E6B77}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
@@ -306,6 +302,20 @@
 								<Event Name="BackgroundMusic_Tutorial" ID="{4895DF82-7866-42CA-BA3F-768A01F792C9}">
 									<ChildrenList>
 										<Action Name="" ID="{380297AD-8947-4D64-B005-31663E2EADBF}" ShortID="10288473">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="TutorialMusic" ID="{8D472735-B0FA-4678-A728-0B9EE5558A69}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="StopBackgroundMusic_Tutorial" ID="{BF9F1130-3368-4C7B-9655-84DA981DB8E6}">
+									<ChildrenList>
+										<Action Name="" ID="{0BBAEA65-9BE1-433B-9FDE-75C065C5E3EA}" ShortID="269578686">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="2"/>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Target">
 													<ObjectRef Name="TutorialMusic" ID="{8D472735-B0FA-4678-A728-0B9EE5558A69}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>

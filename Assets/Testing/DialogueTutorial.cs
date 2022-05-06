@@ -247,6 +247,7 @@ public class DialogueTutorial : MonoBehaviour
             {
                 character.SetTrigger("Appear");
                 Instantiate(particles, new Vector3(character.transform.position.x, character.transform.position.y + 2f, character.transform.position.z), Quaternion.identity);
+                AkSoundEngine.PostEvent("Poof_MrT", WwiseManager.instance.gameObject);
                 character.transform.DOLookAt(player.transform.position, 0.5f, AxisConstraint.Y);
                 player.transform.DOLookAt(character.transform.position, 0.5f, AxisConstraint.Y);
             }
@@ -292,6 +293,7 @@ public class DialogueTutorial : MonoBehaviour
                 }
 
                 Instantiate(particles, new Vector3(character.transform.position.x, character.transform.position.y + 2f, character.transform.position.z), Quaternion.identity);
+                AkSoundEngine.PostEvent("Poof_MrT", WwiseManager.instance.gameObject);
 
                 Destroy(gameObject);
             });

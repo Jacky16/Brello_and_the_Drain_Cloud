@@ -18,6 +18,9 @@ public sealed class BrelloHealth : Health
     [SerializeField] Image canvasFade;
     float lastLifeChange;
     bool lifeChanged;
+
+    [SerializeField] BackgroundMusic bm;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -73,6 +76,7 @@ public sealed class BrelloHealth : Health
         animator.SetTrigger("Death");
         if (SceneManager.GetActiveScene().name == "BossScene")
         {
+            bm.StopMusic();
             ReloadSceneBoss();
         }
         else
