@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseMenuManager : MonoBehaviour
 {
-   [SerializeField] GameObject PauseMenu; 
+    [SerializeField] GameObject PauseMenu;
     bool isPause;
     void Update()
     {
@@ -21,4 +22,20 @@ public class PauseMenuManager : MonoBehaviour
                 Time.timeScale = 1;
         }
     }
-}
+
+    public void Resume()
+    {
+        isPause = false;
+    }
+
+    public void Restart()
+    {
+        //Reload Current Scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+}    

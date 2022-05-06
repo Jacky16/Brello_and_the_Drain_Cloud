@@ -59,6 +59,7 @@ public class OptionsManager : MonoBehaviour
         AkSoundEngine.PostEvent("MainMenuStop", gameObject);
         SceneManager.LoadScene(1);
     }
+
     public void QuitGame()
     {
         Application.Quit();

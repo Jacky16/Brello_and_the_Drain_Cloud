@@ -7,7 +7,7 @@ public class PlayerCam : MonoBehaviour
 {
     CinemachineVirtualCamera cam;
     [SerializeField]
-    private Vector2 _mouseSensitivity = new Vector2(3, 3);
+    private Vector2 _mouseSensitivity = new Vector2(1, 1);
 
     private float _rotationY;
     private float _rotationX;
