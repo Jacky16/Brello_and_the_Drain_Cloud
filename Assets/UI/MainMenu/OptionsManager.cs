@@ -50,9 +50,6 @@ public class OptionsManager : MonoBehaviour
         {           
             animManager.SetBool("isIdle", true);
         }
-
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
     }
     public void StartGame()
     {

@@ -8,6 +8,10 @@ public class PauseMenuManager : MonoBehaviour
 {
     [SerializeField] GameObject PauseMenu;
     bool isPause;
+    private void Start()
+    {
+        PauseMenu.SetActive(isPause);
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
@@ -26,6 +30,9 @@ public class PauseMenuManager : MonoBehaviour
     public void Resume()
     {
         isPause = false;
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = isPause;
     }
 
     public void Restart()
