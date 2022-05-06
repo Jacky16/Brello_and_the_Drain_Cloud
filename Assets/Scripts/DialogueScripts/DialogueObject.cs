@@ -74,7 +74,7 @@ public class DialogueObject : MonoBehaviour
             if (!inDialogue && !loadingDialogue)
             {
                 loadingDialogue = true;
-                CameraHandler(false);
+                //CameraHandler(false);
                 DialogueCanvasHandler(true);
             }
             else if (dialogueText.maxVisibleCharacters == displayText.Length && !reloadingDialogue && inDialogue && !loadingDialogue)
@@ -203,7 +203,7 @@ public class DialogueObject : MonoBehaviour
         }
         else
         {
-            CameraHandler(true);
+            //CameraHandler(true);
             DialogueCanvasHandler(false);
         }
     }

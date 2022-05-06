@@ -123,7 +123,6 @@ public class CinematicDialogue : MonoBehaviour
 
     public void ChangeScene()
     {
-        Debug.Log("Cambiado de escena uwu");
-        //SceneManager.LoadScene();
+        SceneManager.LoadScene("Grasslands");
     }
 }
