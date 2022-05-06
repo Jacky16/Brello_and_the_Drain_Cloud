@@ -450,6 +450,43 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
+				<Folder Name="Juncc" ID="{6CC98533-22C6-4750-BD92-D577667B2A3C}" ShortID="368444667">
+					<ChildrenList>
+						<Event Name="Shoot_Juncc" ID="{6BA4D73E-F772-4121-8B60-AC944A8113B9}">
+							<ChildrenList>
+								<Action Name="" ID="{5101F81F-9502-424E-81F9-F9BB902F01E2}" ShortID="750812239">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="JunccShoot" ID="{B5E289EB-C8A8-408D-A530-E2386FC695D2}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Hide_Juncc" ID="{C412FED7-F4C0-4F69-B915-65881A16C913}">
+							<ChildrenList>
+								<Action Name="" ID="{F1115790-089C-40A0-BFF7-2F5C2C862E92}" ShortID="752798096">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="JunccHide" ID="{9F6E9385-0473-4A1F-9630-689D687FA727}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Spawn_Juncc" ID="{DA9BF17B-A83C-48C4-AA45-27209092A41E}">
+							<ChildrenList>
+								<Action Name="" ID="{F566D48C-0CFB-4FC1-A608-8E31769CB712}" ShortID="758367659">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="JunccSpawn" ID="{8B76FFFC-3E71-4082-9571-EF467F71F9E6}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
