@@ -10,9 +10,11 @@ public class CrystalPuzzle : MonoBehaviour
 
     private int shinyCrystals = 0;
 
+    [SerializeField] GameObject dropply;
+
     private void Awake()
     {
-        
+        dropply.SetActive(false);
     }
 
     private void Start()
@@ -45,7 +47,7 @@ public class CrystalPuzzle : MonoBehaviour
 
     private void CompletePuzzle()
     {
-        Debug.Log("COMPLETADO");
+        dropply.SetActive(true);
     }
 
 }
