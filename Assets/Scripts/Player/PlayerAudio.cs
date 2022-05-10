@@ -8,10 +8,8 @@ public class PlayerAudio : MonoBehaviour
 
     string actualTerrainType = "Default";
 
-    private void Start()
-    {
-        AkSoundEngine.PostEvent("BackgroundMusic_Level1", WwiseManager.instance.gameObject);
-    }
+    [System.NonSerialized]
+    public int isReverbOn = 0;
 
     public void PlayFootstep()
     {
@@ -25,7 +23,7 @@ public class PlayerAudio : MonoBehaviour
                 if (hit.collider.transform.gameObject.TryGetComponent(out Terrain terrain))
                 {
                     actualTerrainType = terrain.GetTerrainType();
-                    Debug.Log(actualTerrainType);
+                    //Debug.Log(actualTerrainType);
                 }
             }
         }

@@ -9,6 +9,12 @@
 						<GameParameter Name="Music_Volume" ID="{DC565918-9E6F-489B-9543-85AB60D9871A}"/>
 					</ChildrenList>
 				</Folder>
+				<GameParameter Name="IsReverbOn" ID="{51FFA8F6-E228-4E05-985F-A92829509316}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="0"/>
+						<Property Name="Max" Type="Real64" Value="1"/>
+					</PropertyList>
+				</GameParameter>
 			</ChildrenList>
 		</WorkUnit>
 	</GameParameters>

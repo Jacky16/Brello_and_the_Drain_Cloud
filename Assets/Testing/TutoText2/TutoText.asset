@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c0f6d31ee7a2704492cef1f82aa821b, type: 3}
+  m_Name: TutoText
+  m_EditorClassIdentifier: 
+  conversationBlock:
+  - <speed=0.05>Did you hear the <b><color=#dd2e44>boom</b><color="white"> too!?
+    It was atrociously beautiful, but all of my friends think otherwise...
+  - '<speed=0.05>Have you met them already!? You know<speed=0.15>...<speed=0.05>
+
+    the
+    <color=#78b159>green little one<color="white">, or maybe the <color=#aa8ed6>4
+    shady pals<color="white">, or-oh...'
+  - '<speed=0.05>It seems that I''m a bit early?<pause=0.75>
+
+    Or maybe<speed=0.2>...'
+  - <speed=0.05><color=#dd2e44>YOU'RE TOO LATE!!<color="white">
