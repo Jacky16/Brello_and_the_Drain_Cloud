@@ -261,13 +261,10 @@
 								</Event>
 								<Event Name="StopBackgroundMusic_Level1" ID="{01255D68-6559-4912-A53C-1C4F7503187C}">
 									<ChildrenList>
-										<Action Name="" ID="{4F466F6F-B38C-4492-A0DA-52E4FB676644}" ShortID="89151995">
-											<PropertyList>
-												<Property Name="ActionType" Type="int16" Value="2"/>
-											</PropertyList>
+										<Action Name="" ID="{E853C954-57B9-4D5C-A503-32B3EBF5E04C}" ShortID="383426201">
 											<ReferenceList>
 												<Reference Name="Target">
-													<ObjectRef Name="GrasslandMusic" ID="{207DF045-E198-4152-A063-09A0201AC8D6}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+													<ObjectRef Name="BRELLO_World_v1" ID="{814956AB-91F4-4AD7-8F7F-FD5E886342F9}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>
