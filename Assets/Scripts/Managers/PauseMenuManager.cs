@@ -10,31 +10,56 @@ public class PauseMenuManager : MonoBehaviour
     bool isPause = false;
 
     [SerializeField] BackgroundMusic bm;
+    PlayerCam playerCam;
 
+    const string soundTag = "SoundVol";
+    const string musicTag = "MusicVol";
+    const string sensXTag = "SensX";
+    const string sensYTag = "SensY";
+
+    private void Awake()
+    {
+        playerCam = FindObjectOfType<PlayerCam>();
+        LoadSettings();
+    }
     private void Start()
     {
-        //PauseMenu.SetActive(false);
+        PauseMenu.SetActive(false);
     }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            isPause = !isPause;
-            Cursor.lockState = CursorLockMode.Confined;
-            Cursor.visible = isPause;
-            if (isPause)
-            {
-                Time.timeScale = 0;
-                PauseMenu.SetActive(true);
-
-
-            }
-            else
-            {
-                Time.timeScale = 1;
-                PauseMenu.SetActive(false);
-            }                
+            Pause();
+            Time.timeScale = isPause ? 0 : 1;
         }
+    }
+    void LoadSettings()
+    {
+        InitCameraVelocity();
+        InitSound();
+    }
+    public void InitCameraVelocity()
+    {
+        playerCam.ChangeVelocityY(PlayerPrefs.GetFloat(sensYTag, playerCam.GetVelocityY()));
+        playerCam.ChangeVelocityX(PlayerPrefs.GetFloat(sensXTag, playerCam.GetVelocityX()));
+    }
+  
+
+    public void InitSound()
+    {
+        AkSoundEngine.SetRTPCValue("SFX_Volume", PlayerPrefs.GetFloat(soundTag, 50));
+        AkSoundEngine.SetRTPCValue("Music_Volume", PlayerPrefs.GetFloat(musicTag, 50));
+
+    }
+  
+    public void Pause()
+    {
+        isPause = !isPause;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = isPause;
+        PauseMenu.SetActive(isPause);
+        Time.timeScale = 0;
     }
 
     public void Resume()

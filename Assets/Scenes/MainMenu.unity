@@ -10686,15 +10686,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4623dbc85187a846aa74a076ee2b68e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicSlider: {fileID: 1247614466}
-  soundSlider: {fileID: 1126432454}
-  soundInput: {fileID: 331198866}
-  musicInput: {fileID: 171960064}
   sensitivityXSlider: {fileID: 804469204}
   sensitivityYSlider: {fileID: 1189295310}
   sensitivityXInput: {fileID: 217469600}
   sensitivityYInput: {fileID: 1671075060}
-  bm: {fileID: 1595116211}
+  invertedXToggle: {fileID: 0}
+  invertedYToggle: {fileID: 0}
+  musicSlider: {fileID: 1247614466}
+  soundSlider: {fileID: 1126432454}
+  soundInput: {fileID: 331198866}
+  musicInput: {fileID: 171960064}
+  fullscreenToggle: {fileID: 0}
+  backgroundMusic: {fileID: 0}
   MenuAnimManager: {fileID: 1106977426}
 --- !u!224 &1673515651
 RectTransform:

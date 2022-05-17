@@ -79,4 +79,21 @@ public class PlayerCam : MonoBehaviour
     {
         isInvertY = _invert;
     }
+
+    public bool GetInvertX()
+    {
+        return isInvertX;
+    }
+    public bool GetInvertY()
+    {
+        return isInvertY;
+    }
+    public int GetVelocityX()
+    {
+        return (int)_mouseSensitivity.x;
+    }
+    public int GetVelocityY()
+    {
+        return (int)_mouseSensitivity.y;
+    }
 }
