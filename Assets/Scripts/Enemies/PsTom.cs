@@ -14,6 +14,7 @@ public class PsTom : MonoBehaviour
     GameObject player;
     Collider collider;
     PsTomHealth tomHealth;
+    PsTomEffects tomEffects;
 
     //Bools variables
     bool canAssaultPlayer = true;
@@ -85,6 +86,7 @@ public class PsTom : MonoBehaviour
         collider = GetComponent<Collider>();
         anim = GetComponent<Animator>();
         tomHealth = GetComponent<PsTomHealth>();
+        tomEffects = GetComponent<PsTomEffects>();
     }
     private void Start()
     {
@@ -190,6 +192,8 @@ public class PsTom : MonoBehaviour
     {
         transform.DOLocalRotate(Vector3.zero, 0.5f);
         anim.SetTrigger("AttackThrowTrash");
+
+        //Advice:Lanzar el objeto
     }
     //Se ejecuta en la animacion de trow trash
     void ThrowTrash()
@@ -215,7 +219,9 @@ public class PsTom : MonoBehaviour
         if (!isAttackingPunchAttack)
         {
             RotateToPlayer();
-            anim.SetTrigger("AttackPunch");          
+            anim.SetTrigger("AttackPunch");
+
+            //Advice:Empieza el ataque del puño
         }
     }
     void AttackPunchBoolean(int value)
@@ -243,8 +249,9 @@ public class PsTom : MonoBehaviour
                 isAttackingPunchAttack = false;
                 player.GetComponent<Rigidbody>().AddForce(-transform.localPosition.normalized * impulseAttackJumpToPlayer.x + Vector3.up * impulseAttackJumpToPlayer.y, ForceMode.Impulse);
                 player.GetComponent<PlayerController>().ChangeTypeofMovement(PlayerController.MovementMode.ADD_FORCE, true);
-                
+            
                 Debug.Log("Ataque al player por el puño");
+                //Advive:Golpea al player con el puño
             }
         }       
     }
@@ -290,6 +297,7 @@ public class PsTom : MonoBehaviour
             {
                 if (CheckIfPlayerInside())
                 {
+                    //Advice:Ha acabado el salto
                     AddImpulseToPlayer(impulseAttackJumpToPlayer);
                     player.GetComponent<BrelloHealth>().DoDamage(damage);
                 }
@@ -344,8 +352,10 @@ public class PsTom : MonoBehaviour
     {
         if (!isAssaltingPlayer && !isStuned)
         {
+            
             RotateToPlayer(0.1f).OnComplete(() =>
             {
+                //Advice: Empieza a perseguir al player
                 isAssaltingPlayer = true;
 
                 anim.SetBool("IsChasing", isAssaltingPlayer);
@@ -396,11 +406,13 @@ public class PsTom : MonoBehaviour
         
         if (isAssaltingPlayer && CheckCollision("Player"))
         {
+            //Advice: Ha golpeado al player
             AddImpulseToPlayer(impulseAttackAssaultToPlayer);
             player.GetComponent<BrelloHealth>().DoDamage(damage);
         }
         else if (isDistanceToGo && isAssaltingPlayer)
         {
+            //Advice: Acaba la ruta por que se ha xocasdo
             isAssaltingPlayer = false;
             
             //Parar en seco y quitar la ruta del navmesh
@@ -446,7 +458,9 @@ public class PsTom : MonoBehaviour
             anim.SetBool("IsFalling", true);
         });
         sequence.OnComplete(() =>
-        {         
+        {   
+            //Advive:Se ha chocado con el player
+            
             anim.SetBool("IsFalling", false);
             navMeshAgent.enabled = true;
 
