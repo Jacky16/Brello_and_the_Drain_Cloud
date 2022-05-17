@@ -1215,6 +1215,37 @@
 										<ActiveSource Name="Rain" ID="{5653C1E8-C6AC-476F-8380-6405086024FD}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
+								<Sound Name="BRELLO_World_v1" ID="{814956AB-91F4-4AD7-8F7F-FD5E886342F9}" ShortID="872343519">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-12</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Music" ID="{FF677782-1B11-48DB-92B1-E627213C1F6C}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="BRELLO_World_v1" ID="{567C4274-5E2A-4178-A8A0-19BB8AEBF808}">
+											<Language>SFX</Language>
+											<AudioFile>BRELLO_World_v1.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="376022818"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="BRELLO_World_v1" ID="{567C4274-5E2A-4178-A8A0-19BB8AEBF808}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="PSTomBoss" ID="{2F8A5F7A-BB8F-4F14-B429-53CB43560FEB}" ShortID="58515716">

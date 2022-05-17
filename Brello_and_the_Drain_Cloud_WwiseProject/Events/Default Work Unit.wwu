@@ -222,10 +222,10 @@
 							<ChildrenList>
 								<Event Name="BackgroundMusic_Level1" ID="{8E6F03D1-EA53-471B-AB82-209494D2A706}">
 									<ChildrenList>
-										<Action Name="" ID="{96E21D75-2C01-477B-92AF-DAB65AAB56C1}" ShortID="404636384">
+										<Action Name="" ID="{6847366E-1783-4A04-92CA-3A1A8852E81D}" ShortID="841172991">
 											<ReferenceList>
 												<Reference Name="Target">
-													<ObjectRef Name="GrasslandMusic" ID="{207DF045-E198-4152-A063-09A0201AC8D6}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+													<ObjectRef Name="BRELLO_World_v1" ID="{814956AB-91F4-4AD7-8F7F-FD5E886342F9}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>
@@ -261,13 +261,10 @@
 								</Event>
 								<Event Name="StopBackgroundMusic_Level1" ID="{01255D68-6559-4912-A53C-1C4F7503187C}">
 									<ChildrenList>
-										<Action Name="" ID="{4F466F6F-B38C-4492-A0DA-52E4FB676644}" ShortID="89151995">
-											<PropertyList>
-												<Property Name="ActionType" Type="int16" Value="2"/>
-											</PropertyList>
+										<Action Name="" ID="{E853C954-57B9-4D5C-A503-32B3EBF5E04C}" ShortID="383426201">
 											<ReferenceList>
 												<Reference Name="Target">
-													<ObjectRef Name="GrasslandMusic" ID="{207DF045-E198-4152-A063-09A0201AC8D6}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+													<ObjectRef Name="BRELLO_World_v1" ID="{814956AB-91F4-4AD7-8F7F-FD5E886342F9}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>

@@ -17,7 +17,7 @@ public class PauseMenuManager : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             isPause = !isPause;
             Cursor.lockState = CursorLockMode.Confined;
