@@ -15,6 +15,8 @@ public class PsTomHealth : Health
     [SerializeField] GameObject[] gameObjectsToDisable;
     [SerializeField] Transform centerMapPosition;
 
+    [SerializeField] BackgroundMusic bm;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -28,6 +30,7 @@ public class PsTomHealth : Health
         healthBar.DOFillAmount(percent, 0.5f);   
         psTom.ChangePhase(currLife);
         anim.SetTrigger("Hit");
+        AkSoundEngine.PostEvent("Hit_PSTom", WwiseManager.instance.gameObject);
     }
     protected override void onDeath()
     {
@@ -45,6 +48,7 @@ public class PsTomHealth : Health
     IEnumerator GoToMainMenu()
     {
         yield return new WaitForSeconds(7f);
+        bm.StopMusic();
         SceneManager.LoadScene("MainMenu");
     }
     void DisableAllObjects()

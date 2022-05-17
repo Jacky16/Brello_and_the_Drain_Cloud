@@ -44,6 +44,7 @@ public class BoilerAI : MonoBehaviour
     }
     public void ShootCoal()
     {
+        AkSoundEngine.PostEvent("Shoot_Boiler", WwiseManager.instance.gameObject);
         Instantiate(coalBall, positionToSpawn, Quaternion.identity);
         StartCoroutine(ResetAttack());
     }

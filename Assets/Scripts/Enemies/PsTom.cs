@@ -418,8 +418,9 @@ public class PsTom : MonoBehaviour
             //Parar en seco y quitar la ruta del navmesh
             navMeshAgent.velocity = Vector3.zero;
             navMeshAgent.ResetPath();
-            
+
             //Sistema de Stune
+            AkSoundEngine.PostEvent("Crash_PSTom", WwiseManager.instance.gameObject);
             StartCoroutine(ResumeCanAssaultPlayer());
         }
     }
@@ -462,6 +463,7 @@ public class PsTom : MonoBehaviour
             
             anim.SetBool("IsFalling", false);
             navMeshAgent.enabled = true;
+
             //isAssaltingPlayer = false;
             //canAssaultPlayer = true;
         });

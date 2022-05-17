@@ -34,6 +34,7 @@ public sealed class PyraAI : MonoBehaviour
     [SerializeField] private LayerMask rainMask;
 
     [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private LayerMask whatIsWater;
 
     //Variables de objetos detectados.
     [SerializeField] private List<Interactable> detectedObjects;
@@ -85,6 +86,10 @@ public sealed class PyraAI : MonoBehaviour
             agent.Warp(hit.position);
         }
 
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            agent.Warp(player.transform.position);
+        }
         AIManager();
         RotationManager();
         AnimationManager();
@@ -92,9 +97,9 @@ public sealed class PyraAI : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Physics.Raycast(player.transform.position, -player.transform.up, out RaycastHit hit, 1000f, whatIsGround);
+        Physics.Raycast(player.transform.position, -player.transform.up, out RaycastHit hit, 1000f, whatIsGround | whatIsWater);
 
-        playerIsHighEnough = Vector3.Distance(player.transform.position, hit.point) >= 5f ? true : false;
+        playerIsHighEnough = Vector3.Distance(player.transform.position, hit.point) >= 10f ? true : false;
 
         if(Physics.CheckSphere(transform.position, detectionRadius, interactable))
         {
@@ -134,7 +139,8 @@ public sealed class PyraAI : MonoBehaviour
             Debug.Log("No estoy en combate!!");
         }
 
-        if(!player.IsSwimming() && player.IsGlading() && playerIsHighEnough && !pyraIsGliding 
+        //Cambiar el isGrounded por IsGlading si se quiere que se convierta en bolita solo cuando brello planee
+        if(!player.IsSwimming() && !player.IsGrounded() && playerIsHighEnough && !pyraIsGliding 
             && Vector3.Distance(player.transform.position, transform.position) <= minDistToTP)
         {
             pyraIsGliding = true;
@@ -156,12 +162,13 @@ public sealed class PyraAI : MonoBehaviour
         {
             pyraIsGliding = false;
 
-            Physics.Raycast(player.transform.GetChild(0).position, Vector3.down, out RaycastHit hit, 100f, whatIsGround);
+            //Physics.Raycast(player.transform.GetChild(0).position, Vector3.down, out RaycastHit hit, 100f, whatIsGround);
 
-            NavMesh.SamplePosition(hit.point, out NavMeshHit navHit, 1f, NavMesh.AllAreas);
+            //NavMesh.SamplePosition(player.transform.position, out NavMeshHit navHit, 0.5f, NavMesh.AllAreas);
+            //Debug.Log(navHit.position);
 
-            agent.Warp(navHit.position);
-            currentParticle.GetComponent<PyraBall>().posToFinish(navHit.position);  
+            agent.Warp(player.transform.position);
+            currentParticle.GetComponent<PyraBall>().posToFinish(player.transform.position);  
         }
         else if(pyraIsGliding && player.IsSwimming())
         {

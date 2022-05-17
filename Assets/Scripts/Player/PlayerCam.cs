@@ -7,10 +7,13 @@ public class PlayerCam : MonoBehaviour
 {
     CinemachineVirtualCamera cam;
     [SerializeField]
-    private float _mouseSensitivity = 3.0f;
+    private Vector2 _mouseSensitivity = new Vector2(1, 1);
 
     private float _rotationY;
     private float _rotationX;
+
+    bool isInvertX;
+    bool isInvertY;
 
     [SerializeField]
     private Transform _target;
@@ -31,11 +34,21 @@ public class PlayerCam : MonoBehaviour
     void Update()
     {
         
-        float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivity;
+        float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity.x;
+        float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivity.y;
 
+        if (isInvertX)
+        {
+            mouseX *= -1;
+        }
+        if (isInvertY)
+        {
+            mouseY *= -1;
+        }
+        
         _rotationY += mouseX;
         _rotationX += mouseY;
+        
 
         // Apply clamping for x rotation 
         _rotationX = Mathf.Clamp(_rotationX, _rotationXMinMax.x, _rotationXMinMax.y);
@@ -48,5 +61,22 @@ public class PlayerCam : MonoBehaviour
 
         // Substract forward vector of the GameObject to point its forward vector to the target
         transform.position = _target.position - transform.forward * _distanceFromTarget;
+    }
+
+    public void ChangeVelocityX(float _speed)
+    {
+        _mouseSensitivity.x = _speed;
+    }
+    public void ChangeVelocityY(float _speed)
+    {
+        _mouseSensitivity.y = _speed;
+    }
+    public void ChangeInvertX(bool _invert)
+    {
+        isInvertX = _invert;
+    }
+    public void ChangeInvertY(bool _invert)
+    {
+        isInvertY = _invert;
     }
 }

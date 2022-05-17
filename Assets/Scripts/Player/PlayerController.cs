@@ -154,12 +154,11 @@ public class PlayerController : MonoBehaviour
             else
             {
                 dir.y = 0;
-                rb.AddForce(dir * 10, ForceMode.Acceleration);
+                rb.AddForce(dir*6, ForceMode.Acceleration);
             }
         }
         else
         {
-            axis = Vector2.zero;
             currentSpeed = 0;
         }
     }
@@ -338,12 +337,17 @@ public class PlayerController : MonoBehaviour
     //Se ejecuta en los eventos de animacion
     private void Attack()
     {
-        Collider[] colliders = Physics.OverlapBox(pivotAttack.position, sizeCubeAttack, Quaternion.identity,attackLayerMask);
+        Collider[] colliders = Physics.OverlapBox(pivotAttack.position, sizeCubeAttack, Quaternion.identity, attackLayerMask);
         foreach (Collider collider in colliders)
         {
             if (collider.TryGetComponent(out Health _health))
             {
-                _health.DoDamage(damage);
+                if (!collider.CompareTag("Player") && !collider.CompareTag("Pyra"))
+                {
+                    _health.DoDamage(damage);
+                }
+
+                print(collider.tag);
             }
         }
     }
@@ -386,7 +390,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnOutSwiming(Collider other)
     {
-        print("Ha salido del agua");
         if (other.CompareTag("Water"))
         {
             currentTorrentDirection = Vector3.zero;
