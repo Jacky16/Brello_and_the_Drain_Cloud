@@ -10,24 +10,31 @@ public class OptionsManager : MonoBehaviour
 {
     bool invertedX = false;
     bool invertedY = true;
-    
+    bool isFullscreen = false;
 
+    [Header("Camera")]
+    [SerializeField] Slider sensitivityXSlider;
+    [SerializeField] Slider sensitivityYSlider;
+    [SerializeField] TMP_InputField sensitivityXInput;
+    [SerializeField] TMP_InputField sensitivityYInput;
+    [SerializeField] Toggle invertedXToggle;
+    [SerializeField] Toggle invertedYToggle;
+
+    [Header("Audio")]
     [SerializeField] Slider musicSlider;
     [SerializeField] Slider soundSlider;
     [SerializeField] TMP_InputField soundInput;
     [SerializeField] TMP_InputField musicInput;
 
-    [SerializeField] Slider sensitivityXSlider;
-    [SerializeField] Slider sensitivityYSlider;
-    [SerializeField] TMP_InputField sensitivityXInput;
-    [SerializeField] TMP_InputField sensitivityYInput;
+    [Header("Graphics")]
+    [SerializeField] Toggle fullscreenToggle;
 
-    [SerializeField] const string soundTag = "SoundVol";
-    [SerializeField] const string musicTag = "MusicVol";
-    [SerializeField] const string sensXTag = "SensX";
-    [SerializeField] const string sensYTag = "SensY";
+    const string soundTag = "SoundVol";
+    const string musicTag = "MusicVol";
+    const string sensXTag = "SensX";
+    const string sensYTag = "SensY";
 
-    [SerializeField] BackgroundMusic bm;
+    [SerializeField] BackgroundMusic backgroundMusic;
 
 
     [Header("MAIN MENU ANIMATIONS")]
@@ -38,22 +45,46 @@ public class OptionsManager : MonoBehaviour
     private void Awake()
     {
         playerCam = GameObject.FindGameObjectWithTag("CamPlayer").GetComponent<PlayerCam>();
-        if (!animManager)
+        if (MenuAnimManager)
         {
             animManager = MenuAnimManager.GetComponent<Animator>();
         }
+        //Camera
+        sensitivityXSlider.onValueChanged.AddListener(ChangeSensitivityXSlider);
+        sensitivityYSlider.onValueChanged.AddListener(ChangeSensitivityYSlider);
+        
+        //sensitivityXInput.onValueChanged.AddListener(ChangeSensitivityXInput);
+        //sensitivityYInput.onValueChanged.AddListener(ChangeSensitivityYInput);
+        
+        //Toogle
+        invertedXToggle.onValueChanged.AddListener(SetInvertedXCamera);
+        invertedYToggle.onValueChanged.AddListener(SetInvertedYCamera);
+        fullscreenToggle.onValueChanged.AddListener(SetFullScreenBool);
+
+        //Music
+        musicSlider.onValueChanged.AddListener(ChangeMusicVolumeSlider);
+        soundSlider.onValueChanged.AddListener(ChangeSoundVolumeSlider);
+        
+        musicInput.onValueChanged.AddListener(ChangeMusicVolumeInput);
+        soundInput.onValueChanged.AddListener(ChangeSoundVolumeInput);
+        
+
     }
 
     private void Start()
     {
-        if (animManager)
+        if (MenuAnimManager)
         {           
             animManager.SetBool("isIdle", true);
         }
     }
+    private void OnEnable()
+    {
+        LoadSettings();
+    }
     public void StartGame()
     {
-        bm.StopMusic();
+        backgroundMusic.StopMusic();
         SceneManager.LoadScene(1);
     }
 
@@ -72,6 +103,27 @@ public class OptionsManager : MonoBehaviour
         animManager.SetBool("isIdle", false);
         animManager.SetBool("isSelected", false);
         animManager.SetBool("isComeback", true);
+    }
+
+    void LoadSettings()
+    {
+        //Toogle Camera
+        invertedXToggle.isOn = playerCam.GetInvertX();
+        invertedYToggle.isOn = playerCam.GetInvertY();
+
+        //Set Mouse Values
+        sensitivityXSlider.value = PlayerPrefs.GetFloat(sensXTag, playerCam.GetVelocityX());
+        sensitivityYSlider.value = PlayerPrefs.GetFloat(sensYTag, playerCam.GetVelocityY());
+
+
+        //Set Audio Values
+        musicSlider.value = PlayerPrefs.GetFloat(musicTag, 50);
+        soundSlider.value = PlayerPrefs.GetFloat(soundTag, 50);
+        
+
+        //Set full screen
+        isFullscreen = Screen.fullScreen;
+        fullscreenToggle.isOn = isFullscreen;
     }
 
     #region Camera options

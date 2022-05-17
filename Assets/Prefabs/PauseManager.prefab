@@ -146,7 +146,6 @@ GameObject:
   - component: {fileID: 2571996534102831902}
   - component: {fileID: 2571996534102831901}
   - component: {fileID: 2571996534102831900}
-  - component: {fileID: 4830928966073353674}
   - component: {fileID: 204699400736765695}
   m_Layer: 5
   m_Name: PAUSE_MENU
@@ -154,7 +153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2571996534102831903
 RectTransform:
   m_ObjectHideFlags: 0
@@ -238,19 +237,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &4830928966073353674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2571996534102831899}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5f5af65fc0094343aff455f6bc28f86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PauseMenu: {fileID: 2571996534102831899}
 --- !u!114 &204699400736765695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,15 +249,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4623dbc85187a846aa74a076ee2b68e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicSlider: {fileID: 2571996535611179578}
-  soundSlider: {fileID: 2571996535120498585}
-  soundInput: {fileID: 2571996535380491940}
-  musicInput: {fileID: 2571996535495249636}
   sensitivityXSlider: {fileID: 2571996534706355988}
   sensitivityYSlider: {fileID: 2571996535126356338}
   sensitivityXInput: {fileID: 2571996535654529853}
   sensitivityYInput: {fileID: 2571996534678408164}
-  stopMusic: {fileID: 0}
+  invertedXToggle: {fileID: 2571996534646104517}
+  invertedYToggle: {fileID: 2571996535228579480}
+  musicSlider: {fileID: 2571996535611179578}
+  soundSlider: {fileID: 2571996535120498585}
+  soundInput: {fileID: 2571996535380491940}
+  musicInput: {fileID: 2571996535495249636}
+  fullscreenToggle: {fileID: 2571996535304298871}
+  backgroundMusic: {fileID: 0}
   MenuAnimManager: {fileID: 0}
 --- !u!1 &2571996534116106604
 GameObject:
@@ -1351,7 +1340,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2571996535211961781}
+      - m_Target: {fileID: 204699400736765695}
         m_TargetAssemblyTypeName: OptionsManager, Assembly-CSharp
         m_MethodName: SetInvertedXCamera
         m_Mode: 0
@@ -1503,7 +1492,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2571996535211961781}
+      - m_Target: {fileID: 204699400736765695}
         m_TargetAssemblyTypeName: OptionsManager, Assembly-CSharp
         m_MethodName: ChangeSensitivityYInput
         m_Mode: 0
@@ -1677,7 +1666,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2571996535211961781}
+      - m_Target: {fileID: 204699400736765695}
         m_TargetAssemblyTypeName: OptionsManager, Assembly-CSharp
         m_MethodName: ChangeSensitivityXSlider
         m_Mode: 0
@@ -1817,7 +1806,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2571996534737966588}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -3025,7 +3014,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2571996535211961781}
+      - m_Target: {fileID: 204699400736765695}
         m_TargetAssemblyTypeName: OptionsManager, Assembly-CSharp
         m_MethodName: ChangeSoundVolumeSlider
         m_Mode: 0
@@ -3127,7 +3116,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2571996535211961781}
+      - m_Target: {fileID: 204699400736765695}
         m_TargetAssemblyTypeName: OptionsManager, Assembly-CSharp
         m_MethodName: ChangeSensitivityYSlider
         m_Mode: 0
@@ -3246,7 +3235,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2571996535211961780}
   - component: {fileID: 2571996535211961779}
-  - component: {fileID: 2571996535211961781}
   m_Layer: 0
   m_Name: PauseManager
   m_TagString: PauseManager
@@ -3282,28 +3270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PauseMenu: {fileID: 2571996534102831899}
---- !u!114 &2571996535211961781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2571996535211961778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4623dbc85187a846aa74a076ee2b68e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  musicSlider: {fileID: 2571996535611179578}
-  soundSlider: {fileID: 2571996535120498585}
-  soundInput: {fileID: 2571996535380491940}
-  musicInput: {fileID: 2571996535495249636}
-  sensitivityXSlider: {fileID: 2571996534706355988}
-  sensitivityYSlider: {fileID: 2571996535126356338}
-  sensitivityXInput: {fileID: 2571996535654529853}
-  sensitivityYInput: {fileID: 2571996534678408164}
-  stopMusic: {fileID: 0}
-  MenuAnimManager: {fileID: 0}
+  bm: {fileID: 0}
 --- !u!1 &2571996535214400566
 GameObject:
   m_ObjectHideFlags: 0
@@ -3658,7 +3625,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2571996535211961781}
+      - m_Target: {fileID: 204699400736765695}
         m_TargetAssemblyTypeName: OptionsManager, Assembly-CSharp
         m_MethodName: SetInvertedYCamera
         m_Mode: 0
@@ -3985,7 +3952,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2571996535211961781}
+      - m_Target: {fileID: 204699400736765695}
         m_TargetAssemblyTypeName: OptionsManager, Assembly-CSharp
         m_MethodName: SetFullScreenBool
         m_Mode: 0
@@ -4137,7 +4104,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2571996535211961781}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: OptionsManager, Assembly-CSharp
         m_MethodName: ChangeSoundVolumeInput
         m_Mode: 0
@@ -4405,7 +4372,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u200B"
+  m_text: "5\u200B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4876,9 +4843,9 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2571996535211961781}
+      - m_Target: {fileID: 2571996534102831899}
         m_TargetAssemblyTypeName: OptionsManager, Assembly-CSharp
-        m_MethodName: ChangeMusicVolumeInput
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5223,7 +5190,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2571996535211961781}
+      - m_Target: {fileID: 204699400736765695}
         m_TargetAssemblyTypeName: OptionsManager, Assembly-CSharp
         m_MethodName: ChangeMusicVolumeSlider
         m_Mode: 0
@@ -5583,7 +5550,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2571996535211961781}
+      - m_Target: {fileID: 204699400736765695}
         m_TargetAssemblyTypeName: OptionsManager, Assembly-CSharp
         m_MethodName: ChangeSensitivityXInput
         m_Mode: 0
@@ -5619,7 +5586,7 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: 
+  m_Text: 5
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
