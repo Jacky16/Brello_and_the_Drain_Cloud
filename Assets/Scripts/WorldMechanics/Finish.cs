@@ -12,7 +12,7 @@ public class Finish : MonoBehaviour
     {
         if(other.TryGetComponent(out PlayerController pc))
         {
-            AkSoundEngine.PostEvent("StopBackgroundMusic_Level1", WwiseManager.instance.gameObject);
+            bm.StopMusic();
             SceneManager.LoadScene(nameScene);
         }
     }
