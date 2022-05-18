@@ -294,6 +294,7 @@ public class PlayerController : MonoBehaviour
     void CheckCombo()
     {
         canAttack = false;
+       
         if (CheckState(nameFirstAttack) && noOfClicks <= 1)
         {
             animator.SetInteger("currentAttack", 0);
@@ -302,25 +303,25 @@ public class PlayerController : MonoBehaviour
             noOfClicks = 0;
         }
         //Ataque 2
-        else if (CheckState(nameFirstAttack) && noOfClicks >= 2)
+        if (CheckState(nameFirstAttack) && noOfClicks >= 2)
         {
             animator.SetInteger("currentAttack", 2);
             canAttack = true;
         }
-        else if (CheckState(nameSecondAttack) && noOfClicks <= 2)
+        if(CheckState(nameSecondAttack) && noOfClicks <= 2)
         {
             animator.SetInteger("currentAttack", 0);
             canAttack = true;
             noOfClicks = 0;
             movementMode = MovementMode.VELOCITY;
         }
-        else if (CheckState(nameSecondAttack) && noOfClicks >= 3) {
+        if(CheckState(nameSecondAttack) && noOfClicks >= 3) {
             movementMode = MovementMode.VELOCITY;
             animator.SetInteger("currentAttack", 3);
             canAttack = true;
         }
         //Ataque 3
-        else if (CheckState(nameThirdAttack) && noOfClicks >= 3)
+        if(CheckState(nameThirdAttack) && noOfClicks >= 3)
         {
             animator.SetInteger("currentAttack", 0);
             canAttack = true;
