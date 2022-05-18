@@ -227,6 +227,7 @@ public class PlayerController : MonoBehaviour
         if (isGlading && !isSwimming)
         {
             rb.AddForce(Vector3.down * gladingGravity, ForceMode.Force);
+            
         }  
     }
     private Vector3 CamDirection()
@@ -448,6 +449,11 @@ public class PlayerController : MonoBehaviour
 
             
             rb.useGravity = !_value;
+            
+            if(!_value)
+                movementMode = MovementMode.VELOCITY;
+            else
+                movementMode = MovementMode.ADD_FORCE;
 
             //Audio de apertura de paraguas
             if (_value && !isSwimming)
