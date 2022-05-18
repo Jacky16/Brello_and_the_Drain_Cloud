@@ -14,6 +14,7 @@ public class PsTom : MonoBehaviour
     GameObject player;
     Collider collider;
     PsTomHealth tomHealth;
+    PsTomEffects tomEffects;
 
     //Bools variables
     bool canAssaultPlayer = true;
@@ -41,6 +42,7 @@ public class PsTom : MonoBehaviour
     [SerializeField] float accelerationAssault;
     [SerializeField] LayerMask layerMakAttackAssault;
     [SerializeField] Vector2 impulseAttackAssaultToPlayer;
+    [SerializeField] Vector3 sizeCubeAssaultChecker;
 
     Vector3 posToGo;
     bool isDistanceToGo;
@@ -84,6 +86,7 @@ public class PsTom : MonoBehaviour
         collider = GetComponent<Collider>();
         anim = GetComponent<Animator>();
         tomHealth = GetComponent<PsTomHealth>();
+        tomEffects = GetComponent<PsTomEffects>();
     }
     private void Start()
     {
@@ -189,6 +192,8 @@ public class PsTom : MonoBehaviour
     {
         transform.DOLocalRotate(Vector3.zero, 0.5f);
         anim.SetTrigger("AttackThrowTrash");
+
+        //Advice:Lanzar el objeto
     }
     //Se ejecuta en la animacion de trow trash
     void ThrowTrash()
@@ -214,7 +219,9 @@ public class PsTom : MonoBehaviour
         if (!isAttackingPunchAttack)
         {
             RotateToPlayer();
-            anim.SetTrigger("AttackPunch");          
+            anim.SetTrigger("AttackPunch");
+
+            //Advice:Empieza el ataque del puño
         }
     }
     void AttackPunchBoolean(int value)
@@ -242,8 +249,9 @@ public class PsTom : MonoBehaviour
                 isAttackingPunchAttack = false;
                 player.GetComponent<Rigidbody>().AddForce(-transform.localPosition.normalized * impulseAttackJumpToPlayer.x + Vector3.up * impulseAttackJumpToPlayer.y, ForceMode.Impulse);
                 player.GetComponent<PlayerController>().ChangeTypeofMovement(PlayerController.MovementMode.ADD_FORCE, true);
-                
+            
                 Debug.Log("Ataque al player por el puño");
+                //Advive:Golpea al player con el puño
             }
         }       
     }
@@ -289,6 +297,7 @@ public class PsTom : MonoBehaviour
             {
                 if (CheckIfPlayerInside())
                 {
+                    //Advice:Ha acabado el salto
                     AddImpulseToPlayer(impulseAttackJumpToPlayer);
                     player.GetComponent<BrelloHealth>().DoDamage(damage);
                 }
@@ -343,18 +352,24 @@ public class PsTom : MonoBehaviour
     {
         if (!isAssaltingPlayer && !isStuned)
         {
-            isAssaltingPlayer = true;
-            anim.SetBool("IsChasing", isAssaltingPlayer);
-
-            //Asignar donde va a ir el Boss
-            posToGo = GetPosToAssult();
-           
-            //Move to player
-            navMeshAgent.SetDestination(posToGo);
             
-            //Aplicar velocidad y aceleración
-            navMeshAgent.speed = speedAssault;
-            navMeshAgent.acceleration = accelerationAssault;
+            RotateToPlayer(0.1f).OnComplete(() =>
+            {
+                //Advice: Empieza a perseguir al player
+                isAssaltingPlayer = true;
+
+                anim.SetBool("IsChasing", isAssaltingPlayer);
+
+                //Asignar donde va a ir el Boss
+                posToGo = GetPosToAssult();
+
+                //Move to player
+                navMeshAgent.SetDestination(posToGo);
+
+                //Aplicar velocidad y aceleración
+                navMeshAgent.speed = speedAssault;
+                navMeshAgent.acceleration = accelerationAssault;
+            });
         }       
     }
     IEnumerator ResumeCanAssaultPlayer()
@@ -391,18 +406,21 @@ public class PsTom : MonoBehaviour
         
         if (isAssaltingPlayer && CheckCollision("Player"))
         {
+            //Advice: Ha golpeado al player
             AddImpulseToPlayer(impulseAttackAssaultToPlayer);
             player.GetComponent<BrelloHealth>().DoDamage(damage);
         }
         else if (isDistanceToGo && isAssaltingPlayer)
         {
+            //Advice: Acaba la ruta por que se ha xocasdo
             isAssaltingPlayer = false;
             
             //Parar en seco y quitar la ruta del navmesh
             navMeshAgent.velocity = Vector3.zero;
             navMeshAgent.ResetPath();
-            
+
             //Sistema de Stune
+            AkSoundEngine.PostEvent("Crash_PSTom", WwiseManager.instance.gameObject);
             StartCoroutine(ResumeCanAssaultPlayer());
         }
     }
@@ -411,8 +429,7 @@ public class PsTom : MonoBehaviour
     {
         //Raycast forward
         RaycastHit hit;
-        Debug.DrawRay(transform.position, transform.forward * Mathf.Infinity, Color.red);
-        
+        Vector3 pos;
         if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, layerMakAttackAssault))
         {
             return hit.point;
@@ -420,7 +437,7 @@ public class PsTom : MonoBehaviour
         else
         {
             return player.transform.position;
-        }
+        }  
     }
     #endregion
 
@@ -441,9 +458,12 @@ public class PsTom : MonoBehaviour
             anim.SetBool("IsFalling", true);
         });
         sequence.OnComplete(() =>
-        {         
+        {   
+            //Advive:Se ha chocado con el player
+            
             anim.SetBool("IsFalling", false);
             navMeshAgent.enabled = true;
+
             //isAssaltingPlayer = false;
             //canAssaultPlayer = true;
         });
@@ -477,6 +497,7 @@ public class PsTom : MonoBehaviour
     }
     public void ChangePhase(float _lifeBoss)
     {
+        
         if (_lifeBoss > 66)
         {
             currentPhase = Phases.PHASE_1;
@@ -498,7 +519,7 @@ public class PsTom : MonoBehaviour
         //Raycast forward from wallDetect 
         //OverlapSphere on wallDetect
 
-        Collider[] colliders = Physics.OverlapSphere(wallDetect.position, navMeshAgent.stoppingDistance, layerMaskWallDetect);
+        Collider[] colliders = Physics.OverlapBox(wallDetect.position, sizeCubeAssaultChecker, transform.rotation,layerMaskWallDetect);
         foreach (Collider col in colliders)
         {
             if (col.CompareTag(_tag))
@@ -519,18 +540,18 @@ public class PsTom : MonoBehaviour
         anim.SetBool("IsStuned", isStuned);
     }
 
-    void RotateToPlayer(float _duration = 0.5f)
+    Tween RotateToPlayer(float _duration = 0.5f)
     {
         Vector3 lookAt = player.transform.position;
-        transform.DOLookAt(lookAt, _duration);
+        return transform.DOLookAt(lookAt, _duration);
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(pivotCubeAttack.position, sizeCubePunchAttack);
+       
+        Gizmos.DrawWireCube(wallDetect.position, sizeCubeAssaultChecker);
 
-        Gizmos.DrawWireSphere(wallDetect.position, distanceWallDetect);
-   
         Gizmos.DrawLine(transform.position, transform.position + transform.forward * 10);
     }
 }

@@ -24,7 +24,7 @@ MonoBehaviour:
     ParentPath: Virtual Acoustics\Default Work Unit
     guid: 166bb2b7fc13db45b69f5a19518cf21f
     GuidInternal: 
-    m_lastTime: -8585505572041479781
+    m_lastTime: -8585514600866283659
     List: []
   AuxBusWwu:
   - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
@@ -38,7 +38,7 @@ MonoBehaviour:
     ParentPath: Master-Mixer Hierarchy\Default Work Unit
     guid: b11d140495a5214693f79f09da626fbf
     GuidInternal: 
-    m_lastTime: -8585505572081405549
+    m_lastTime: -8585507796352345777
     List:
     - name: Master Audio Bus
       guid: d8a41415a61d2a41a17e75ca0c2149f3
@@ -100,7 +100,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: b7fee57a9b67c343a46eab594f457684
     GuidInternal: 
-    m_lastTime: -8585505572042539761
+    m_lastTime: -8585488112769917192
     List:
     - name: General
       guid: 9ac68b89cd0b2543aa435561f078908b
@@ -116,6 +116,34 @@ MonoBehaviour:
         ObjectType: 7
         guid: 9ac68b89cd0b2543aa435561f078908b
       Path: SoundBanks\Default Work Unit\General
+    - name: General2
+      guid: 18f8d658b9347847bab4258c0aa79e60
+      id: 2167216615
+      PathAndIcons:
+      - ElementName: SoundBanks
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: b7fee57a9b67c343a46eab594f457684
+      - ElementName: General2
+        ObjectType: 7
+        guid: 18f8d658b9347847bab4258c0aa79e60
+      Path: SoundBanks\Default Work Unit\General2
+    - name: General3
+      guid: 34b90377441e6a45b637732543f2e777
+      id: 2167216614
+      PathAndIcons:
+      - ElementName: SoundBanks
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: b7fee57a9b67c343a46eab594f457684
+      - ElementName: General3
+        ObjectType: 7
+        guid: 34b90377441e6a45b637732543f2e777
+      Path: SoundBanks\Default Work Unit\General3
   EventWwu:
   - PhysicalPath: Events\Default Work Unit.wwu
     PathAndIcons:
@@ -128,8 +156,28 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 1a1dad3e5c7a724abc36cb5e26e00782
     GuidInternal: 
-    m_lastTime: -8585505572098825585
+    m_lastTime: -8585488122411741846
     List:
+    - name: Angry_PSTom
+      guid: 466fc970d3b11a46869e6535dd5b5e69
+      id: 400874472
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: PSTom
+        ObjectType: 4
+        guid: 4b4905bcdf2d1f4d9c71acc6e552739f
+      - ElementName: Angry_PSTom
+        ObjectType: 3
+        guid: 466fc970d3b11a46869e6535dd5b5e69
+      Path: Events\Default Work Unit\PSTom\Angry_PSTom
+      maxAttenuation: 0
+      maxDuration: 1.118549
+      minDuration: 1.118549
     - name: Attack_Combo_Brello
       guid: 002aa748b1bcd6438e803e80ac434cfc
       id: 211679341
@@ -168,8 +216,8 @@ MonoBehaviour:
         guid: 4843fbbcffd37c4a9720f274f72658c5
       Path: Events\Default Work Unit\Boiler\Awake_Boiler
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
     - name: BackgroundMusic_Level1
       guid: d1036f8e53ea1b47ab82209494d2a706
       id: 205544994
@@ -190,6 +238,29 @@ MonoBehaviour:
         ObjectType: 3
         guid: d1036f8e53ea1b47ab82209494d2a706
       Path: Events\Default Work Unit\Environment\Grasslands\BackgroundMusic_Level1
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: BackgroundMusic_Tutorial
+      guid: 82df95486678ca42ba3f768a01f792c9
+      id: 3411234615
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Environment
+        ObjectType: 4
+        guid: bc19f43cbe6aea478d686b59f8728304
+      - ElementName: Tutorial
+        ObjectType: 4
+        guid: 11fbce80d86093499987dbe1165a1d40
+      - ElementName: BackgroundMusic_Tutorial
+        ObjectType: 3
+        guid: 82df95486678ca42ba3f768a01f792c9
+      Path: Events\Default Work Unit\Environment\Tutorial\BackgroundMusic_Tutorial
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -245,8 +316,8 @@ MonoBehaviour:
         guid: b1acdc3993aed74086988eeb53b60407
       Path: Events\Default Work Unit\Boiler\Charge_Boiler
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
     - name: Charging_Steamling
       guid: e315ea326779524db1e8a061ac9f3184
       id: 137424561
@@ -305,8 +376,28 @@ MonoBehaviour:
         guid: 04e0326037dd734a95d6afb6f07c2be8
       Path: Events\Default Work Unit\Boiler\Cool_Boiler
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
+    - name: Crash_PSTom
+      guid: a465b9f6087edb4fa52434dce73f99e8
+      id: 490892378
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: PSTom
+        ObjectType: 4
+        guid: 4b4905bcdf2d1f4d9c71acc6e552739f
+      - ElementName: Crash_PSTom
+        ObjectType: 3
+        guid: a465b9f6087edb4fa52434dce73f99e8
+      Path: Events\Default Work Unit\PSTom\Crash_PSTom
+      maxAttenuation: 0
+      maxDuration: 0.742177
+      minDuration: 0.742177
     - name: Death_Brello
       guid: 162bb216ec8f674984f4d2876228d87e
       id: 1700730432
@@ -504,6 +595,46 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: Hide_Juncc
+      guid: d7fe12c4c0f4694fb91565881a16c913
+      id: 1633170905
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Juncc
+        ObjectType: 4
+        guid: 3385c96cc6225047bd92d577667b2a3c
+      - ElementName: Hide_Juncc
+        ObjectType: 3
+        guid: d7fe12c4c0f4694fb91565881a16c913
+      Path: Events\Default Work Unit\Juncc\Hide_Juncc
+      maxAttenuation: 50
+      maxDuration: 0.633515
+      minDuration: 0.633515
+    - name: Hit_PSTom
+      guid: debed0d85f04884083a42ab458d06de4
+      id: 4125243480
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: PSTom
+        ObjectType: 4
+        guid: 4b4905bcdf2d1f4d9c71acc6e552739f
+      - ElementName: Hit_PSTom
+        ObjectType: 3
+        guid: debed0d85f04884083a42ab458d06de4
+      Path: Events\Default Work Unit\PSTom\Hit_PSTom
+      maxAttenuation: 0
+      maxDuration: 1.108795
+      minDuration: 0.62229
     - name: Hum_Brello
       guid: 72c2c0b05c752d4faa870d1d5a1db8d4
       id: 2606205324
@@ -602,8 +733,8 @@ MonoBehaviour:
         guid: 8995939f6fafeb44b2f53d7c49347e06
       Path: Events\Default Work Unit\Boiler\Idle_Boiler
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
     - name: Idle_Steamling
       guid: 8b68a9c7d8d91842a0363c599abcb513
       id: 1024608158
@@ -664,6 +795,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+    - name: Juncc
+      guid: 3385c96cc6225047bd92d577667b2a3c
+      id: 551193466
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Juncc
+        ObjectType: 4
+        guid: 3385c96cc6225047bd92d577667b2a3c
+      Path: Events\Default Work Unit\Juncc
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Land_Brello
       guid: 560c080dcc9c1b47ae344b9d167f6a46
       id: 658189305
@@ -684,6 +832,26 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+    - name: Landing_PSTom
+      guid: 73aa783e1df2884faa53c90606ae735f
+      id: 3235282430
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: PSTom
+        ObjectType: 4
+        guid: 4b4905bcdf2d1f4d9c71acc6e552739f
+      - ElementName: Landing_PSTom
+        ObjectType: 3
+        guid: 73aa783e1df2884faa53c90606ae735f
+      Path: Events\Default Work Unit\PSTom\Landing_PSTom
+      maxAttenuation: 0
+      maxDuration: 1.396376
+      minDuration: 0.783689
     - name: MainMenu
       guid: ae36b2ea07ec30418a2b2138dd20e150
       id: 3604647259
@@ -718,6 +886,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+    - name: MrT
+      guid: b2207aa77885c74388c73c6eaa6f62df
+      id: 729674808
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: MrT
+        ObjectType: 4
+        guid: b2207aa77885c74388c73c6eaa6f62df
+      Path: Events\Default Work Unit\MrT
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Open_Brello
       guid: 4c97a0bc55fba4418d9366164c5c9141
       id: 692676672
@@ -738,6 +923,26 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.306009
       minDuration: 0.306009
+    - name: Poof_MrT
+      guid: 83ca3e1e25ae2645b3a9b027d73f5129
+      id: 2383840419
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: MrT
+        ObjectType: 4
+        guid: b2207aa77885c74388c73c6eaa6f62df
+      - ElementName: Poof_MrT
+        ObjectType: 3
+        guid: 83ca3e1e25ae2645b3a9b027d73f5129
+      Path: Events\Default Work Unit\MrT\Poof_MrT
+      maxAttenuation: 0
+      maxDuration: 0.385034
+      minDuration: 0.385034
     - name: Preparing_Charge_Steamling
       guid: a3e3ac6b981a3342b22552d32a9aa563
       id: 1765157707
@@ -775,6 +980,69 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: PSTomBoss
+      guid: 668468bb9685ee49ad23c46ddffc4d74
+      id: 3556785069
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Environment
+        ObjectType: 4
+        guid: bc19f43cbe6aea478d686b59f8728304
+      - ElementName: PSTomBoss
+        ObjectType: 4
+        guid: 668468bb9685ee49ad23c46ddffc4d74
+      Path: Events\Default Work Unit\Environment\PSTomBoss
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: PSTomBoss_BackgroundMusic_PSTomBoss
+      guid: f01554cf8aa7c543aa730f905160e52d
+      id: 609297450
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Environment
+        ObjectType: 4
+        guid: bc19f43cbe6aea478d686b59f8728304
+      - ElementName: PSTomBoss
+        ObjectType: 4
+        guid: 668468bb9685ee49ad23c46ddffc4d74
+      - ElementName: PSTomBoss_BackgroundMusic_PSTomBoss
+        ObjectType: 3
+        guid: f01554cf8aa7c543aa730f905160e52d
+      Path: Events\Default Work Unit\Environment\PSTomBoss\PSTomBoss_BackgroundMusic_PSTomBoss
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Punch_PSTom
+      guid: f40ad2556cb5f641b0b8b227a03d7bfa
+      id: 2831023503
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: PSTom
+        ObjectType: 4
+        guid: 4b4905bcdf2d1f4d9c71acc6e552739f
+      - ElementName: Punch_PSTom
+        ObjectType: 3
+        guid: f40ad2556cb5f641b0b8b227a03d7bfa
+      Path: Events\Default Work Unit\PSTom\Punch_PSTom
+      maxAttenuation: 0
+      maxDuration: 2.855083
+      minDuration: 2.855083
     - name: PuzzlePillar
       guid: 44a9a4ef403ea14ea61a8d8fbd9111ab
       id: 1659764341
@@ -912,9 +1180,29 @@ MonoBehaviour:
         ObjectType: 3
         guid: 6766325350a3b042b61d086a64a39a4a
       Path: Events\Default Work Unit\Boiler\Shoot_Boiler
-      maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxAttenuation: 50
+      maxDuration: 1
+      minDuration: 1
+    - name: Shoot_Juncc
+      guid: 3ed7a46b72f721418b60ac944a8113b9
+      id: 4188370314
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Juncc
+        ObjectType: 4
+        guid: 3385c96cc6225047bd92d577667b2a3c
+      - ElementName: Shoot_Juncc
+        ObjectType: 3
+        guid: 3ed7a46b72f721418b60ac944a8113b9
+      Path: Events\Default Work Unit\Juncc\Shoot_Juncc
+      maxAttenuation: 50
+      maxDuration: 0.17925
+      minDuration: 0.100601
     - name: ShopMusic_Level1
       guid: e80039892dc29b41a1afbc259f09f50f
       id: 2541270178
@@ -956,8 +1244,28 @@ MonoBehaviour:
         guid: f963891d2d84b24d88a07b563e716176
       Path: Events\Default Work Unit\Boiler\Sleep_Boiler
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
+    - name: Spawn_Juncc
+      guid: 7bf19bda3ca8c448aa4527209092a41e
+      id: 2121276730
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Juncc
+        ObjectType: 4
+        guid: 3385c96cc6225047bd92d577667b2a3c
+      - ElementName: Spawn_Juncc
+        ObjectType: 3
+        guid: 7bf19bda3ca8c448aa4527209092a41e
+      Path: Events\Default Work Unit\Juncc\Spawn_Juncc
+      maxAttenuation: 50
+      maxDuration: 0.633515
+      minDuration: 0.633515
     - name: Start_Glide_Brello
       guid: 34b39946bd80374396a869ad2991c377
       id: 3020521956
@@ -1030,8 +1338,8 @@ MonoBehaviour:
         guid: 97e120aded763d488ac2883cee8d7b12
       Path: Events\Default Work Unit\StopAll
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
     - name: StopBackgroundMusic_Level1
       guid: 685d250159651249a53c1c4f7503187c
       id: 4153140954
@@ -1052,6 +1360,29 @@ MonoBehaviour:
         ObjectType: 3
         guid: 685d250159651249a53c1c4f7503187c
       Path: Events\Default Work Unit\Environment\Grasslands\StopBackgroundMusic_Level1
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: StopBackgroundMusic_Tutorial
+      guid: 30119fbf68337b4c965584da981db8e6
+      id: 2393177919
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Environment
+        ObjectType: 4
+        guid: bc19f43cbe6aea478d686b59f8728304
+      - ElementName: Tutorial
+        ObjectType: 4
+        guid: 11fbce80d86093499987dbe1165a1d40
+      - ElementName: StopBackgroundMusic_Tutorial
+        ObjectType: 3
+        guid: 30119fbf68337b4c965584da981db8e6
+      Path: Events\Default Work Unit\Environment\Tutorial\StopBackgroundMusic_Tutorial
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
@@ -1075,6 +1406,26 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+    - name: Tutorial
+      guid: 11fbce80d86093499987dbe1165a1d40
+      id: 3762955427
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Environment
+        ObjectType: 4
+        guid: bc19f43cbe6aea478d686b59f8728304
+      - ElementName: Tutorial
+        ObjectType: 4
+        guid: 11fbce80d86093499987dbe1165a1d40
+      Path: Events\Default Work Unit\Environment\Tutorial
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: UI
       guid: d4cf38c93c559445b09ff15ddf581ccc
       id: 1551306167
@@ -1216,8 +1567,22 @@ MonoBehaviour:
     ParentPath: Game Parameters\Default Work Unit
     guid: e4f736cbb2288f459e9c3c36b3575dbc
     GuidInternal: 
-    m_lastTime: -8585505572099365519
+    m_lastTime: -8585488918780941096
     List:
+    - name: IsReverbOn
+      guid: f6a8ff5128e2054e985fa92829509316
+      id: 3573063826
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: e4f736cbb2288f459e9c3c36b3575dbc
+      - ElementName: IsReverbOn
+        ObjectType: 13
+        guid: f6a8ff5128e2054e985fa92829509316
+      Path: Game Parameters\Default Work Unit\IsReverbOn
     - name: Music_Volume
       guid: 185956dc6f9e9b48954385ab60d9871a
       id: 1006694123
@@ -1278,7 +1643,7 @@ MonoBehaviour:
     ParentPath: States\Default Work Unit
     guid: 13117027c1e0a84b83ede94da2174f6f
     GuidInternal: 
-    m_lastTime: -8585505572042359779
+    m_lastTime: -8585514600866453131
     List: []
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
@@ -1292,7 +1657,7 @@ MonoBehaviour:
     ParentPath: Switches\Default Work Unit
     guid: 3652c387ca18794085902b6748b43d1c
     GuidInternal: 
-    m_lastTime: -8585505572042059787
+    m_lastTime: -8585507796326216614
     List:
     - name: FootstepSurfaceType
       guid: 5370e81ddde85840a97b77e23f265148
@@ -1404,10 +1769,10 @@ MonoBehaviour:
     ParentPath: Triggers\Default Work Unit
     guid: c350db81a104204da106bd1f7e8437ba
     GuidInternal: 
-    m_lastTime: -8585505572041589708
+    m_lastTime: -8585514600866333531
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 
+  ExpandedWaapiItemIds: 1700000018000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0

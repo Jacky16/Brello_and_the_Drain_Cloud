@@ -247,6 +247,7 @@ public class DialogueTutorial : MonoBehaviour
             {
                 character.SetTrigger("Appear");
                 Instantiate(particles, new Vector3(character.transform.position.x, character.transform.position.y + 2f, character.transform.position.z), Quaternion.identity);
+                AkSoundEngine.PostEvent("Poof_MrT", WwiseManager.instance.gameObject);
                 character.transform.DOLookAt(player.transform.position, 0.5f, AxisConstraint.Y);
                 player.transform.DOLookAt(character.transform.position, 0.5f, AxisConstraint.Y);
             }
@@ -292,6 +293,7 @@ public class DialogueTutorial : MonoBehaviour
                 }
 
                 Instantiate(particles, new Vector3(character.transform.position.x, character.transform.position.y + 2f, character.transform.position.z), Quaternion.identity);
+                AkSoundEngine.PostEvent("Poof_MrT", WwiseManager.instance.gameObject);
 
                 Destroy(gameObject);
             });
@@ -306,20 +308,13 @@ public class DialogueTutorial : MonoBehaviour
         if (other.TryGetComponent(out PlayerController playerController))
         {
             player = playerController;
-
+            playerCam.GetComponent<CinemachineVirtualCamera>().LookAt = character.transform;
             loadingDialogue = true;
            // CameraHandler(false);
             DialogueCanvasHandler(true);
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.TryGetComponent(out PlayerController playerController))
-        {
-            player = null;
-        }
-    }
     #endregion
 
     #region CustomTagHandlers

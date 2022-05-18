@@ -5,15 +5,36 @@
 			<ChildrenList>
 				<SoundBank Name="General" ID="{898BC69A-0BCD-4325-AA43-5561F078908B}">
 					<ObjectInclusionList>
+						<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="MrT" ID="{A77A20B2-8578-43C7-88C7-3C6EAA6F62DF}" WorkUnitID="{3EAD1D1A-7A5C-4A72-BC36-CB5E26E00782}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Grasslands" ID="{D3AB789D-2C7E-446C-B3F1-E01B14015C75}" WorkUnitID="{3EAD1D1A-7A5C-4A72-BC36-CB5E26E00782}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Brello" ID="{93BDC257-34BA-47AE-90C1-AEB835ADC319}" WorkUnitID="{3EAD1D1A-7A5C-4A72-BC36-CB5E26E00782}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Pyra" ID="{24AECE68-12B8-4B14-87B1-7574FC85910E}" WorkUnitID="{3EAD1D1A-7A5C-4A72-BC36-CB5E26E00782}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="General2" ID="{58D6F818-34B9-4778-BAB4-258C0AA79E60}">
+					<ObjectInclusionList>
 						<ObjectRef Name="Dropply" ID="{009E296F-D522-4067-8F90-A6FD00C36C96}" WorkUnitID="{3EAD1D1A-7A5C-4A72-BC36-CB5E26E00782}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="MainMenu" ID="{EAB236AE-EC07-4130-8A2B-2138DD20E150}" WorkUnitID="{3EAD1D1A-7A5C-4A72-BC36-CB5E26E00782}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Steamling" ID="{53633B2B-B236-460E-A66C-B4C082A9F854}" WorkUnitID="{3EAD1D1A-7A5C-4A72-BC36-CB5E26E00782}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Brello" ID="{93BDC257-34BA-47AE-90C1-AEB835ADC319}" WorkUnitID="{3EAD1D1A-7A5C-4A72-BC36-CB5E26E00782}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Environment" ID="{3CF419BC-6ABE-47EA-8D68-6B59F8728304}" WorkUnitID="{3EAD1D1A-7A5C-4A72-BC36-CB5E26E00782}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Pyra" ID="{24AECE68-12B8-4B14-87B1-7574FC85910E}" WorkUnitID="{3EAD1D1A-7A5C-4A72-BC36-CB5E26E00782}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="StopAll" ID="{AD20E197-76ED-483D-8AC2-883CEE8D7B12}" WorkUnitID="{3EAD1D1A-7A5C-4A72-BC36-CB5E26E00782}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Tutorial" ID="{80CEFB11-60D8-4993-9987-DBE1165A1D40}" WorkUnitID="{3EAD1D1A-7A5C-4A72-BC36-CB5E26E00782}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="MainMenuStop" ID="{3B154A46-CE4C-4C03-BD7A-6F9DB7C24F8D}" WorkUnitID="{3EAD1D1A-7A5C-4A72-BC36-CB5E26E00782}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PSTom" ID="{BC05494B-2DDF-4D1F-9C71-ACC6E552739F}" WorkUnitID="{3EAD1D1A-7A5C-4A72-BC36-CB5E26E00782}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="PuzzlePillar" ID="{EFA4A944-3E40-4EA1-A61A-8D8FBD9111AB}" WorkUnitID="{3EAD1D1A-7A5C-4A72-BC36-CB5E26E00782}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Boiler" ID="{37A06CC3-C89B-4F18-A50F-F65F3E1B8117}" WorkUnitID="{3EAD1D1A-7A5C-4A72-BC36-CB5E26E00782}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="General3" ID="{7703B934-1E44-456A-B637-732543F2E777}">
+					<ObjectInclusionList>
+						<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Juncc" ID="{6CC98533-22C6-4750-BD92-D577667B2A3C}" WorkUnitID="{3EAD1D1A-7A5C-4A72-BC36-CB5E26E00782}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PSTomBoss" ID="{BB688466-8596-49EE-AD23-C46DDFFC4D74}" WorkUnitID="{3EAD1D1A-7A5C-4A72-BC36-CB5E26E00782}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>
