@@ -174,6 +174,7 @@ public class PlayerController : MonoBehaviour
     {  
         if((isGrounded || isSwimming) && canMove && !isUmbrellaOpen)
         {
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             isJumping = true;
             rb.AddForce(Vector3.up * jumpForce * 10, ForceMode.Impulse);
         }
@@ -437,11 +438,15 @@ public class PlayerController : MonoBehaviour
 
     public void OpenUmbrellaManager(bool _value)
     {
+        //Parar el impulso de cuando planeas
+        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        
         if (canGlide && canMove)
         {
             isUmbrellaOpen = _value;
             brelloOpenManager.SetOpen(isUmbrellaOpen);
 
+            
             rb.useGravity = !_value;
 
             //Audio de apertura de paraguas
