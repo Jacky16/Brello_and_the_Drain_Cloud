@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 dir.y = 0;
-                rb.AddForce(dir*6, ForceMode.Acceleration);
+                rb.AddForce(dir, ForceMode.Acceleration);
             }
         }
         else
