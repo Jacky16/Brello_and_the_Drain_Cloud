@@ -41,8 +41,11 @@ public class PauseMenuManager : MonoBehaviour
     }
     public void InitCameraVelocity()
     {
-        playerCam.ChangeVelocityY(PlayerPrefs.GetFloat(sensYTag, playerCam.GetVelocityY()));
-        playerCam.ChangeVelocityX(PlayerPrefs.GetFloat(sensXTag, playerCam.GetVelocityX()));
+        if (playerCam)
+        {
+            playerCam.ChangeVelocityY(PlayerPrefs.GetFloat(sensYTag, playerCam.GetVelocityY()));
+            playerCam.ChangeVelocityX(PlayerPrefs.GetFloat(sensXTag, playerCam.GetVelocityX()));
+        }
     }
   
 
