@@ -447,7 +447,7 @@ MonoBehaviour:
   rotationSpeed: 15
   movementMode: 1
   gladingSpeed: 8
-  gladingGravity: 12
+  gladingGravity: 20
   velocityToGlade: 3
   canGlide: 0
   posCheckerGround: {fileID: 6434270805595024249}
@@ -511,6 +511,8 @@ MonoBehaviour:
   timeInHUD: 10
   damageParticles: {fileID: 0}
   spawnPoint: {fileID: 0}
+  canvasFade: {fileID: 0}
+  bm: {fileID: 0}
 --- !u!114 &2723760742230091970
 MonoBehaviour:
   m_ObjectHideFlags: 0

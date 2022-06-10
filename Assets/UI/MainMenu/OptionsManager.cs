@@ -197,6 +197,16 @@ public class OptionsManager : MonoBehaviour
     public void SetFullScreenBool(bool _value)
     {
         Screen.fullScreen = _value;
+        if (_value)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
     
 
