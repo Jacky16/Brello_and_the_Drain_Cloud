@@ -54,7 +54,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform posCheckerGround;
     [SerializeField] float radiusCheck = .25f;
     [SerializeField] LayerMask groundLayerMask;
+    [SerializeField] Transform wallCheckPos;
+    [SerializeField] float radiusCheckWall = .25f;
     bool isGrounded;
+    bool isWallForward = false;
+
 
     [Header("Jump Settings")]
     [SerializeField] float jumpForce = 10;
@@ -135,19 +139,21 @@ public class PlayerController : MonoBehaviour
             }
         }
         else
-        {
             currentSpeed = Mathf.Lerp(currentSpeed, 0, acceleration * Time.deltaTime);
-        }
-        
+
     }
     private void Movement()
     {
         Vector3 dir;
         dir = CamDirection() * currentSpeed;
         if (canMove)
-        {
+        {           
             if (movementMode == MovementMode.VELOCITY)
             {
+                //Comprueba si esta chocando con el muero para cancelar la velocidad del 
+                if (isWallForward)
+                    dir.z = rb.velocity.z;
+
                 dir.y = rb.velocity.y;
                 rb.velocity = dir;
             }
@@ -155,12 +161,10 @@ public class PlayerController : MonoBehaviour
             {
                 dir.y = 0;
                 rb.AddForce(dir, ForceMode.Acceleration);
-            }
+            }               
         }
         else
-        {
             currentSpeed = 0;
-        }
     }
     void ForceTorrent()
     {
@@ -215,7 +219,8 @@ public class PlayerController : MonoBehaviour
     private void Checkers()
     {
         isGrounded = Physics.CheckSphere(posCheckerGround.position, radiusCheck, groundLayerMask) && !isSwimming;
-        isGlading = !isSwimming && isUmbrellaOpen && !isGrounded;        
+        isGlading = !isSwimming && isUmbrellaOpen && !isGrounded;
+        isWallForward = Physics.CheckSphere(wallCheckPos.position, radiusCheckWall, groundLayerMask);
         if (isGrounded)
         {         
             isJumping = false;
@@ -490,7 +495,11 @@ public class PlayerController : MonoBehaviour
         if (isGrounded) Gizmos.color = Color.green;
         Gizmos.DrawSphere(posCheckerGround.position, radiusCheck);
 
-        Gizmos.DrawWireCube(pivotAttack.position,sizeCubeAttack);      
+        Gizmos.DrawWireCube(pivotAttack.position,sizeCubeAttack);
+
+        //Draw Sphere wall check
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(wallCheckPos.position, radiusCheckWall);
     }
 
     #region Inputs setters
