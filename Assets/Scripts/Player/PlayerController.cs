@@ -168,7 +168,7 @@ public class PlayerController : MonoBehaviour
     }
     void ForceTorrent()
     {
-        if (isSwimming && canMove)
+        if (isSwimming && canMove && !isStartingToSwim)
         {
             currentTorrentDirection.y = 0;
             rb.AddForce(currentTorrentDirection, ForceMode.Acceleration);
@@ -367,8 +367,8 @@ public class PlayerController : MonoBehaviour
     private void OnSwiming(Collider other)
     {
         if (other.CompareTag("Water") && !isSwimming)
-        {         
-            currentTorrentDirection = other.GetComponent<WaterTorrent>().GetTorrentDir();
+        {       
+           currentTorrentDirection = other.GetComponent<WaterTorrent>().GetTorrentDir();
    
             rb.useGravity = false;
 
@@ -376,7 +376,6 @@ public class PlayerController : MonoBehaviour
             isSwimming = true;
             isGlading = false;
             isStartingToSwim = true;
-
             movementMode = MovementMode.ADD_FORCE;
 
             animator.SetBool("isSwiming", true);
@@ -390,6 +389,7 @@ public class PlayerController : MonoBehaviour
             tweenSwiming = transform.DOLocalMoveY(pivotSwiming.position.y, 2).SetEase(Ease.OutElastic).OnComplete(() =>
             {
                 isStartingToSwim = false;
+
             });
 
             AkSoundEngine.PostEvent("WaterSplash_Brello", WwiseManager.instance.gameObject);
