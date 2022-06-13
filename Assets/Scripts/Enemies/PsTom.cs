@@ -37,7 +37,7 @@ public class PsTom : MonoBehaviour
     [SerializeField] GameObject trashPrefab;
     [SerializeField] Transform trashSpawn;
 
-    [Header("Settins Assault Attack")]
+    [Header("Settings Assault Attack")]
     [SerializeField] float speedAssault;
     [SerializeField] float accelerationAssault;
     [SerializeField] float distanceCheckWall;
@@ -50,8 +50,9 @@ public class PsTom : MonoBehaviour
     bool isDistanceToGo;
 
 
-    [Header("Stune Settings")]
+    [Header("Stun Settings")]
     [SerializeField] float timeStuned;
+    [SerializeField] GameObject shieldParticle;
 
     [Header("Return Jump Settings")]
     [SerializeField] float jumpReturnPower;
@@ -62,12 +63,14 @@ public class PsTom : MonoBehaviour
     [SerializeField] float jumpAttackDuration;
     [SerializeField] Vector2 impulseAttackJumpToPlayer;
     [SerializeField] Transform targeterTransform;
+    [SerializeField] GameObject jumpParticles;
 
     [Header("Settings Punch Attack")]
     [SerializeField] float punchAttackTime = 1.5f;
     [SerializeField] Vector3 sizeCubePunchAttack;
     [SerializeField] Transform pivotCubeAttack;
     [SerializeField] Vector2 impulseAttackPunchToPlayer;
+    [SerializeField] GameObject punchParticle;
     bool isAttackingPunchAttack;
 
     [Header("Boiler Settings")]
@@ -253,7 +256,7 @@ public class PsTom : MonoBehaviour
                 player.GetComponent<PlayerController>().ChangeTypeofMovement(PlayerController.MovementMode.ADD_FORCE, true);
             
                 Debug.Log("Ataque al player por el puño");
-                //Advive:Golpea al player con el puño
+                Instantiate(punchParticle, _bh.transform.position, Quaternion.identity);
             }
         }       
     }
@@ -303,9 +306,11 @@ public class PsTom : MonoBehaviour
                     AddImpulseToPlayer(impulseAttackJumpToPlayer);
                     player.GetComponent<BrelloHealth>().DoDamage(damage);
                 }
-                Stune(true);
-                targeterTransform.gameObject.SetActive(false);
+                //Stun(false);
+                Instantiate(jumpParticles, transform.position, Quaternion.identity);
 
+                targeterTransform.gameObject.SetActive(false);
+                
             });
                        
             sequence.AppendCallback(() =>
@@ -320,7 +325,7 @@ public class PsTom : MonoBehaviour
             sequence.AppendCallback(() => { 
                 canDoJumpAttack = false; 
                 isJumpingAttack = false;
-                Stune(false);
+                Stun(false);
             });
         }
     }
@@ -376,13 +381,13 @@ public class PsTom : MonoBehaviour
     }
     IEnumerator ResumeCanAssaultPlayer()
     {
-        Stune(true);      
+        Stun(true);      
         
         anim.SetBool("IsChasing", false);
 
         yield return new WaitForSeconds(timeStuned);
         
-        Stune(false);
+        Stun(false);
         canAssaultPlayer = true;
         
         if (currentPhase == Phases.PHASE_5)
@@ -545,10 +550,12 @@ public class PsTom : MonoBehaviour
         }
         return false;
     }
-    void Stune(bool _isStuned)
+    void Stun(bool _isStuned)
     {
         isStuned = _isStuned;
         tomHealth.CanDamage(_isStuned);
+        shieldParticle.SetActive(!_isStuned);
+
         if (_isStuned)
             anim.SetTrigger("Stuned");
         
