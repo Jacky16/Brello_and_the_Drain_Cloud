@@ -12,7 +12,9 @@ public class Fruit : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        //anim.enabled = false;
         rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeAll;
         canBePickedUp = false;
 
         StartCoroutine(JiggleFruit(Random.Range(0f, 1f)));
@@ -22,12 +24,12 @@ public class Fruit : MonoBehaviour
     IEnumerator JiggleFruit(float delay)
     {
         yield return new WaitForSeconds(delay);
-        Debug.Log("Entro");
         anim.SetTrigger("Start");
     }
     public void Drop()
     {
         anim.SetTrigger("Drop");
+        rb.constraints = RigidbodyConstraints.None;
         rb.useGravity = true;
         canBePickedUp = true;
     }
