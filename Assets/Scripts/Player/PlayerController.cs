@@ -30,25 +30,26 @@ public class PlayerController : MonoBehaviour
     private bool isSwimming;
     private bool isGlading;
     private bool isJumping;
+    private bool isGrounded;
+    private bool isWallForward = false;
+    private bool canMove = true;
+    private bool isUmbrellaOpen;
+    private bool isGlidePlaying = false;    
 
     [Header("Movement Settings")]
     [SerializeField] private float runSpeed = 20;
     [SerializeField] private float walkSpeed = 10;
     [SerializeField] private float acceleration = 1;
     [SerializeField] private float rotationSpeed = 15f;
-    public enum MovementMode { ADD_FORCE,VELOCITY}
+    [SerializeField] private float gladingSpeed = 10;
     [SerializeField] private MovementMode movementMode = MovementMode.VELOCITY;
-    
-    bool isUmbrellaOpen;
+    public enum MovementMode { ADD_FORCE,VELOCITY}
     private float currentSpeed = 0;
-    private bool canMove = true;
     
     [Header("Glading Settings")]
-    [SerializeField] private float gladingSpeed = 10;
     [SerializeField] private float gladingGravity = 100;
     [SerializeField] private float velocityToGlade = 3;
     public bool canGlide;
-
 
     [Header("Ground Checker settings")]
     [SerializeField] Transform posCheckerGround;
@@ -56,12 +57,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask groundLayerMask;
     [SerializeField] Transform wallCheckPos;
     [SerializeField] float radiusCheckWall = .25f;
-    bool isGrounded;
-    bool isWallForward = false;
-
+   
 
     [Header("Jump Settings")]
     [SerializeField] float jumpForce = 10;
+    [SerializeField] float coyoteTime = .25f;
+    float coyoteTimer = 0;
 
     //Swiming variables
     [Header("Swimimg Settings")]
@@ -90,7 +91,7 @@ public class PlayerController : MonoBehaviour
     const string nameThirdAttack = "Armature_spin";
 
     //Audio variables
-    private bool isGlidePlaying = false;
+  
 
     private void Awake()
     {
@@ -175,12 +176,14 @@ public class PlayerController : MonoBehaviour
         }
     }
     public void HandleJump()
-    {  
-        if((isGrounded || isSwimming) && canMove && !isUmbrellaOpen)
+    {
+        Debug.Log(coyoteTimer > 0);
+        if ((isGrounded || isSwimming || coyoteTimer > 0) && canMove && !isUmbrellaOpen)
         {
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             isJumping = true;
             rb.AddForce(Vector3.up * jumpForce * 10, ForceMode.Impulse);
+            coyoteTimer = 0;
         }
     }
     private void HandleRotation()
@@ -224,6 +227,12 @@ public class PlayerController : MonoBehaviour
         if (isGrounded)
         {         
             isJumping = false;
+            coyoteTimer = coyoteTime;
+        }
+        else
+        {
+            coyoteTimer -= Time.deltaTime;
+            
         }
         
     }
