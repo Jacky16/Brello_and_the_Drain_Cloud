@@ -28,6 +28,13 @@ public class Crystal : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        
+    }
+
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out PlayerController playerController))
