@@ -44,6 +44,7 @@ public class PsTom : MonoBehaviour
     [SerializeField] LayerMask layerMakAttackAssault;
     [SerializeField] Vector3 checkPlayerDamageBox;
     [SerializeField] Vector2 impulseAttackAssaultToPlayer;
+    [SerializeField] ParticleSystem dashParticles;
     
 
     Vector3 posToGo;
@@ -376,6 +377,10 @@ public class PsTom : MonoBehaviour
                 //Aplicar velocidad y aceleración
                 navMeshAgent.speed = speedAssault;
                 navMeshAgent.acceleration = accelerationAssault;
+
+                //Empiezo particulas de carrerilla
+                dashParticles.Play();
+
             });
         }       
     }
@@ -420,15 +425,16 @@ public class PsTom : MonoBehaviour
         }
         else if (isDistanceToGo && isAssaltingPlayer)
         {
-            //Advice: Acaba la ruta por que se ha xocasdo
+            //Advice: Acaba la ruta por que se ha chocado
             isAssaltingPlayer = false;
             
             //Parar en seco y quitar la ruta del navmesh
             navMeshAgent.velocity = Vector3.zero;
             navMeshAgent.ResetPath();
 
-            //Sistema de Stune
+            //Sistema de Stun
             AkSoundEngine.PostEvent("Crash_PSTom", WwiseManager.instance.gameObject);
+            dashParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
             StartCoroutine(ResumeCanAssaultPlayer());
         }
     }

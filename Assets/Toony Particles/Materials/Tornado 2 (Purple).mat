@@ -8,8 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Tornado 2 (Purple)
-  m_Shader: {fileID: -6465566751694194690, guid: 1dd57e0285259464da209e75e09f0dda,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 1dd57e0285259464da209e75e09f0dda, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -32,6 +31,14 @@ Material:
         m_Texture: {fileID: 2800000, guid: 304deef1f1706e545bce6edf61f57dc0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_35467f5822fb9481a8433faf54ef3e65_Out_0:
+        m_Texture: {fileID: 2800000, guid: 304deef1f1706e545bce6edf61f57dc0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_71deadc4a111df8bab8917c72b48ce90_Out_0:
+        m_Texture: {fileID: 2800000, guid: 22d06e553bfeeef43bc0e2f6efc6322b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Texture2DAsset_BE8FECE_Out:
         m_Texture: {fileID: 2800000, guid: 22d06e553bfeeef43bc0e2f6efc6322b, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -42,6 +49,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _Texture2DAsset_DC8122C2_Out_0:
         m_Texture: {fileID: 2800000, guid: 22d06e553bfeeef43bc0e2f6efc6322b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -57,6 +76,7 @@ Material:
     - _Color_: {r: 9.189589, g: 0, b: 8.20629, a: 0}
     - _Fresnel_Color: {r: 0.74887496, g: 0.19215685, b: 0.81960785, a: 0}
     - _Tiling: {r: 1, g: 4, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!114 &7812378466097747532
 MonoBehaviour:
   m_ObjectHideFlags: 11
