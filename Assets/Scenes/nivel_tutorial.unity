@@ -3753,6 +3753,7 @@ GameObject:
   - component: {fileID: 200847969}
   - component: {fileID: 200847968}
   - component: {fileID: 200847967}
+  - component: {fileID: 200847970}
   m_Layer: 3
   m_Name: RocaGris
   m_TagString: Untagged
@@ -3837,6 +3838,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 200847965}
   m_Mesh: {fileID: 3447038591770236762, guid: ffc191bbd3989e74f922883cd321f769, type: 3}
+--- !u!114 &200847970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200847965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02161969c066ebc43917d728aba03202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainType: Rock
 --- !u!1 &202269453
 GameObject:
   m_ObjectHideFlags: 0
@@ -14052,6 +14066,7 @@ GameObject:
   - component: {fileID: 742332786}
   - component: {fileID: 742332785}
   - component: {fileID: 742332787}
+  - component: {fileID: 742332788}
   m_Layer: 3
   m_Name: Icosphere_dmg.001
   m_TagString: Untagged
@@ -14136,6 +14151,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2494315517456869296, guid: ffc191bbd3989e74f922883cd321f769, type: 3}
+--- !u!114 &742332788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742332783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02161969c066ebc43917d728aba03202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainType: Rock
 --- !u!1 &743769188
 GameObject:
   m_ObjectHideFlags: 0
@@ -27190,6 +27218,7 @@ GameObject:
   - component: {fileID: 1504030847}
   - component: {fileID: 1504030846}
   - component: {fileID: 1504030845}
+  - component: {fileID: 1504030848}
   m_Layer: 3
   m_Name: Icosphere.014_dmg.002 (1)
   m_TagString: Untagged
@@ -27274,6 +27303,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1504030843}
   m_Mesh: {fileID: -5599622764777206372, guid: ffc191bbd3989e74f922883cd321f769, type: 3}
+--- !u!114 &1504030848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504030843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02161969c066ebc43917d728aba03202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainType: Rock
 --- !u!4 &1506674974 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 946817088658623194, guid: 5baaa19e2bbf9ed4ca7a3cdef2353385, type: 3}
@@ -33985,6 +34027,7 @@ GameObject:
   - component: {fileID: 1859612148}
   - component: {fileID: 1859612147}
   - component: {fileID: 1859612146}
+  - component: {fileID: 1859612149}
   m_Layer: 3
   m_Name: PT_Generic_Rock_08_LOD0 (1)
   m_TagString: Untagged
@@ -34069,6 +34112,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1859612144}
   m_Mesh: {fileID: -2357271770760611950, guid: 9be0db1db7115014b947be2215a9e799, type: 3}
+--- !u!114 &1859612149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859612144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02161969c066ebc43917d728aba03202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainType: Rock
 --- !u!1 &1860014880
 GameObject:
   m_ObjectHideFlags: 0
@@ -34183,6 +34239,7 @@ GameObject:
   - component: {fileID: 1860985216}
   - component: {fileID: 1860985215}
   - component: {fileID: 1860985214}
+  - component: {fileID: 1860985217}
   m_Layer: 3
   m_Name: RocaGris
   m_TagString: Untagged
@@ -34267,6 +34324,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1860985212}
   m_Mesh: {fileID: 3447038591770236762, guid: ffc191bbd3989e74f922883cd321f769, type: 3}
+--- !u!114 &1860985217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860985212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02161969c066ebc43917d728aba03202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainType: Rock
 --- !u!1 &1861516626
 GameObject:
   m_ObjectHideFlags: 0
@@ -34379,6 +34449,7 @@ GameObject:
   - component: {fileID: 1873435143}
   - component: {fileID: 1873435142}
   - component: {fileID: 1873435144}
+  - component: {fileID: 1873435145}
   m_Layer: 3
   m_Name: PT_Cliff_Rock_03_LOD0 (1)
   m_TagString: Untagged
@@ -34463,6 +34534,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 1753606572227964454, guid: 9be0db1db7115014b947be2215a9e799, type: 3}
+--- !u!114 &1873435145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873435140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02161969c066ebc43917d728aba03202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainType: Rock
 --- !u!1 &1874851090
 GameObject:
   m_ObjectHideFlags: 0
@@ -37787,6 +37871,7 @@ GameObject:
   - component: {fileID: 2095744878}
   - component: {fileID: 2095744877}
   - component: {fileID: 2095744876}
+  - component: {fileID: 2095744879}
   m_Layer: 3
   m_Name: Icosphere.014_dmg.002
   m_TagString: Untagged
@@ -37871,6 +37956,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2095744874}
   m_Mesh: {fileID: -5599622764777206372, guid: ffc191bbd3989e74f922883cd321f769, type: 3}
+--- !u!114 &2095744879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095744874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02161969c066ebc43917d728aba03202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainType: Rock
 --- !u!4 &2097726705 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 946817088658623194, guid: 5baaa19e2bbf9ed4ca7a3cdef2353385, type: 3}
@@ -39849,6 +39947,7 @@ GameObject:
   - component: {fileID: 1927839816}
   - component: {fileID: 919132147899669424}
   - component: {fileID: 919132147899669425}
+  - component: {fileID: 919132147899669426}
   m_Layer: 3
   m_Name: Pillar
   m_TagString: Untagged
@@ -39886,6 +39985,19 @@ MonoBehaviour:
   maxLife: 999
   inmunityTime: 0
   timeToReappear: 0
+--- !u!114 &919132147899669426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147899669423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02161969c066ebc43917d728aba03202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainType: Rock
 --- !u!23 &987886830524364931
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -41204,6 +41316,7 @@ GameObject:
   - component: {fileID: 3786442396305950222}
   - component: {fileID: 825549658100671303}
   - component: {fileID: 2799118433296817312}
+  - component: {fileID: 2799118433296817313}
   m_Layer: 3
   m_Name: Icosphere.014_dmg.002
   m_TagString: Untagged
@@ -41225,6 +41338,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5599622764777206372, guid: ffc191bbd3989e74f922883cd321f769, type: 3}
+--- !u!114 &2799118433296817313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2799118433296817311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02161969c066ebc43917d728aba03202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainType: Rock
 --- !u!1 &2800284203034774741
 GameObject:
   m_ObjectHideFlags: 0
@@ -45856,6 +45982,7 @@ GameObject:
   - component: {fileID: 2957397373604051121}
   - component: {fileID: 3951176393482695175}
   - component: {fileID: 9003714722255361220}
+  - component: {fileID: 9003714722255361221}
   m_Layer: 3
   m_Name: Icosphere_dmg.001
   m_TagString: Untagged
@@ -45877,6 +46004,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2494315517456869296, guid: ffc191bbd3989e74f922883cd321f769, type: 3}
+--- !u!114 &9003714722255361221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9003714722255361219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02161969c066ebc43917d728aba03202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainType: Rock
 --- !u!1 &9005763605819751917
 GameObject:
   m_ObjectHideFlags: 0
