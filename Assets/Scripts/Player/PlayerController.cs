@@ -30,34 +30,39 @@ public class PlayerController : MonoBehaviour
     private bool isSwimming;
     private bool isGlading;
     private bool isJumping;
+    private bool isGrounded;
+    private bool isWallForward = false;
+    private bool canMove = true;
+    private bool isUmbrellaOpen;
+    private bool isGlidePlaying = false;    
 
     [Header("Movement Settings")]
     [SerializeField] private float runSpeed = 20;
     [SerializeField] private float walkSpeed = 10;
     [SerializeField] private float acceleration = 1;
     [SerializeField] private float rotationSpeed = 15f;
-    public enum MovementMode { ADD_FORCE,VELOCITY}
+    [SerializeField] private float gladingSpeed = 10;
     [SerializeField] private MovementMode movementMode = MovementMode.VELOCITY;
-    
-    bool isUmbrellaOpen;
+    public enum MovementMode { ADD_FORCE,VELOCITY}
     private float currentSpeed = 0;
-    private bool canMove = true;
     
     [Header("Glading Settings")]
-    [SerializeField] private float gladingSpeed = 10;
     [SerializeField] private float gladingGravity = 100;
     [SerializeField] private float velocityToGlade = 3;
     public bool canGlide;
-
 
     [Header("Ground Checker settings")]
     [SerializeField] Transform posCheckerGround;
     [SerializeField] float radiusCheck = .25f;
     [SerializeField] LayerMask groundLayerMask;
-    bool isGrounded;
+    [SerializeField] Transform wallCheckPos;
+    [SerializeField] float radiusCheckWall = .25f;
+   
 
     [Header("Jump Settings")]
     [SerializeField] float jumpForce = 10;
+    [SerializeField] float coyoteTime = .25f;
+    float coyoteTimer = 0;
 
     //Swiming variables
     [Header("Swimimg Settings")]
@@ -86,7 +91,7 @@ public class PlayerController : MonoBehaviour
     const string nameThirdAttack = "Armature_spin";
 
     //Audio variables
-    private bool isGlidePlaying = false;
+  
 
     private void Awake()
     {
@@ -135,19 +140,21 @@ public class PlayerController : MonoBehaviour
             }
         }
         else
-        {
             currentSpeed = Mathf.Lerp(currentSpeed, 0, acceleration * Time.deltaTime);
-        }
-        
+
     }
     private void Movement()
     {
         Vector3 dir;
         dir = CamDirection() * currentSpeed;
         if (canMove)
-        {
+        {           
             if (movementMode == MovementMode.VELOCITY)
             {
+                //Comprueba si esta chocando con el muero para cancelar la velocidad del 
+                if (isWallForward)
+                    dir.z = rb.velocity.z;
+
                 dir.y = rb.velocity.y;
                 rb.velocity = dir;
             }
@@ -155,28 +162,28 @@ public class PlayerController : MonoBehaviour
             {
                 dir.y = 0;
                 rb.AddForce(dir, ForceMode.Acceleration);
-            }
+            }               
         }
         else
-        {
             currentSpeed = 0;
-        }
     }
     void ForceTorrent()
     {
-        if (isSwimming && canMove)
+        if (isSwimming && canMove && !isStartingToSwim)
         {
             currentTorrentDirection.y = 0;
             rb.AddForce(currentTorrentDirection, ForceMode.Acceleration);
         }
     }
     public void HandleJump()
-    {  
-        if((isGrounded || isSwimming) && canMove && !isUmbrellaOpen)
+    {
+        Debug.Log(coyoteTimer > 0);
+        if ((isGrounded || isSwimming || coyoteTimer > 0) && canMove && !isUmbrellaOpen)
         {
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             isJumping = true;
             rb.AddForce(Vector3.up * jumpForce * 10, ForceMode.Impulse);
+            coyoteTimer = 0;
         }
     }
     private void HandleRotation()
@@ -215,10 +222,17 @@ public class PlayerController : MonoBehaviour
     private void Checkers()
     {
         isGrounded = Physics.CheckSphere(posCheckerGround.position, radiusCheck, groundLayerMask) && !isSwimming;
-        isGlading = !isSwimming && isUmbrellaOpen && !isGrounded;        
+        isGlading = !isSwimming && isUmbrellaOpen && !isGrounded;
+        isWallForward = Physics.CheckSphere(wallCheckPos.position, radiusCheckWall, groundLayerMask);
         if (isGrounded)
         {         
             isJumping = false;
+            coyoteTimer = coyoteTime;
+        }
+        else
+        {
+            coyoteTimer -= Time.deltaTime;
+            
         }
         
     }
@@ -362,8 +376,8 @@ public class PlayerController : MonoBehaviour
     private void OnSwiming(Collider other)
     {
         if (other.CompareTag("Water") && !isSwimming)
-        {         
-            currentTorrentDirection = other.GetComponent<WaterTorrent>().GetTorrentDir();
+        {       
+           currentTorrentDirection = other.GetComponent<WaterTorrent>().GetTorrentDir();
    
             rb.useGravity = false;
 
@@ -371,7 +385,6 @@ public class PlayerController : MonoBehaviour
             isSwimming = true;
             isGlading = false;
             isStartingToSwim = true;
-
             movementMode = MovementMode.ADD_FORCE;
 
             animator.SetBool("isSwiming", true);
@@ -385,6 +398,7 @@ public class PlayerController : MonoBehaviour
             tweenSwiming = transform.DOLocalMoveY(pivotSwiming.position.y, 2).SetEase(Ease.OutElastic).OnComplete(() =>
             {
                 isStartingToSwim = false;
+
             });
 
             AkSoundEngine.PostEvent("WaterSplash_Brello", WwiseManager.instance.gameObject);
@@ -490,7 +504,11 @@ public class PlayerController : MonoBehaviour
         if (isGrounded) Gizmos.color = Color.green;
         Gizmos.DrawSphere(posCheckerGround.position, radiusCheck);
 
-        Gizmos.DrawWireCube(pivotAttack.position,sizeCubeAttack);      
+        Gizmos.DrawWireCube(pivotAttack.position,sizeCubeAttack);
+
+        //Draw Sphere wall check
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(wallCheckPos.position, radiusCheckWall);
     }
 
     #region Inputs setters
