@@ -279,8 +279,10 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 64
-  coalBall: {fileID: 8352578658043346794, guid: 575d122a308146f459af65de8b10f67f, type: 3}
-  timeBetweenAttacks: 4
+  coalBall: {fileID: 3356532864807274274, guid: 62fec1d8a06b9aa41b68a71c06b8d18a, type: 3}
+  shootParticles: {fileID: 6152596663154001388, guid: 0b265d4752ac5a94286f5f24e2b0fefc, type: 3}
+  minTimeBetweenAttacks: 3
+  maxTimeBetweenAttacks: 5
 --- !u!1 &8207646315093051720
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,8 @@ public class CoalBall : MonoBehaviour
     [SerializeField] LayerMask whatIsGround;
     [SerializeField] float areaDamage;
     [SerializeField] LayerMask playerMask;
+    [SerializeField] GameObject explosionParticles;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,7 @@ public class CoalBall : MonoBehaviour
         {
             instantiatedDecal = Instantiate(attachedDecal, raycastHit.point, Quaternion.identity);
             instantiatedDecal.transform.forward = raycastHit.normal;
+            //playerAdvancedPosition = new Vector3(playerAdvancedPosition.x, raycastHit.point.y, playerAdvancedPosition.z);
         }
 
         rb.DOJump(playerAdvancedPosition, jumpForce, 1, 0.9f).OnComplete(() =>
@@ -40,10 +43,10 @@ public class CoalBall : MonoBehaviour
                 playerCol[0].GetComponent<BrelloHealth>().DoDamage(damage);
             }
 
-            Destroy(instantiatedDecal);
-            Destroy(gameObject);
+            Instantiate(explosionParticles, transform.position, Quaternion.identity);
 
-            //Instanciar particulas de barro?
+            Destroy(instantiatedDecal);
+            Destroy(gameObject);           
         });
     }
 
@@ -51,16 +54,19 @@ public class CoalBall : MonoBehaviour
     {
         //Para que siempre mire en la direccion hacia la que está yendo.
         transform.forward = rb.velocity;
+
+        transform.localEulerAngles = Vector3.one * Mathf.Sin(Time.time) * 360f;
     }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.transform.root.TryGetComponent(out BrelloHealth playerHealth))
         {
             playerHealth.DoDamage(damage);
+
+            Instantiate(explosionParticles, transform.position, Quaternion.identity);
+
             Destroy(instantiatedDecal);
             Destroy(gameObject);
-
-            //Instanciar particulas de barro?
         }
     }
 

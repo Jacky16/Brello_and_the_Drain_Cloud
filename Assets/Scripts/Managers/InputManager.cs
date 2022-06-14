@@ -56,9 +56,7 @@ public class InputManager : MonoBehaviour
 
     private void OnJump(InputAction.CallbackContext ctx)
     {
-        if(playerController.IsGrounded())
-            playerController.HandleJump();
-
+        playerController.HandleJump();
         playerController.HandleSwimingJump();
     }
 
