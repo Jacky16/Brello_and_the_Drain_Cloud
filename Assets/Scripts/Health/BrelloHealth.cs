@@ -54,7 +54,7 @@ public sealed class BrelloHealth : Health
         //Camera.main.GetComponent<CinemachineImpulseSource>().GenerateImpulse();
         lifeChanged = true;
         //imageAnimator.SetTrigger("Appear");
-        if (damageParticles)
+        if (damageParticles && spawnPoint != null)
         {
             Instantiate(damageParticles, spawnPoint.position, Quaternion.identity);
         }

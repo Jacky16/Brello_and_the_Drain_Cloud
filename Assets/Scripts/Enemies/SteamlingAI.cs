@@ -93,11 +93,11 @@ public class SteamlingAI : EnemyAI
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.gameObject.TryGetComponent(out BrelloHealth playerHealth))
+        if (collision.collider.gameObject.TryGetComponent(out Health health))
         {
             //playerHealth.GetComponent<CharacterController>().Move(transform.forward * impulseForce * Time.deltaTime);
 
-            playerHealth.DoDamage(currentDamage);
+            health.DoDamage(currentDamage);
         }
     }
 }

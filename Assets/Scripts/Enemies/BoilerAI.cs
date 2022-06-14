@@ -7,10 +7,14 @@ public class BoilerAI : MonoBehaviour
     [SerializeField] float attackRadius;
     [SerializeField] LayerMask playerMask;
     [SerializeField] GameObject coalBall;
+    [SerializeField] GameObject shootParticles;
     Animator animator;
     Vector3 positionToSpawn;
 
-    [SerializeField] float timeBetweenAttacks;
+    [SerializeField, Tooltip("Tiempo mínimo entre disparos del boiler.")] float minTimeBetweenAttacks;
+    [SerializeField, Tooltip("Tiempo máximo entre disparos del boiler.")] float maxTimeBetweenAttacks;
+
+    float timeBetweenAttacks;
 
     private bool playerDetected;
     private bool canAttack;
@@ -20,8 +24,10 @@ public class BoilerAI : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        canAttack = true;
+        canAttack = false;
         positionToSpawn = transform.GetChild(0).transform.position;
+        timeBetweenAttacks = Random.Range(minTimeBetweenAttacks, maxTimeBetweenAttacks);
+        StartCoroutine(ResetAttack());
     }
 
     // Update is called once per frame
@@ -46,6 +52,7 @@ public class BoilerAI : MonoBehaviour
     {
         AkSoundEngine.PostEvent("Shoot_Boiler", WwiseManager.instance.gameObject);
         Instantiate(coalBall, positionToSpawn, Quaternion.identity);
+        Instantiate(shootParticles, positionToSpawn, Quaternion.identity);
         StartCoroutine(ResetAttack());
     }
 
