@@ -11,11 +11,6 @@ public class PlayerAudio : MonoBehaviour
     [System.NonSerialized]
     public int isReverbOn = 0;
 
-    private void Start()
-    {
-        //AkSoundEngine.PostEvent("BackgroundMusic_Level1", WwiseManager.instance.gameObject);
-    }
-
     public void PlayFootstep()
     {
         actualTerrainType = "Default";

@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="133642231" Language="SFX" Hash="589617988">
+		<SoundBank Id="133642231" Language="SFX" Hash="3796282417">
 			<ObjectPath>\SoundBanks\Default Work Unit\General</ObjectPath>
 			<ShortName>General</ShortName>
 			<Path>General.bnk</Path>
@@ -30,9 +30,9 @@
 				</Event>
 				<Event Id="205544994" Name="BackgroundMusic_Level1" ObjectPath="\Events\Default Work Unit\Environment\Grasslands\BackgroundMusic_Level1" DurationType="Infinite">
 					<IncludedMemoryFiles>
-						<File Id="1022260136" Language="SFX">
-							<ShortName>GrasslandMusic.wav</ShortName>
-							<Path>SFX\GrasslandMusic_D79FB2B7.wem</Path>
+						<File Id="376022818" Language="SFX">
+							<ShortName>BRELLO_World_v1.wav</ShortName>
+							<Path>SFX\BRELLO_World_v1_D79FB2B7.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -166,7 +166,14 @@
 					</IncludedMemoryFiles>
 				</Event>
 				<Event Id="1228236750" Name="Stop_Glide_Brello" ObjectPath="\Events\Default Work Unit\Brello\Stop_Glide_Brello" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="4153140954" Name="StopBackgroundMusic_Level1" ObjectPath="\Events\Default Work Unit\Environment\Grasslands\StopBackgroundMusic_Level1" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="4153140954" Name="StopBackgroundMusic_Level1" ObjectPath="\Events\Default Work Unit\Environment\Grasslands\StopBackgroundMusic_Level1" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="376022818" Language="SFX">
+							<ShortName>BRELLO_World_v1.wav</ShortName>
+							<Path>SFX\BRELLO_World_v1_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="2196322537" Name="Swimming_Brello" ObjectPath="\Events\Default Work Unit\Brello\Swimming_Brello" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="916769465" Name="VillageAmbience_Level1" ObjectPath="\Events\Default Work Unit\Environment\Grasslands\VillageAmbience_Level1" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="3399754180" Name="VillageMusic_Level1" ObjectPath="\Events\Default Work Unit\Environment\Grasslands\VillageMusic_Level1" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
@@ -207,7 +214,7 @@
 				<GameParameter Id="1564184899" Name="SFX_Volume" ObjectPath="\Game Parameters\Default Work Unit\Volume\SFX_Volume"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="2167216614" Language="SFX" Hash="2729824298">
+		<SoundBank Id="2167216614" Language="SFX" Hash="2819211844">
 			<ObjectPath>\SoundBanks\Default Work Unit\General3</ObjectPath>
 			<ShortName>General3</ShortName>
 			<Path>General3.bnk</Path>
@@ -222,6 +229,10 @@
 				</Event>
 				<Event Id="609297450" Name="PSTomBoss_BackgroundMusic_PSTomBoss" ObjectPath="\Events\Default Work Unit\Environment\PSTomBoss\PSTomBoss_BackgroundMusic_PSTomBoss" DurationType="Infinite">
 					<IncludedMemoryFiles>
+						<File Id="3304908" Language="SFX">
+							<ShortName>TrainSound.wav</ShortName>
+							<Path>SFX\TrainSound_D79FB2B7.wem</Path>
+						</File>
 						<File Id="674738821" Language="SFX">
 							<ShortName>InicioMusicaPSTom.wav</ShortName>
 							<Path>SFX\InicioMusicaPSTom_10C4C929.wem</Path>
@@ -248,17 +259,13 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="823999302" Name="TrainAmbience_PSTomBoss" ObjectPath="\Events\Default Work Unit\Environment\PSTomBoss\TrainAmbience_PSTomBoss" DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="3304908" Language="SFX">
-							<ShortName>TrainSound.wav</ShortName>
-							<Path>SFX\TrainSound_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
 			</IncludedEvents>
+			<GameParameters>
+				<GameParameter Id="1006694123" Name="Music_Volume" ObjectPath="\Game Parameters\Default Work Unit\Volume\Music_Volume"/>
+				<GameParameter Id="1564184899" Name="SFX_Volume" ObjectPath="\Game Parameters\Default Work Unit\Volume\SFX_Volume"/>
+			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="2167216615" Language="SFX" Hash="3380965717">
+		<SoundBank Id="2167216615" Language="SFX" Hash="2403198515">
 			<ObjectPath>\SoundBanks\Default Work Unit\General2</ObjectPath>
 			<ShortName>General2</ShortName>
 			<Path>General2.bnk</Path>
@@ -378,7 +385,12 @@
 				</Event>
 				<Event Id="4013748194" Name="Sleep_Boiler" ObjectPath="\Events\Default Work Unit\Boiler\Sleep_Boiler" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="3086540886" Name="StopAll" ObjectPath="\Events\Default Work Unit\StopAll" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="2393177919" Name="StopBackgroundMusic_Tutorial" ObjectPath="\Events\Default Work Unit\Environment\Tutorial\StopBackgroundMusic_Tutorial" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 			</IncludedEvents>
+			<GameParameters>
+				<GameParameter Id="1006694123" Name="Music_Volume" ObjectPath="\Game Parameters\Default Work Unit\Volume\Music_Volume"/>
+				<GameParameter Id="1564184899" Name="SFX_Volume" ObjectPath="\Game Parameters\Default Work Unit\Volume\SFX_Volume"/>
+			</GameParameters>
 		</SoundBank>
 	</SoundBanks>
 </SoundBanksInfo>

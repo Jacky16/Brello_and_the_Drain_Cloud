@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 dir.y = 0;
-                rb.AddForce(dir*6, ForceMode.Acceleration);
+                rb.AddForce(dir, ForceMode.Acceleration);
             }
         }
         else
@@ -174,6 +174,7 @@ public class PlayerController : MonoBehaviour
     {  
         if((isGrounded || isSwimming) && canMove && !isUmbrellaOpen)
         {
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             isJumping = true;
             rb.AddForce(Vector3.up * jumpForce * 10, ForceMode.Impulse);
         }
@@ -226,6 +227,7 @@ public class PlayerController : MonoBehaviour
         if (isGlading && !isSwimming)
         {
             rb.AddForce(Vector3.down * gladingGravity, ForceMode.Force);
+            
         }  
     }
     private Vector3 CamDirection()
@@ -292,6 +294,7 @@ public class PlayerController : MonoBehaviour
     void CheckCombo()
     {
         canAttack = false;
+       
         if (CheckState(nameFirstAttack) && noOfClicks <= 1)
         {
             animator.SetInteger("currentAttack", 0);
@@ -300,25 +303,25 @@ public class PlayerController : MonoBehaviour
             noOfClicks = 0;
         }
         //Ataque 2
-        else if (CheckState(nameFirstAttack) && noOfClicks >= 2)
+        if (CheckState(nameFirstAttack) && noOfClicks >= 2)
         {
             animator.SetInteger("currentAttack", 2);
             canAttack = true;
         }
-        else if (CheckState(nameSecondAttack) && noOfClicks <= 2)
+        if(CheckState(nameSecondAttack) && noOfClicks <= 2)
         {
             animator.SetInteger("currentAttack", 0);
             canAttack = true;
             noOfClicks = 0;
             movementMode = MovementMode.VELOCITY;
         }
-        else if (CheckState(nameSecondAttack) && noOfClicks >= 3) {
+        if(CheckState(nameSecondAttack) && noOfClicks >= 3) {
             movementMode = MovementMode.VELOCITY;
             animator.SetInteger("currentAttack", 3);
             canAttack = true;
         }
         //Ataque 3
-        else if (CheckState(nameThirdAttack) && noOfClicks >= 3)
+        if(CheckState(nameThirdAttack) && noOfClicks >= 3)
         {
             animator.SetInteger("currentAttack", 0);
             canAttack = true;
@@ -384,7 +387,7 @@ public class PlayerController : MonoBehaviour
                 isStartingToSwim = false;
             });
 
-            //AkSoundEngine.PostEvent("WaterSplash_Brello", WwiseManager.instance.gameObject);
+            AkSoundEngine.PostEvent("WaterSplash_Brello", WwiseManager.instance.gameObject);
         }
     }
 
@@ -437,12 +440,21 @@ public class PlayerController : MonoBehaviour
 
     public void OpenUmbrellaManager(bool _value)
     {
+        //Parar el impulso de cuando planeas
+        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        
         if (canGlide && canMove)
         {
             isUmbrellaOpen = _value;
             brelloOpenManager.SetOpen(isUmbrellaOpen);
 
+            
             rb.useGravity = !_value;
+            
+            if(!_value)
+                movementMode = MovementMode.VELOCITY;
+            else
+                movementMode = MovementMode.ADD_FORCE;
 
             //Audio de apertura de paraguas
             if (_value && !isSwimming)

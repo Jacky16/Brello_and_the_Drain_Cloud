@@ -5,10 +5,6 @@ using UnityEngine;
 public class BossAudio : MonoBehaviour
 {
 
-    private void Awake()
-    {
-        //AkSoundEngine.SetRTPCValue("SFX_Volume", "100");
-    }
 
     public void PlayPSTomAngry()
     {

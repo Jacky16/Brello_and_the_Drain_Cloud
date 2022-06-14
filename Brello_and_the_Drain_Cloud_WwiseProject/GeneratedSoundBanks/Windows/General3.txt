@@ -1,9 +1,17 @@
 Event	ID	Name			Wwise Object Path	Notes
 	609297450	PSTomBoss_BackgroundMusic_PSTomBoss			\Default Work Unit\Environment\PSTomBoss\PSTomBoss_BackgroundMusic_PSTomBoss	
-	823999302	TrainAmbience_PSTomBoss			\Default Work Unit\Environment\PSTomBoss\TrainAmbience_PSTomBoss	
 	1633170905	Hide_Juncc			\Default Work Unit\Juncc\Hide_Juncc	
 	2121276730	Spawn_Juncc			\Default Work Unit\Juncc\Spawn_Juncc	
 	4188370314	Shoot_Juncc			\Default Work Unit\Juncc\Shoot_Juncc	
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	1006694123	Music_Volume			\Default Work Unit\Volume\Music_Volume	
+	1564184899	SFX_Volume			\Default Work Unit\Volume\SFX_Volume	
+
+Audio Bus	ID	Name			Wwise Object Path	Notes
+	393239870	SFX			\Default Work Unit\Master Audio Bus\SFX	
+	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
+	3991942870	Music			\Default Work Unit\Master Audio Bus\Music	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	3304908	TrainSound	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\TrainSound_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\PSTomBoss\TrainSound		5444392
