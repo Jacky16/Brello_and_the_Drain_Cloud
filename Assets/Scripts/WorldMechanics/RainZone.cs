@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using DG.Tweening;
+
 
 public class RainZone : MonoBehaviour
 {
@@ -15,6 +18,7 @@ public class RainZone : MonoBehaviour
     private bool pyraInZone;
     private List<Position> positions;
     private PyraProtection pyraProtection;
+    [SerializeField] Volume rainVolume;
 
     void Start()
     {
@@ -74,6 +78,7 @@ public class RainZone : MonoBehaviour
         else if (other.CompareTag("Player"))
         {
             pyraProtection.SetIsInRain(true);
+            EnableRaindPostProcess();
         }
     }
     private void OnTriggerExit(Collider other)
@@ -85,6 +90,16 @@ public class RainZone : MonoBehaviour
         else if (other.CompareTag("Player"))
         {
             pyraProtection.SetIsInRain(false);
+            DisableRainPostProcess();
         }
+    }
+    void EnableRaindPostProcess()
+    {
+        DOTween.To(() => rainVolume.weight, x => rainVolume.weight = x, 1, 1);
+
+    }
+    void DisableRainPostProcess()
+    {
+        DOTween.To(() => rainVolume.weight, x => rainVolume.weight = x, 0, 1);
     }
 }
