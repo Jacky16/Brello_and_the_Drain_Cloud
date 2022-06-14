@@ -26727,6 +26727,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4582061109217783566, guid: c11abcb3602085143ae8e6ff8862ee23, type: 3}
+      propertyPath: coyoteTime
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582061109217783566, guid: c11abcb3602085143ae8e6ff8862ee23, type: 3}
+      propertyPath: jumpBufferTime
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6163869764956446853, guid: c11abcb3602085143ae8e6ff8862ee23, type: 3}
       propertyPath: m_Name
       value: Brello
@@ -26741,11 +26749,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6827921339837299263, guid: c11abcb3602085143ae8e6ff8862ee23, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 197.2307
+      value: 194.21
       objectReference: {fileID: 0}
     - target: {fileID: 6827921339837299263, guid: c11abcb3602085143ae8e6ff8862ee23, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -283.6193
+      value: -254.25
       objectReference: {fileID: 0}
     - target: {fileID: 6827921339837299263, guid: c11abcb3602085143ae8e6ff8862ee23, type: 3}
       propertyPath: m_LocalRotation.w
@@ -26775,7 +26783,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2723760742230091970, guid: c11abcb3602085143ae8e6ff8862ee23, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c11abcb3602085143ae8e6ff8862ee23, type: 3}
 --- !u!4 &1482549918 stripped
 Transform:

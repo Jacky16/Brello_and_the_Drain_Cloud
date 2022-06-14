@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Jump Settings")]
     [SerializeField] float jumpForce = 10;
-    [SerializeField] float coyoteTime = .25f;
+    [SerializeField] float coyoteTime = .2f;
     float coyoteTimer = 0;
 
     //Swiming variables
@@ -177,9 +177,11 @@ public class PlayerController : MonoBehaviour
     }
     public void HandleJump()
     {
-        Debug.Log(coyoteTimer > 0);
-        if ((isGrounded || isSwimming || coyoteTimer > 0) && canMove && !isUmbrellaOpen)
+        bool isCoyoteJump = coyoteTimer > 0 && rb.velocity.y <= 0 && !isJumping;
+       
+        if ((isGrounded || isCoyoteJump || isSwimming) && canMove && !isUmbrellaOpen)
         {
+            Debug.Log("Salto y coyote: " + isCoyoteJump );
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             isJumping = true;
             rb.AddForce(Vector3.up * jumpForce * 10, ForceMode.Impulse);
@@ -223,7 +225,8 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = Physics.CheckSphere(posCheckerGround.position, radiusCheck, groundLayerMask) && !isSwimming;
         isGlading = !isSwimming && isUmbrellaOpen && !isGrounded;
-        isWallForward = Physics.CheckSphere(wallCheckPos.position, radiusCheckWall, groundLayerMask);
+        isWallForward = Physics.CheckSphere(wallCheckPos.position, radiusCheckWall, groundLayerMask) && !isGrounded;
+       
         if (isGrounded)
         {         
             isJumping = false;
@@ -232,9 +235,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             coyoteTimer -= Time.deltaTime;
-            
         }
-        
     }
     private void GladeManager()
     {
