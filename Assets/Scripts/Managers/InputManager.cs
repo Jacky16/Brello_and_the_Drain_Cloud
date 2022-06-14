@@ -57,7 +57,6 @@ public class InputManager : MonoBehaviour
     private void OnJump(InputAction.CallbackContext ctx)
     {
         playerController.HandleJump();
-
         playerController.HandleSwimingJump();
     }
 
