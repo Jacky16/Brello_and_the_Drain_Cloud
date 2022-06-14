@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="133642231" Language="SFX" Hash="3796282417">
+		<SoundBank Id="133642231" Language="SFX" Hash="2610595621">
 			<ObjectPath>\SoundBanks\Default Work Unit\General</ObjectPath>
 			<ShortName>General</ShortName>
 			<Path>General.bnk</Path>
@@ -71,9 +71,17 @@
 							<ShortName>Footstep_Grass\Brello_Footstep_Grass (5).wav</ShortName>
 							<Path>SFX\Footstep_Grass\Brello_Footstep_Grass (5)_10C4C929.wem</Path>
 						</File>
+						<File Id="220778336" Language="SFX">
+							<ShortName>MetalFootsteps\Footstep2.wav</ShortName>
+							<Path>SFX\MetalFootsteps\Footstep2_10C4C929.wem</Path>
+						</File>
 						<File Id="328021357" Language="SFX">
 							<ShortName>Footstep3.wav</ShortName>
 							<Path>SFX\Footstep3_10C4C929.wem</Path>
+						</File>
+						<File Id="356529862" Language="SFX">
+							<ShortName>MetalFootsteps\Footstep1.wav</ShortName>
+							<Path>SFX\MetalFootsteps\Footstep1_10C4C929.wem</Path>
 						</File>
 						<File Id="379970055" Language="SFX">
 							<ShortName>Footstep2.wav</ShortName>
@@ -86,6 +94,10 @@
 						<File Id="576936516" Language="SFX">
 							<ShortName>Footstep_Grass\Brello_Footstep_Grass (4).wav</ShortName>
 							<Path>SFX\Footstep_Grass\Brello_Footstep_Grass (4)_10C4C929.wem</Path>
+						</File>
+						<File Id="942553419" Language="SFX">
+							<ShortName>MetalFootsteps\Footstep3.wav</ShortName>
+							<Path>SFX\MetalFootsteps\Footstep3_10C4C929.wem</Path>
 						</File>
 						<File Id="973452232" Language="SFX">
 							<ShortName>Footstep_Grass\Brello_Footstep_Grass (6).wav</ShortName>
@@ -112,6 +124,13 @@
 								<File Id="92968298"/>
 								<File Id="576936516"/>
 								<File Id="973452232"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{F1EFDBBD-22A4-438D-90D6-FBD43B02F9FC}">
+							<Media>
+								<File Id="220778336"/>
+								<File Id="356529862"/>
+								<File Id="942553419"/>
 							</Media>
 						</SwitchContainer>
 					</SwitchContainers>
@@ -201,6 +220,7 @@
 						<Switch Id="2654748154" Name="Water" ObjectPath="\Switches\Default Work Unit\FootstepSurfaceType\Water" GUID="{A1AFCC7A-AB2C-4D44-BA6C-DEAFA2C72ACD}"/>
 						<Switch Id="782826392" Name="Default" ObjectPath="\Switches\Default Work Unit\FootstepSurfaceType\Default" GUID="{E967B8ED-4DC5-44FA-BC7E-29FDF9E393EE}"/>
 						<Switch Id="803837735" Name="Sand" ObjectPath="\Switches\Default Work Unit\FootstepSurfaceType\Sand" GUID="{119E8EBD-199B-468C-8F53-4C89CAC86760}"/>
+						<Switch Id="2473969246" Name="Metal" ObjectPath="\Switches\Default Work Unit\FootstepSurfaceType\Metal" GUID="{F1EFDBBD-22A4-438D-90D6-FBD43B02F9FC}"/>
 					</Switches>
 				</SwitchGroup>
 			</SwitchGroups>
@@ -214,7 +234,7 @@
 				<GameParameter Id="1564184899" Name="SFX_Volume" ObjectPath="\Game Parameters\Default Work Unit\Volume\SFX_Volume"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="2167216614" Language="SFX" Hash="2819211844">
+		<SoundBank Id="2167216614" Language="SFX" Hash="3487759032">
 			<ObjectPath>\SoundBanks\Default Work Unit\General3</ObjectPath>
 			<ShortName>General3</ShortName>
 			<Path>General3.bnk</Path>
@@ -265,7 +285,7 @@
 				<GameParameter Id="1564184899" Name="SFX_Volume" ObjectPath="\Game Parameters\Default Work Unit\Volume\SFX_Volume"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="2167216615" Language="SFX" Hash="2403198515">
+		<SoundBank Id="2167216615" Language="SFX" Hash="1545958100">
 			<ObjectPath>\SoundBanks\Default Work Unit\General2</ObjectPath>
 			<ShortName>General2</ShortName>
 			<Path>General2.bnk</Path>
