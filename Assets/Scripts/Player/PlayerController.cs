@@ -176,7 +176,7 @@ public class PlayerController : MonoBehaviour
         }
     }
     public void HandleJump()
-    {
+    {  
         bool isCoyoteJump = coyoteTimer > 0 && rb.velocity.y <= 0 && !isJumping;
        
         if ((isGrounded || isCoyoteJump || isSwimming) && canMove && !isUmbrellaOpen)
