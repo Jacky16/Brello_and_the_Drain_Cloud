@@ -49,13 +49,18 @@ public class OptionsManager : MonoBehaviour
         {
             animManager = MenuAnimManager.GetComponent<Animator>();
         }
+        EventsUI();
+    }
+
+    void EventsUI()
+    {
         //Camera
         sensitivityXSlider.onValueChanged.AddListener(ChangeSensitivityXSlider);
         sensitivityYSlider.onValueChanged.AddListener(ChangeSensitivityYSlider);
-        
-        //sensitivityXInput.onValueChanged.AddListener(ChangeSensitivityXInput);
-        //sensitivityYInput.onValueChanged.AddListener(ChangeSensitivityYInput);
-        
+
+        sensitivityXInput.onValueChanged.AddListener(ChangeSensitivityXInput);
+        sensitivityYInput.onValueChanged.AddListener(ChangeSensitivityYInput);
+
         //Toogle
         invertedXToggle.onValueChanged.AddListener(SetInvertedXCamera);
         invertedYToggle.onValueChanged.AddListener(SetInvertedYCamera);
@@ -64,11 +69,9 @@ public class OptionsManager : MonoBehaviour
         //Music
         musicSlider.onValueChanged.AddListener(ChangeMusicVolumeSlider);
         soundSlider.onValueChanged.AddListener(ChangeSoundVolumeSlider);
-        
+
         musicInput.onValueChanged.AddListener(ChangeMusicVolumeInput);
         soundInput.onValueChanged.AddListener(ChangeSoundVolumeInput);
-        
-
     }
 
     private void Start()
@@ -77,10 +80,6 @@ public class OptionsManager : MonoBehaviour
         {           
             animManager.SetBool("isIdle", true);
         }
-    }
-    private void OnEnable()
-    {
-        LoadSettings();
     }
     public void StartGame()
     {
@@ -105,25 +104,32 @@ public class OptionsManager : MonoBehaviour
         animManager.SetBool("isComeback", true);
     }
 
-    void LoadSettings()
+    public void LoadUISettings()
     {
         //Toogle Camera
         invertedXToggle.isOn = playerCam.GetInvertX();
         invertedYToggle.isOn = playerCam.GetInvertY();
 
-        //Set Mouse Values
+        //Set Mouse Sliders Values
         sensitivityXSlider.value = PlayerPrefs.GetFloat(sensXTag, playerCam.GetVelocityX());
         sensitivityYSlider.value = PlayerPrefs.GetFloat(sensYTag, playerCam.GetVelocityY());
 
+        //Set Mouse Input Values
+        sensitivityXInput.text = PlayerPrefs.GetFloat(sensXTag, playerCam.GetVelocityX()).ToString();
+        sensitivityYInput.text = PlayerPrefs.GetFloat(sensYTag, playerCam.GetVelocityY()).ToString();
 
         //Set Audio Values
         musicSlider.value = PlayerPrefs.GetFloat(musicTag, 50);
         soundSlider.value = PlayerPrefs.GetFloat(soundTag, 50);
-        
+
+        //Set Audio Input Values
+        musicInput.text = PlayerPrefs.GetFloat(musicTag, 50).ToString();
+        soundInput.text = PlayerPrefs.GetFloat(soundTag, 50).ToString();
 
         //Set full screen
         isFullscreen = Screen.fullScreen;
         fullscreenToggle.isOn = isFullscreen;
+        
     }
 
     #region Camera options
@@ -197,16 +203,16 @@ public class OptionsManager : MonoBehaviour
     public void SetFullScreenBool(bool _value)
     {
         Screen.fullScreen = _value;
-        if (_value)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = true;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
+        //if (_value)
+        //{
+        //    Cursor.lockState = CursorLockMode.Locked;
+        //    Cursor.visible = true;
+        //}
+        //else
+        //{
+        //    Cursor.lockState = CursorLockMode.None;
+        //    Cursor.visible = true;
+        //}
     }
     
 

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8458166944324909046}
   - component: {fileID: 7840546076971792156}
   - component: {fileID: 5508968992760087587}
+  - component: {fileID: 5846819153436990612}
   m_Layer: 5
   m_Name: Canvas_Options
   m_TagString: Untagged
@@ -58,8 +59,8 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_TargetDisplay: 0
+  m_SortingOrder: -1
+  m_TargetDisplay: 1
 --- !u!114 &7840546076971792156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,6 +101,31 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5846819153436990612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5927652730226571112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4623dbc85187a846aa74a076ee2b68e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivityXSlider: {fileID: 8303192146816580681}
+  sensitivityYSlider: {fileID: 8303192145087476051}
+  sensitivityXInput: {fileID: 8303192146330375997}
+  sensitivityYInput: {fileID: 8303192145539961193}
+  invertedXToggle: {fileID: 8303192145160059287}
+  invertedYToggle: {fileID: 8303192145512964206}
+  musicSlider: {fileID: 8303192145150251935}
+  soundSlider: {fileID: 8303192144990993243}
+  soundInput: {fileID: 8303192146343506959}
+  musicInput: {fileID: 8303192146217558685}
+  fullscreenToggle: {fileID: 8303192145732334870}
+  backgroundMusic: {fileID: 0}
+  MenuAnimManager: {fileID: 0}
 --- !u!1 &8303192144990993241
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,6 +750,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8303192145423490869}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8303192145256134888
 GameObject:
   m_ObjectHideFlags: 0
@@ -1229,8 +1267,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 311, y: -96}
-  m_SizeDelta: {x: -117.9, y: 50}
+  m_AnchoredPosition: {x: 312, y: -33.414}
+  m_SizeDelta: {x: 114.633, y: 23.829}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8303192145347437743
 CanvasRenderer:
@@ -1323,7 +1361,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -191.69907, y: -45.497177, z: -194.51364, w: 51.120636}
+  m_margin: {x: 0.737442, y: 0.020690702, z: 0.49605954, w: 0.42010498}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1450,6 +1488,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8303192145423490868}
   - component: {fileID: 8303192145423490871}
+  - component: {fileID: 1524914859}
   m_Layer: 5
   m_Name: MM_OPTIONS_WINDOW
   m_TagString: Untagged
@@ -1495,6 +1534,18 @@ MonoBehaviour:
   GlobalCredits: {fileID: 8303192145423490869}
   SecondsToWait: 1.5
   canClick: 0
+--- !u!114 &1524914859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8303192145423490869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82dab1569d1e22e4995aeab64a4cb448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8303192145426385472
 GameObject:
   m_ObjectHideFlags: 0
@@ -2122,8 +2173,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 307.2, y: -257.1}
-  m_SizeDelta: {x: -117.9, y: 50}
+  m_AnchoredPosition: {x: 309.79977, y: -209.3}
+  m_SizeDelta: {x: 159.48, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8303192145620098009
 CanvasRenderer:
@@ -2216,7 +2267,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -191.69907, y: -45.497177, z: -194.51364, w: 51.120636}
+  m_margin: {x: 1.3367614, y: 0.15321349, z: -0.17382814, w: -0.18167113}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3204,7 +3255,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.0000076293945, y: 0.000016212463}
+  m_AnchoredPosition: {x: 0.0000076293945, y: 0.000015258789}
   m_SizeDelta: {x: 41.653, y: 32.097}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &8303192146169880106
@@ -4534,8 +4585,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -314.50003, y: 174}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -340, y: 180}
+  m_SizeDelta: {x: 294.455, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8303192146627887915
 CanvasRenderer:
@@ -4628,7 +4679,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -191.69907, y: -45.497177, z: -194.51364, w: -36.412384}
+  m_margin: {x: -0.46717852, y: -0.5925751, z: -0.18490604, w: -1.5725403}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5087,8 +5138,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 318, y: 174}
-  m_SizeDelta: {x: -144.8, y: -5.3}
+  m_AnchoredPosition: {x: 327.7, y: 180}
+  m_SizeDelta: {x: 199.481, y: 53.391}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8303192146870004218
 CanvasRenderer:
@@ -5181,7 +5232,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -191.69907, y: -45.497177, z: -194.51364, w: -36.412384}
+  m_margin: {x: -1.1932077, y: 0.32414237, z: 1.4327382, w: -0.84057635}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5981,8 +6032,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 311, y: 46}
-  m_SizeDelta: {x: -117.9, y: 50}
+  m_AnchoredPosition: {x: 312, y: 103.41}
+  m_SizeDelta: {x: 112.762, y: 49.021}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8303192147042529787
 CanvasRenderer:
@@ -6075,7 +6126,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -191.69907, y: -45.497177, z: -194.51364, w: 51.120636}
+  m_margin: {x: 0.2741088, y: 1.5166167, z: 0.39791775, w: 0.6786956}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
