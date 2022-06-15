@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="133642231" Language="SFX" Hash="2610595621">
+		<SoundBank Id="133642231" Language="SFX" Hash="2612938851">
 			<ObjectPath>\SoundBanks\Default Work Unit\General</ObjectPath>
 			<ShortName>General</ShortName>
 			<Path>General.bnk</Path>
@@ -234,12 +234,20 @@
 				<GameParameter Id="1564184899" Name="SFX_Volume" ObjectPath="\Game Parameters\Default Work Unit\Volume\SFX_Volume"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="2167216614" Language="SFX" Hash="3487759032">
+		<SoundBank Id="2167216614" Language="SFX" Hash="3269405530">
 			<ObjectPath>\SoundBanks\Default Work Unit\General3</ObjectPath>
 			<ShortName>General3</ShortName>
 			<Path>General3.bnk</Path>
 			<IncludedEvents>
-				<Event Id="1633170905" Name="Hide_Juncc" ObjectPath="\Events\Default Work Unit\Juncc\Hide_Juncc" MaxAttenuation="50." DurationType="OneShot" DurationMin="0.633515" DurationMax="0.633515">
+				<Event Id="1995175766" Name="Breaking_Crate" ObjectPath="\Events\Default Work Unit\Environment\Props\Breaking_Crate" DurationType="OneShot" DurationMin="0.421289" DurationMax="0.595793">
+					<IncludedMemoryFiles>
+						<File Id="1031289488" Language="SFX">
+							<ShortName>Breaking_Crate.wav</ShortName>
+							<Path>SFX\Breaking_Crate_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1633170905" Name="Hide_Juncc" ObjectPath="\Events\Default Work Unit\Juncc\Hide_Juncc" MaxAttenuation="100." DurationType="OneShot" DurationMin="0.633515" DurationMax="0.633515">
 					<IncludedMemoryFiles>
 						<File Id="758911171" Language="SFX">
 							<ShortName>JunccHide.wav</ShortName>
@@ -263,7 +271,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="4188370314" Name="Shoot_Juncc" ObjectPath="\Events\Default Work Unit\Juncc\Shoot_Juncc" MaxAttenuation="50." DurationType="OneShot" DurationMin="0.100601" DurationMax="0.17925">
+				<Event Id="4188370314" Name="Shoot_Juncc" ObjectPath="\Events\Default Work Unit\Juncc\Shoot_Juncc" MaxAttenuation="100." DurationType="OneShot" DurationMin="0.100601" DurationMax="0.17925">
 					<IncludedMemoryFiles>
 						<File Id="61851379" Language="SFX">
 							<ShortName>JunccShoot.wav</ShortName>
@@ -271,7 +279,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2121276730" Name="Spawn_Juncc" ObjectPath="\Events\Default Work Unit\Juncc\Spawn_Juncc" MaxAttenuation="50." DurationType="OneShot" DurationMin="0.633515" DurationMax="0.633515">
+				<Event Id="2121276730" Name="Spawn_Juncc" ObjectPath="\Events\Default Work Unit\Juncc\Spawn_Juncc" DurationType="OneShot" DurationMin="0.633515" DurationMax="0.633515">
 					<IncludedMemoryFiles>
 						<File Id="295411272" Language="SFX">
 							<ShortName>JunccSpawn.wav</ShortName>
@@ -285,7 +293,7 @@
 				<GameParameter Id="1564184899" Name="SFX_Volume" ObjectPath="\Game Parameters\Default Work Unit\Volume\SFX_Volume"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="2167216615" Language="SFX" Hash="1545958100">
+		<SoundBank Id="2167216615" Language="SFX" Hash="254973550">
 			<ObjectPath>\SoundBanks\Default Work Unit\General2</ObjectPath>
 			<ShortName>General2</ShortName>
 			<Path>General2.bnk</Path>
