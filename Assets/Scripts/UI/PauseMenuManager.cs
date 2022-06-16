@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class PauseMenuManager : MonoBehaviour
 {
-    [SerializeField] GameObject PauseMenu;
-    bool isPause = false;
-
+    [SerializeField] GameObject canvasPause;
+    [SerializeField] GameObject canvasOptions;
     [SerializeField] BackgroundMusic bm;
+    bool isPause = false;
     PlayerCam playerCam;
 
     const string soundTag = "SoundVol";
@@ -20,57 +20,35 @@ public class PauseMenuManager : MonoBehaviour
     private void Awake()
     {
         playerCam = FindObjectOfType<PlayerCam>();
-        LoadSettings();
     }
     private void Start()
     {
-        PauseMenu.SetActive(false);
-    }
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Pause();
-            Time.timeScale = isPause ? 0 : 1;
-        }
-    }
-    void LoadSettings()
-    {
-        InitCameraVelocity();
-        InitSound();
-    }
-    public void InitCameraVelocity()
-    {
-        if (playerCam != null)
-        {
-            playerCam.ChangeVelocityY(PlayerPrefs.GetFloat(sensYTag, playerCam.GetVelocityY()));
-            playerCam.ChangeVelocityX(PlayerPrefs.GetFloat(sensXTag, playerCam.GetVelocityX()));
-        }
-    }
-  
-
-    public void InitSound()
-    {
-        AkSoundEngine.SetRTPCValue("SFX_Volume", PlayerPrefs.GetFloat(soundTag, 50));
-        AkSoundEngine.SetRTPCValue("Music_Volume", PlayerPrefs.GetFloat(musicTag, 50));
-
+        canvasPause.SetActive(false);
+        canvasOptions.SetActive(false);
     }
   
     public void Pause()
     {
         isPause = !isPause;
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = isPause;
-        PauseMenu.SetActive(isPause);
-        Time.timeScale = 0;
+        canvasPause.SetActive(isPause);
+        canvasOptions.SetActive(isPause);
+
+        if (isPause)
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+            Time.timeScale = 0;
+        }
+        else
+            Resume();
     }
 
     public void Resume()
     {
-        isPause = false;
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = isPause;
+        Cursor.visible = false;
+        canvasOptions.SetActive(false);
     }
 
     public void Restart()
