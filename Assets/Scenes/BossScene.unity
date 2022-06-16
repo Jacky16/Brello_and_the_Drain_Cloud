@@ -771,7 +771,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 448065210}
-  m_LocalRotation: {x: -0.05603411, y: 0.9350661, z: -0.17182249, w: -0.30494034}
+  m_LocalRotation: {x: -0.056034114, y: 0.9350661, z: -0.17182247, w: -0.3049403}
   m_LocalPosition: {x: 17.409779, y: 10.070001, z: -8.237165}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1629,6 +1629,7 @@ GameObject:
   - component: {fileID: 748616114}
   - component: {fileID: 748616116}
   - component: {fileID: 748616117}
+  - component: {fileID: 748616118}
   m_Layer: 0
   m_Name: CM_Main
   m_TagString: Untagged
@@ -1698,7 +1699,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ChannelMask: 0
+  m_ChannelMask: -1
   m_Gain: 1
   m_Use2DDistance: 0
 --- !u!114 &748616117
@@ -1716,6 +1717,19 @@ MonoBehaviour:
   m_Offset: {x: 0, y: 0, z: -2.25}
   m_ApplyAfter: 1
   m_PreserveComposition: 0
+--- !u!114 &748616118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748616113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14de973adf00f6246a4d116dbd899357, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impulseForce: 0
 --- !u!1 &773467105
 GameObject:
   m_ObjectHideFlags: 0
@@ -6276,6 +6290,48 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
+--- !u!114 &1903431160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903431152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: -1
+    m_RawSignal: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+    m_AmplitudeGain: 3
+    m_FrequencyGain: 3
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 1000
+    m_PropagationSpeed: 343
 --- !u!1 &1908298119
 GameObject:
   m_ObjectHideFlags: 0
@@ -17682,7 +17738,7 @@ PrefabInstance:
       objectReference: {fileID: 4573919363180974023, guid: bda31668372524d44aa9a17083632f5c, type: 3}
     - target: {fileID: 2044767900268927030, guid: ae2f6c40c4f0c5d43ad9bc7805a033f3, type: 3}
       propertyPath: currentPhase
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2044767900268927030, guid: ae2f6c40c4f0c5d43ad9bc7805a033f3, type: 3}
       propertyPath: speedAssault

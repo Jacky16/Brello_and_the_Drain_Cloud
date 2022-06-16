@@ -21,7 +21,13 @@ public sealed class BrelloHealth : Health
 
     [SerializeField] BackgroundMusic bm;
 
+    private Cinemachine.CinemachineImpulseSource cameraShake;
+
     // Start is called before the first frame update
+    private void Awake()
+    {
+        cameraShake = GetComponent<Cinemachine.CinemachineImpulseSource>();
+    }
     protected override void Start()
     {
         base.Start();        
@@ -60,6 +66,7 @@ public sealed class BrelloHealth : Health
         }
         lastLifeChange = 0f;
         currentHealthImage.sprite = healthImages[currLife];
+        cameraShake.GenerateImpulse();
     }
 
     protected override void onHeal()
