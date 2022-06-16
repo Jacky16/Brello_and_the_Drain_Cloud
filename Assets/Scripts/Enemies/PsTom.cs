@@ -290,20 +290,17 @@ public class PsTom : MonoBehaviour
             {
                 collider.isTrigger = true;
                 targeterTransform.gameObject.SetActive(true);
-                targeterTransform.position = new Vector3(transform.position.x,0,transform.position.z);
+
+                //Asignar la posicion del targeter
+                Vector3 nextPosTarget = currentPosPlayer;
+                nextPosTarget.y = 0;
+                targeterTransform.position = nextPosTarget;
             });
             
             //Jump Attack
             sequence.AppendCallback(() => anim.SetTrigger("AttackJump"));
             sequence.Append(transform.DOJump(currentPosPlayer, jumpAttackPower, 1, jumpAttackDuration));
             
-            //Asignar la posicion del target al player
-            Vector3 nextPosTarget = currentPosPlayer;
-            nextPosTarget.y = 0;  
-            
-            //Mover el targeter al sitio que va a saltar
-            sequence.Join(targeterTransform.DOMove(nextPosTarget, jumpAttackDuration));
-
             //On complete
             sequence.AppendCallback(() =>
             {
