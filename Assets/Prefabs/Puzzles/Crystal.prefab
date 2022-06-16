@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2411497824913926958}
   - component: {fileID: 4831546336178423865}
   - component: {fileID: 5090911671525062476}
+  - component: {fileID: 4046067402555498274}
   m_Layer: 0
   m_Name: PT_Menhir_Rock_01_LOD2
   m_TagString: Untagged
@@ -81,6 +82,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4046067402555498274
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514198880041932688}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3187184880904648031, guid: 08d491fd0ac02534e8c9ebf99f619568, type: 3}
 --- !u!1 &6113414283467490687
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,7 +169,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6113414283467490687}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 5
@@ -186,6 +201,7 @@ GameObject:
   - component: {fileID: 8600766897448596775}
   - component: {fileID: 2788885692377826235}
   - component: {fileID: 9012652656383833172}
+  - component: {fileID: 4622526971216450408}
   m_Layer: 0
   m_Name: PT_Menhir_Rock_01_LOD0
   m_TagString: Untagged
@@ -256,6 +272,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4622526971216450408
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7879589892546758901}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3582825328646453294, guid: 08d491fd0ac02534e8c9ebf99f619568, type: 3}
 --- !u!1 &8772948027629676829
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,6 +297,7 @@ GameObject:
   - component: {fileID: 6594064561285669697}
   - component: {fileID: 3089876143054525574}
   - component: {fileID: 7897842530375348940}
+  - component: {fileID: 1385411111425832521}
   m_Layer: 0
   m_Name: PT_Menhir_Rock_01_LOD1
   m_TagString: Untagged
@@ -337,6 +368,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1385411111425832521
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8772948027629676829}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6386348669423139137, guid: 08d491fd0ac02534e8c9ebf99f619568, type: 3}
 --- !u!1001 &2905683257473648406
 PrefabInstance:
   m_ObjectHideFlags: 0
