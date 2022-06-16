@@ -37,21 +37,23 @@ public class PsTom : MonoBehaviour
     [SerializeField] GameObject trashPrefab;
     [SerializeField] Transform trashSpawn;
 
-    [Header("Settins Assault Attack")]
+    [Header("Settings Assault Attack")]
     [SerializeField] float speedAssault;
     [SerializeField] float accelerationAssault;
     [SerializeField] float distanceCheckWall;
     [SerializeField] LayerMask layerMakAttackAssault;
     [SerializeField] Vector3 checkPlayerDamageBox;
     [SerializeField] Vector2 impulseAttackAssaultToPlayer;
+    [SerializeField] ParticleSystem dashParticles;
     
 
     Vector3 posToGo;
     bool isDistanceToGo;
 
 
-    [Header("Stune Settings")]
+    [Header("Stun Settings")]
     [SerializeField] float timeStuned;
+    [SerializeField] GameObject shieldParticle;
 
     [Header("Return Jump Settings")]
     [SerializeField] float jumpReturnPower;
@@ -62,12 +64,14 @@ public class PsTom : MonoBehaviour
     [SerializeField] float jumpAttackDuration;
     [SerializeField] Vector2 impulseAttackJumpToPlayer;
     [SerializeField] Transform targeterTransform;
+    [SerializeField] GameObject jumpParticles;
 
     [Header("Settings Punch Attack")]
     [SerializeField] float punchAttackTime = 1.5f;
     [SerializeField] Vector3 sizeCubePunchAttack;
     [SerializeField] Transform pivotCubeAttack;
     [SerializeField] Vector2 impulseAttackPunchToPlayer;
+    [SerializeField] GameObject punchParticle;
     bool isAttackingPunchAttack;
 
     [Header("Boiler Settings")]
@@ -77,6 +81,9 @@ public class PsTom : MonoBehaviour
     [SerializeField] Transform wallDetect;
     [SerializeField] LayerMask layerMaskWallDetect;
     [SerializeField] float distanceWallDetect = 5;
+
+
+    Cinemachine.CinemachineImpulseSource cameraShake;
     
     [SerializeField]enum Phases {PHASE_1,PHASE_2,PHASE_3,PHASE_4,PHASE_5}
     [SerializeField] Phases currentPhase = Phases.PHASE_1;    
@@ -89,6 +96,7 @@ public class PsTom : MonoBehaviour
         anim = GetComponent<Animator>();
         tomHealth = GetComponent<PsTomHealth>();
         tomEffects = GetComponent<PsTomEffects>();
+        cameraShake = GetComponent<Cinemachine.CinemachineImpulseSource>();
     }
     private void Start()
     {
@@ -253,7 +261,7 @@ public class PsTom : MonoBehaviour
                 player.GetComponent<PlayerController>().ChangeTypeofMovement(PlayerController.MovementMode.ADD_FORCE, true);
             
                 Debug.Log("Ataque al player por el puño");
-                //Advive:Golpea al player con el puño
+                Instantiate(punchParticle, _bh.transform.position, Quaternion.identity);
             }
         }       
     }
@@ -282,18 +290,17 @@ public class PsTom : MonoBehaviour
             {
                 collider.isTrigger = true;
                 targeterTransform.gameObject.SetActive(true);
-                targeterTransform.position = new Vector3(transform.position.x,0,transform.position.z);
+
+                //Asignar la posicion del targeter
+                Vector3 nextPosTarget = currentPosPlayer;
+                nextPosTarget.y = 0;
+                targeterTransform.position = nextPosTarget;
             });
             
             //Jump Attack
             sequence.AppendCallback(() => anim.SetTrigger("AttackJump"));
             sequence.Append(transform.DOJump(currentPosPlayer, jumpAttackPower, 1, jumpAttackDuration));
             
-            //Asignar la posicion del target al player
-            Vector3 nextPosTarget = currentPosPlayer;
-            nextPosTarget.y = 0;          
-            sequence.Join(targeterTransform.DOMove(nextPosTarget, jumpAttackDuration));
-
             //On complete
             sequence.AppendCallback(() =>
             {
@@ -303,15 +310,14 @@ public class PsTom : MonoBehaviour
                     AddImpulseToPlayer(impulseAttackJumpToPlayer);
                     player.GetComponent<BrelloHealth>().DoDamage(damage);
                 }
-                Stune(true);
-                targeterTransform.gameObject.SetActive(false);
-
+                Instantiate(jumpParticles, transform.position, Quaternion.identity);                
             });
                        
             sequence.AppendCallback(() =>
             {
                 collider.isTrigger = false;
                 navMeshAgent.enabled = true;
+                targeterTransform.gameObject.SetActive(false);
 
             });
 
@@ -320,7 +326,7 @@ public class PsTom : MonoBehaviour
             sequence.AppendCallback(() => { 
                 canDoJumpAttack = false; 
                 isJumpingAttack = false;
-                Stune(false);
+                Stun(false);
             });
         }
     }
@@ -371,18 +377,22 @@ public class PsTom : MonoBehaviour
                 //Aplicar velocidad y aceleración
                 navMeshAgent.speed = speedAssault;
                 navMeshAgent.acceleration = accelerationAssault;
+
+                //Empiezo particulas de carrerilla
+                dashParticles.Play();
+
             });
         }       
     }
     IEnumerator ResumeCanAssaultPlayer()
     {
-        Stune(true);      
+        Stun(true);      
         
         anim.SetBool("IsChasing", false);
 
         yield return new WaitForSeconds(timeStuned);
         
-        Stune(false);
+        Stun(false);
         canAssaultPlayer = true;
         
         if (currentPhase == Phases.PHASE_5)
@@ -415,15 +425,16 @@ public class PsTom : MonoBehaviour
         }
         else if (isDistanceToGo && isAssaltingPlayer)
         {
-            //Advice: Acaba la ruta por que se ha xocasdo
+            //Advice: Acaba la ruta por que se ha chocado
             isAssaltingPlayer = false;
             
             //Parar en seco y quitar la ruta del navmesh
             navMeshAgent.velocity = Vector3.zero;
             navMeshAgent.ResetPath();
 
-            //Sistema de Stune
+            //Sistema de Stun
             AkSoundEngine.PostEvent("Crash_PSTom", WwiseManager.instance.gameObject);
+            dashParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
             StartCoroutine(ResumeCanAssaultPlayer());
         }
     }
@@ -545,14 +556,18 @@ public class PsTom : MonoBehaviour
         }
         return false;
     }
-    void Stune(bool _isStuned)
+    void Stun(bool _isStuned)
     {
         isStuned = _isStuned;
         tomHealth.CanDamage(_isStuned);
-        if (_isStuned)
-            anim.SetTrigger("Stuned");
-        
+        shieldParticle.SetActive(!_isStuned);
 
+        if (_isStuned)
+        {
+            anim.SetTrigger("Stuned");
+            cameraShake.GenerateImpulse();
+        }
+        
         anim.SetBool("IsStuned", isStuned);
     }
 

@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using DG.Tweening;
+
 
 public class RainZone : MonoBehaviour
 {
@@ -15,7 +18,12 @@ public class RainZone : MonoBehaviour
     private bool pyraInZone;
     private List<Position> positions;
     private PyraProtection pyraProtection;
+    Volume rainVolume;
 
+    private void Awake()
+    {
+        rainVolume = GetComponent<Volume>();
+    }
     void Start()
     {
         Init();
@@ -24,10 +32,11 @@ public class RainZone : MonoBehaviour
     private void Init()
     {
         pyraProtection = GameObject.FindGameObjectWithTag("Player").GetComponent<PyraProtection>();
+        pyra = GameObject.FindGameObjectWithTag("Pyra").GetComponent<PyraHealth>();
+        
         tpPoints = new List<Transform>();
         positions = new List<Position>();
         pyraInZone = false;
-        pyra = GameObject.FindGameObjectWithTag("Pyra").GetComponent<PyraHealth>();
     }
     private void GetAllPoints()
     {
@@ -74,6 +83,7 @@ public class RainZone : MonoBehaviour
         else if (other.CompareTag("Player"))
         {
             pyraProtection.SetIsInRain(true);
+            EnableRaindPostProcess();
         }
     }
     private void OnTriggerExit(Collider other)
@@ -85,6 +95,16 @@ public class RainZone : MonoBehaviour
         else if (other.CompareTag("Player"))
         {
             pyraProtection.SetIsInRain(false);
+            DisableRainPostProcess();
         }
+    }
+    void EnableRaindPostProcess()
+    {
+        DOTween.To(() => rainVolume.weight, x => rainVolume.weight = x, 1, 1);
+
+    }
+    void DisableRainPostProcess()
+    {
+        DOTween.To(() => rainVolume.weight, x => rainVolume.weight = x, 0, 1);
     }
 }

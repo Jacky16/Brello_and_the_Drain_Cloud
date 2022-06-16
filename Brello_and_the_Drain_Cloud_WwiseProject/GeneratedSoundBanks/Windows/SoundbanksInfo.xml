@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="133642231" Language="SFX" Hash="3796282417">
+		<SoundBank Id="133642231" Language="SFX" Hash="771354864">
 			<ObjectPath>\SoundBanks\Default Work Unit\General</ObjectPath>
 			<ShortName>General</ShortName>
 			<Path>General.bnk</Path>
@@ -71,9 +71,17 @@
 							<ShortName>Footstep_Grass\Brello_Footstep_Grass (5).wav</ShortName>
 							<Path>SFX\Footstep_Grass\Brello_Footstep_Grass (5)_10C4C929.wem</Path>
 						</File>
+						<File Id="220778336" Language="SFX">
+							<ShortName>MetalFootsteps\Footstep2.wav</ShortName>
+							<Path>SFX\MetalFootsteps\Footstep2_10C4C929.wem</Path>
+						</File>
 						<File Id="328021357" Language="SFX">
 							<ShortName>Footstep3.wav</ShortName>
 							<Path>SFX\Footstep3_10C4C929.wem</Path>
+						</File>
+						<File Id="356529862" Language="SFX">
+							<ShortName>MetalFootsteps\Footstep1.wav</ShortName>
+							<Path>SFX\MetalFootsteps\Footstep1_10C4C929.wem</Path>
 						</File>
 						<File Id="379970055" Language="SFX">
 							<ShortName>Footstep2.wav</ShortName>
@@ -86,6 +94,10 @@
 						<File Id="576936516" Language="SFX">
 							<ShortName>Footstep_Grass\Brello_Footstep_Grass (4).wav</ShortName>
 							<Path>SFX\Footstep_Grass\Brello_Footstep_Grass (4)_10C4C929.wem</Path>
+						</File>
+						<File Id="942553419" Language="SFX">
+							<ShortName>MetalFootsteps\Footstep3.wav</ShortName>
+							<Path>SFX\MetalFootsteps\Footstep3_10C4C929.wem</Path>
 						</File>
 						<File Id="973452232" Language="SFX">
 							<ShortName>Footstep_Grass\Brello_Footstep_Grass (6).wav</ShortName>
@@ -114,6 +126,13 @@
 								<File Id="973452232"/>
 							</Media>
 						</SwitchContainer>
+						<SwitchContainer SwitchValue="{F1EFDBBD-22A4-438D-90D6-FBD43B02F9FC}">
+							<Media>
+								<File Id="220778336"/>
+								<File Id="356529862"/>
+								<File Id="942553419"/>
+							</Media>
+						</SwitchContainer>
 					</SwitchContainers>
 				</Event>
 				<Event Id="1517232512" Name="Footstep_Pyra" ObjectPath="\Events\Default Work Unit\Pyra\Footstep_Pyra" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
@@ -139,7 +158,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1526266773" Name="Rain_Level1" ObjectPath="\Events\Default Work Unit\Environment\Grasslands\Rain_Level1" MaxAttenuation="100." DurationType="Infinite">
+				<Event Id="1526266773" Name="Rain_Level1" ObjectPath="\Events\Default Work Unit\Environment\Grasslands\Rain_Level1" MaxAttenuation="300." DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="450979061" Language="SFX">
 							<ShortName>Rain.wav</ShortName>
@@ -201,6 +220,7 @@
 						<Switch Id="2654748154" Name="Water" ObjectPath="\Switches\Default Work Unit\FootstepSurfaceType\Water" GUID="{A1AFCC7A-AB2C-4D44-BA6C-DEAFA2C72ACD}"/>
 						<Switch Id="782826392" Name="Default" ObjectPath="\Switches\Default Work Unit\FootstepSurfaceType\Default" GUID="{E967B8ED-4DC5-44FA-BC7E-29FDF9E393EE}"/>
 						<Switch Id="803837735" Name="Sand" ObjectPath="\Switches\Default Work Unit\FootstepSurfaceType\Sand" GUID="{119E8EBD-199B-468C-8F53-4C89CAC86760}"/>
+						<Switch Id="2473969246" Name="Metal" ObjectPath="\Switches\Default Work Unit\FootstepSurfaceType\Metal" GUID="{F1EFDBBD-22A4-438D-90D6-FBD43B02F9FC}"/>
 					</Switches>
 				</SwitchGroup>
 			</SwitchGroups>
@@ -214,16 +234,32 @@
 				<GameParameter Id="1564184899" Name="SFX_Volume" ObjectPath="\Game Parameters\Default Work Unit\Volume\SFX_Volume"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="2167216614" Language="SFX" Hash="2819211844">
+		<SoundBank Id="2167216614" Language="SFX" Hash="39576997">
 			<ObjectPath>\SoundBanks\Default Work Unit\General3</ObjectPath>
 			<ShortName>General3</ShortName>
 			<Path>General3.bnk</Path>
 			<IncludedEvents>
-				<Event Id="1633170905" Name="Hide_Juncc" ObjectPath="\Events\Default Work Unit\Juncc\Hide_Juncc" MaxAttenuation="50." DurationType="OneShot" DurationMin="0.633515" DurationMax="0.633515">
+				<Event Id="1995175766" Name="Breaking_Crate" ObjectPath="\Events\Default Work Unit\Environment\Props\Breaking_Crate" MaxAttenuation="50." DurationType="OneShot" DurationMin="0.421289" DurationMax="0.595793">
+					<IncludedMemoryFiles>
+						<File Id="1031289488" Language="SFX">
+							<ShortName>Breaking_Crate.wav</ShortName>
+							<Path>SFX\Breaking_Crate_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1633170905" Name="Hide_Juncc" ObjectPath="\Events\Default Work Unit\Juncc\Hide_Juncc" MaxAttenuation="100." DurationType="OneShot" DurationMin="0.633515" DurationMax="0.633515">
 					<IncludedMemoryFiles>
 						<File Id="758911171" Language="SFX">
 							<ShortName>JunccHide.wav</ShortName>
 							<Path>SFX\JunccHide_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1578278391" Name="Pick_Checkpoint" ObjectPath="\Events\Default Work Unit\Environment\Pick_Checkpoint" MaxAttenuation="50." DurationType="OneShot" DurationMin="1.9" DurationMax="1.9">
+					<IncludedMemoryFiles>
+						<File Id="574464614" Language="SFX">
+							<ShortName>391434-Whistle-Steam-Double-01-01.wav</ShortName>
+							<Path>SFX\391434-Whistle-Steam-Double-01-01_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -243,7 +279,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="4188370314" Name="Shoot_Juncc" ObjectPath="\Events\Default Work Unit\Juncc\Shoot_Juncc" MaxAttenuation="50." DurationType="OneShot" DurationMin="0.100601" DurationMax="0.17925">
+				<Event Id="4188370314" Name="Shoot_Juncc" ObjectPath="\Events\Default Work Unit\Juncc\Shoot_Juncc" MaxAttenuation="100." DurationType="OneShot" DurationMin="0.100601" DurationMax="0.17925">
 					<IncludedMemoryFiles>
 						<File Id="61851379" Language="SFX">
 							<ShortName>JunccShoot.wav</ShortName>
@@ -251,7 +287,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2121276730" Name="Spawn_Juncc" ObjectPath="\Events\Default Work Unit\Juncc\Spawn_Juncc" MaxAttenuation="50." DurationType="OneShot" DurationMin="0.633515" DurationMax="0.633515">
+				<Event Id="2121276730" Name="Spawn_Juncc" ObjectPath="\Events\Default Work Unit\Juncc\Spawn_Juncc" DurationType="OneShot" DurationMin="0.633515" DurationMax="0.633515">
 					<IncludedMemoryFiles>
 						<File Id="295411272" Language="SFX">
 							<ShortName>JunccSpawn.wav</ShortName>
@@ -265,7 +301,7 @@
 				<GameParameter Id="1564184899" Name="SFX_Volume" ObjectPath="\Game Parameters\Default Work Unit\Volume\SFX_Volume"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="2167216615" Language="SFX" Hash="2403198515">
+		<SoundBank Id="2167216615" Language="SFX" Hash="3064862127">
 			<ObjectPath>\SoundBanks\Default Work Unit\General2</ObjectPath>
 			<ShortName>General2</ShortName>
 			<Path>General2.bnk</Path>
@@ -279,16 +315,32 @@
 					</IncludedMemoryFiles>
 				</Event>
 				<Event Id="183731594" Name="Awake_Boiler" ObjectPath="\Events\Default Work Unit\Boiler\Awake_Boiler" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="3411234615" Name="BackgroundMusic_Tutorial" ObjectPath="\Events\Default Work Unit\Environment\Tutorial\BackgroundMusic_Tutorial" DurationType="Infinite">
+				<Event Id="3411234615" Name="BackgroundMusic_Tutorial" ObjectPath="\Events\Default Work Unit\Environment\Tutorial\BackgroundMusic_Tutorial" DurationType="OneShot" DurationMin="192." DurationMax="192.">
 					<IncludedMemoryFiles>
-						<File Id="1049505816" Language="SFX">
-							<ShortName>TutorialMusic.wav</ShortName>
-							<Path>SFX\TutorialMusic_D79FB2B7.wem</Path>
+						<File Id="360941164" Language="SFX">
+							<ShortName>BR_Tutorial_v2.wav</ShortName>
+							<Path>SFX\BR_Tutorial_v2_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
 				<Event Id="3683476531" Name="Charge_Boiler" ObjectPath="\Events\Default Work Unit\Boiler\Charge_Boiler" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="137424561" Name="Charging_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Charging_Steamling" DurationType="OneShot" DurationMin="1.079728" DurationMax="1.079728">
+				<Event Id="2295499621" Name="Charge_PSTom" ObjectPath="\Events\Default Work Unit\PSTom\Charge_PSTom" DurationType="OneShot" DurationMin="1.901202" DurationMax="1.901202">
+					<IncludedMemoryFiles>
+						<File Id="1038725070" Language="SFX">
+							<ShortName>257508-Mechanism_-Designed_Steam_Gas_Explosion_Var2-003.wav</ShortName>
+							<Path>SFX\257508-Mechanism_-Designed_Steam_Gas_Explosion_Var2-003_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="380957376" Name="Charging_PSTom" ObjectPath="\Events\Default Work Unit\PSTom\Charging_PSTom" DurationType="OneShot" DurationMin="1.253583" DurationMax="1.253583">
+					<IncludedMemoryFiles>
+						<File Id="509286957" Language="SFX">
+							<ShortName>PSTom_Charging.wav</ShortName>
+							<Path>SFX\PSTom_Charging_13928293.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="137424561" Name="Charging_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Charging_Steamling" MaxAttenuation="50." DurationType="OneShot" DurationMin="1.079728" DurationMax="1.079728">
 					<IncludedMemoryFiles>
 						<File Id="551042684" Language="SFX">
 							<ShortName>Charge.wav</ShortName>
@@ -343,14 +395,14 @@
 				</Event>
 				<Event Id="3604647259" Name="MainMenu" ObjectPath="\Events\Default Work Unit\MainMenu" DurationType="Infinite">
 					<IncludedMemoryFiles>
-						<File Id="232279621" Language="SFX">
-							<ShortName>MainMenu.wav</ShortName>
-							<Path>SFX\MainMenu_D79FB2B7.wem</Path>
+						<File Id="834149868" Language="SFX">
+							<ShortName>BR_Menu_v1.wav</ShortName>
+							<Path>SFX\BR_Menu_v1_D79FB2B7.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
 				<Event Id="2223599963" Name="MainMenuStop" ObjectPath="\Events\Default Work Unit\MainMenuStop" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="1765157707" Name="Preparing_Charge_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Preparing_Charge_Steamling" DurationType="OneShot" DurationMin="1.4" DurationMax="1.4">
+				<Event Id="1765157707" Name="Preparing_Charge_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Preparing_Charge_Steamling" MaxAttenuation="50." DurationType="OneShot" DurationMin="1.4" DurationMax="1.4">
 					<IncludedMemoryFiles>
 						<File Id="1058461914" Language="SFX">
 							<ShortName>Prepare.wav</ShortName>
@@ -375,7 +427,7 @@
 					</IncludedMemoryFiles>
 				</Event>
 				<Event Id="2867905824" Name="Recovering_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Recovering_Steamling" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="3667284842" Name="Shoot_Boiler" ObjectPath="\Events\Default Work Unit\Boiler\Shoot_Boiler" MaxAttenuation="50." DurationType="OneShot" DurationMin="1." DurationMax="1.">
+				<Event Id="3667284842" Name="Shoot_Boiler" ObjectPath="\Events\Default Work Unit\Boiler\Shoot_Boiler" DurationType="OneShot" DurationMin="0.890899" DurationMax="1.122462">
 					<IncludedMemoryFiles>
 						<File Id="367496635" Language="SFX">
 							<ShortName>VoilerShoot.wav</ShortName>

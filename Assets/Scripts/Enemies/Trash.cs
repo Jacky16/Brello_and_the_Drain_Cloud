@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Trash : MonoBehaviour
 {
-    [SerializeField] GameObject steamLinkPrefab;
+    [SerializeField] GameObject steamlingPrefab;
+
+    [SerializeField] GameObject smokePrefab;
 
     
     private void OnCollisionEnter(Collision collision)
@@ -13,8 +15,10 @@ public class Trash : MonoBehaviour
         if (collision.gameObject.tag == "Wall")
         {
             //instantiate steam link
-            GameObject go = Instantiate(steamLinkPrefab, transform.position, Quaternion.identity);
+            GameObject go = Instantiate(steamlingPrefab, transform.position, Quaternion.identity);
             go.GetComponent<SteamlingAI>().SetBigRadius();
+
+            Instantiate(smokePrefab, transform.position, Quaternion.identity);
             //destroy gameobject
             Destroy(gameObject);
         }        
