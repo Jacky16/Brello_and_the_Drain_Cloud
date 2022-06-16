@@ -338,6 +338,17 @@
 								</Event>
 							</ChildrenList>
 						</Folder>
+						<Event Name="Pick_Checkpoint" ID="{3B57C18F-6CA3-4618-BBD7-386E2A99A282}">
+							<ChildrenList>
+								<Action Name="" ID="{B12ED3C9-661A-4534-A210-EAC063E9D801}" ShortID="878274600">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="391434-Whistle-Steam-Double-01-01" ID="{43ED2E12-653A-48EA-9720-730D6902029F}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="UI" ID="{C938CFD4-553C-4594-B09F-F15DDF581CCC}" ShortID="725400021"/>
