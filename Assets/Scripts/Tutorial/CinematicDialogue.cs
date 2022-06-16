@@ -130,10 +130,10 @@ public class CinematicDialogue : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            bm.StopMusic();
-            SceneManager.LoadScene("Grasslands");
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //{
+        //    bm.StopMusic();
+        //    SceneManager.LoadScene("Grasslands");
+        //}
     }
 }

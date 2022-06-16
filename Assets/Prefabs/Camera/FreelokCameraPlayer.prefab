@@ -263,6 +263,8 @@ GameObject:
   - component: {fileID: 3939435219531582445}
   - component: {fileID: 3939435219531582442}
   - component: {fileID: 3939435219531582443}
+  - component: {fileID: 3962004506081182510}
+  - component: {fileID: 2664240607648129127}
   m_Layer: 0
   m_Name: FreelokCameraPlayer
   m_TagString: Untagged
@@ -277,7 +279,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3939435219531582444}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -150.84685, y: 35.190002, z: 7.6448336}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -303,7 +305,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 10
+  m_Priority: 11
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
@@ -325,7 +327,7 @@ MonoBehaviour:
   m_YAxis:
     Value: 0.5
     m_SpeedMode: 0
-    m_MaxSpeed: 2
+    m_MaxSpeed: 3
     m_AccelTime: 0.2
     m_DecelTime: 0.1
     m_InputAxisName: Mouse Y
@@ -418,6 +420,33 @@ MonoBehaviour:
   m_Damping: 0.1
   m_DampingWhenOccluded: 0
   m_OptimalTargetDistance: 0
+--- !u!114 &3962004506081182510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3939435219531582444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84d3d7ff81ef4064ca7337999aef9ad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2664240607648129127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3939435219531582444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb7194dc27b9df64c8beca7482ee8e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerIndex: -1
+  XYAxis: {fileID: -5753233960647603623, guid: b07e66bdc75d46947bed8a1f560006bb, type: 3}
+  ZAxis: {fileID: -5753233960647603623, guid: b07e66bdc75d46947bed8a1f560006bb, type: 3}
 --- !u!1 &3939435219605990915
 GameObject:
   m_ObjectHideFlags: 3
@@ -442,7 +471,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3939435219605990915}
-  m_LocalRotation: {x: 0.11574106, y: 0.56885624, z: -0.08126523, w: 0.8101868}
+  m_LocalRotation: {x: -0.06835741, y: 0.8666233, z: -0.123803295, w: -0.47850204}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -516,7 +545,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3939435219643134938}
-  m_LocalRotation: {x: 0.08627345, y: 0.57142985, z: -0.060575146, w: 0.8138523}
+  m_LocalRotation: {x: -0.050953634, y: 0.870544, z: -0.092282996, w: -0.48066694}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -716,7 +745,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3939435220186820314}
-  m_LocalRotation: {x: 0.11574106, y: 0.56885624, z: -0.08126523, w: 0.8101868}
+  m_LocalRotation: {x: -0.06835742, y: 0.8666232, z: -0.12380328, w: -0.4785021}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

@@ -100,7 +100,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: b7fee57a9b67c343a46eab594f457684
     GuidInternal: 
-    m_lastTime: -8585470677946875732
+    m_lastTime: -8585462324960676511
     List:
     - name: General
       guid: 9ac68b89cd0b2543aa435561f078908b
@@ -156,7 +156,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 1a1dad3e5c7a724abc36cb5e26e00782
     GuidInternal: 
-    m_lastTime: -8585470677949035050
+    m_lastTime: -8585462324967115474
     List:
     - name: Angry_PSTom
       guid: 466fc970d3b11a46869e6535dd5b5e69
@@ -281,6 +281,29 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: Breaking_Crate
+      guid: d88e7d12b69f304f889b6cef70fc10e1
+      id: 1995175766
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Environment
+        ObjectType: 4
+        guid: bc19f43cbe6aea478d686b59f8728304
+      - ElementName: Props
+        ObjectType: 4
+        guid: 13a2636d38f4e84faca199337f9e248b
+      - ElementName: Breaking_Crate
+        ObjectType: 3
+        guid: d88e7d12b69f304f889b6cef70fc10e1
+      Path: Events\Default Work Unit\Environment\Props\Breaking_Crate
+      maxAttenuation: 50
+      maxDuration: 0.595793
+      minDuration: 0.421289
     - name: Brello
       guid: 57c2bd93ba34ae4790c1aeb835adc319
       id: 1492444001
@@ -335,7 +358,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: e315ea326779524db1e8a061ac9f3184
       Path: Events\Default Work Unit\Steamling\Charging_Steamling
-      maxAttenuation: 0
+      maxAttenuation: 50
       maxDuration: 1.079728
       minDuration: 1.079728
     - name: Close_Brello
@@ -612,7 +635,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: d7fe12c4c0f4694fb91565881a16c913
       Path: Events\Default Work Unit\Juncc\Hide_Juncc
-      maxAttenuation: 50
+      maxAttenuation: 100
       maxDuration: 0.633515
       minDuration: 0.633515
     - name: Hit_PSTom
@@ -960,9 +983,29 @@ MonoBehaviour:
         ObjectType: 3
         guid: a3e3ac6b981a3342b22552d32a9aa563
       Path: Events\Default Work Unit\Steamling\Preparing_Charge_Steamling
-      maxAttenuation: 0
+      maxAttenuation: 50
       maxDuration: 1.4
       minDuration: 1.4
+    - name: Props
+      guid: 13a2636d38f4e84faca199337f9e248b
+      id: 968010305
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Environment
+        ObjectType: 4
+        guid: bc19f43cbe6aea478d686b59f8728304
+      - ElementName: Props
+        ObjectType: 4
+        guid: 13a2636d38f4e84faca199337f9e248b
+      Path: Events\Default Work Unit\Environment\Props
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: PSTom
       guid: 4b4905bcdf2d1f4d9c71acc6e552739f
       id: 3759751106
@@ -1097,7 +1140,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: 2921059cfa54a84f8a5eaa24039c837f
       Path: Events\Default Work Unit\Environment\Grasslands\Rain_Level1
-      maxAttenuation: 100
+      maxAttenuation: 300
       maxDuration: -1
       minDuration: -1
     - name: Recovering_Steamling
@@ -1200,7 +1243,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: 3ed7a46b72f721418b60ac944a8113b9
       Path: Events\Default Work Unit\Juncc\Shoot_Juncc
-      maxAttenuation: 50
+      maxAttenuation: 100
       maxDuration: 0.17925
       minDuration: 0.100601
     - name: ShopMusic_Level1
@@ -1263,7 +1306,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: 7bf19bda3ca8c448aa4527209092a41e
       Path: Events\Default Work Unit\Juncc\Spawn_Juncc
-      maxAttenuation: 50
+      maxAttenuation: 0
       maxDuration: 0.633515
       minDuration: 0.633515
     - name: Start_Glide_Brello
@@ -1657,7 +1700,7 @@ MonoBehaviour:
     ParentPath: Switches\Default Work Unit
     guid: 3652c387ca18794085902b6748b43d1c
     GuidInternal: 
-    m_lastTime: -8585470678437220699
+    m_lastTime: -8585462324960666533
     List:
     - name: FootstepSurfaceType
       guid: 5370e81ddde85840a97b77e23f265148
@@ -1706,6 +1749,22 @@ MonoBehaviour:
         - ElementName: Grass
           ObjectType: 10
           guid: 565450ede459af49826e71f202cf2658
+      - name: Metal
+        guid: bddbeff1a4228d4390d6fbd43b02f9fc
+        id: 2473969246
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 3652c387ca18794085902b6748b43d1c
+        - ElementName: FootstepSurfaceType
+          ObjectType: 11
+          guid: 5370e81ddde85840a97b77e23f265148
+        - ElementName: Metal
+          ObjectType: 10
+          guid: bddbeff1a4228d4390d6fbd43b02f9fc
       - name: Rock
         guid: 03dbf29e4f777047a77339835f8091ee
         id: 2144363834
