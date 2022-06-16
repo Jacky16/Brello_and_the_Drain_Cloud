@@ -36,17 +36,12 @@ public class OptionsManager : MonoBehaviour
     const string InvertedX = "InvertedX";
     const string InvertedY = "InvertedY";
 
-    [SerializeField] BackgroundMusic backgroundMusic;
-
-
     [Header("MAIN MENU ANIMATIONS")]
-
     public GameObject MenuAnimManager;
     Animator animManager;
-    PlayerCam playerCam;
     private void Awake()
     {
-        playerCam = GameObject.FindGameObjectWithTag("CamPlayer").GetComponent<PlayerCam>();
+        //playerCam = GameObject.FindGameObjectWithTag("CamPlayer").GetComponent<PlayerCam>();
         if (MenuAnimManager)
         {
             animManager = MenuAnimManager.GetComponent<Animator>();
@@ -60,7 +55,7 @@ public class OptionsManager : MonoBehaviour
         {           
             animManager.SetBool("isIdle", true);
         }
-        LoadUISettings();
+        LoadSettings();
     }
     void EventsUI()
     {
@@ -83,11 +78,6 @@ public class OptionsManager : MonoBehaviour
         musicInput.onValueChanged.AddListener(ChangeMusicVolumeInput);
         soundInput.onValueChanged.AddListener(ChangeSoundVolumeInput);
     }
-    public void StartGame()
-    {
-        backgroundMusic.StopMusic();
-        SceneManager.LoadScene(1);
-    }
 
     public void QuitGame()
     {
@@ -106,19 +96,19 @@ public class OptionsManager : MonoBehaviour
         animManager.SetBool("isComeback", true);
     }
 
-    public void LoadUISettings()
+    public void LoadSettings()
     {
         //Toogle Camera
         invertedXToggle.isOn = PlayerPrefs.GetInt(InvertedX, 0) == 1;
         invertedYToggle.isOn = PlayerPrefs.GetInt(InvertedY, 0) == 1;
 
         //Set Mouse Sliders Values
-        sensitivityXSlider.value = PlayerPrefs.GetFloat(sensXTag, playerCam.GetVelocityX());
-        sensitivityYSlider.value = PlayerPrefs.GetFloat(sensYTag, playerCam.GetVelocityY());
+        sensitivityXSlider.value = PlayerPrefs.GetFloat(sensXTag, 1);
+        sensitivityYSlider.value = PlayerPrefs.GetFloat(sensYTag, 1);
 
         //Set Mouse Input Values
-        sensitivityXInput.text = PlayerPrefs.GetFloat(sensXTag, playerCam.GetVelocityX()).ToString();
-        sensitivityYInput.text = PlayerPrefs.GetFloat(sensYTag, playerCam.GetVelocityY()).ToString();
+        //sensitivityXInput.text = PlayerPrefs.GetFloat(sensXTag,1);
+        //sensitivityYInput.text = PlayerPrefs.GetFloat(sensYTag,1);
 
         //Set Audio Values
         musicSlider.value = PlayerPrefs.GetFloat(musicTag, 50);
@@ -137,12 +127,12 @@ public class OptionsManager : MonoBehaviour
     public void SetInvertedXCamera(bool _value)
     {
         PlayerPrefs.SetInt(InvertedX, _value ? 1 : 0);
-        playerCam.ChangeInvertX(_value);
+        //playerCam.ChangeInvertX(_value);
     }
     public void SetInvertedYCamera(bool _value)
     {
         PlayerPrefs.SetInt(InvertedY, _value ? 1 : 0);
-        playerCam.ChangeInvertY(_value);
+        //playerCam.ChangeInvertY(_value);
     }
 
     //Y axis
@@ -150,7 +140,7 @@ public class OptionsManager : MonoBehaviour
     {
         PlayerPrefs.SetFloat(sensYTag, _value);
         sensitivityYInput.text = ((float)Mathf.Round(_value * 100f) / 100f).ToString();
-        playerCam.ChangeVelocityY(_value);
+        //playerCam.ChangeVelocityY(_value);
     }
     public void ChangeSensitivityYInput(string _value)
     {
@@ -177,7 +167,7 @@ public class OptionsManager : MonoBehaviour
     {
         PlayerPrefs.SetInt(sensXTag, (int)_value);
         sensitivityXInput.text = _value.ToString();
-        playerCam.ChangeVelocityX(_value);
+        //playerCam.ChangeVelocityX(_value);
     }
     public void ChangeSensitivityXInput(string _value)
     {

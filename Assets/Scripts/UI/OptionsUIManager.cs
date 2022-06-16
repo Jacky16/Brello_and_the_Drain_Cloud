@@ -8,6 +8,6 @@ public class OptionsUIManager : MonoBehaviour
     void OnEnable()
     {
         optionsManager = transform.GetComponentInParent<OptionsManager>();
-        optionsManager.LoadUISettings();
+        optionsManager.LoadSettings();
     }    
 }
