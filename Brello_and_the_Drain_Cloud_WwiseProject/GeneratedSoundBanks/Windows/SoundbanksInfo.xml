@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="133642231" Language="SFX" Hash="3799757196">
+		<SoundBank Id="133642231" Language="SFX" Hash="771354864">
 			<ObjectPath>\SoundBanks\Default Work Unit\General</ObjectPath>
 			<ShortName>General</ShortName>
 			<Path>General.bnk</Path>
@@ -234,7 +234,7 @@
 				<GameParameter Id="1564184899" Name="SFX_Volume" ObjectPath="\Game Parameters\Default Work Unit\Volume\SFX_Volume"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="2167216614" Language="SFX" Hash="2265727467">
+		<SoundBank Id="2167216614" Language="SFX" Hash="39576997">
 			<ObjectPath>\SoundBanks\Default Work Unit\General3</ObjectPath>
 			<ShortName>General3</ShortName>
 			<Path>General3.bnk</Path>
@@ -301,7 +301,7 @@
 				<GameParameter Id="1564184899" Name="SFX_Volume" ObjectPath="\Game Parameters\Default Work Unit\Volume\SFX_Volume"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="2167216615" Language="SFX" Hash="3036175736">
+		<SoundBank Id="2167216615" Language="SFX" Hash="3064862127">
 			<ObjectPath>\SoundBanks\Default Work Unit\General2</ObjectPath>
 			<ShortName>General2</ShortName>
 			<Path>General2.bnk</Path>
@@ -315,15 +315,31 @@
 					</IncludedMemoryFiles>
 				</Event>
 				<Event Id="183731594" Name="Awake_Boiler" ObjectPath="\Events\Default Work Unit\Boiler\Awake_Boiler" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="3411234615" Name="BackgroundMusic_Tutorial" ObjectPath="\Events\Default Work Unit\Environment\Tutorial\BackgroundMusic_Tutorial" DurationType="Infinite">
+				<Event Id="3411234615" Name="BackgroundMusic_Tutorial" ObjectPath="\Events\Default Work Unit\Environment\Tutorial\BackgroundMusic_Tutorial" DurationType="OneShot" DurationMin="192." DurationMax="192.">
 					<IncludedMemoryFiles>
-						<File Id="1049505816" Language="SFX">
-							<ShortName>TutorialMusic.wav</ShortName>
-							<Path>SFX\TutorialMusic_D79FB2B7.wem</Path>
+						<File Id="360941164" Language="SFX">
+							<ShortName>BR_Tutorial_v2.wav</ShortName>
+							<Path>SFX\BR_Tutorial_v2_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
 				<Event Id="3683476531" Name="Charge_Boiler" ObjectPath="\Events\Default Work Unit\Boiler\Charge_Boiler" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="2295499621" Name="Charge_PSTom" ObjectPath="\Events\Default Work Unit\PSTom\Charge_PSTom" DurationType="OneShot" DurationMin="1.901202" DurationMax="1.901202">
+					<IncludedMemoryFiles>
+						<File Id="1038725070" Language="SFX">
+							<ShortName>257508-Mechanism_-Designed_Steam_Gas_Explosion_Var2-003.wav</ShortName>
+							<Path>SFX\257508-Mechanism_-Designed_Steam_Gas_Explosion_Var2-003_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="380957376" Name="Charging_PSTom" ObjectPath="\Events\Default Work Unit\PSTom\Charging_PSTom" DurationType="OneShot" DurationMin="1.253583" DurationMax="1.253583">
+					<IncludedMemoryFiles>
+						<File Id="509286957" Language="SFX">
+							<ShortName>PSTom_Charging.wav</ShortName>
+							<Path>SFX\PSTom_Charging_13928293.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="137424561" Name="Charging_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Charging_Steamling" MaxAttenuation="50." DurationType="OneShot" DurationMin="1.079728" DurationMax="1.079728">
 					<IncludedMemoryFiles>
 						<File Id="551042684" Language="SFX">
@@ -379,9 +395,9 @@
 				</Event>
 				<Event Id="3604647259" Name="MainMenu" ObjectPath="\Events\Default Work Unit\MainMenu" DurationType="Infinite">
 					<IncludedMemoryFiles>
-						<File Id="232279621" Language="SFX">
-							<ShortName>MainMenu.wav</ShortName>
-							<Path>SFX\MainMenu_D79FB2B7.wem</Path>
+						<File Id="834149868" Language="SFX">
+							<ShortName>BR_Menu_v1.wav</ShortName>
+							<Path>SFX\BR_Menu_v1_D79FB2B7.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -411,7 +427,7 @@
 					</IncludedMemoryFiles>
 				</Event>
 				<Event Id="2867905824" Name="Recovering_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Recovering_Steamling" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="3667284842" Name="Shoot_Boiler" ObjectPath="\Events\Default Work Unit\Boiler\Shoot_Boiler" MaxAttenuation="50." DurationType="OneShot" DurationMin="1." DurationMax="1.">
+				<Event Id="3667284842" Name="Shoot_Boiler" ObjectPath="\Events\Default Work Unit\Boiler\Shoot_Boiler" DurationType="OneShot" DurationMin="0.890899" DurationMax="1.122462">
 					<IncludedMemoryFiles>
 						<File Id="367496635" Language="SFX">
 							<ShortName>VoilerShoot.wav</ShortName>
