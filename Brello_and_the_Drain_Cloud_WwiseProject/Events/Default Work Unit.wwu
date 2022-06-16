@@ -298,10 +298,10 @@
 							<ChildrenList>
 								<Event Name="BackgroundMusic_Tutorial" ID="{4895DF82-7866-42CA-BA3F-768A01F792C9}">
 									<ChildrenList>
-										<Action Name="" ID="{380297AD-8947-4D64-B005-31663E2EADBF}" ShortID="10288473">
+										<Action Name="" ID="{1C0AA107-81BF-4949-A03D-2171B953E619}" ShortID="381246197">
 											<ReferenceList>
 												<Reference Name="Target">
-													<ObjectRef Name="TutorialMusic" ID="{8D472735-B0FA-4678-A728-0B9EE5558A69}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+													<ObjectRef Name="BR_Tutorial_v2" ID="{DD7394F5-8995-4F38-AEB7-4FDAE91035C9}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>
@@ -309,13 +309,13 @@
 								</Event>
 								<Event Name="StopBackgroundMusic_Tutorial" ID="{BF9F1130-3368-4C7B-9655-84DA981DB8E6}">
 									<ChildrenList>
-										<Action Name="" ID="{0BBAEA65-9BE1-433B-9FDE-75C065C5E3EA}" ShortID="269578686">
+										<Action Name="" ID="{6A00EE11-3073-4CFD-AB06-326212277200}" ShortID="553788263">
 											<PropertyList>
 												<Property Name="ActionType" Type="int16" Value="2"/>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Target">
-													<ObjectRef Name="TutorialMusic" ID="{8D472735-B0FA-4678-A728-0B9EE5558A69}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+													<ObjectRef Name="BR_Tutorial_v2" ID="{DD7394F5-8995-4F38-AEB7-4FDAE91035C9}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>
@@ -424,10 +424,10 @@
 				</Event>
 				<Event Name="MainMenu" ID="{EAB236AE-EC07-4130-8A2B-2138DD20E150}">
 					<ChildrenList>
-						<Action Name="" ID="{85F09997-EA86-43AF-B4C7-E0C7E2330E58}" ShortID="738384102">
+						<Action Name="" ID="{BB387C33-BD84-4A83-BDE5-BF3AAF3B628D}" ShortID="562817238">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="MainMenu" ID="{3D130A04-9A51-4248-B40F-6A5AE8A4E1C6}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+									<ObjectRef Name="BR_Menu_v1" ID="{322B02B0-EB73-40D4-B963-6851E581F87F}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
@@ -435,7 +435,7 @@
 				</Event>
 				<Event Name="MainMenuStop" ID="{3B154A46-CE4C-4C03-BD7A-6F9DB7C24F8D}">
 					<ChildrenList>
-						<Action Name="" ID="{1A9F47DB-55A0-41F4-A8DE-37A43CE32CE4}" ShortID="269877269">
+						<Action Name="" ID="{F9347157-5989-4FAD-AC1C-4A4D183867E6}" ShortID="790055320">
 							<PropertyList>
 								<Property Name="ActionType" Type="int16" Value="2"/>
 							</PropertyList>
