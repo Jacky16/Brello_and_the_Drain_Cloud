@@ -6,7 +6,6 @@ using DG.Tweening;
 public class Vines : Interactable
 {
     [SerializeField] float timeToDestroy;
-    [SerializeField] GameObject smokeParticles;
     ParticleSystem fire;
     Color initColor;
 
@@ -14,7 +13,7 @@ public class Vines : Interactable
     protected override void Start()
     {
         base.Start();
-        //fire = transform.GetChild(0).GetComponent<ParticleSystem>();
+        fire = transform.GetChild(0).GetComponent<ParticleSystem>();
         fire.gameObject.SetActive(false);
     }
 
@@ -28,16 +27,14 @@ public class Vines : Interactable
         fire.gameObject.SetActive(true);
         AkSoundEngine.PostEvent("Fire_Pyra", WwiseManager.instance.gameObject);
 
-        initColor = transform.GetChild(1).GetComponent<MeshRenderer>().material.color;
-        transform.GetChild(1).GetComponent<MeshRenderer>().material.DOColor(Color.black, timeToDestroy);
+        initColor = transform.GetComponent<MeshRenderer>().material.color;
+        transform.GetComponent<MeshRenderer>().material.DOColor(Color.black, timeToDestroy);
 
         yield return new WaitForSeconds(timeToDestroy);
 
-        Instantiate(smokeParticles, transform.position, Quaternion.identity);
-
         pyra.isInteracting = false;
         pyra.RefreshDetectedObject();
-        transform.GetChild(1).GetComponent<MeshRenderer>().material.color = initColor;
+        transform.GetComponent<MeshRenderer>().material.color = initColor;
         Destroy(gameObject);
     }
 
@@ -49,7 +46,7 @@ public class Vines : Interactable
 
     protected override void ResetAll()
     {
-        transform.GetChild(1).GetComponent<MeshRenderer>().material.color = initColor;
+        transform.GetComponent<MeshRenderer>().material.color = initColor;
         pyra.isInteracting = false;
         fire.gameObject.SetActive(false);
     }
