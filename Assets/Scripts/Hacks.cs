@@ -25,25 +25,25 @@ public class Hacks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            player.transform.position = zone1.transform.position;
-            pyra.Warp(player.transform.position);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            player.transform.position = zone2.transform.position;
-            pyra.Warp(player.transform.position);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            player.transform.position = zone3.transform.position;
-            pyra.Warp(player.transform.position);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            player.transform.position = zone4.transform.position;
-            pyra.Warp(player.transform.position);
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //{
+        //    player.transform.position = zone1.transform.position;
+        //    pyra.Warp(player.transform.position);
+        //}
+        //else if (Input.GetKeyDown(KeyCode.Alpha2))
+        //{
+        //    player.transform.position = zone2.transform.position;
+        //    pyra.Warp(player.transform.position);
+        //}
+        //else if (Input.GetKeyDown(KeyCode.Alpha3))
+        //{
+        //    player.transform.position = zone3.transform.position;
+        //    pyra.Warp(player.transform.position);
+        //}
+        //else if (Input.GetKeyDown(KeyCode.Alpha4))
+        //{
+        //    player.transform.position = zone4.transform.position;
+        //    pyra.Warp(player.transform.position);
+        //}
     }
 }

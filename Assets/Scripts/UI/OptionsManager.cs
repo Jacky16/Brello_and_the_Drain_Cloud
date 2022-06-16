@@ -104,8 +104,10 @@ public class OptionsManager : MonoBehaviour
     public void LoadSettings()
     {
         //Toogle Camera
-        invertedXToggle.isOn = PlayerPrefs.GetInt(InvertedX, 0) == 1;
-        invertedYToggle.isOn = PlayerPrefs.GetInt(InvertedY, 0) == 1;
+        invertedXToggle.isOn = PlayerPrefs.GetInt(InvertedX, 0) == 1 ? true : false;
+        invertedYToggle.isOn = PlayerPrefs.GetInt(InvertedY, 0) == 1 ? true : false;
+        SetInvertedXCamera(invertedXToggle.isOn);
+        SetInvertedYCamera(invertedYToggle.isOn);
 
         //Set Mouse Sliders Values
         sensitivityXSlider.value = PlayerPrefs.GetInt(sensXTag, defaultVelX);
