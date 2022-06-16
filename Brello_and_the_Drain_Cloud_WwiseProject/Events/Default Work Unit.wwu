@@ -542,6 +542,28 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
+				<Event Name="Activate" ID="{8CF1F348-D08B-4D68-8770-9BC5883DD336}">
+					<ChildrenList>
+						<Action Name="" ID="{1566EC03-6FC3-4985-ADB0-2ACAD3EC1E28}" ShortID="755052805">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Activate" ID="{09BD15F3-450A-464E-90CB-AB0432146C88}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Deactivate" ID="{57ACAFB9-90E7-45B8-B193-BD485A88E4B7}">
+					<ChildrenList>
+						<Action Name="" ID="{2148193A-3E26-46C9-9832-016DCF19EBD0}" ShortID="46111512">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Deactivate" ID="{735A035D-885E-4421-BF32-E0F046F381EB}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

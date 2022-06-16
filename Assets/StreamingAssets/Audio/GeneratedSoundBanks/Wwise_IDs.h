@@ -13,6 +13,7 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID ACTIVATE = 4166407614U;
         static const AkUniqueID ANGRY_PSTOM = 400874472U;
         static const AkUniqueID ATTACK_COMBO_BRELLO = 211679341U;
         static const AkUniqueID AWAKE_BOILER = 183731594U;
@@ -26,6 +27,7 @@ namespace AK
         static const AkUniqueID CLOSE_BRELLO = 3567626122U;
         static const AkUniqueID COOL_BOILER = 1721372914U;
         static const AkUniqueID CRASH_PSTOM = 490892378U;
+        static const AkUniqueID DEACTIVATE = 3646446591U;
         static const AkUniqueID DEATH_BRELLO = 1700730432U;
         static const AkUniqueID DEATH_PYRA = 1095581318U;
         static const AkUniqueID DEATH_STEAMLING = 4094738360U;

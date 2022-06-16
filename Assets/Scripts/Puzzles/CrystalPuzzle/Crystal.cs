@@ -28,10 +28,6 @@ public class Crystal : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        
-    }
 
 
 
@@ -81,8 +77,10 @@ public class Crystal : MonoBehaviour
         {
             if (isShiny)
             {
+                AkSoundEngine.PostEvent("Activate", gameObject);
                 particleActivated.Play();
                 manager.AddGoodOne();
+                canBeInteracted = false;
             }
             else
             {

@@ -2153,36 +2153,6 @@
 						<ActiveSource Name="MainMenu" ID="{1B2B153D-15EF-4191-94A4-122F22017E8A}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
-				<Sound Name="PuzzlePillar" ID="{15CB9EDE-ED32-4337-83D5-5DE6B874B354}" ShortID="229610475">
-					<PropertyList>
-						<Property Name="Volume" Type="Real64">
-							<ValueList>
-								<Value>-12</Value>
-							</ValueList>
-						</Property>
-					</PropertyList>
-					<ReferenceList>
-						<Reference Name="Conversion">
-							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
-						</Reference>
-						<Reference Name="OutputBus">
-							<ObjectRef Name="SFX" ID="{D619241B-7D66-4DBD-81E1-49FF50DB2719}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
-						</Reference>
-					</ReferenceList>
-					<ChildrenList>
-						<AudioFileSource Name="PuzzlePillar" ID="{59AA2EF6-B99D-43F1-81BC-66E00A64D6FE}">
-							<Language>SFX</Language>
-							<AudioFile>PuzzlePillar.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="532670166"/>
-							</MediaIDList>
-						</AudioFileSource>
-					</ChildrenList>
-					<ObjectLists/>
-					<ActiveSourceList>
-						<ActiveSource Name="PuzzlePillar" ID="{59AA2EF6-B99D-43F1-81BC-66E00A64D6FE}" Platform="Linked"/>
-					</ActiveSourceList>
-				</Sound>
 				<Folder Name="MrT" ID="{2689E069-E5E0-47AB-89A3-761AFEAACC0E}" ShortID="481663366">
 					<ChildrenList>
 						<Sound Name="Mr_T_Poof" ID="{0644DE32-B5CD-43CC-8A44-550BA4744D60}" ShortID="53162653">
@@ -2360,6 +2330,104 @@
 						<ActiveSource Name="BR_Menu_v1" ID="{0617E099-DB33-4209-89BA-C6D7AA604838}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
+				<Folder Name="Puzzle" ID="{6837A8CF-825A-496F-B4E3-8A0C71846A26}" ShortID="1014672383">
+					<ChildrenList>
+						<Sound Name="PuzzlePillar" ID="{15CB9EDE-ED32-4337-83D5-5DE6B874B354}" ShortID="229610475">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-12</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX" ID="{D619241B-7D66-4DBD-81E1-49FF50DB2719}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="PuzzlePillar" ID="{59AA2EF6-B99D-43F1-81BC-66E00A64D6FE}">
+									<Language>SFX</Language>
+									<AudioFile>PuzzlePillar.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="532670166"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="PuzzlePillar" ID="{59AA2EF6-B99D-43F1-81BC-66E00A64D6FE}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Deactivate" ID="{735A035D-885E-4421-BF32-E0F046F381EB}" ShortID="886038058">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-6</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX" ID="{D619241B-7D66-4DBD-81E1-49FF50DB2719}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Deactivate" ID="{D0347239-3E33-49A2-9C67-2EB088BC9EFD}">
+									<Language>SFX</Language>
+									<AudioFile>Deactivate.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="629359971"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Deactivate" ID="{D0347239-3E33-49A2-9C67-2EB088BC9EFD}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Activate" ID="{09BD15F3-450A-464E-90CB-AB0432146C88}" ShortID="608471862">
+							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="1"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-6</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="Low_Attenuation" ID="{AF0F7070-1466-4ABC-8412-031B679D6E2A}" WorkUnitID="{D4E67D86-651B-4CCE-8108-48600BB7AC6E}"/>
+								</Reference>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX" ID="{D619241B-7D66-4DBD-81E1-49FF50DB2719}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Activate" ID="{43BF742F-2CE6-48C6-854B-27B3FC37759A}">
+									<Language>SFX</Language>
+									<AudioFile>Activate.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="574507850"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Activate" ID="{43BF742F-2CE6-48C6-854B-27B3FC37759A}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

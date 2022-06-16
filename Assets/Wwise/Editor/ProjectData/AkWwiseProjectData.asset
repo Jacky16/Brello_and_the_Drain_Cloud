@@ -100,7 +100,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: b7fee57a9b67c343a46eab594f457684
     GuidInternal: 
-    m_lastTime: -8585462030399491032
+    m_lastTime: -8585461980847886424
     List:
     - name: General
       guid: 9ac68b89cd0b2543aa435561f078908b
@@ -156,8 +156,25 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 1a1dad3e5c7a724abc36cb5e26e00782
     GuidInternal: 
-    m_lastTime: -8585462030457358689
+    m_lastTime: -8585461980847417674
     List:
+    - name: Activate
+      guid: 48f3f18c8bd0684d87709bc5883dd336
+      id: 4166407614
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Activate
+        ObjectType: 3
+        guid: 48f3f18c8bd0684d87709bc5883dd336
+      Path: Events\Default Work Unit\Activate
+      maxAttenuation: 50
+      maxDuration: 1.091729
+      minDuration: 1.091729
     - name: Angry_PSTom
       guid: 466fc970d3b11a46869e6535dd5b5e69
       id: 400874472
@@ -461,6 +478,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.742177
       minDuration: 0.742177
+    - name: Deactivate
+      guid: b9afac57e790b845b193bd485a88e4b7
+      id: 3646446591
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Deactivate
+        ObjectType: 3
+        guid: b9afac57e790b845b193bd485a88e4b7
+      Path: Events\Default Work Unit\Deactivate
+      maxAttenuation: 0
+      maxDuration: 2.389048
+      minDuration: 2.389048
     - name: Death_Brello
       guid: 162bb216ec8f674984f4d2876228d87e
       id: 1700730432
@@ -1891,7 +1925,7 @@ MonoBehaviour:
     m_lastTime: -8585467307264602283
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 05000000060000000a0000003f000000
+  ExpandedWaapiItemIds: 
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0

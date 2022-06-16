@@ -59,6 +59,7 @@ public class TilesPuzzle : MonoBehaviour
     // Función que es llamada por los tiles al dar error y así se resetean todos
     public void ResetPuzzle()
     {
+
         for(int i = 0; i < tiles.Length; i++)
         {
             tiles[i].Reset();
