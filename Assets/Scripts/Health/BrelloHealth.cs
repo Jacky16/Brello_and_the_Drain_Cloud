@@ -62,7 +62,7 @@ public sealed class BrelloHealth : Health
         //imageAnimator.SetTrigger("Appear");
         if (damageParticles && spawnPoint != null)
         {
-            Instantiate(damageParticles, spawnPoint.position, Quaternion.identity);
+            Instantiate(damageParticles, transform.position, Quaternion.identity);
         }
         lastLifeChange = 0f;
         currentHealthImage.sprite = healthImages[currLife];
@@ -115,5 +115,10 @@ public sealed class BrelloHealth : Health
         GameObject.FindGameObjectWithTag("Pyra").GetComponent<NavMeshAgent>().enabled = false;
         GameObject.FindGameObjectWithTag("Pyra").transform.position = spawnPoint.position;
         GameObject.FindGameObjectWithTag("Pyra").GetComponent<NavMeshAgent>().enabled = true;
+    }
+
+    public void SetSpawnPoint(Transform newPos)
+    {
+        spawnPoint = newPos;
     }
 }
