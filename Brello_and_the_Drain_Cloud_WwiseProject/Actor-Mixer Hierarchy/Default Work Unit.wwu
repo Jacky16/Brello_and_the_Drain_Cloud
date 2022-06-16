@@ -1371,6 +1371,11 @@
 									<PropertyList>
 										<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
 										<Property Name="RandomOrSequence" Type="int16" Value="0"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-3</Value>
+											</ValueList>
+										</Property>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
@@ -1440,6 +1445,11 @@
 								<Sound Name="TrainSound" ID="{CCE414E9-DACE-42C8-B0EF-380D318E6B77}" ShortID="420187446">
 									<PropertyList>
 										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-3</Value>
+											</ValueList>
+										</Property>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
@@ -1799,12 +1809,26 @@
 					<ChildrenList>
 						<Sound Name="VoilerShoot" ID="{88635415-5276-4DBF-841F-5F5424D44947}" ShortID="263191596">
 							<PropertyList>
-								<Property Name="3DSpatialization" Type="int16" Value="1"/>
+								<Property Name="Pitch" Type="int32">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{3D229502-3F12-49C3-A6C3-913FB5DFA1EF}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="200"/>
+													<Property Name="Min" Type="Real64" Value="-200"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-12</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
-								<Reference Name="Attenuation">
-									<ObjectRef Name="Low_Attenuation" ID="{AF0F7070-1466-4ABC-8412-031B679D6E2A}" WorkUnitID="{D4E67D86-651B-4CCE-8108-48600BB7AC6E}"/>
-								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
 								</Reference>
@@ -1861,54 +1885,6 @@
 								<ActiveSource Name="PSTom_Angry" ID="{BBADACC8-898F-4E3B-BB2F-103509F5AADA}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
-						<Sound Name="PSTom_Crash" ID="{14944BFA-7AA8-43E5-9004-5817DCD83AA8}" ShortID="907133473">
-							<PropertyList>
-								<Property Name="Pitch" Type="int32">
-									<ModifierList>
-										<ModifierInfo>
-											<Modifier Name="" ID="{ED4C5406-526E-4C82-800D-7E78E00D0F40}">
-												<PropertyList>
-													<Property Name="Enabled" Type="bool" Value="True"/>
-													<Property Name="Max" Type="Real64" Value="500"/>
-													<Property Name="Min" Type="Real64" Value="-500"/>
-												</PropertyList>
-											</Modifier>
-										</ModifierInfo>
-									</ModifierList>
-								</Property>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>-6</Value>
-									</ValueList>
-									<ModifierList>
-										<ModifierInfo>
-											<Modifier Name="" ID="{D2D588B4-3765-4A46-9619-9B98871F23CB}"/>
-										</ModifierInfo>
-									</ModifierList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="SFX" ID="{D619241B-7D66-4DBD-81E1-49FF50DB2719}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="PSTom_Crash" ID="{44C34E0D-E883-4164-9797-3274153BB219}">
-									<Language>SFX</Language>
-									<AudioFile>PSTom_Crash.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="901584295"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="PSTom_Crash" ID="{44C34E0D-E883-4164-9797-3274153BB219}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
 						<Sound Name="Hit" ID="{82881588-7833-4B64-A0FE-D2687CC984DB}" ShortID="796089235">
 							<PropertyList>
 								<Property Name="Pitch" Type="int32">
@@ -1926,7 +1902,7 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-12</Value>
+										<Value>-18</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1956,7 +1932,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-6</Value>
+										<Value>-15</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -2021,6 +1997,13 @@
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="PSTom_Crash2" ID="{EEC8A98C-BEDB-4FA3-9B6A-2783EA8ADF9A}" ShortID="483399525">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-6</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
@@ -2041,6 +2024,36 @@
 							<ObjectLists/>
 							<ActiveSourceList>
 								<ActiveSource Name="PSTom_Crash2" ID="{6CAD41F2-AF2B-4F1C-83D7-23E4B6C9760B}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="PSTom_Charging" ID="{13A650DB-BCE7-4156-A338-77E03DF82B02}" ShortID="251176004">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-6</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX" ID="{D619241B-7D66-4DBD-81E1-49FF50DB2719}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="PSTom_Charging" ID="{DCC512D5-A180-4ADA-BBDD-EF798B1591F3}">
+									<Language>SFX</Language>
+									<AudioFile>PSTom_Charging.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="509286957"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="PSTom_Charging" ID="{DCC512D5-A180-4ADA-BBDD-EF798B1591F3}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>

@@ -20,6 +20,7 @@ namespace AK
         static const AkUniqueID BACKGROUNDMUSIC_TUTORIAL = 3411234615U;
         static const AkUniqueID BREAKING_CRATE = 1995175766U;
         static const AkUniqueID CHARGE_BOILER = 3683476531U;
+        static const AkUniqueID CHARGING_PSTOM = 380957376U;
         static const AkUniqueID CHARGING_STEAMLING = 137424561U;
         static const AkUniqueID CLOSE_BRELLO = 3567626122U;
         static const AkUniqueID COOL_BOILER = 1721372914U;

@@ -409,6 +409,17 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="Charging_PSTom" ID="{886A0EF9-61D6-4B90-9A5A-7BE82CFB9A89}">
+							<ChildrenList>
+								<Action Name="" ID="{924039D8-7D33-442F-AE40-E7237299B1E8}" ShortID="199941369">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PSTom_Charging" ID="{13A650DB-BCE7-4156-A338-77E03DF82B02}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Event Name="Dropply" ID="{009E296F-D522-4067-8F90-A6FD00C36C96}">
