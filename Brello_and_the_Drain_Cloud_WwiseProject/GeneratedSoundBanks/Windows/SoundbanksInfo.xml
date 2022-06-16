@@ -301,7 +301,7 @@
 				<GameParameter Id="1564184899" Name="SFX_Volume" ObjectPath="\Game Parameters\Default Work Unit\Volume\SFX_Volume"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="2167216615" Language="SFX" Hash="774275663">
+		<SoundBank Id="2167216615" Language="SFX" Hash="3064862127">
 			<ObjectPath>\SoundBanks\Default Work Unit\General2</ObjectPath>
 			<ShortName>General2</ShortName>
 			<Path>General2.bnk</Path>
@@ -324,11 +324,19 @@
 					</IncludedMemoryFiles>
 				</Event>
 				<Event Id="3683476531" Name="Charge_Boiler" ObjectPath="\Events\Default Work Unit\Boiler\Charge_Boiler" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="2295499621" Name="Charge_PSTom" ObjectPath="\Events\Default Work Unit\PSTom\Charge_PSTom" DurationType="OneShot" DurationMin="1.901202" DurationMax="1.901202">
+					<IncludedMemoryFiles>
+						<File Id="1038725070" Language="SFX">
+							<ShortName>257508-Mechanism_-Designed_Steam_Gas_Explosion_Var2-003.wav</ShortName>
+							<Path>SFX\257508-Mechanism_-Designed_Steam_Gas_Explosion_Var2-003_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="380957376" Name="Charging_PSTom" ObjectPath="\Events\Default Work Unit\PSTom\Charging_PSTom" DurationType="OneShot" DurationMin="1.253583" DurationMax="1.253583">
 					<IncludedMemoryFiles>
 						<File Id="509286957" Language="SFX">
 							<ShortName>PSTom_Charging.wav</ShortName>
-							<Path>SFX\PSTom_Charging_10C4C929.wem</Path>
+							<Path>SFX\PSTom_Charging_13928293.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

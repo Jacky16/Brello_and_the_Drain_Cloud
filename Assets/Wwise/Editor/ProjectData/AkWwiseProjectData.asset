@@ -156,7 +156,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 1a1dad3e5c7a724abc36cb5e26e00782
     GuidInternal: 
-    m_lastTime: -8585462108842363437
+    m_lastTime: -8585462051064800082
     List:
     - name: Angry_PSTom
       guid: 466fc970d3b11a46869e6535dd5b5e69
@@ -341,6 +341,46 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+    - name: Charge_PSTom
+      guid: 17ae59f5ee5c46469a161ed8f40deb10
+      id: 2295499621
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: PSTom
+        ObjectType: 4
+        guid: 4b4905bcdf2d1f4d9c71acc6e552739f
+      - ElementName: Charge_PSTom
+        ObjectType: 3
+        guid: 17ae59f5ee5c46469a161ed8f40deb10
+      Path: Events\Default Work Unit\PSTom\Charge_PSTom
+      maxAttenuation: 0
+      maxDuration: 1.901202
+      minDuration: 1.901202
+    - name: Charging_PSTom
+      guid: f90e6a88d661904b9a5a7be82cfb9a89
+      id: 380957376
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: PSTom
+        ObjectType: 4
+        guid: 4b4905bcdf2d1f4d9c71acc6e552739f
+      - ElementName: Charging_PSTom
+        ObjectType: 3
+        guid: f90e6a88d661904b9a5a7be82cfb9a89
+      Path: Events\Default Work Unit\PSTom\Charging_PSTom
+      maxAttenuation: 0
+      maxDuration: 1.253583
+      minDuration: 1.253583
     - name: Charging_Steamling
       guid: e315ea326779524db1e8a061ac9f3184
       id: 137424561
@@ -1243,9 +1283,9 @@ MonoBehaviour:
         ObjectType: 3
         guid: 6766325350a3b042b61d086a64a39a4a
       Path: Events\Default Work Unit\Boiler\Shoot_Boiler
-      maxAttenuation: 50
-      maxDuration: 1
-      minDuration: 1
+      maxAttenuation: 0
+      maxDuration: 1.122462
+      minDuration: 0.890899
     - name: Shoot_Juncc
       guid: 3ed7a46b72f721418b60ac944a8113b9
       id: 4188370314
@@ -1851,7 +1891,7 @@ MonoBehaviour:
     m_lastTime: -8585467307264602283
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 
+  ExpandedWaapiItemIds: 05000000060000000a0000003f000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0
