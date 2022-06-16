@@ -358,7 +358,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: e315ea326779524db1e8a061ac9f3184
       Path: Events\Default Work Unit\Steamling\Charging_Steamling
-      maxAttenuation: 0
+      maxAttenuation: 50
       maxDuration: 1.079728
       minDuration: 1.079728
     - name: Close_Brello
@@ -983,7 +983,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: a3e3ac6b981a3342b22552d32a9aa563
       Path: Events\Default Work Unit\Steamling\Preparing_Charge_Steamling
-      maxAttenuation: 0
+      maxAttenuation: 50
       maxDuration: 1.4
       minDuration: 1.4
     - name: Props
@@ -1140,7 +1140,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: 2921059cfa54a84f8a5eaa24039c837f
       Path: Events\Default Work Unit\Environment\Grasslands\Rain_Level1
-      maxAttenuation: 100
+      maxAttenuation: 300
       maxDuration: -1
       minDuration: -1
     - name: Recovering_Steamling
@@ -1831,7 +1831,7 @@ MonoBehaviour:
     m_lastTime: -8585528790688459099
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 
+  ExpandedWaapiItemIds: 05000000060000000a0000003b0000003c000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0
