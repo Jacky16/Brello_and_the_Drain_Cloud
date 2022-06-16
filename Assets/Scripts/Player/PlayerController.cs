@@ -53,8 +53,10 @@ public class PlayerController : MonoBehaviour
     [Header("Glading Settings")]
     [SerializeField] private float gladingGravity = 100;
     [SerializeField] private float velocityToGlade = 3;
-    public bool canGlide;
     [SerializeField] TrailRenderer[] trails;
+    [SerializeField] float timeToOpenUmbrella = .25f;
+    [SerializeField] float counterOpenUmbrella = 0;
+    public bool canGlide;
 
     [Header("Ground Checker settings")]
     [SerializeField] Transform posCheckerGround;
@@ -144,7 +146,7 @@ public class PlayerController : MonoBehaviour
                     Debug.Log("B");
                 }
 
-                else if (isUmbrellaOpen)
+                else if (isUmbrellaOpen && !isSwimming)
                 {
                     currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, acceleration * Time.deltaTime);
                     Debug.Log("C");
@@ -504,13 +506,13 @@ public class PlayerController : MonoBehaviour
     {
         //Parar el impulso de cuando planeas
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-        
-        if (canGlide && canMove && !isSwimming)
+        if (canGlide && canMove && Time.time > counterOpenUmbrella)
         {
+            counterOpenUmbrella = Time.time + timeToOpenUmbrella;
             isUmbrellaOpen = _value;
             brelloOpenManager.SetOpen(isUmbrellaOpen);
 
-            if (!_value)
+            if (!_value && !isSwimming)
             {
                 movementMode = MovementMode.VELOCITY;
                 rb.useGravity = true;

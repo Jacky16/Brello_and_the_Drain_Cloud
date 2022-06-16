@@ -877,6 +877,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runSpeed: 13
   walkSpeed: 5
+  swimingSpeed: 50
   acceleration: 10
   rotationSpeed: 15
   gladingSpeed: 50
@@ -886,10 +887,12 @@ MonoBehaviour:
   rightFootSpawn: {fileID: 512308204}
   gladingGravity: 20
   velocityToGlade: 3
-  canGlide: 0
   trails:
   - {fileID: 1908554400}
   - {fileID: 955124126}
+  timeToOpenUmbrella: 0.1
+  counterOpenUmbrella: 0
+  canGlide: 0
   posCheckerGround: {fileID: 6434270805595024249}
   radiusCheck: 0.25
   groundLayerMask:
