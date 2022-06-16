@@ -43,6 +43,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float rotationSpeed = 15f;
     [SerializeField] private float gladingSpeed = 10;
     [SerializeField] private MovementMode movementMode = MovementMode.VELOCITY;
+    [SerializeField] private GameObject runParticles;
+    [SerializeField] private Transform leftFootSpawn;
+    [SerializeField] private Transform rightFootSpawn;
     public enum MovementMode { ADD_FORCE,VELOCITY}
     private float currentSpeed = 0;
     
@@ -63,12 +66,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpForce = 10;
     [SerializeField] float coyoteTime = .2f;
     float coyoteTimer = 0;
+    [SerializeField] private GameObject jumpParticles;
+    [SerializeField] private GameObject landParticles;
+    [SerializeField] private Transform jumpLandPosition;
 
     //Swiming variables
     [Header("Swimimg Settings")]
     [SerializeField] float offsetTweenY;
     [SerializeField] float time = 1;
     [SerializeField] GameObject splashParticle;
+    [SerializeField] ParticleSystem waveParticles;
     Transform pivotSwiming;
     Vector3 currentTorrentDirection;
     private Tween tweenSwiming;
@@ -186,6 +193,7 @@ public class PlayerController : MonoBehaviour
             isJumping = true;
             rb.AddForce(Vector3.up * jumpForce * 10, ForceMode.Impulse);
             coyoteTimer = 0;
+            Instantiate(jumpParticles, jumpLandPosition.position, Quaternion.identity);
         }
     }
     private void HandleRotation()
@@ -223,10 +231,20 @@ public class PlayerController : MonoBehaviour
     }
     private void Checkers()
     {
+        //Provisional para saber cuando ha aterrizado
+        bool wasGrounded = isGrounded;
+
         isGrounded = Physics.CheckSphere(posCheckerGround.position, radiusCheck, groundLayerMask) && !isSwimming;
         isGlading = !isSwimming && isUmbrellaOpen && !isGrounded;
         isWallForward = Physics.CheckSphere(wallCheckPos.position, radiusCheckWall, groundLayerMask) && !isGrounded;
        
+
+        //Provisional para saber cuando ha aterrizado
+        if(!wasGrounded && isGrounded && !isSwimming)
+        {
+            Instantiate(landParticles, jumpLandPosition.position, Quaternion.identity);
+        }
+
         if (isGrounded)
         {         
             isJumping = false;
@@ -402,6 +420,7 @@ public class PlayerController : MonoBehaviour
 
             });
 
+            waveParticles.Play();
             AkSoundEngine.PostEvent("WaterSplash_Brello", WwiseManager.instance.gameObject);
         }
     }
@@ -421,7 +440,9 @@ public class PlayerController : MonoBehaviour
             brelloOpenManager.SetOpen(false);
 
             movementMode = MovementMode.VELOCITY;
-      
+
+            waveParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+
             //Matamos a la animacion por si se sale antes, que no se quede flotando
             tweenSwiming.Kill();
         }
@@ -512,6 +533,19 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(wallCheckPos.position, radiusCheckWall);
     }
+
+    #region TMP_FUNCTIONS
+
+    void SpawnLeftFootParticle()
+    {
+        Instantiate(runParticles, leftFootSpawn.position, Quaternion.identity);
+    }
+
+    void SpawnRightFootParticle()
+    {
+        Instantiate(runParticles, rightFootSpawn.position, Quaternion.identity);
+    }
+    #endregion
 
     #region Inputs setters
 
