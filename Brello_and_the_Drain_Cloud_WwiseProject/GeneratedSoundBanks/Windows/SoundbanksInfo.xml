@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="133642231" Language="SFX" Hash="2612938851">
+		<SoundBank Id="133642231" Language="SFX" Hash="3799757196">
 			<ObjectPath>\SoundBanks\Default Work Unit\General</ObjectPath>
 			<ShortName>General</ShortName>
 			<Path>General.bnk</Path>
@@ -158,7 +158,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1526266773" Name="Rain_Level1" ObjectPath="\Events\Default Work Unit\Environment\Grasslands\Rain_Level1" MaxAttenuation="100." DurationType="Infinite">
+				<Event Id="1526266773" Name="Rain_Level1" ObjectPath="\Events\Default Work Unit\Environment\Grasslands\Rain_Level1" MaxAttenuation="300." DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="450979061" Language="SFX">
 							<ShortName>Rain.wav</ShortName>
@@ -234,12 +234,12 @@
 				<GameParameter Id="1564184899" Name="SFX_Volume" ObjectPath="\Game Parameters\Default Work Unit\Volume\SFX_Volume"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="2167216614" Language="SFX" Hash="3269405530">
+		<SoundBank Id="2167216614" Language="SFX" Hash="3974551141">
 			<ObjectPath>\SoundBanks\Default Work Unit\General3</ObjectPath>
 			<ShortName>General3</ShortName>
 			<Path>General3.bnk</Path>
 			<IncludedEvents>
-				<Event Id="1995175766" Name="Breaking_Crate" ObjectPath="\Events\Default Work Unit\Environment\Props\Breaking_Crate" DurationType="OneShot" DurationMin="0.421289" DurationMax="0.595793">
+				<Event Id="1995175766" Name="Breaking_Crate" ObjectPath="\Events\Default Work Unit\Environment\Props\Breaking_Crate" MaxAttenuation="50." DurationType="OneShot" DurationMin="0.421289" DurationMax="0.595793">
 					<IncludedMemoryFiles>
 						<File Id="1031289488" Language="SFX">
 							<ShortName>Breaking_Crate.wav</ShortName>
@@ -293,7 +293,7 @@
 				<GameParameter Id="1564184899" Name="SFX_Volume" ObjectPath="\Game Parameters\Default Work Unit\Volume\SFX_Volume"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="2167216615" Language="SFX" Hash="254973550">
+		<SoundBank Id="2167216615" Language="SFX" Hash="3036175736">
 			<ObjectPath>\SoundBanks\Default Work Unit\General2</ObjectPath>
 			<ShortName>General2</ShortName>
 			<Path>General2.bnk</Path>
@@ -316,7 +316,7 @@
 					</IncludedMemoryFiles>
 				</Event>
 				<Event Id="3683476531" Name="Charge_Boiler" ObjectPath="\Events\Default Work Unit\Boiler\Charge_Boiler" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="137424561" Name="Charging_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Charging_Steamling" DurationType="OneShot" DurationMin="1.079728" DurationMax="1.079728">
+				<Event Id="137424561" Name="Charging_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Charging_Steamling" MaxAttenuation="50." DurationType="OneShot" DurationMin="1.079728" DurationMax="1.079728">
 					<IncludedMemoryFiles>
 						<File Id="551042684" Language="SFX">
 							<ShortName>Charge.wav</ShortName>
@@ -378,7 +378,7 @@
 					</IncludedMemoryFiles>
 				</Event>
 				<Event Id="2223599963" Name="MainMenuStop" ObjectPath="\Events\Default Work Unit\MainMenuStop" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="1765157707" Name="Preparing_Charge_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Preparing_Charge_Steamling" DurationType="OneShot" DurationMin="1.4" DurationMax="1.4">
+				<Event Id="1765157707" Name="Preparing_Charge_Steamling" ObjectPath="\Events\Default Work Unit\Steamling\Preparing_Charge_Steamling" MaxAttenuation="50." DurationType="OneShot" DurationMin="1.4" DurationMax="1.4">
 					<IncludedMemoryFiles>
 						<File Id="1058461914" Language="SFX">
 							<ShortName>Prepare.wav</ShortName>

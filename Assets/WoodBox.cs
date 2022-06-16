@@ -8,7 +8,7 @@ public class WoodBox : Health
 
     protected override void onDeath()
     {
-        AkSoundEngine.PostEvent("Breaking_Crate", WwiseManager.instance.gameObject);
+        AkSoundEngine.PostEvent("Breaking_Crate", gameObject);
         Instantiate(destroyParticles, transform.position, Quaternion.identity).transform.localScale = Vector3.one * 2;
         Destroy(gameObject);
     }

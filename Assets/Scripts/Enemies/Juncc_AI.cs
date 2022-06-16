@@ -49,7 +49,7 @@ public class Juncc_AI : EnemyAI
             isChanging = true;
             isOutside = false;
             animator.SetTrigger("Disappear");
-            AkSoundEngine.PostEvent("Hide_Juncc", WwiseManager.instance.gameObject);
+            AkSoundEngine.PostEvent("Hide_Juncc", gameObject);
         }
         else if(!isOutside && pyraHealth.GetIsProtected() && playerInSightRange && !isChanging)
         {
@@ -62,7 +62,7 @@ public class Juncc_AI : EnemyAI
             isOutside = true;
             transform.DOLookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z), 0.5f);
             animator.SetTrigger("Appear");
-            AkSoundEngine.PostEvent("Spawn_Juncc", WwiseManager.instance.gameObject);
+            AkSoundEngine.PostEvent("Spawn_Juncc", gameObject);
         }
         else if(isOutside && pyraHealth.GetIsProtected() && playerInSightRange)
         {
@@ -97,7 +97,7 @@ public class Juncc_AI : EnemyAI
         Debug.Log("AttackAction");
         isAttacking = true;
         Instantiate(mudBall, mudBallCannon.position, Quaternion.identity);
-        AkSoundEngine.PostEvent("Shoot_Juncc", WwiseManager.instance.gameObject);
+        AkSoundEngine.PostEvent("Shoot_Juncc", gameObject);
         StartCoroutine(ResetAttack());
     }
 
