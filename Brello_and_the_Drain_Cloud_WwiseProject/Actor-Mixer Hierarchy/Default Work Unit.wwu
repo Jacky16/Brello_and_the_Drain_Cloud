@@ -1557,6 +1557,40 @@
 								</Sound>
 							</ChildrenList>
 						</Folder>
+						<Sound Name="391434-Whistle-Steam-Double-01-01" ID="{43ED2E12-653A-48EA-9720-730D6902029F}" ShortID="1034944189">
+							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="1"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-12</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="Low_Attenuation" ID="{AF0F7070-1466-4ABC-8412-031B679D6E2A}" WorkUnitID="{D4E67D86-651B-4CCE-8108-48600BB7AC6E}"/>
+								</Reference>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX" ID="{D619241B-7D66-4DBD-81E1-49FF50DB2719}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="391434-Whistle-Steam-Double-01-01" ID="{F3859191-F4EB-4AFD-901C-391F9FA3D84A}">
+									<Language>SFX</Language>
+									<AudioFile>391434-Whistle-Steam-Double-01-01.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="574464614"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="391434-Whistle-Steam-Double-01-01" ID="{F3859191-F4EB-4AFD-901C-391F9FA3D84A}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Steamling" ID="{A9911A09-8F69-49AD-9995-3C1641F6AF66}" ShortID="937684906">

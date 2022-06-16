@@ -234,7 +234,7 @@
 				<GameParameter Id="1564184899" Name="SFX_Volume" ObjectPath="\Game Parameters\Default Work Unit\Volume\SFX_Volume"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="2167216614" Language="SFX" Hash="3974551141">
+		<SoundBank Id="2167216614" Language="SFX" Hash="2265727467">
 			<ObjectPath>\SoundBanks\Default Work Unit\General3</ObjectPath>
 			<ShortName>General3</ShortName>
 			<Path>General3.bnk</Path>
@@ -252,6 +252,14 @@
 						<File Id="758911171" Language="SFX">
 							<ShortName>JunccHide.wav</ShortName>
 							<Path>SFX\JunccHide_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1578278391" Name="Pick_Checkpoint" ObjectPath="\Events\Default Work Unit\Environment\Pick_Checkpoint" MaxAttenuation="50." DurationType="OneShot" DurationMin="1.9" DurationMax="1.9">
+					<IncludedMemoryFiles>
+						<File Id="574464614" Language="SFX">
+							<ShortName>391434-Whistle-Steam-Double-01-01.wav</ShortName>
+							<Path>SFX\391434-Whistle-Steam-Double-01-01_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

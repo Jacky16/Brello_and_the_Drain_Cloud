@@ -21,6 +21,7 @@ public class CheckPoint : MonoBehaviour
             anim.SetTrigger("Save");
 
             //Poner sonidito del checkpoint
+            AkSoundEngine.PostEvent("Pick_Checkpoint", gameObject);
 
             isSaved = true;
         }

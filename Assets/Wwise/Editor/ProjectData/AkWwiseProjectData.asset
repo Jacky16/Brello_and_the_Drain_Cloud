@@ -24,7 +24,7 @@ MonoBehaviour:
     ParentPath: Virtual Acoustics\Default Work Unit
     guid: 166bb2b7fc13db45b69f5a19518cf21f
     GuidInternal: 
-    m_lastTime: -8585518379582058229
+    m_lastTime: -8585467307264532478
     List: []
   AuxBusWwu:
   - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
@@ -38,7 +38,7 @@ MonoBehaviour:
     ParentPath: Master-Mixer Hierarchy\Default Work Unit
     guid: b11d140495a5214693f79f09da626fbf
     GuidInternal: 
-    m_lastTime: -8585507796352345777
+    m_lastTime: -8585467307310395317
     List:
     - name: Master Audio Bus
       guid: d8a41415a61d2a41a17e75ca0c2149f3
@@ -100,7 +100,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: b7fee57a9b67c343a46eab594f457684
     GuidInternal: 
-    m_lastTime: -8585462389711967581
+    m_lastTime: -8585462197076187089
     List:
     - name: General
       guid: 9ac68b89cd0b2543aa435561f078908b
@@ -156,7 +156,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 1a1dad3e5c7a724abc36cb5e26e00782
     GuidInternal: 
-    m_lastTime: -8585462389712835269
+    m_lastTime: -8585462182157231134
     List:
     - name: Angry_PSTom
       guid: 466fc970d3b11a46869e6535dd5b5e69
@@ -946,6 +946,26 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.306009
       minDuration: 0.306009
+    - name: Pick_Checkpoint
+      guid: 8fc1573ba36c1846bbd7386e2a99a282
+      id: 1578278391
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Environment
+        ObjectType: 4
+        guid: bc19f43cbe6aea478d686b59f8728304
+      - ElementName: Pick_Checkpoint
+        ObjectType: 3
+        guid: 8fc1573ba36c1846bbd7386e2a99a282
+      Path: Events\Default Work Unit\Environment\Pick_Checkpoint
+      maxAttenuation: 50
+      maxDuration: 1.9
+      minDuration: 1.9
     - name: Poof_MrT
       guid: 83ca3e1e25ae2645b3a9b027d73f5129
       id: 2383840419
@@ -1610,7 +1630,7 @@ MonoBehaviour:
     ParentPath: Game Parameters\Default Work Unit
     guid: e4f736cbb2288f459e9c3c36b3575dbc
     GuidInternal: 
-    m_lastTime: -8585497899284394895
+    m_lastTime: -8585467307334090817
     List:
     - name: IsReverbOn
       guid: f6a8ff5128e2054e985fa92829509316
@@ -1686,7 +1706,7 @@ MonoBehaviour:
     ParentPath: States\Default Work Unit
     guid: 13117027c1e0a84b83ede94da2174f6f
     GuidInternal: 
-    m_lastTime: -8585518379582820111
+    m_lastTime: -8585467307264622238
     List: []
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
@@ -1700,7 +1720,7 @@ MonoBehaviour:
     ParentPath: Switches\Default Work Unit
     guid: 3652c387ca18794085902b6748b43d1c
     GuidInternal: 
-    m_lastTime: -8585463674279649166
+    m_lastTime: -8585463743442195946
     List:
     - name: FootstepSurfaceType
       guid: 5370e81ddde85840a97b77e23f265148
@@ -1828,7 +1848,7 @@ MonoBehaviour:
     ParentPath: Triggers\Default Work Unit
     guid: c350db81a104204da106bd1f7e8437ba
     GuidInternal: 
-    m_lastTime: -8585518379582058229
+    m_lastTime: -8585467307264602283
     List: []
   ExpandedFileSystemItemIds: 
   ExpandedWaapiItemIds: 
