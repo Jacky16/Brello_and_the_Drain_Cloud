@@ -47,6 +47,7 @@ namespace AK
         static const AkUniqueID MAINMENU = 3604647259U;
         static const AkUniqueID MAINMENUSTOP = 2223599963U;
         static const AkUniqueID OPEN_BRELLO = 692676672U;
+        static const AkUniqueID PICK_CHECKPOINT = 1578278391U;
         static const AkUniqueID POOF_MRT = 2383840419U;
         static const AkUniqueID PREPARING_CHARGE_STEAMLING = 1765157707U;
         static const AkUniqueID PSTOMBOSS_BACKGROUNDMUSIC_PSTOMBOSS = 609297450U;

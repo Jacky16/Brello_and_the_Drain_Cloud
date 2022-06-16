@@ -41,15 +41,15 @@ public class FruitTree : Health{
 
     void Update()
     {
-        if (fruitDropped)
-        {
-            timer += Time.deltaTime;
-            if(timer > timeToRespawnFruits)
-            {
-                RespawnFruits();
-                timer = 0;
-            }
-        }
+        //if (fruitDropped)
+        //{
+        //    timer += Time.deltaTime;
+        //    if(timer > timeToRespawnFruits)
+        //    {
+        //        RespawnFruits();
+        //        timer = 0;
+        //    }
+        //}
     }
 
     private void DropFruits()

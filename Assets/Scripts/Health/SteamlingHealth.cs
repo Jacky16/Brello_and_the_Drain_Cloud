@@ -9,11 +9,13 @@ public sealed class SteamlingHealth : Health
     [SerializeField] GameObject cloudParticles;
     [SerializeField] Transform posToSpawnParticles;
     private MeshRenderer rendererSteamling;
+    private Cinemachine.CinemachineImpulseSource cameraShake;
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
         rendererSteamling = GetComponentInChildren<MeshRenderer>();
+        cameraShake = GetComponent<Cinemachine.CinemachineImpulseSource>();
     }
 
     // Update is called once per frame
@@ -27,6 +29,8 @@ public sealed class SteamlingHealth : Health
             cloudMask.SetActive(false);
             
         }
+
+        cameraShake.GenerateImpulse();
         rendererSteamling.material.SetColor("_MainColor", Color.red);
         StartCoroutine(ResetColor());
 

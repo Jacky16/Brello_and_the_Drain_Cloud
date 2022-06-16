@@ -21,7 +21,13 @@ public sealed class BrelloHealth : Health
 
     [SerializeField] BackgroundMusic bm;
 
+    private Cinemachine.CinemachineImpulseSource cameraShake;
+
     // Start is called before the first frame update
+    private void Awake()
+    {
+        cameraShake = GetComponent<Cinemachine.CinemachineImpulseSource>();
+    }
     protected override void Start()
     {
         base.Start();        
@@ -56,10 +62,11 @@ public sealed class BrelloHealth : Health
         //imageAnimator.SetTrigger("Appear");
         if (damageParticles && spawnPoint != null)
         {
-            Instantiate(damageParticles, spawnPoint.position, Quaternion.identity);
+            Instantiate(damageParticles, transform.position, Quaternion.identity);
         }
         lastLifeChange = 0f;
         currentHealthImage.sprite = healthImages[currLife];
+        cameraShake.GenerateImpulse();
     }
 
     protected override void onHeal()
@@ -108,5 +115,10 @@ public sealed class BrelloHealth : Health
         GameObject.FindGameObjectWithTag("Pyra").GetComponent<NavMeshAgent>().enabled = false;
         GameObject.FindGameObjectWithTag("Pyra").transform.position = spawnPoint.position;
         GameObject.FindGameObjectWithTag("Pyra").GetComponent<NavMeshAgent>().enabled = true;
+    }
+
+    public void SetSpawnPoint(Transform newPos)
+    {
+        spawnPoint = newPos;
     }
 }

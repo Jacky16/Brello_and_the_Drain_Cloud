@@ -81,6 +81,9 @@ public class PsTom : MonoBehaviour
     [SerializeField] Transform wallDetect;
     [SerializeField] LayerMask layerMaskWallDetect;
     [SerializeField] float distanceWallDetect = 5;
+
+
+    Cinemachine.CinemachineImpulseSource cameraShake;
     
     [SerializeField]enum Phases {PHASE_1,PHASE_2,PHASE_3,PHASE_4,PHASE_5}
     [SerializeField] Phases currentPhase = Phases.PHASE_1;    
@@ -93,6 +96,7 @@ public class PsTom : MonoBehaviour
         anim = GetComponent<Animator>();
         tomHealth = GetComponent<PsTomHealth>();
         tomEffects = GetComponent<PsTomEffects>();
+        cameraShake = GetComponent<Cinemachine.CinemachineImpulseSource>();
     }
     private void Start()
     {
@@ -295,7 +299,9 @@ public class PsTom : MonoBehaviour
             
             //Asignar la posicion del target al player
             Vector3 nextPosTarget = currentPosPlayer;
-            nextPosTarget.y = 0;          
+            nextPosTarget.y = 0;  
+            
+            //Mover el targeter al sitio que va a saltar
             sequence.Join(targeterTransform.DOMove(nextPosTarget, jumpAttackDuration));
 
             //On complete
@@ -307,17 +313,14 @@ public class PsTom : MonoBehaviour
                     AddImpulseToPlayer(impulseAttackJumpToPlayer);
                     player.GetComponent<BrelloHealth>().DoDamage(damage);
                 }
-                //Stun(false);
-                Instantiate(jumpParticles, transform.position, Quaternion.identity);
-
-                targeterTransform.gameObject.SetActive(false);
-                
+                Instantiate(jumpParticles, transform.position, Quaternion.identity);                
             });
                        
             sequence.AppendCallback(() =>
             {
                 collider.isTrigger = false;
                 navMeshAgent.enabled = true;
+                targeterTransform.gameObject.SetActive(false);
 
             });
 
@@ -563,9 +566,11 @@ public class PsTom : MonoBehaviour
         shieldParticle.SetActive(!_isStuned);
 
         if (_isStuned)
+        {
             anim.SetTrigger("Stuned");
+            cameraShake.GenerateImpulse();
+        }
         
-
         anim.SetBool("IsStuned", isStuned);
     }
 

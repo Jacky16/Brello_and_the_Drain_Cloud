@@ -13,6 +13,7 @@ public class OptionsManager : MonoBehaviour
     bool isFullscreen = false;
 
     [Header("Camera")]
+    [SerializeField] SettingsCameraPlayer settingsCameraPlayer;
     [SerializeField] Slider sensitivityXSlider;
     [SerializeField] Slider sensitivityYSlider;
     [SerializeField] TMP_InputField sensitivityXInput;
@@ -33,29 +34,43 @@ public class OptionsManager : MonoBehaviour
     const string musicTag = "MusicVol";
     const string sensXTag = "SensX";
     const string sensYTag = "SensY";
+    const string InvertedX = "InvertedX";
+    const string InvertedY = "InvertedY";
 
-    [SerializeField] BackgroundMusic backgroundMusic;
-
+    const int defaultVelX = 200;
+    const int defaultVelY = 3;
 
     [Header("MAIN MENU ANIMATIONS")]
-
     public GameObject MenuAnimManager;
     Animator animManager;
-    PlayerCam playerCam;
     private void Awake()
     {
-        playerCam = GameObject.FindGameObjectWithTag("CamPlayer").GetComponent<PlayerCam>();
+        //playerCam = GameObject.FindGameObjectWithTag("CamPlayer").GetComponent<PlayerCam>();
         if (MenuAnimManager)
         {
             animManager = MenuAnimManager.GetComponent<Animator>();
         }
+        
+    }
+    
+    private void Start()
+    {
+        if (MenuAnimManager)
+        {           
+            animManager.SetBool("isIdle", true);
+        }
+        EventsUI();
+        LoadSettings();
+    }
+    void EventsUI()
+    {
         //Camera
         sensitivityXSlider.onValueChanged.AddListener(ChangeSensitivityXSlider);
         sensitivityYSlider.onValueChanged.AddListener(ChangeSensitivityYSlider);
-        
-        //sensitivityXInput.onValueChanged.AddListener(ChangeSensitivityXInput);
-        //sensitivityYInput.onValueChanged.AddListener(ChangeSensitivityYInput);
-        
+
+        sensitivityXInput.onEndEdit.AddListener(ChangeSensitivityXInput);
+        sensitivityYInput.onEndEdit.AddListener(ChangeSensitivityYInput);
+
         //Toogle
         invertedXToggle.onValueChanged.AddListener(SetInvertedXCamera);
         invertedYToggle.onValueChanged.AddListener(SetInvertedYCamera);
@@ -64,28 +79,9 @@ public class OptionsManager : MonoBehaviour
         //Music
         musicSlider.onValueChanged.AddListener(ChangeMusicVolumeSlider);
         soundSlider.onValueChanged.AddListener(ChangeSoundVolumeSlider);
-        
+
         musicInput.onValueChanged.AddListener(ChangeMusicVolumeInput);
         soundInput.onValueChanged.AddListener(ChangeSoundVolumeInput);
-        
-
-    }
-
-    private void Start()
-    {
-        if (MenuAnimManager)
-        {           
-            animManager.SetBool("isIdle", true);
-        }
-    }
-    private void OnEnable()
-    {
-        LoadSettings();
-    }
-    public void StartGame()
-    {
-        backgroundMusic.StopMusic();
-        SceneManager.LoadScene(1);
     }
 
     public void QuitGame()
@@ -105,90 +101,122 @@ public class OptionsManager : MonoBehaviour
         animManager.SetBool("isComeback", true);
     }
 
-    void LoadSettings()
+    public void LoadSettings()
     {
         //Toogle Camera
-        invertedXToggle.isOn = playerCam.GetInvertX();
-        invertedYToggle.isOn = playerCam.GetInvertY();
+        invertedXToggle.isOn = PlayerPrefs.GetInt(InvertedX, 0) == 1 ? true : false;
+        invertedYToggle.isOn = PlayerPrefs.GetInt(InvertedY, 0) == 1 ? true : false;
+        SetInvertedXCamera(invertedXToggle.isOn);
+        SetInvertedYCamera(invertedYToggle.isOn);
 
-        //Set Mouse Values
-        sensitivityXSlider.value = PlayerPrefs.GetFloat(sensXTag, playerCam.GetVelocityX());
-        sensitivityYSlider.value = PlayerPrefs.GetFloat(sensYTag, playerCam.GetVelocityY());
+        //Set Mouse Sliders Values
+        sensitivityXSlider.value = PlayerPrefs.GetInt(sensXTag, defaultVelX);
+        sensitivityYSlider.value = PlayerPrefs.GetInt(sensYTag, defaultVelY);
+
+        //Set Mouse Input Values
+        sensitivityXInput.text = PlayerPrefs.GetInt(sensXTag, defaultVelX).ToString();
+        sensitivityYInput.text = PlayerPrefs.GetInt(sensYTag, defaultVelY).ToString();
 
 
         //Set Audio Values
         musicSlider.value = PlayerPrefs.GetFloat(musicTag, 50);
         soundSlider.value = PlayerPrefs.GetFloat(soundTag, 50);
-        
+
+        //Set Audio Input Values
+        musicInput.text = PlayerPrefs.GetFloat(musicTag, 50).ToString();
+        soundInput.text = PlayerPrefs.GetFloat(soundTag, 50).ToString();
 
         //Set full screen
-        isFullscreen = Screen.fullScreen;
-        fullscreenToggle.isOn = isFullscreen;
+        isFullscreen = PlayerPrefs.GetInt("FullScreen", 0) == 1;
+        fullscreenToggle.isOn = isFullscreen;      
     }
 
     #region Camera options
-    public void SetInvertedXCamera(bool _value)
+    public void SetInvertedXCamera(bool _value) //Toogle
     {
-        playerCam.ChangeInvertX(_value);
+        PlayerPrefs.SetInt(InvertedX, _value ? 1 : 0);
+        if (settingsCameraPlayer)
+        {
+            settingsCameraPlayer.SetInvertedX(_value);
+        }        
     }
     public void SetInvertedYCamera(bool _value)
     {
-        playerCam.ChangeInvertY(_value);
-    }
+        PlayerPrefs.SetInt(InvertedY, _value ? 1 : 0);
+        if (settingsCameraPlayer)
+        {
+            settingsCameraPlayer.SetInvertedY(_value);
+        }
+    } //Toogle
 
     //Y axis
-    public void ChangeSensitivityYSlider(float _value)
+    public void ChangeSensitivityYSlider(float _value) //Slider
     {
+        float valueToSlide = ((float)Mathf.Round(_value * 100f) / 100f);
+        
         PlayerPrefs.SetFloat(sensYTag, _value);
-        sensitivityYInput.text = ((float)Mathf.Round(_value * 100f) / 100f).ToString();
-        playerCam.ChangeVelocityY(_value);
+        sensitivityYInput.text = _value.ToString();
+        
+        if (settingsCameraPlayer)
+        {
+            settingsCameraPlayer.ChangeVelocityY(_value);
+        }
     }
     public void ChangeSensitivityYInput(string _value)
     {
         if (float.TryParse(_value, out float sensitivityValue))
         {
-            if (sensitivityValue > 1.25f)
+            if (sensitivityValue > sensitivityYSlider.maxValue)
             {
-                sensitivityValue = 1.25f;
-                sensitivityYInput.text = "1.25";
+                sensitivityValue = sensitivityYSlider.maxValue;
+                sensitivityYInput.text = sensitivityYSlider.maxValue.ToString();
             }
-            else if (sensitivityValue < 0.7f)
+            else if (sensitivityValue < sensitivityYSlider.minValue)
             {
-                sensitivityValue = 0.7f;
-                sensitivityYInput.text = "0.7";
+                sensitivityValue = sensitivityYSlider.minValue;
+                sensitivityYInput.text = sensitivityYSlider.minValue.ToString();
             }
-
             sensitivityYSlider.value = sensitivityValue;
-            PlayerPrefs.SetFloat(sensYTag, sensitivityValue);
+            PlayerPrefs.SetInt(sensYTag, (int) sensitivityValue);
+            if (settingsCameraPlayer)
+            {
+                settingsCameraPlayer.ChangeVelocityY(sensitivityValue);
+            }
         }
-    }
+    } //Input Text
     
     //X axis
     public void ChangeSensitivityXSlider(float _value)
     {
         PlayerPrefs.SetInt(sensXTag, (int)_value);
         sensitivityXInput.text = _value.ToString();
-        playerCam.ChangeVelocityX(_value);
-    }
+        if (settingsCameraPlayer)
+        {
+            settingsCameraPlayer.ChangeVelocityX(_value);
+        }
+    } //Slider
     public void ChangeSensitivityXInput(string _value)
     {
         if (float.TryParse(_value, out float sensitivityValue))
         {
-            if (sensitivityValue > 150)
+            if (sensitivityValue > sensitivityXSlider.maxValue)
             {
-                sensitivityValue = 150;
-                sensitivityXInput.text = "150";
+                sensitivityValue = sensitivityXSlider.maxValue;
+                sensitivityXInput.text = sensitivityXSlider.maxValue.ToString();
             }
-            else if (sensitivityValue < 100)
+            else if (sensitivityValue < sensitivityXSlider.minValue)
             {
-                sensitivityValue = 100;
-                sensitivityXInput.text = "100";
+                sensitivityValue = sensitivityXSlider.minValue;
+                sensitivityXInput.text = sensitivityXSlider.minValue.ToString();
             }
-
             sensitivityXSlider.value = sensitivityValue;
-            PlayerPrefs.SetFloat(sensXTag, sensitivityValue);
+            PlayerPrefs.SetInt(sensXTag, (int) sensitivityValue);
+            if (settingsCameraPlayer)
+            {
+                settingsCameraPlayer.ChangeVelocityX(sensitivityValue);
+            }
         }
-    }
+    } //Input text
 
     #endregion
 
@@ -196,17 +224,18 @@ public class OptionsManager : MonoBehaviour
 
     public void SetFullScreenBool(bool _value)
     {
+        PlayerPrefs.SetInt("FullScreen", _value ? 1 : 0);
         Screen.fullScreen = _value;
-        if (_value)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = true;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
+        //if (_value)
+        //{
+        //    Cursor.lockState = CursorLockMode.Locked;
+        //    Cursor.visible = true;
+        //}
+        //else
+        //{
+        //    Cursor.lockState = CursorLockMode.None;
+        //    Cursor.visible = true;
+        //}
     }
     
 

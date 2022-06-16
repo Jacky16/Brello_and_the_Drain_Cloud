@@ -8,13 +8,15 @@ public class InputManager : MonoBehaviour
     private PlayerInput playerInput;
     private PlayerController playerController;
     private PyraController currentPyraController;
-    
+    private PauseMenuManager pauseMenuManager;
+
 
     private void Awake()
     {
         playerInput = new PlayerInput();
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-
+        pauseMenuManager = FindObjectOfType<PauseMenuManager>();
+        
         //Movement
         playerInput.CharacterControls.Move.started += OnMovementInput;
         playerInput.CharacterControls.Move.performed += OnMovementInput;
@@ -44,6 +46,9 @@ public class InputManager : MonoBehaviour
         //Input Mouse
         playerInput.CharacterControls.CameraMovement.performed += OnMouseMovement;
         playerInput.CharacterControls.CameraMovement.canceled += OnMouseMovement;
+
+        //Pause
+        playerInput.CharacterControls.Pause.started += OnPause;
     }
     private void Update()
     {
@@ -56,7 +61,9 @@ public class InputManager : MonoBehaviour
 
     private void OnJump(InputAction.CallbackContext ctx)
     {
-        playerController.HandleJump();
+        if(playerController.IsGrounded())
+            playerController.HandleJump();
+        
         playerController.HandleSwimingJump();
     }
 
@@ -92,6 +99,11 @@ public class InputManager : MonoBehaviour
     private void OnMouseMovement(InputAction.CallbackContext ctx)
     {
         Vector2 mouseAxis = ctx.ReadValue<Vector2>();
+    }
+
+    private void OnPause(InputAction.CallbackContext ctx)
+    {
+        pauseMenuManager.Pause();
     }
 
     public void SetCurrentPyra(PyraController pyra)
