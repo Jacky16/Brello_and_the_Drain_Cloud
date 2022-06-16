@@ -89,6 +89,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""16d7fe70-13e7-4570-b1f5-39d0a8f78e33"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -256,6 +265,28 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""OpenUmbrella"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d0009347-e190-4693-a14a-474d578a3ab5"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6367abb5-e589-46dc-b908-b3d6cda15712"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -271,6 +302,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_CharacterControls_CameraMovement = m_CharacterControls.FindAction("CameraMovement", throwIfNotFound: true);
         m_CharacterControls_Interactuable = m_CharacterControls.FindAction("Interactuable", throwIfNotFound: true);
         m_CharacterControls_OpenUmbrella = m_CharacterControls.FindAction("OpenUmbrella", throwIfNotFound: true);
+        m_CharacterControls_Pause = m_CharacterControls.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -337,6 +369,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_CharacterControls_CameraMovement;
     private readonly InputAction m_CharacterControls_Interactuable;
     private readonly InputAction m_CharacterControls_OpenUmbrella;
+    private readonly InputAction m_CharacterControls_Pause;
     public struct CharacterControlsActions
     {
         private @PlayerInput m_Wrapper;
@@ -348,6 +381,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @CameraMovement => m_Wrapper.m_CharacterControls_CameraMovement;
         public InputAction @Interactuable => m_Wrapper.m_CharacterControls_Interactuable;
         public InputAction @OpenUmbrella => m_Wrapper.m_CharacterControls_OpenUmbrella;
+        public InputAction @Pause => m_Wrapper.m_CharacterControls_Pause;
         public InputActionMap Get() { return m_Wrapper.m_CharacterControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -378,6 +412,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @OpenUmbrella.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnOpenUmbrella;
                 @OpenUmbrella.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnOpenUmbrella;
                 @OpenUmbrella.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnOpenUmbrella;
+                @Pause.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_CharacterControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -403,6 +440,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @OpenUmbrella.started += instance.OnOpenUmbrella;
                 @OpenUmbrella.performed += instance.OnOpenUmbrella;
                 @OpenUmbrella.canceled += instance.OnOpenUmbrella;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -416,5 +456,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnCameraMovement(InputAction.CallbackContext context);
         void OnInteractuable(InputAction.CallbackContext context);
         void OnOpenUmbrella(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }
