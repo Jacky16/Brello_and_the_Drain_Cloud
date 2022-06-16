@@ -33,6 +33,8 @@ public class OptionsManager : MonoBehaviour
     const string musicTag = "MusicVol";
     const string sensXTag = "SensX";
     const string sensYTag = "SensY";
+    const string InvertedX = "InvertedX";
+    const string InvertedY = "InvertedY";
 
     [SerializeField] BackgroundMusic backgroundMusic;
 
@@ -51,7 +53,15 @@ public class OptionsManager : MonoBehaviour
         }
         EventsUI();
     }
-
+    
+    private void Start()
+    {
+        if (MenuAnimManager)
+        {           
+            animManager.SetBool("isIdle", true);
+        }
+        LoadUISettings();
+    }
     void EventsUI()
     {
         //Camera
@@ -72,14 +82,6 @@ public class OptionsManager : MonoBehaviour
 
         musicInput.onValueChanged.AddListener(ChangeMusicVolumeInput);
         soundInput.onValueChanged.AddListener(ChangeSoundVolumeInput);
-    }
-
-    private void Start()
-    {
-        if (MenuAnimManager)
-        {           
-            animManager.SetBool("isIdle", true);
-        }
     }
     public void StartGame()
     {
@@ -107,8 +109,8 @@ public class OptionsManager : MonoBehaviour
     public void LoadUISettings()
     {
         //Toogle Camera
-        invertedXToggle.isOn = playerCam.GetInvertX();
-        invertedYToggle.isOn = playerCam.GetInvertY();
+        invertedXToggle.isOn = PlayerPrefs.GetInt(InvertedX, 0) == 1;
+        invertedYToggle.isOn = PlayerPrefs.GetInt(InvertedY, 0) == 1;
 
         //Set Mouse Sliders Values
         sensitivityXSlider.value = PlayerPrefs.GetFloat(sensXTag, playerCam.GetVelocityX());
@@ -127,18 +129,19 @@ public class OptionsManager : MonoBehaviour
         soundInput.text = PlayerPrefs.GetFloat(soundTag, 50).ToString();
 
         //Set full screen
-        isFullscreen = Screen.fullScreen;
-        fullscreenToggle.isOn = isFullscreen;
-        
+        isFullscreen = PlayerPrefs.GetInt("FullScreen", 0) == 1;
+        fullscreenToggle.isOn = isFullscreen;      
     }
 
     #region Camera options
     public void SetInvertedXCamera(bool _value)
     {
+        PlayerPrefs.SetInt(InvertedX, _value ? 1 : 0);
         playerCam.ChangeInvertX(_value);
     }
     public void SetInvertedYCamera(bool _value)
     {
+        PlayerPrefs.SetInt(InvertedY, _value ? 1 : 0);
         playerCam.ChangeInvertY(_value);
     }
 
@@ -202,6 +205,7 @@ public class OptionsManager : MonoBehaviour
 
     public void SetFullScreenBool(bool _value)
     {
+        PlayerPrefs.SetInt("FullScreen", _value ? 1 : 0);
         Screen.fullScreen = _value;
         //if (_value)
         //{
