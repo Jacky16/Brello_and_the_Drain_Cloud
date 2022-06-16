@@ -323,6 +323,21 @@
 								</Event>
 							</ChildrenList>
 						</Folder>
+						<Folder Name="Props" ID="{6D63A213-F438-4FE8-ACA1-99337F9E248B}" ShortID="489980415">
+							<ChildrenList>
+								<Event Name="Breaking_Crate" ID="{127D8ED8-9FB6-4F30-889B-6CEF70FC10E1}">
+									<ChildrenList>
+										<Action Name="" ID="{7DC0DC97-29BB-4B42-BC71-21609A8389F1}" ShortID="669581725">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Breaking_Crate" ID="{AFC48C9A-CB43-466A-A548-9649F5681D9E}" WorkUnitID="{2ECCA49C-BF01-4FCF-9510-B79AC5CF9168}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="UI" ID="{C938CFD4-553C-4594-B09F-F15DDF581CCC}" ShortID="725400021"/>
