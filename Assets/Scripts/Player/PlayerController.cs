@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float runSpeed = 20;
     [SerializeField] private float walkSpeed = 10;
+    [SerializeField] private float swimingSpeed = 50;
     [SerializeField] private float acceleration = 1;
     [SerializeField] private float rotationSpeed = 15f;
     [SerializeField] private float gladingSpeed = 10;
@@ -130,13 +131,26 @@ public class PlayerController : MonoBehaviour
             if (canMove)
             {
                 if (isGlading)
+                {
                     currentSpeed = Mathf.Lerp(currentSpeed, gladingSpeed, acceleration * Time.deltaTime);
+                    Debug.Log("B");
+                }
 
-                 else if (isUmbrellaOpen)
+                else if (isUmbrellaOpen)
+                {
                     currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, acceleration * Time.deltaTime);
-
-                 else
-                   currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, acceleration * Time.deltaTime);
+                    Debug.Log("C");
+                }
+                else if (isSwimming)
+                {
+                    currentSpeed = Mathf.Lerp(currentSpeed, swimingSpeed, acceleration * Time.deltaTime);
+                    Debug.Log("A");
+                }
+                else
+                {
+                    currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, acceleration * Time.deltaTime);
+                    Debug.Log("D");
+                }
             }
         }
         else
@@ -458,7 +472,7 @@ public class PlayerController : MonoBehaviour
         //Parar el impulso de cuando planeas
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         
-        if (canGlide && canMove)
+        if (canGlide && canMove && !isSwimming)
         {
             isUmbrellaOpen = _value;
             brelloOpenManager.SetOpen(isUmbrellaOpen);
