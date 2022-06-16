@@ -31,6 +31,7 @@ public class CrystalPuzzle : MonoBehaviour
         foreach (Crystal crystal in crystals)
         {
             StartCoroutine(crystal.ResetCrystal());
+            shinyCrystals = 0;
         }
     }
 
