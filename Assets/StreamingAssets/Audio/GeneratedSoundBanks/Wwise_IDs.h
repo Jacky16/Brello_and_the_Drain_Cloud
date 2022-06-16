@@ -13,16 +13,21 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID ACTIVATE = 4166407614U;
         static const AkUniqueID ANGRY_PSTOM = 400874472U;
         static const AkUniqueID ATTACK_COMBO_BRELLO = 211679341U;
         static const AkUniqueID AWAKE_BOILER = 183731594U;
         static const AkUniqueID BACKGROUNDMUSIC_LEVEL1 = 205544994U;
         static const AkUniqueID BACKGROUNDMUSIC_TUTORIAL = 3411234615U;
+        static const AkUniqueID BREAKING_CRATE = 1995175766U;
         static const AkUniqueID CHARGE_BOILER = 3683476531U;
+        static const AkUniqueID CHARGE_PSTOM = 2295499621U;
+        static const AkUniqueID CHARGING_PSTOM = 380957376U;
         static const AkUniqueID CHARGING_STEAMLING = 137424561U;
         static const AkUniqueID CLOSE_BRELLO = 3567626122U;
         static const AkUniqueID COOL_BOILER = 1721372914U;
         static const AkUniqueID CRASH_PSTOM = 490892378U;
+        static const AkUniqueID DEACTIVATE = 3646446591U;
         static const AkUniqueID DEATH_BRELLO = 1700730432U;
         static const AkUniqueID DEATH_PYRA = 1095581318U;
         static const AkUniqueID DEATH_STEAMLING = 4094738360U;
@@ -46,6 +51,7 @@ namespace AK
         static const AkUniqueID MAINMENU = 3604647259U;
         static const AkUniqueID MAINMENUSTOP = 2223599963U;
         static const AkUniqueID OPEN_BRELLO = 692676672U;
+        static const AkUniqueID PICK_CHECKPOINT = 1578278391U;
         static const AkUniqueID POOF_MRT = 2383840419U;
         static const AkUniqueID PREPARING_CHARGE_STEAMLING = 1765157707U;
         static const AkUniqueID PSTOMBOSS_BACKGROUNDMUSIC_PSTOMBOSS = 609297450U;
@@ -83,6 +89,7 @@ namespace AK
             {
                 static const AkUniqueID DEFAULT = 782826392U;
                 static const AkUniqueID GRASS = 4248645337U;
+                static const AkUniqueID METAL = 2473969246U;
                 static const AkUniqueID ROCK = 2144363834U;
                 static const AkUniqueID SAND = 803837735U;
                 static const AkUniqueID WATER = 2654748154U;

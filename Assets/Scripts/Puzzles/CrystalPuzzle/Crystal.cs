@@ -28,6 +28,9 @@ public class Crystal : MonoBehaviour
 
     }
 
+
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out PlayerController playerController))
@@ -74,8 +77,10 @@ public class Crystal : MonoBehaviour
         {
             if (isShiny)
             {
+                AkSoundEngine.PostEvent("Activate", gameObject);
                 particleActivated.Play();
                 manager.AddGoodOne();
+                canBeInteracted = false;
             }
             else
             {

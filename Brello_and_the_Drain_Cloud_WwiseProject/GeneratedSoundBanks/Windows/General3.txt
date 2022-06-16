@@ -1,14 +1,31 @@
 Event	ID	Name			Wwise Object Path	Notes
 	609297450	PSTomBoss_BackgroundMusic_PSTomBoss			\Default Work Unit\Environment\PSTomBoss\PSTomBoss_BackgroundMusic_PSTomBoss	
+	1578278391	Pick_Checkpoint			\Default Work Unit\Environment\Pick_Checkpoint	
 	1633170905	Hide_Juncc			\Default Work Unit\Juncc\Hide_Juncc	
+	1995175766	Breaking_Crate			\Default Work Unit\Environment\Props\Breaking_Crate	
 	2121276730	Spawn_Juncc			\Default Work Unit\Juncc\Spawn_Juncc	
+	3646446591	Deactivate			\Default Work Unit\Deactivate	
+	4166407614	Activate			\Default Work Unit\Activate	
 	4188370314	Shoot_Juncc			\Default Work Unit\Juncc\Shoot_Juncc	
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	1006694123	Music_Volume			\Default Work Unit\Volume\Music_Volume	
+	1564184899	SFX_Volume			\Default Work Unit\Volume\SFX_Volume	
+
+Audio Bus	ID	Name			Wwise Object Path	Notes
+	393239870	SFX			\Default Work Unit\Master Audio Bus\SFX	
+	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
+	3991942870	Music			\Default Work Unit\Master Audio Bus\Music	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	3304908	TrainSound	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\TrainSound_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\PSTomBoss\TrainSound		5444392
 	61851379	JunccShoot	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\JunccShoot_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Juncc\JunccShoot		23752
 	295411272	JunccSpawn	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\JunccSpawn_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Juncc\JunccSpawn		55940
+	574464614	391434-Whistle-Steam-Double-01-01	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\391434-Whistle-Steam-Double-01-01_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\391434-Whistle-Steam-Double-01-01		364864
+	574507850	Activate	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\Activate_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Puzzle\Activate		104870
+	629359971	Deactivate	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\Deactivate_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Puzzle\Deactivate		421572
 	674738821	InicioMusicaPSTom	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\InicioMusicaPSTom_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\PSTomBoss\PSTomBossMusic\InicioMusicaPSTom		1188716
 	758911171	JunccHide	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\JunccHide_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Juncc\JunccHide		55940
 	905488729	MusicaPSTom	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\MusicaPSTom_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\PSTomBoss\PSTomBossMusic\MusicaPSTom		13082108
+	1031289488	Breaking_Crate	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\Breaking_Crate_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Props\Breaking_Crate		96256
 

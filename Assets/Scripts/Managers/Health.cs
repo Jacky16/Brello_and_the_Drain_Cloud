@@ -45,12 +45,14 @@ public class Health : MonoBehaviour
     {    
         currLife += amount;
 
-        onHeal();
 
         if (currLife > maxLife)
         {
             currLife = maxLife;
-        }       
+        }
+
+        onHeal();
+      
     }
     public void IncreaseMaxLife(int amount)
     {

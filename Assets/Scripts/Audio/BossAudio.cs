@@ -30,4 +30,14 @@ public class BossAudio : MonoBehaviour
     {
         AkSoundEngine.PostEvent("Landing_PSTom", WwiseManager.instance.gameObject);
     }
+
+    public void PlayPSTomCharging()
+    {
+        AkSoundEngine.PostEvent("Charging_PSTom", WwiseManager.instance.gameObject);
+    }
+
+    public void PlayPSTomCharge()
+    {
+        AkSoundEngine.PostEvent("Charge_PSTom", WwiseManager.instance.gameObject);
+    }
 }

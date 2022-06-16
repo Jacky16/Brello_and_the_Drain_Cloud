@@ -24,7 +24,7 @@ MonoBehaviour:
     ParentPath: Virtual Acoustics\Default Work Unit
     guid: 166bb2b7fc13db45b69f5a19518cf21f
     GuidInternal: 
-    m_lastTime: -8585514600866283659
+    m_lastTime: -8585470678437230673
     List: []
   AuxBusWwu:
   - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
@@ -38,7 +38,7 @@ MonoBehaviour:
     ParentPath: Master-Mixer Hierarchy\Default Work Unit
     guid: b11d140495a5214693f79f09da626fbf
     GuidInternal: 
-    m_lastTime: -8585514600881394905
+    m_lastTime: -8585470678450136319
     List:
     - name: Master Audio Bus
       guid: d8a41415a61d2a41a17e75ca0c2149f3
@@ -100,7 +100,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: b7fee57a9b67c343a46eab594f457684
     GuidInternal: 
-    m_lastTime: -8585497978082007734
+    m_lastTime: -8585461969341564905
     List:
     - name: General
       guid: 9ac68b89cd0b2543aa435561f078908b
@@ -156,8 +156,25 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 1a1dad3e5c7a724abc36cb5e26e00782
     GuidInternal: 
-    m_lastTime: -8585497924355607364
+    m_lastTime: -8585461969343275402
     List:
+    - name: Activate
+      guid: 48f3f18c8bd0684d87709bc5883dd336
+      id: 4166407614
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Activate
+        ObjectType: 3
+        guid: 48f3f18c8bd0684d87709bc5883dd336
+      Path: Events\Default Work Unit\Activate
+      maxAttenuation: 50
+      maxDuration: 1.091729
+      minDuration: 1.091729
     - name: Angry_PSTom
       guid: 466fc970d3b11a46869e6535dd5b5e69
       id: 400874472
@@ -262,8 +279,8 @@ MonoBehaviour:
         guid: 82df95486678ca42ba3f768a01f792c9
       Path: Events\Default Work Unit\Environment\Tutorial\BackgroundMusic_Tutorial
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 192
+      minDuration: 192
     - name: Boiler
       guid: c36ca0379bc8184fa50ff65f3e1b8117
       id: 260303802
@@ -281,6 +298,29 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: Breaking_Crate
+      guid: d88e7d12b69f304f889b6cef70fc10e1
+      id: 1995175766
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Environment
+        ObjectType: 4
+        guid: bc19f43cbe6aea478d686b59f8728304
+      - ElementName: Props
+        ObjectType: 4
+        guid: 13a2636d38f4e84faca199337f9e248b
+      - ElementName: Breaking_Crate
+        ObjectType: 3
+        guid: d88e7d12b69f304f889b6cef70fc10e1
+      Path: Events\Default Work Unit\Environment\Props\Breaking_Crate
+      maxAttenuation: 50
+      maxDuration: 0.595793
+      minDuration: 0.421289
     - name: Brello
       guid: 57c2bd93ba34ae4790c1aeb835adc319
       id: 1492444001
@@ -318,6 +358,46 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+    - name: Charge_PSTom
+      guid: 17ae59f5ee5c46469a161ed8f40deb10
+      id: 2295499621
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: PSTom
+        ObjectType: 4
+        guid: 4b4905bcdf2d1f4d9c71acc6e552739f
+      - ElementName: Charge_PSTom
+        ObjectType: 3
+        guid: 17ae59f5ee5c46469a161ed8f40deb10
+      Path: Events\Default Work Unit\PSTom\Charge_PSTom
+      maxAttenuation: 0
+      maxDuration: 1.901202
+      minDuration: 1.901202
+    - name: Charging_PSTom
+      guid: f90e6a88d661904b9a5a7be82cfb9a89
+      id: 380957376
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: PSTom
+        ObjectType: 4
+        guid: 4b4905bcdf2d1f4d9c71acc6e552739f
+      - ElementName: Charging_PSTom
+        ObjectType: 3
+        guid: f90e6a88d661904b9a5a7be82cfb9a89
+      Path: Events\Default Work Unit\PSTom\Charging_PSTom
+      maxAttenuation: 0
+      maxDuration: 1.253583
+      minDuration: 1.253583
     - name: Charging_Steamling
       guid: e315ea326779524db1e8a061ac9f3184
       id: 137424561
@@ -335,7 +415,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: e315ea326779524db1e8a061ac9f3184
       Path: Events\Default Work Unit\Steamling\Charging_Steamling
-      maxAttenuation: 0
+      maxAttenuation: 50
       maxDuration: 1.079728
       minDuration: 1.079728
     - name: Close_Brello
@@ -398,6 +478,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.742177
       minDuration: 0.742177
+    - name: Deactivate
+      guid: b9afac57e790b845b193bd485a88e4b7
+      id: 3646446591
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Deactivate
+        ObjectType: 3
+        guid: b9afac57e790b845b193bd485a88e4b7
+      Path: Events\Default Work Unit\Deactivate
+      maxAttenuation: 0
+      maxDuration: 2.389048
+      minDuration: 2.389048
     - name: Death_Brello
       guid: 162bb216ec8f674984f4d2876228d87e
       id: 1700730432
@@ -612,7 +709,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: d7fe12c4c0f4694fb91565881a16c913
       Path: Events\Default Work Unit\Juncc\Hide_Juncc
-      maxAttenuation: 50
+      maxAttenuation: 100
       maxDuration: 0.633515
       minDuration: 0.633515
     - name: Hit_PSTom
@@ -923,6 +1020,26 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.306009
       minDuration: 0.306009
+    - name: Pick_Checkpoint
+      guid: 8fc1573ba36c1846bbd7386e2a99a282
+      id: 1578278391
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Environment
+        ObjectType: 4
+        guid: bc19f43cbe6aea478d686b59f8728304
+      - ElementName: Pick_Checkpoint
+        ObjectType: 3
+        guid: 8fc1573ba36c1846bbd7386e2a99a282
+      Path: Events\Default Work Unit\Environment\Pick_Checkpoint
+      maxAttenuation: 50
+      maxDuration: 1.9
+      minDuration: 1.9
     - name: Poof_MrT
       guid: 83ca3e1e25ae2645b3a9b027d73f5129
       id: 2383840419
@@ -960,9 +1077,29 @@ MonoBehaviour:
         ObjectType: 3
         guid: a3e3ac6b981a3342b22552d32a9aa563
       Path: Events\Default Work Unit\Steamling\Preparing_Charge_Steamling
-      maxAttenuation: 0
+      maxAttenuation: 50
       maxDuration: 1.4
       minDuration: 1.4
+    - name: Props
+      guid: 13a2636d38f4e84faca199337f9e248b
+      id: 968010305
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Environment
+        ObjectType: 4
+        guid: bc19f43cbe6aea478d686b59f8728304
+      - ElementName: Props
+        ObjectType: 4
+        guid: 13a2636d38f4e84faca199337f9e248b
+      Path: Events\Default Work Unit\Environment\Props
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: PSTom
       guid: 4b4905bcdf2d1f4d9c71acc6e552739f
       id: 3759751106
@@ -1097,7 +1234,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: 2921059cfa54a84f8a5eaa24039c837f
       Path: Events\Default Work Unit\Environment\Grasslands\Rain_Level1
-      maxAttenuation: 100
+      maxAttenuation: 300
       maxDuration: -1
       minDuration: -1
     - name: Recovering_Steamling
@@ -1180,9 +1317,9 @@ MonoBehaviour:
         ObjectType: 3
         guid: 6766325350a3b042b61d086a64a39a4a
       Path: Events\Default Work Unit\Boiler\Shoot_Boiler
-      maxAttenuation: 50
-      maxDuration: 1
-      minDuration: 1
+      maxAttenuation: 0
+      maxDuration: 1.122462
+      minDuration: 0.890899
     - name: Shoot_Juncc
       guid: 3ed7a46b72f721418b60ac944a8113b9
       id: 4188370314
@@ -1200,7 +1337,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: 3ed7a46b72f721418b60ac944a8113b9
       Path: Events\Default Work Unit\Juncc\Shoot_Juncc
-      maxAttenuation: 50
+      maxAttenuation: 100
       maxDuration: 0.17925
       minDuration: 0.100601
     - name: ShopMusic_Level1
@@ -1263,7 +1400,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: 7bf19bda3ca8c448aa4527209092a41e
       Path: Events\Default Work Unit\Juncc\Spawn_Juncc
-      maxAttenuation: 50
+      maxAttenuation: 0
       maxDuration: 0.633515
       minDuration: 0.633515
     - name: Start_Glide_Brello
@@ -1361,8 +1498,8 @@ MonoBehaviour:
         guid: 685d250159651249a53c1c4f7503187c
       Path: Events\Default Work Unit\Environment\Grasslands\StopBackgroundMusic_Level1
       maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
+      maxDuration: -1
+      minDuration: -1
     - name: StopBackgroundMusic_Tutorial
       guid: 30119fbf68337b4c965584da981db8e6
       id: 2393177919
@@ -1567,7 +1704,7 @@ MonoBehaviour:
     ParentPath: Game Parameters\Default Work Unit
     guid: e4f736cbb2288f459e9c3c36b3575dbc
     GuidInternal: 
-    m_lastTime: -8585497978132909707
+    m_lastTime: -8585470678460279337
     List:
     - name: IsReverbOn
       guid: f6a8ff5128e2054e985fa92829509316
@@ -1643,7 +1780,7 @@ MonoBehaviour:
     ParentPath: States\Default Work Unit
     guid: 13117027c1e0a84b83ede94da2174f6f
     GuidInternal: 
-    m_lastTime: -8585514600866453131
+    m_lastTime: -8585470678437260603
     List: []
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
@@ -1657,7 +1794,7 @@ MonoBehaviour:
     ParentPath: Switches\Default Work Unit
     guid: 3652c387ca18794085902b6748b43d1c
     GuidInternal: 
-    m_lastTime: -8585514600866383395
+    m_lastTime: -8585462150707079611
     List:
     - name: FootstepSurfaceType
       guid: 5370e81ddde85840a97b77e23f265148
@@ -1706,6 +1843,22 @@ MonoBehaviour:
         - ElementName: Grass
           ObjectType: 10
           guid: 565450ede459af49826e71f202cf2658
+      - name: Metal
+        guid: bddbeff1a4228d4390d6fbd43b02f9fc
+        id: 2473969246
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: 3652c387ca18794085902b6748b43d1c
+        - ElementName: FootstepSurfaceType
+          ObjectType: 11
+          guid: 5370e81ddde85840a97b77e23f265148
+        - ElementName: Metal
+          ObjectType: 10
+          guid: bddbeff1a4228d4390d6fbd43b02f9fc
       - name: Rock
         guid: 03dbf29e4f777047a77339835f8091ee
         id: 2144363834
@@ -1769,10 +1922,10 @@ MonoBehaviour:
     ParentPath: Triggers\Default Work Unit
     guid: c350db81a104204da106bd1f7e8437ba
     GuidInternal: 
-    m_lastTime: -8585514600866333531
+    m_lastTime: -8585470678437230673
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 0500000006000000070000000a0000000b0000000f00000017000000180000003b0000003c0000003d0000003e000000
+  ExpandedWaapiItemIds: 
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0

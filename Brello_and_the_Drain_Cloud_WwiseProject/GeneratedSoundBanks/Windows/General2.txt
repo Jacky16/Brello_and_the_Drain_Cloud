@@ -2,6 +2,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	137424561	Charging_Steamling			\Default Work Unit\Steamling\Charging_Steamling	
 	183731594	Awake_Boiler			\Default Work Unit\Boiler\Awake_Boiler	
 	274987955	Dropply			\Default Work Unit\Dropply	
+	380957376	Charging_PSTom			\Default Work Unit\PSTom\Charging_PSTom	
 	400874472	Angry_PSTom			\Default Work Unit\PSTom\Angry_PSTom	
 	490892378	Crash_PSTom			\Default Work Unit\PSTom\Crash_PSTom	
 	983408950	Impact_Steamling			\Default Work Unit\Steamling\Impact_Steamling	
@@ -11,6 +12,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	1721372914	Cool_Boiler			\Default Work Unit\Boiler\Cool_Boiler	
 	1765157707	Preparing_Charge_Steamling			\Default Work Unit\Steamling\Preparing_Charge_Steamling	
 	2223599963	MainMenuStop			\Default Work Unit\MainMenuStop	
+	2295499621	Charge_PSTom			\Default Work Unit\PSTom\Charge_PSTom	
 	2393177919	StopBackgroundMusic_Tutorial			\Default Work Unit\Environment\Tutorial\StopBackgroundMusic_Tutorial	
 	2831023503	Punch_PSTom			\Default Work Unit\PSTom\Punch_PSTom	
 	2867905824	Recovering_Steamling			\Default Work Unit\Steamling\Recovering_Steamling	
@@ -25,18 +27,29 @@ Event	ID	Name			Wwise Object Path	Notes
 	4094738360	Death_Steamling			\Default Work Unit\Steamling\Death_Steamling	
 	4125243480	Hit_PSTom			\Default Work Unit\PSTom\Hit_PSTom	
 
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	1006694123	Music_Volume			\Default Work Unit\Volume\Music_Volume	
+	1564184899	SFX_Volume			\Default Work Unit\Volume\SFX_Volume	
+
+Audio Bus	ID	Name			Wwise Object Path	Notes
+	393239870	SFX			\Default Work Unit\Master Audio Bus\SFX	
+	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
+	3991942870	Music			\Default Work Unit\Master Audio Bus\Music	
+
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	98788103	Puñetazo	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\Puñetazo_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\PSTom\Puñetazo		548240
 	158687529	PSTom_Landing	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\PSTom_Landing_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\PSTom\PSTom_Landing		184596
 	194129353	Hit	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\Hit_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\PSTom\Hit		146592
-	232279621	MainMenu	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\MainMenu_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\MainMenu		15906216
 	297355710	PSTom_Angry	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\PSTom_Angry_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\PSTom\PSTom_Angry		197376
+	360941164	BR_Tutorial_v2	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\BR_Tutorial_v2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Tutorial\BR_Tutorial_v2		36864064
 	367496635	VoilerShoot	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\VoilerShoot_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Boiler\VoilerShoot		192064
-	532670166	PuzzlePillar	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\PuzzlePillar_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\PuzzlePillar		577404
+	509286957	PSTom_Charging	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\PSTom_Charging_7130F219.wem		\Actor-Mixer Hierarchy\Default Work Unit\PSTom\PSTom_Charging		120408
+	532670166	PuzzlePillar	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\PuzzlePillar_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Puzzle\PuzzlePillar		577404
 	551042684	Charge	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\Charge_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Steamling\Attack\Charge		190528
 	728610139	Hurt	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\Hurt_E5095AE5.wem		\Actor-Mixer Hierarchy\Default Work Unit\Steamling\Hurt		71360
 	775041559	PSTom_Crash2	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\PSTom_Crash2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\PSTom\PSTom_Crash2		130984
 	785924796	Dropply	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\Dropply_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Dropply		163420
-	1049505816	TutorialMusic	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\TutorialMusic_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Tutorial\TutorialMusic		17463664
+	834149868	BR_Menu_v1	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\BR_Menu_v1_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\BR_Menu_v1		26713108
+	1038725070	Charge	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\257508-Mechanism_-Designed_Steam_Gas_Explosion_Var2-003_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\PSTom\Charge		335436
 	1058461914	Prepare	F:\Brello_and_the_Drain_Cloud\Brello_and_the_Drain_Cloud_WwiseProject\.cache\Windows\SFX\Prepare_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Steamling\Attack\Prepare		268864
 

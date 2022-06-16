@@ -9,7 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: WaterfallMat
   m_Shader: {fileID: -6465566751694194690, guid: b85c5e2c0d0c9774ab24e77078fc44cb, type: 3}
-  m_ShaderKeywords: REFRACTION_ON SURFACE_FOAM_ON WATER_LIGHTING_ON WORLD_SPACE_UV_ON
+  m_ShaderKeywords: INTERSECTION_EFFECTS_ON REFRACTION_ON SURFACE_FOAM_ON WATER_LIGHTING_ON
+    WORLD_SPACE_UV_ON
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -181,7 +182,7 @@ Material:
     - _EmissionColorUI: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColorWithMapUI: {r: 1, g: 1, b: 1, a: 1}
     - _Indicator: {r: 1, g: 0, b: 0, a: 1}
-    - _IntersectionFoamColor: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 1}
+    - _IntersectionFoamColor: {r: 0.9198113, g: 0.98243433, b: 1, a: 0}
     - _IntersectionFoamMovement: {r: 0.1, g: 0.014, b: 0, a: 0}
     - _IntersectionFoamSampling: {r: 1, g: 0, b: 0, a: 0}
     - _LightingDiffuseColor: {r: 0, g: 0, b: 0, a: 0}
@@ -191,13 +192,13 @@ Material:
     - _SpecularColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _SurfaceFoamColor1: {r: 0.5, g: 0.5, b: 0.5, a: 0.3215686}
     - _SurfaceFoamColor2: {r: 1, g: 1, b: 1, a: 0.1764706}
-    - _SurfaceFoamMovement: {r: 0.484, g: 1.55, b: 0.5, a: 0.7}
+    - _SurfaceFoamMovement: {r: 0.484, g: 1.55, b: 0.5, a: 0.3}
     - _SurfaceFoamSampling: {r: 0.119, g: 0, b: 0, a: 0}
     - _SurfaceFoamTilingAndOffset: {r: 1, g: -1, b: 1.2, a: 2}
-    - _WaterColorDeep: {r: 0.20268542, g: 0.5019608, b: 0.7254902, a: 1}
-    - _WaterColorHorizon: {r: 0.30529967, g: 0.4422123, b: 1, a: 1}
-    - _WaterColorShallow: {r: 0.2618388, g: 0.37887818, b: 0.6886792, a: 1}
-    - _WaterColorUnderwater: {r: 0.33969802, g: 0.4745261, b: 0.745283, a: 0}
+    - _WaterColorDeep: {r: 0.20256051, g: 0.5019608, b: 0.7254902, a: 1}
+    - _WaterColorHorizon: {r: 0.30516788, g: 0.44208056, b: 1, a: 1}
+    - _WaterColorShallow: {r: 0.26170704, g: 0.37874642, b: 0.6886792, a: 1}
+    - _WaterColorUnderwater: {r: 0.33956623, g: 0.4745261, b: 0.745283, a: 0}
     - _WaveColor: {r: 0, g: 0, b: 0, a: 0}
     - _WaveDirections: {r: 0.465, g: 0.721, b: 0.246, a: 19.92}
     - _WaveVisuals: {r: 0, g: 2, b: 0, a: 0}

@@ -31,7 +31,7 @@ public class PlayerCam : MonoBehaviour
     private Vector2 _rotationXMinMax = new Vector2(-40, 40);
 
  
-    void Update()
+    void LateUpdate()
     {
         
         float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity.x;
@@ -78,5 +78,22 @@ public class PlayerCam : MonoBehaviour
     public void ChangeInvertY(bool _invert)
     {
         isInvertY = _invert;
+    }
+
+    public bool GetInvertX()
+    {
+        return isInvertX;
+    }
+    public bool GetInvertY()
+    {
+        return isInvertY;
+    }
+    public int GetVelocityX()
+    {
+        return (int)_mouseSensitivity.x;
+    }
+    public int GetVelocityY()
+    {
+        return (int)_mouseSensitivity.y;
     }
 }

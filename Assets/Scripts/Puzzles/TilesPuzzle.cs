@@ -15,6 +15,7 @@ public class TilesPuzzle : MonoBehaviour
     //Variable para hacer los cálculos de si se sigue el orden correcto
     int lastTile = 0;
 
+
     // Función que es llamada por un tile del puzzle al colisionar con el player
     // la función envía como parámetro su posición en el orden del puzzle 
     // para así poder compararla con la última posicion (var lastTile)
@@ -58,6 +59,7 @@ public class TilesPuzzle : MonoBehaviour
     // Función que es llamada por los tiles al dar error y así se resetean todos
     public void ResetPuzzle()
     {
+
         for(int i = 0; i < tiles.Length; i++)
         {
             tiles[i].Reset();
@@ -71,6 +73,6 @@ public class TilesPuzzle : MonoBehaviour
     {
         pillar.DOMove(moveTo.position, timeToArrive).SetEase(Ease.InOutSine);
         //Sonido de puzzle completado
-        AkSoundEngine.PostEvent("PuzzlePillar", WwiseManager.instance.gameObject);
+        AkSoundEngine.PostEvent("PuzzlePillar", pillar.gameObject);
     }
 }

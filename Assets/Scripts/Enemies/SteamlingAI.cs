@@ -64,12 +64,12 @@ public class SteamlingAI : EnemyAI
         agent.destination = transform.position;
 
         animator.SetTrigger("Attack");
-        AkSoundEngine.PostEvent("Preparing_Charge_Steamling", WwiseManager.instance.gameObject);
+        AkSoundEngine.PostEvent("Preparing_Charge_Steamling", gameObject);
 
         yield return new WaitForSeconds(timeBeforeAttacking);
 
         animator.SetBool("Charge", true);
-        AkSoundEngine.PostEvent("Charging_Steamling", WwiseManager.instance.gameObject);
+        AkSoundEngine.PostEvent("Charging_Steamling", gameObject);
 
         currentDamage = dashDamage;
 
@@ -93,11 +93,11 @@ public class SteamlingAI : EnemyAI
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.gameObject.TryGetComponent(out BrelloHealth playerHealth))
+        if (collision.collider.gameObject.TryGetComponent(out Health health))
         {
             //playerHealth.GetComponent<CharacterController>().Move(transform.forward * impulseForce * Time.deltaTime);
 
-            playerHealth.DoDamage(currentDamage);
+            health.DoDamage(currentDamage);
         }
     }
 }

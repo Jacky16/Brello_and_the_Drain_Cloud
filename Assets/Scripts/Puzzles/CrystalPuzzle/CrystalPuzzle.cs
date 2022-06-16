@@ -28,15 +28,21 @@ public class CrystalPuzzle : MonoBehaviour
 
     public void ResetCrystals()
     {
+        if(crystalsToComplete > 0)
+        AkSoundEngine.PostEvent("Deactivate", gameObject);
+
         foreach (Crystal crystal in crystals)
         {
             StartCoroutine(crystal.ResetCrystal());
+            shinyCrystals = 0;
         }
     }
 
     public void AddGoodOne()
     {
         shinyCrystals++;
+
+        
 
         if(shinyCrystals == crystalsToComplete)
         {
