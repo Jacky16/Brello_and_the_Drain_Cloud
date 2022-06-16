@@ -24,7 +24,7 @@ MonoBehaviour:
     ParentPath: Virtual Acoustics\Default Work Unit
     guid: 166bb2b7fc13db45b69f5a19518cf21f
     GuidInternal: 
-    m_lastTime: -8585518379582058229
+    m_lastTime: -8585528790687800862
     List: []
   AuxBusWwu:
   - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
@@ -38,7 +38,7 @@ MonoBehaviour:
     ParentPath: Master-Mixer Hierarchy\Default Work Unit
     guid: b11d140495a5214693f79f09da626fbf
     GuidInternal: 
-    m_lastTime: -8585507796352345777
+    m_lastTime: -8585511366356661153
     List:
     - name: Master Audio Bus
       guid: d8a41415a61d2a41a17e75ca0c2149f3
@@ -100,7 +100,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: b7fee57a9b67c343a46eab594f457684
     GuidInternal: 
-    m_lastTime: -8585464978248196116
+    m_lastTime: -8585462717847375807
     List:
     - name: General
       guid: 9ac68b89cd0b2543aa435561f078908b
@@ -156,7 +156,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 1a1dad3e5c7a724abc36cb5e26e00782
     GuidInternal: 
-    m_lastTime: -8585464978260584560
+    m_lastTime: -8585462717859649677
     List:
     - name: Angry_PSTom
       guid: 466fc970d3b11a46869e6535dd5b5e69
@@ -281,6 +281,29 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: Breaking_Crate
+      guid: d88e7d12b69f304f889b6cef70fc10e1
+      id: 1995175766
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Environment
+        ObjectType: 4
+        guid: bc19f43cbe6aea478d686b59f8728304
+      - ElementName: Props
+        ObjectType: 4
+        guid: 13a2636d38f4e84faca199337f9e248b
+      - ElementName: Breaking_Crate
+        ObjectType: 3
+        guid: d88e7d12b69f304f889b6cef70fc10e1
+      Path: Events\Default Work Unit\Environment\Props\Breaking_Crate
+      maxAttenuation: 0
+      maxDuration: 0.595793
+      minDuration: 0.421289
     - name: Brello
       guid: 57c2bd93ba34ae4790c1aeb835adc319
       id: 1492444001
@@ -612,7 +635,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: d7fe12c4c0f4694fb91565881a16c913
       Path: Events\Default Work Unit\Juncc\Hide_Juncc
-      maxAttenuation: 50
+      maxAttenuation: 100
       maxDuration: 0.633515
       minDuration: 0.633515
     - name: Hit_PSTom
@@ -963,6 +986,26 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 1.4
       minDuration: 1.4
+    - name: Props
+      guid: 13a2636d38f4e84faca199337f9e248b
+      id: 968010305
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 1a1dad3e5c7a724abc36cb5e26e00782
+      - ElementName: Environment
+        ObjectType: 4
+        guid: bc19f43cbe6aea478d686b59f8728304
+      - ElementName: Props
+        ObjectType: 4
+        guid: 13a2636d38f4e84faca199337f9e248b
+      Path: Events\Default Work Unit\Environment\Props
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: PSTom
       guid: 4b4905bcdf2d1f4d9c71acc6e552739f
       id: 3759751106
@@ -1200,7 +1243,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: 3ed7a46b72f721418b60ac944a8113b9
       Path: Events\Default Work Unit\Juncc\Shoot_Juncc
-      maxAttenuation: 50
+      maxAttenuation: 100
       maxDuration: 0.17925
       minDuration: 0.100601
     - name: ShopMusic_Level1
@@ -1263,7 +1306,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: 7bf19bda3ca8c448aa4527209092a41e
       Path: Events\Default Work Unit\Juncc\Spawn_Juncc
-      maxAttenuation: 50
+      maxAttenuation: 0
       maxDuration: 0.633515
       minDuration: 0.633515
     - name: Start_Glide_Brello
@@ -1567,7 +1610,7 @@ MonoBehaviour:
     ParentPath: Game Parameters\Default Work Unit
     guid: e4f736cbb2288f459e9c3c36b3575dbc
     GuidInternal: 
-    m_lastTime: -8585497899284394895
+    m_lastTime: -8585497897284599994
     List:
     - name: IsReverbOn
       guid: f6a8ff5128e2054e985fa92829509316
@@ -1643,7 +1686,7 @@ MonoBehaviour:
     ParentPath: States\Default Work Unit
     guid: 13117027c1e0a84b83ede94da2174f6f
     GuidInternal: 
-    m_lastTime: -8585518379582820111
+    m_lastTime: -8585528790688449131
     List: []
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
@@ -1657,7 +1700,7 @@ MonoBehaviour:
     ParentPath: Switches\Default Work Unit
     guid: 3652c387ca18794085902b6748b43d1c
     GuidInternal: 
-    m_lastTime: -8585463674279649166
+    m_lastTime: -8585462717847365838
     List:
     - name: FootstepSurfaceType
       guid: 5370e81ddde85840a97b77e23f265148
@@ -1785,7 +1828,7 @@ MonoBehaviour:
     ParentPath: Triggers\Default Work Unit
     guid: c350db81a104204da106bd1f7e8437ba
     GuidInternal: 
-    m_lastTime: -8585518379582058229
+    m_lastTime: -8585528790688459099
     List: []
   ExpandedFileSystemItemIds: 
   ExpandedWaapiItemIds: 
