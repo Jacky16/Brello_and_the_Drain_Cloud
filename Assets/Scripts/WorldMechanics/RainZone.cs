@@ -18,8 +18,12 @@ public class RainZone : MonoBehaviour
     private bool pyraInZone;
     private List<Position> positions;
     private PyraProtection pyraProtection;
-    [SerializeField] Volume rainVolume;
+    Volume rainVolume;
 
+    private void Awake()
+    {
+        rainVolume = GetComponent<Volume>();
+    }
     void Start()
     {
         Init();
@@ -28,10 +32,11 @@ public class RainZone : MonoBehaviour
     private void Init()
     {
         pyraProtection = GameObject.FindGameObjectWithTag("Player").GetComponent<PyraProtection>();
+        pyra = GameObject.FindGameObjectWithTag("Pyra").GetComponent<PyraHealth>();
+        
         tpPoints = new List<Transform>();
         positions = new List<Position>();
         pyraInZone = false;
-        pyra = GameObject.FindGameObjectWithTag("Pyra").GetComponent<PyraHealth>();
     }
     private void GetAllPoints()
     {
