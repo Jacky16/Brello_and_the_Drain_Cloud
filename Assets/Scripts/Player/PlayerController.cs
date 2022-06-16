@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float gladingGravity = 100;
     [SerializeField] private float velocityToGlade = 3;
     public bool canGlide;
+    [SerializeField] TrailRenderer[] trails;
 
     [Header("Ground Checker settings")]
     [SerializeField] Transform posCheckerGround;
@@ -260,8 +261,19 @@ public class PlayerController : MonoBehaviour
         if (isGlading && !isSwimming)
         {
             rb.AddForce(Vector3.down * gladingGravity, ForceMode.Force);
-            
-        }  
+
+            foreach(TrailRenderer trail in trails)
+            {
+                trail.emitting = true;
+            }
+        }
+        else
+        {
+            foreach (TrailRenderer trail in trails)
+            {
+                trail.emitting = false;
+            }
+        } 
     }
     private Vector3 CamDirection()
     {
