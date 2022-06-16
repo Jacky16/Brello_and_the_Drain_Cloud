@@ -463,13 +463,16 @@ public class PlayerController : MonoBehaviour
             isUmbrellaOpen = _value;
             brelloOpenManager.SetOpen(isUmbrellaOpen);
 
-            if(!_value)
+            if (!_value)
+            {
                 movementMode = MovementMode.VELOCITY;
+                rb.useGravity = true;
+            }
             
             else if(_value && !isGrounded) //Paraguas abierto y sin estar en el suelo
             {
                 movementMode = MovementMode.ADD_FORCE;
-                rb.useGravity = !_value;
+                rb.useGravity = false;
             }
 
             //Audio de apertura de paraguas

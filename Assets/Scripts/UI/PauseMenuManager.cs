@@ -10,16 +10,11 @@ public class PauseMenuManager : MonoBehaviour
     [SerializeField] GameObject canvasOptions;
     [SerializeField] BackgroundMusic bm;
     bool isPause = false;
-    PlayerCam playerCam;
-
-    const string soundTag = "SoundVol";
-    const string musicTag = "MusicVol";
-    const string sensXTag = "SensX";
-    const string sensYTag = "SensY";
+    PlayerController player;
 
     private void Awake()
     {
-        playerCam = FindObjectOfType<PlayerCam>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
     private void Start()
     {
@@ -35,6 +30,7 @@ public class PauseMenuManager : MonoBehaviour
 
         if (isPause)
         {
+            player.BlockMovement();
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
             Time.timeScale = 0;
@@ -49,6 +45,7 @@ public class PauseMenuManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         canvasOptions.SetActive(false);
+        player.EnableMovement();
     }
 
     public void Restart()
