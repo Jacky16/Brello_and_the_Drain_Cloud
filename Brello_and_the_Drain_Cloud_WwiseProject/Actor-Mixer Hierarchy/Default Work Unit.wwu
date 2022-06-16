@@ -1499,6 +1499,7 @@
 							<ChildrenList>
 								<Sound Name="Breaking_Crate" ID="{AFC48C9A-CB43-466A-A548-9649F5681D9E}" ShortID="168984216">
 									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="1"/>
 										<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
 										<Property Name="MaxSoundPerInstance" Type="int16">
 											<ValueList>
@@ -1530,6 +1531,9 @@
 										</Property>
 									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="Low_Attenuation" ID="{AF0F7070-1466-4ABC-8412-031B679D6E2A}" WorkUnitID="{D4E67D86-651B-4CCE-8108-48600BB7AC6E}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
 										</Reference>
@@ -1583,6 +1587,7 @@
 								</Sound>
 								<Sound Name="Charge" ID="{DB20CE82-A9E9-4ECC-B257-6DB8E70033E0}" ShortID="50329975">
 									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="1"/>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
 												<Value>-12</Value>
@@ -1590,6 +1595,9 @@
 										</Property>
 									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="Low_Attenuation" ID="{AF0F7070-1466-4ABC-8412-031B679D6E2A}" WorkUnitID="{D4E67D86-651B-4CCE-8108-48600BB7AC6E}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
 										</Reference>
@@ -1613,6 +1621,7 @@
 								</Sound>
 								<Sound Name="Prepare" ID="{6FBB339E-1637-4038-BCC3-E65043FCA0A7}" ShortID="845509613">
 									<PropertyList>
+										<Property Name="3DSpatialization" Type="int16" Value="1"/>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
 												<Value>-12</Value>
@@ -1620,6 +1629,9 @@
 										</Property>
 									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="Low_Attenuation" ID="{AF0F7070-1466-4ABC-8412-031B679D6E2A}" WorkUnitID="{D4E67D86-651B-4CCE-8108-48600BB7AC6E}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
 										</Reference>
