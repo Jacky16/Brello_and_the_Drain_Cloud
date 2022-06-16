@@ -40,7 +40,7 @@ public class Hacks : MonoBehaviour
             player.transform.position = zone3.transform.position;
             pyra.Warp(player.transform.position);
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha4))
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             player.transform.position = zone4.transform.position;
             pyra.Warp(player.transform.position);
