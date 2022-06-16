@@ -14,7 +14,7 @@ public class Vines : Interactable
     protected override void Start()
     {
         base.Start();
-        fire = transform.GetChild(0).GetComponent<ParticleSystem>();
+        //fire = transform.GetChild(0).GetComponent<ParticleSystem>();
         fire.gameObject.SetActive(false);
     }
 

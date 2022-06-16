@@ -295,7 +295,9 @@ public class PsTom : MonoBehaviour
             
             //Asignar la posicion del target al player
             Vector3 nextPosTarget = currentPosPlayer;
-            nextPosTarget.y = 0;          
+            nextPosTarget.y = 0;  
+            
+            //Mover el targeter al sitio que va a saltar
             sequence.Join(targeterTransform.DOMove(nextPosTarget, jumpAttackDuration));
 
             //On complete
@@ -307,17 +309,14 @@ public class PsTom : MonoBehaviour
                     AddImpulseToPlayer(impulseAttackJumpToPlayer);
                     player.GetComponent<BrelloHealth>().DoDamage(damage);
                 }
-                //Stun(false);
-                Instantiate(jumpParticles, transform.position, Quaternion.identity);
-
-                targeterTransform.gameObject.SetActive(false);
-                
+                Instantiate(jumpParticles, transform.position, Quaternion.identity);                
             });
                        
             sequence.AppendCallback(() =>
             {
                 collider.isTrigger = false;
                 navMeshAgent.enabled = true;
+                targeterTransform.gameObject.SetActive(false);
 
             });
 
