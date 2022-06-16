@@ -1493,6 +1493,36 @@
 										<ActiveSource Name="TutorialMusic" ID="{BBA8CA02-705D-4532-A784-EA4B53D7D36D}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
+								<Sound Name="BR_Tutorial_v2" ID="{DD7394F5-8995-4F38-AEB7-4FDAE91035C9}" ShortID="1005705841">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-6</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Music" ID="{FF677782-1B11-48DB-92B1-E627213C1F6C}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="BR_Tutorial_v2" ID="{FFECA4E1-FF14-4C0F-AA1D-3B7BFED91BAB}">
+											<Language>SFX</Language>
+											<AudioFile>BR_Tutorial_v2.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="360941164"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="BR_Tutorial_v2" ID="{FFECA4E1-FF14-4C0F-AA1D-3B7BFED91BAB}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Props" ID="{4C688B67-F219-4722-8FF5-CF517771C437}" ShortID="968538521">
@@ -2252,6 +2282,37 @@
 						</Sound>
 					</ChildrenList>
 				</Folder>
+				<Sound Name="BR_Menu_v1" ID="{322B02B0-EB73-40D4-B963-6851E581F87F}" ShortID="1046783010">
+					<PropertyList>
+						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-12</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2C331DFE-6112-4CA8-BB53-644C0335BC84}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Music" ID="{FF677782-1B11-48DB-92B1-E627213C1F6C}" WorkUnitID="{04141DB1-A595-4621-93F7-9F09DA626FBF}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="BR_Menu_v1" ID="{0617E099-DB33-4209-89BA-C6D7AA604838}">
+							<Language>SFX</Language>
+							<AudioFile>BR_Menu_v1.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="834149868"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ObjectLists/>
+					<ActiveSourceList>
+						<ActiveSource Name="BR_Menu_v1" ID="{0617E099-DB33-4209-89BA-C6D7AA604838}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>
