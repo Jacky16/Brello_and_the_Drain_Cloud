@@ -32,7 +32,7 @@ public class InputManager : MonoBehaviour
         playerInput.CharacterControls.Attack.started += OnAttack;
 
         //Open Umbrella
-        playerInput.CharacterControls.OpenUmbrella.performed += OnUmbrella;
+        playerInput.CharacterControls.OpenUmbrella.started += OnUmbrella;
         playerInput.CharacterControls.OpenUmbrella.canceled += OnUmbrella;
 
 

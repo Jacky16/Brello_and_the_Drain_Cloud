@@ -54,8 +54,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float gladingGravity = 100;
     [SerializeField] private float velocityToGlade = 3;
     [SerializeField] TrailRenderer[] trails;
-    [SerializeField] float timeToOpenUmbrella = .25f;
-    [SerializeField] float counterOpenUmbrella = 0;
     public bool canGlide;
 
     [Header("Ground Checker settings")]
@@ -504,16 +502,15 @@ public class PlayerController : MonoBehaviour
 
     public void OpenUmbrellaManager(bool _value)
     {
-        //Parar el impulso de cuando planeas
-        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-        if (canGlide && canMove && Time.time > counterOpenUmbrella)
+        if (canGlide && canMove)
         {
-            counterOpenUmbrella = Time.time + timeToOpenUmbrella;
+            //Parar el impulso de cuando planeas
             isUmbrellaOpen = _value;
             brelloOpenManager.SetOpen(isUmbrellaOpen);
 
             if (!_value && !isSwimming)
             {
+                
                 movementMode = MovementMode.VELOCITY;
                 rb.useGravity = true;
             }
@@ -521,6 +518,7 @@ public class PlayerController : MonoBehaviour
             else if(_value && !isGrounded) //Paraguas abierto y sin estar en el suelo
             {
                 movementMode = MovementMode.ADD_FORCE;
+                rb.velocity = Vector3.zero;
                 rb.useGravity = false;
             }
 
