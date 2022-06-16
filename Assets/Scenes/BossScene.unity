@@ -771,7 +771,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 448065210}
-  m_LocalRotation: {x: -0.05603411, y: 0.9350661, z: -0.17182249, w: -0.30494034}
+  m_LocalRotation: {x: -0.056034114, y: 0.9350661, z: -0.17182247, w: -0.3049403}
   m_LocalPosition: {x: 17.409779, y: 10.070001, z: -8.237165}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1687,7 +1687,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 748616113}
-  m_LocalRotation: {x: -0.0010661313, y: 0.92237914, z: -0.38627604, w: -0.0025457891}
+  m_LocalRotation: {x: -0.0010661483, y: 0.92237914, z: -0.386276, w: -0.0025458294}
   m_LocalPosition: {x: 6.41, y: 25.12, z: 8.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2961,6 +2961,8 @@ GameObject:
   - component: {fileID: 1194638439}
   - component: {fileID: 1194638440}
   - component: {fileID: 1194638442}
+  - component: {fileID: 1194638441}
+  - component: {fileID: 1194638436}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2968,6 +2970,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1194638436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194638435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93a4841df9361b3489327307f2436c08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDefaultListener: 1
+  listenerId: 0
 --- !u!20 &1194638437
 Camera:
   m_ObjectHideFlags: 0
@@ -3018,7 +3034,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194638435}
-  m_LocalRotation: {x: -0.0010661313, y: 0.92237914, z: -0.38627604, w: -0.0025457891}
+  m_LocalRotation: {x: -0.0010661483, y: 0.92237914, z: -0.386276, w: -0.0025458294}
   m_LocalPosition: {x: 6.4187136, y: 26.723331, z: 10.548531}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3092,6 +3108,28 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1194638441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194638435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52fdbde77355589458a6a5a81b062545, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_listeners:
+    initialListenerList: []
+    useDefaultListeners: 1
+  isEnvironmentAware: 0
+  isStaticObject: 0
+  m_positionOffsetData:
+    KeepMe: 0
+    positionOffset: {x: 0, y: 0, z: 0}
+  m_posOffsetData: {fileID: 0}
+  listenerMask: 1
 --- !u!114 &1194638442
 MonoBehaviour:
   m_ObjectHideFlags: 0
