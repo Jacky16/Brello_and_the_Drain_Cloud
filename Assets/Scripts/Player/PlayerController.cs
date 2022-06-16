@@ -510,15 +510,14 @@ public class PlayerController : MonoBehaviour
 
             if (!_value && !isSwimming)
             {
-                
                 movementMode = MovementMode.VELOCITY;
                 rb.useGravity = true;
             }
             
             else if(_value && !isGrounded) //Paraguas abierto y sin estar en el suelo
             {
-                movementMode = MovementMode.ADD_FORCE;
                 rb.velocity = Vector3.zero;
+                movementMode = MovementMode.ADD_FORCE;
                 rb.useGravity = false;
             }
 
